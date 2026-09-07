@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1AGE</title>
+
+    <title>1AGE — Search Solana</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,35 +13,64 @@
 
     <main class="container">
 
-        <h1>1AGE</h1>
+        <section class="hero">
 
-        <p class="tagline">
-            Organizing the Solana ecosystem.
-        </p>
+            <h1>1AGE</h1>
 
-        <div class="divider"></div>
+            <p class="tagline">
+                Search the Solana ecosystem.
+            </p>
 
-        <h2>Discover.</h2>
-        <h2>Build.</h2>
-        <h2>Grow.</h2>
+            <form id="search-form" class="search-form">
 
-        <div class="divider"></div>
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Search projects, wallets, games, tools..."
+                    autocomplete="off"
+                >
 
-        <h3>Currently in Active Development</h3>
+                <button type="submit">
+                    Search
+                </button>
 
-        <ul>
+            </form>
 
-            <li>✅ Branding</li>
-            <li>✅ Git Repository</li>
-            <li>🚧 Landing Page</li>
-            <li>⬜ GitHub Pages</li>
-            <li>⬜ Search Engine</li>
-            <li>⬜ Ecosystem Directory</li>
-            <li>⬜ Builder Accounts</li>
+            <div class="quick-links">
+                <button class="quick-search" data-query="wallet">
+                    Wallets
+                </button>
 
-        </ul>
+                <button class="quick-search" data-query="defi">
+                    DeFi
+                </button>
+
+                <button class="quick-search" data-query="games">
+                    Games
+                </button>
+
+                <button class="quick-search" data-query="developer">
+                    Tools
+                </button>
+            </div>
+
+        </section>
+
+        <section id="results-section" class="results-section">
+
+            <div class="results-header">
+                <p id="results-label">
+                    Discover the Solana ecosystem.
+                </p>
+            </div>
+
+            <div id="results" class="results"></div>
+
+        </section>
 
     </main>
+
+    <script src="search.js"></script>
 
 </body>
 </html>
