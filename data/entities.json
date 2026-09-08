@@ -1,0 +1,132 @@
+[
+  {
+    "id": "jupiter",
+    "name": "Jupiter",
+    "type": "project",
+    "category": "DeFi",
+    "description": "Solana liquidity infrastructure and trading platform.",
+    "tags": ["swap", "defi", "trading", "aggregator"],
+    "official_links": {
+      "website": "https://jup.ag",
+      "github": null,
+      "x": null,
+      "discord": null,
+      "docs": null
+    },
+    "status": "active",
+    "last_reviewed": "2026-09-07",
+    "trust": {
+      "official_links_verified": false,
+      "github_found": false,
+      "documentation_found": false,
+      "open_source": null,
+      "audit_available": null
+    },
+    "risk_signals": [],
+    "relationships": []
+  },
+  {
+    "id": "phantom",
+    "name": "Phantom",
+    "type": "wallet",
+    "category": "Wallet",
+    "description": "A crypto wallet used throughout the Solana ecosystem.",
+    "tags": ["wallet", "mobile", "browser", "beginner"],
+    "official_links": {
+      "website": "https://phantom.com",
+      "github": null,
+      "x": null,
+      "discord": null,
+      "docs": null
+    },
+    "status": "active",
+    "last_reviewed": "2026-09-07",
+    "trust": {
+      "official_links_verified": false,
+      "github_found": false,
+      "documentation_found": false,
+      "open_source": null,
+      "audit_available": null
+    },
+    "risk_signals": [],
+    "relationships": []
+  },
+  {
+    "id": "helius",
+    "name": "Helius",
+    "type": "tool",
+    "category": "Infrastructure",
+    "description": "Developer infrastructure and APIs for building on Solana.",
+    "tags": ["rpc", "api", "developer", "infrastructure"],
+    "official_links": {
+      "website": "https://helius.dev",
+      "github": null,
+      "x": null,
+      "discord": null,
+      "docs": null
+    },
+    "status": "active",
+    "last_reviewed": "2026-09-07",
+    "trust": {
+      "official_links_verified": false,
+      "github_found": false,
+      "documentation_found": false,
+      "open_source": null,
+      "audit_available": null
+    },
+    "risk_signals": [],
+    "relationships": []
+  },
+  {
+    "id": "backpack",
+    "name": "Backpack",
+    "type": "wallet",
+    "category": "Wallet",
+    "description": "A wallet and trading platform built for the crypto ecosystem.",
+    "tags": ["wallet", "trading", "mobile", "solana"],
+    "official_links": {
+      "website": "https://backpack.app",
+      "github": null,
+      "x": null,
+      "discord": null,
+      "docs": null
+    },
+    "status": "active",
+    "last_reviewed": "2026-09-07",
+    "trust": {
+      "official_links_verified": false,
+      "github_found": false,
+      "documentation_found": false,
+      "open_source": null,
+      "audit_available": null
+    },
+    "risk_signals": [],
+    "relationships": []
+  },
+  {
+    "id": "superteam",
+    "name": "Superteam",
+    "type": "community",
+    "category": "Community",
+    "description": "A global community helping people build, earn, and contribute in the Solana ecosystem.",
+    "tags": ["community", "jobs", "grants", "builders", "earn"],
+    "official_links": {
+      "website": "https://superteam.fun",
+      "github": null,
+      "x": null,
+      "discord": null,
+      "docs": null
+    },
+    "status": "active",
+    "last_reviewed": "2026-09-07",
+    "trust": {
+      "official_links_verified": false,
+      "github_found": false,
+      "documentation_found": false,
+      "open_source": null,
+      "audit_available": null
+    },
+    "risk_signals": [],
+    "relationships": []
+  }
+]

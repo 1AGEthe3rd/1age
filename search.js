@@ -1,45 +1,4 @@
-const entities = [
-    {
-        name: "Jupiter",
-        type: "Project",
-        category: "DeFi",
-        description: "Solana liquidity infrastructure and trading platform.",
-        tags: ["swap", "defi", "trading", "aggregator"],
-        website: "https://jup.ag"
-    },
-    {
-        name: "Phantom",
-        type: "Wallet",
-        category: "Wallet",
-        description: "A crypto wallet used throughout the Solana ecosystem.",
-        tags: ["wallet", "mobile", "browser", "beginner"],
-        website: "https://phantom.com"
-    },
-    {
-        name: "Helius",
-        type: "Tool",
-        category: "Infrastructure",
-        description: "Developer infrastructure and APIs for building on Solana.",
-        tags: ["rpc", "api", "developer", "infrastructure"],
-        website: "https://helius.dev"
-    },
-    {
-        name: "Backpack",
-        type: "Wallet",
-        category: "Wallet",
-        description: "A wallet and trading platform built for the crypto ecosystem.",
-        tags: ["wallet", "trading", "mobile", "solana"],
-        website: "https://backpack.app"
-    },
-    {
-        name: "Superteam",
-        type: "Community",
-        category: "Community",
-        description: "A global community helping people build, earn, and contribute in the Solana ecosystem.",
-        tags: ["community", "jobs", "grants", "builders", "earn"],
-        website: "https://superteam.fun"
-    }
-];
+let entities = [];
 
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
@@ -48,7 +7,7 @@ const resultsLabel = document.querySelector("#results-label");
 const quickSearchButtons = document.querySelectorAll(".quick-search");
 
 function normalize(value) {
-    return value.toLowerCase().trim();
+    return String(value ?? "").toLowerCase().trim();
 }
 
 function scoreEntity(entity, query) {
@@ -62,7 +21,7 @@ function scoreEntity(entity, query) {
     const type = normalize(entity.type);
     const category = normalize(entity.category);
     const description = normalize(entity.description);
-    const tags = entity.tags.map(normalize);
+    const tags = (entity.tags || []).map(normalize);
 
     for (const term of terms) {
         if (name === term) {
@@ -123,7 +82,6 @@ function renderResults(items, query) {
 
     for (const entity of items) {
         const card = document.createElement("article");
-
         card.className = "result-card";
 
         card.innerHTML = `
@@ -132,17 +90,23 @@ function renderResults(items, query) {
                 <span class="result-type">${entity.type}</span>
             </div>
 
+            <p class="result-status">
+                ${entity.status}
+            </p>
+
             <p class="result-description">
                 ${entity.description}
             </p>
 
             <div class="result-tags">
-                ${entity.tags.map(tag => `<span>#${tag}</span>`).join("")}
+                ${(entity.tags || [])
+                    .map(tag => `<span>#${tag}</span>`)
+                    .join("")}
             </div>
 
             <a
                 class="result-link"
-                href="${entity.website}"
+                href="${entity.official_links.website}"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -168,8 +132,33 @@ function runSearch(query) {
     renderResults(matches, cleanQuery);
 }
 
+async function loadEntities() {
+    try {
+        const response = await fetch("data/entities.json");
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        entities = await response.json();
+
+        resultsLabel.textContent = "Discover the Solana ecosystem.";
+    } catch (error) {
+        console.error("Failed to load 1AGE Index:", error);
+
+        resultsLabel.textContent = "1AGE Index unavailable.";
+
+        results.innerHTML = `
+            <div class="empty-state">
+                The search index could not be loaded.
+            </div>
+        `;
+    }
+}
+
 searchForm.addEventListener("submit", event => {
     event.preventDefault();
+
     runSearch(searchInput.value);
 });
 
@@ -178,3 +167,5 @@ quickSearchButtons.forEach(button => {
         runSearch(button.dataset.query);
     });
 });
+
+loadEntities();
