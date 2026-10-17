@@ -1,11 +1,13 @@
-let entities = [];
-
-const searchForm = document.querySelector("#search-form");
-const searchInput = document.querySelector("#search-input");
-const results = document.querySelector("#results");
-const resultsLabel = document.querySelector("#results-label");
-const quickSearchButtons = document.querySelectorAll(".quick-search");
-
+(() => {
+'use strict';
+let entities = [], ready = false, pendingQuery = '';
+const searchForm = document.querySelector('#search-form');
+if (!searchForm) return;
+const searchInput = document.querySelector('#search-input');
+const results = document.querySelector('#results');
+const resultsLabel = document.querySelector('#results-label');
+const resultsSection = document.querySelector('#results-section');
+const quickSearchButtons = document.querySelectorAll('.quick-search');
 function normalize(value) {
     return String(value ?? "").toLowerCase().trim();
 }
@@ -62,110 +64,66 @@ function searchEntities(query) {
         .sort((a, b) => b.score - a.score);
 }
 
+
+function element(tag, className, text) {
+ const node = document.createElement(tag); node.className = className;
+ if (text !== undefined) node.textContent = text;
+ return node;
+}
 function renderResults(items, query) {
-    results.innerHTML = "";
-
-    resultsLabel.textContent =
-        items.length === 1
-            ? `1 result for "${query}"`
-            : `${items.length} results for "${query}"`;
-
-    if (items.length === 0) {
-        results.innerHTML = `
-            <div class="empty-state">
-                No results yet. The 1AGE index is still growing.
-            </div>
-        `;
-
-        return;
-    }
-
-    for (const entity of items) {
-        const card = document.createElement("article");
-        card.className = "result-card";
-
-        card.innerHTML = `
-            <div class="result-topline">
-                <h2>${entity.name}</h2>
-                <span class="result-type">${entity.type}</span>
-            </div>
-
-            <p class="result-status">
-                ${entity.status}
-            </p>
-
-            <p class="result-description">
-                ${entity.description}
-            </p>
-
-            <div class="result-tags">
-                ${(entity.tags || [])
-                    .map(tag => `<span>#${tag}</span>`)
-                    .join("")}
-            </div>
-
-            <a
-                class="result-link"
-                href="${entity.official_links.website}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Visit official site →
-            </a>
-        `;
-
-        results.appendChild(card);
-    }
+ results.replaceChildren();
+ resultsLabel.textContent = `${items.length} ${items.length === 1 ? 'result' : 'results'} for “${query}”`;
+ if (!items.length) {
+  results.append(element('p','empty-state','No matching entries yet. The early index is still small; try wallets, DeFi, developer tools or community.'));
+  return;
+ }
+ for (const entity of items) {
+  const card = element('article','result-card');
+  const top = element('div','result-topline');
+  top.append(element('h2','',entity.name),element('span','result-type',entity.type));
+  card.append(top,element('p','result-status',`Directory entry · Reviewed ${entity.last_reviewed || 'date unavailable'}`),element('p','result-description',entity.description));
+  const tags = element('div','result-tags');
+  for (const tag of entity.tags || []) tags.append(element('span','',`#${tag}`));
+  card.append(tags);
+  try {
+   const url = new URL(entity.official_links.website);
+   if (url.protocol === 'https:') {
+    const link = element('a','result-link','Visit website ↗');
+    link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';card.append(link);
+   }
+  } catch (_) { /* An invalid directory link is omitted, not executed. */ }
+  results.append(card);
+ }
 }
-
 function runSearch(query) {
-    const cleanQuery = query.trim();
-
-    if (!cleanQuery) {
-        return;
-    }
-
-    searchInput.value = cleanQuery;
-
-    const matches = searchEntities(cleanQuery);
-
-    renderResults(matches, cleanQuery);
+ const cleanQuery = query.trim();
+ if (!cleanQuery) return;
+ if (resultsSection) resultsSection.hidden = false;
+ searchInput.value = cleanQuery;
+ if (!ready) { pendingQuery = cleanQuery; resultsLabel.textContent='Loading the early index…'; return; }
+ renderResults(searchEntities(cleanQuery), cleanQuery);
+ const url = new URL(window.location.href);url.searchParams.set('q',cleanQuery);
+ window.history.replaceState(null,'',url);
+ resultsLabel.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
 }
-
-async function loadEntities() {
-    try {
-        const response = await fetch("data/entities.json");
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-
-        entities = await response.json();
-
-        resultsLabel.textContent = "Discover the Solana ecosystem.";
-    } catch (error) {
-        console.error("Failed to load 1AGE Index:", error);
-
-        resultsLabel.textContent = "1AGE Index unavailable.";
-
-        results.innerHTML = `
-            <div class="empty-state">
-                The search index could not be loaded.
-            </div>
-        `;
-    }
-}
-
-searchForm.addEventListener("submit", event => {
-    event.preventDefault();
-
-    runSearch(searchInput.value);
-});
-
-quickSearchButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        runSearch(button.dataset.query);
-    });
-});
-
-loadEntities();
+searchForm.addEventListener('submit',event=>{event.preventDefault();runSearch(searchInput.value);});
+quickSearchButtons.forEach(button=>button.addEventListener('click',()=>runSearch(button.dataset.query)));
+(async()=>{
+ try {
+  const response = await fetch('/data/entities.json');
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const data = await response.json();
+  if (!Array.isArray(data)) throw new Error('Invalid index');
+  entities=data;ready=true;
+  resultsLabel.textContent='Search the directory.';
+  const query=pendingQuery || new URLSearchParams(window.location.search).get('q');
+  if (query) runSearch(query);
+ } catch (error) {
+  if (resultsSection) resultsSection.hidden = false;
+  resultsLabel.textContent='Interactive search is temporarily unavailable.';
+  results.replaceChildren();
+  const link=element('a','','Browse the readable directory instead ↗');link.href='/directory/';results.append(link);
+  console.error('1AGE index could not load:',error);
+ }
+})();
+})();

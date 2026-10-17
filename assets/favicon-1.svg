@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.4"/></filter></defs>
+<circle cx="64" cy="64" r="63" fill="#000"/>
+<g transform="translate(64 64) scale(.78) translate(-619.5 -401.5)" fill="#1BFD9C">
+<path d="M 570 364 L 570 384 L 594 384 L 594 442 L 573 448 L 573 467 L 669 468 L 669 448 L 649 442 L 649 337 L 621 335 L 596 354 L 573 363 L 572 382 L 581 384 L 570 383 Z" filter="url(#glow)" opacity=".55"/><path d="M 570 364 L 570 384 L 594 384 L 594 442 L 573 448 L 573 467 L 669 468 L 669 448 L 649 442 L 649 337 L 621 335 L 596 354 L 573 363 L 572 382 L 581 384 L 570 383 Z"/></g></svg>
