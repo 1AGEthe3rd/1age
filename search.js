@@ -8,6 +8,13 @@ const results = document.querySelector('#results');
 const resultsLabel = document.querySelector('#results-label');
 const resultsSection = document.querySelector('#results-section');
 const quickSearchButtons = document.querySelectorAll('.quick-search');
+function closeResults() {
+ if(resultsSection)resultsSection.hidden=true;
+ searchInput.focus({preventScroll:true});
+}
+document.querySelector('[data-close-results]')?.addEventListener('click',closeResults);
+searchForm.addEventListener('keydown',event=>{if(event.key==='Escape')closeResults();});
+resultsSection?.addEventListener('keydown',event=>{if(event.key==='Escape')closeResults();});
 function normalize(value) {
     return String(value ?? "").toLowerCase().trim();
 }
@@ -104,7 +111,7 @@ function runSearch(query) {
  renderResults(searchEntities(cleanQuery), cleanQuery);
  const url = new URL(window.location.href);url.searchParams.set('q',cleanQuery);
  window.history.replaceState(null,'',url);
- resultsLabel.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+ if(resultsSection)resultsSection.scrollTop=0;
 }
 searchForm.addEventListener('submit',event=>{event.preventDefault();runSearch(searchInput.value);});
 quickSearchButtons.forEach(button=>button.addEventListener('click',()=>runSearch(button.dataset.query)));

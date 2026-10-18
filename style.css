@@ -103,14 +103,56 @@ footer{justify-content:center;text-align:center}footer nav{margin-left:0;justify
 .world-dialog .world-entry-note{font-size:11px;color:#849d8c;margin-bottom:0}
 @media(max-width:700px){.brand-name{margin-top:-18px;font-size:20px}.project-switcher{padding:0 16px}.project-tile{flex-basis:124px}.project-tile-icon{width:90px;height:90px}.project-strip{gap:16px}.preview-card{flex-basis:78%;max-width:none}.preview-art{width:min(100%,300px)}.world-entry{padding:8px 12px;font-size:9px;top:calc(50% + var(--earth)*.08)}}
 
-/* Native page scrolling and zoom take priority over orbit gestures. */
-.project-orbit,.project-planet,.world-globe,.world-entry{touch-action:auto}
-.world-scene.touch-orbit-active,.world-scene.touch-orbit-active .project-orbit,.world-scene.touch-orbit-active .project-planet{touch-action:pan-y pinch-zoom}
-.touch-orbit-controls{display:none}
-@media(any-pointer:coarse){
- .touch-orbit-controls{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:8px 16px 16px}
- .touch-orbit-controls button{padding:10px 15px;border:1px solid #276047;border-radius:24px;font-size:12px;background:#000}
- .touch-orbit-controls button[aria-pressed="true"]{background:var(--green);color:#000}
- .touch-orbit-controls>span{font-size:10px;color:#9eb4a6}
+/* The homepage is a viewport-sized workspace, on mouse and touch laptops alike. */
+.home-screen{height:100vh;height:100dvh;min-height:0;display:flex;flex-direction:column;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.home-screen .site-header{flex:none;width:100%;padding:6px 16px 8px;gap:0}
+.home-screen .brand img{width:64px;height:64px}
+.home-screen .brand-name{font-size:18px;margin-top:-16px}
+.home-screen #main{flex:1;min-height:0;display:flex;flex-direction:column}
+.home-screen .search-home{flex:none;padding:0 20px}
+.home-screen .search-home h1.sr-only{margin:0}
+.home-screen .search-form{min-height:52px;padding:4px;grid-template-columns:34px minmax(0,1fr) auto}
+.home-screen .search-form input{height:40px;font-size:16px}
+.home-screen .search-form button{height:40px}
+.home-screen .quick-links{margin-top:4px;gap:20px}
+.home-screen .quick-links button{padding:5px 0;font-size:11px}
+.home-screen .universe{flex:1;min-height:0;display:flex;flex-direction:column;width:min(100%,1100px);margin:0 auto}
+.home-screen .world-scene{flex:1;min-height:0;height:auto;margin:0;container-type:size;--earth:min(34cqw,max(40px,calc(100cqh - 180px)),300px)}
+.home-screen .project-orbit{width:min(calc(100cqw - 100px),max(120px,calc(180cqh - 180px)),780px);height:min(420px,max(60px,calc(100cqh - 120px)))}
+.home-screen .project-planet{--planet-size:clamp(40px,min(9cqw,16cqh),76px)}
+.home-screen .world-controls{flex:none;min-height:44px;gap:14px;padding:4px 12px 8px;margin:0}
+.home-screen .world-controls button{height:34px;width:40px}
+.home-screen .world-controls span{font-size:11px}
+.home-screen .world-entry{font-size:10px;padding:9px 14px}
+.home-screen .project-planet>span{font-size:9px;top:calc(100% + 4px)}
+.world-scene,.project-orbit,.project-planet,.world-globe,.world-entry{touch-action:pinch-zoom}
+.world-scene{user-select:none;-webkit-user-select:none}
+.project-planet{-webkit-user-drag:none}
+.home-screen .results-section{position:fixed;z-index:25;left:50%;top:150px;transform:translateX(-50%);width:min(calc(100% - 32px),850px);max-height:calc(100dvh - 180px);overflow:auto;overscroll-behavior:contain;background:#000;border:1px solid #276047;border-radius:20px;padding:18px 22px;box-shadow:0 12px 80px #000}
+.home-screen .results-header{padding-top:0;border:0;align-items:center;gap:8px}
+.home-screen .results-header .index-note{flex-basis:100%}
+.home-screen [data-close-results]{margin-left:auto;width:36px;height:36px;border-radius:50%;font-size:24px;flex:none}
+@media(max-width:700px){
+ .home-screen .site-header{padding-top:4px;padding-bottom:7px}
+ .home-screen .brand img{width:58px;height:58px}
+ .home-screen .brand-name{font-size:17px;margin-top:-15px}
+ .home-screen .search-home{padding:0 14px}
+ .home-screen .search-form{grid-template-columns:24px minmax(0,1fr) auto;gap:4px}
+ .home-screen .quick-links{gap:16px}
+ .home-screen .world-scene{--earth:min(48cqw,max(40px,calc(100cqh - 154px)),230px)}
+ .home-screen .project-orbit{width:calc(100cqw - 76px);height:min(440px,max(60px,calc(100cqh - 104px)))}
+ .home-screen .project-planet{--planet-size:clamp(40px,min(14cqw,17cqh),60px)}
+ .home-screen .world-controls{gap:10px}
+ .home-screen .world-controls span{font-size:10px}
+ .home-screen .saturn{display:none;animation:none}
+ .home-screen .world-entry{font-size:9px;padding:7px 9px}
 }
-@media(max-width:700px),(max-width:1000px) and (pointer:coarse){.saturn{display:none;animation:none}}
+@media(max-height:480px){
+ .home-screen .site-header{padding:2px 12px 4px}
+ .home-screen .brand img{width:42px;height:42px}
+ .home-screen .brand-name{font-size:13px;margin-top:-11px}
+ .home-screen .quick-links{display:none}
+ .home-screen .search-form{min-height:44px}
+ .home-screen .search-form input,.home-screen .search-form button{height:34px}
+ .home-screen .world-controls{min-height:38px;padding-bottom:4px}
+}

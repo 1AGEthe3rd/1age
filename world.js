@@ -21,18 +21,8 @@
   const step = Math.PI * 2 / planets.length;
   let angle = 0, targetAngle = 0, gesture = null, moved = false, open = true;
   let selected = -1, animation = 0;
-  const touchToggle=document.querySelector('[data-touch-orbit]');
-  const touchHint=document.querySelector('#touch-orbit-hint');
   const touchPointers=new Set();
-  let touchOrbit=false,suppressOrbitClick=false;
-  function setTouchOrbit(enabled) {
-    touchOrbit=enabled;
-    scene.classList.toggle('touch-orbit-active',enabled);
-    if(touchToggle){touchToggle.setAttribute('aria-pressed',String(enabled));touchToggle.textContent=`Rotate orbit: ${enabled?'on':'off'}`;}
-    if(touchHint)touchHint.textContent=enabled?'Swipe sideways to rotate · Scroll and pinch still work':'Scroll normally · Pinch to zoom';
-    if(!enabled)cancel();
-  }
-  touchToggle?.addEventListener('click',()=>setTouchOrbit(!touchOrbit));
+  let suppressOrbitClick=false;
   // Previews describe the current project directions and link to readable pages.
   const previews = [
     {name:'1AGE Page', description:'Your identity across 1AGE.', cards:[
@@ -129,9 +119,7 @@
     suppressOrbitClick=false;
     if(event.pointerType==='touch') {
       touchPointers.add(event.pointerId);
-      if(touchPointers.size>1){suppressOrbitClick=true;setTouchOrbit(false);return;}
-      // Normal touch remains fully native until the user enables orbit rotation.
-      if(!touchOrbit)return;
+      if(touchPointers.size>1){suppressOrbitClick=true;cancel();return;}
     }
     if (event.button !== 0 || !open || gesture || event.target.closest('.world-globe') || event.target.closest('.world-entry')) return;
     const link = event.target.closest('.project-planet');
@@ -141,22 +129,10 @@
     if (!link && (radius < .72 || radius > 1.30)) return;
     cancelAnimationFrame(animation); moved = false;
     gesture = {id:event.pointerId, x:event.clientX, y:event.clientY, last:pointAngle(event), pending:0, link,touch:event.pointerType==='touch'};
-    if(!gesture.touch)scene.setPointerCapture(event.pointerId);
+    scene.setPointerCapture(event.pointerId);
   });
   scene.addEventListener('pointermove', event => {
     if (!gesture || event.pointerId !== gesture.id) return;
-    if(gesture.touch) {
-      const dx=event.clientX-gesture.x,dy=event.clientY-gesture.y;
-      if(!moved) {
-        if(Math.abs(dy)>8&&Math.abs(dy)>Math.abs(dx)){cancel();return;}
-        if(Math.abs(dx)<10||Math.abs(dx)<=Math.abs(dy))return;
-        moved=true;cancelAnimationFrame(animation);
-      }
-      const change=event.clientX-(gesture.lastX??gesture.x);
-      gesture.lastX=event.clientX;
-      angle-=change/Math.max(1,orbit.clientWidth)*Math.PI*2;targetAngle=angle;layout();
-      return;
-    }
     const now = pointAngle(event);
     gesture.pending += Math.atan2(Math.sin(now-gesture.last), Math.cos(now-gesture.last));
     gesture.last = now;
@@ -175,6 +151,7 @@
   function cancel() { gesture = null; moved = true; targetAngle = angle; }
   scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
   scene.addEventListener('lostpointercapture', () => { gesture = null; });
+  orbit.addEventListener('dragstart',event=>event.preventDefault());
   orbit.addEventListener('click', event => { if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;} });
   document.querySelectorAll('[data-rotate]').forEach(button => button.addEventListener('click', () => snap(Number(button.dataset.rotate))));
   orbit.addEventListener('keydown', event => {
@@ -244,10 +221,6 @@
       document.querySelectorAll('[data-rotate]').forEach(arrow => {arrow.disabled=false;});
       orbit.focus({preventScroll:true});
     }
-  });
-  globe.addEventListener('click', () => {
-    open = !open; orbit.hidden = !open; globe.setAttribute('aria-expanded', String(open));
-    document.querySelectorAll('[data-rotate]').forEach(button => {button.disabled = !open;});
   });
   new ResizeObserver(layout).observe(orbit); layout(); showPreview(nearestIndex(angle));
   const texture = document.querySelector('.globe-texture');
