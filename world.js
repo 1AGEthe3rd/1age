@@ -84,6 +84,7 @@
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
     planets.forEach((planet, i) => {
       const a = -Math.PI / 2 + i * step + angle;
+      planet.dataset.upper=String(Math.sin(a)<-.2);
       planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
       planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
     });
