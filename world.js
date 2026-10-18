@@ -51,6 +51,7 @@
       ['Development','See what is being built','Follow progress across the web and native creator environment.','/updates/']]}
   ];
   function showPreview(index) {
+    window.dispatchEvent?.(new CustomEvent('1age-project-preview',{detail:index}));
     if (selected === index) return;
     selected = index;
     projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
@@ -145,14 +146,18 @@
     const link = gesture.link; gesture = null;
     suppressOrbitClick=true;
     if (scene.hasPointerCapture(event.pointerId)) scene.releasePointerCapture(event.pointerId);
-    if (!moved && link) window.location.assign(link.href);
+    if (!moved && link) showPreview(planets.indexOf(link));
     else if (moved) showPreview(nearestIndex(angle));
   });
   function cancel() { gesture = null; moved = true; targetAngle = angle; }
   scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
   scene.addEventListener('lostpointercapture', () => { gesture = null; });
   orbit.addEventListener('dragstart',event=>event.preventDefault());
-  orbit.addEventListener('click', event => { if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;} });
+  orbit.addEventListener('click', event => {
+    if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;return;}
+    const link=event.target?.closest('.project-planet');
+    if(link){event.preventDefault();showPreview(planets.indexOf(link));}
+  });
   document.querySelectorAll('[data-rotate]').forEach(button => button.addEventListener('click', () => snap(Number(button.dataset.rotate))));
   orbit.addEventListener('keydown', event => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
@@ -267,12 +272,15 @@
     return render;
   }
   const renderSurface = movingGlobe();
-  let elapsed = 0, last = performance.now();
+  let elapsed = 0, last = performance.now(),manualTurn=0;
+  window.addEventListener?.('1age-world-turn',event=>{manualTurn+=event.detail;});
   window.setInterval(() => {
     const now = performance.now(), delta = Math.min(.25, (now-last)/1000); last = now;
-    if (document.hidden || reduced.matches) return;
-    elapsed += delta;
-    const turn = elapsed / 120 % 1;
+    if (document.hidden) return;
+    if(!reduced.matches)elapsed += delta;
+    const turn = ((elapsed / 120 + manualTurn)%1+1)%1;
+    const lettering=document.querySelector('.world-letter');
+    if(lettering){const phase=-turn*Math.PI*2;lettering.style.transform=`translate(-50%,-50%) translateX(${Math.sin(phase)*100}%) scaleX(${Math.max(.08,Math.abs(Math.cos(phase)))})`;lettering.style.opacity=Math.cos(phase)>0?'1':'0';}
     if (renderSurface && renderSurface(turn)) return;
     texture.style.backgroundPosition = `${turn*100}% center`;
   }, 33);
