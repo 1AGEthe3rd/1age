@@ -26,7 +26,7 @@
   guide.close();
  });
  let guideHidden=false;try{guideHidden=localStorage.getItem('1age-hide-guide')==='1';}catch(_){}
- 
+
  let drag=null,dragged=false;const touches=new Set();
  globe.addEventListener('pointerdown',event=>{
   if(event.pointerType==='touch')touches.add(event.pointerId);
