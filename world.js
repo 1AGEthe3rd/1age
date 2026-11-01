@@ -2,14 +2,8 @@
   'use strict';
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const stars = document.querySelector('.starfield');
-  for (let i = 0; stars && i < 55; i++) {
-    const star = document.createElement('i');
-    star.className = i % 8 ? 'star' : 'star bright';
-    star.style.left = `${((i * 7919 + 171) % 10000) / 100}%`;
-    star.style.top = `${((i * 3571 + 937) % 10000) / 100}%`;
-    star.style.animationDelay = `${-(i % 9)}s`;
-    stars.appendChild(star);
-  }
+  let seed=971837;const random=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)/4294967296;};
+  for(let i=0;stars&&i<120;i++){const star=document.createElement('i');star.className='star';star.style.left=random()*100+'%';star.style.top=random()*100+'%';const size=.6+random()*1.7;star.style.width=star.style.height=size+'px';star.style.opacity=.2+random()*.65;star.style.animationDelay=-random()*13+'s';stars.appendChild(star);}
   const orbit = document.querySelector('.project-orbit');
   if (!orbit) return;
   const scene = document.querySelector('.world-scene');
@@ -45,12 +39,13 @@
       ['Learning','Explore something new','Interactive learning is part of the Quest direction.','/ecosystem/#quest'],
       ['Participation','Discover ways to contribute','Quest experiences and participation tools are in development.','/ecosystem/#quest'],
       ['Discovery','Get to know the ecosystem','Browse the current collection of Solana projects and tools.','/directory/']]},
-    {name:'1AGE.design', description:'Building 1AGE should feel like playing 1AGE.', cards:[
+    {name:'1AGE Cash', description:'Building 1AGE should feel like playing 1AGE.', cards:[
       ['1AGE.Desktop','Your cosmic workspace','The installed creator home shares the visual language of World.','/ecosystem/#design'],
       ['1AGEWorld','Walk. Fly. Create.','The working World foundation runs on ThinkPad and Chuwi.','/world/'],
       ['Development','See what is being built','Follow progress across the web and native creator environment.','/updates/']]}
   ];
   function showPreview(index) {
+    window.dispatchEvent?.(new CustomEvent('1age-project-preview',{detail:index}));
     if (selected === index) return;
     selected = index;
     projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
@@ -83,6 +78,9 @@
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
     planets.forEach((planet, i) => {
       const a = -Math.PI / 2 + i * step + angle;
+      planet.dataset.upper=String(Math.sin(a)<-.2);
+      const compact=window.matchMedia('(orientation:landscape) and (max-height:600px)').matches;
+      const concealed=compact&&Math.abs(Math.cos(a)*rx)<globe.clientWidth/2+orbit.clientHeight*.10+12;planet.dataset.concealed=String(concealed);planet.tabIndex=concealed?-1:0;planet.setAttribute('aria-hidden',String(concealed));
       planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
       planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
     });
@@ -121,7 +119,7 @@
       touchPointers.add(event.pointerId);
       if(touchPointers.size>1){suppressOrbitClick=true;cancel();return;}
     }
-    if (event.button !== 0 || !open || gesture || event.target.closest('.world-globe') || event.target.closest('.world-entry')) return;
+    if (event.button !== 0 || !open || gesture || event.target.closest('.world-globe') || event.target.closest('.world-entry') || event.target.closest('.console-controls,.side-menu,.preview-expand')) return;
     const link = event.target.closest('.project-planet');
     const box = orbit.getBoundingClientRect();
     const radius = Math.hypot((event.clientX-box.left-box.width/2)/(box.width/2),
@@ -145,15 +143,19 @@
     const link = gesture.link; gesture = null;
     suppressOrbitClick=true;
     if (scene.hasPointerCapture(event.pointerId)) scene.releasePointerCapture(event.pointerId);
-    if (!moved && link) window.location.assign(link.href);
+    if (!moved && link && !link.dataset.held) window.location.assign(link.href);
     else if (moved) showPreview(nearestIndex(angle));
   });
   function cancel() { gesture = null; moved = true; targetAngle = angle; }
   scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
   scene.addEventListener('lostpointercapture', () => { gesture = null; });
   orbit.addEventListener('dragstart',event=>event.preventDefault());
-  orbit.addEventListener('click', event => { if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;} });
-  document.querySelectorAll('[data-rotate]').forEach(button => button.addEventListener('click', () => snap(Number(button.dataset.rotate))));
+  orbit.addEventListener('click', event => {
+    if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;return;}
+    const link=event.target?.closest('.project-planet');
+    if(link){event.preventDefault();if(!link.dataset.held)window.location.assign(link.href);}
+  });
+  window.addEventListener('1age-orbit-step',e=>snap(e.detail));
   orbit.addEventListener('keydown', event => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
     event.preventDefault(); snap(event.key === 'ArrowLeft' ? -1 : 1);
@@ -267,12 +269,15 @@
     return render;
   }
   const renderSurface = movingGlobe();
-  let elapsed = 0, last = performance.now();
+  let elapsed = 0, last = performance.now(),manualTurn=0;
+  window.addEventListener?.('1age-world-turn',event=>{manualTurn+=event.detail;});
   window.setInterval(() => {
     const now = performance.now(), delta = Math.min(.25, (now-last)/1000); last = now;
-    if (document.hidden || reduced.matches) return;
-    elapsed += delta;
-    const turn = elapsed / 120 % 1;
+    if (document.hidden) return;
+    if(!reduced.matches)elapsed += delta;
+    const turn = ((elapsed / 120 + manualTurn)%1+1)%1;
+    const lettering=document.querySelector('.world-letter');
+    if(lettering){if(!lettering.children.length){lettering.textContent='';for(const char of '1AGE WORLD'){const span=document.createElement('b');span.textContent=char===' '?'\u00a0':char;lettering.appendChild(span);}}[...lettering.children].forEach((letter,i)=>{const phase=-turn*Math.PI*2+(i-4.5)*.18,depth=Math.cos(phase);letter.style.transform=`translate(-50%,-50%) translateX(${Math.sin(phase)*globe.clientWidth*.46}px) scaleX(${Math.max(.04,depth)})`;letter.style.opacity=depth>.04?'1':'0';});}
     if (renderSurface && renderSurface(turn)) return;
     texture.style.backgroundPosition = `${turn*100}% center`;
   }, 33);
