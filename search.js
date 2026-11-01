@@ -1,136 +1,306 @@
 (() => {
 'use strict';
-let entities = [], ready = false, pendingQuery = '';
-const searchForm = document.querySelector('#search-form');
-if (!searchForm) return;
-const searchInput = document.querySelector('#search-input');
-const results = document.querySelector('#results');
-const resultsLabel = document.querySelector('#results-label');
-const resultsSection = document.querySelector('#results-section');
-const quickSearchButtons = document.querySelectorAll('.quick-search');
-function closeResults() {
- if(resultsSection)resultsSection.hidden=true;
- searchInput.focus({preventScroll:true});
+
+const $ = selector => document.querySelector(selector);
+const form = $('#search-form');
+if (!form) return;
+
+const input = $('#search-input');
+const results = $('#results');
+const label = $('#results-label');
+const section = $('#results-section');
+const note = section.querySelector('.index-note');
+const buttons = [...document.querySelectorAll('[data-search-mode]')];
+const quickLinks = document.querySelector('.quick-links');
+
+const indexes = { '1age': null, solana: null };
+let mode = '1age';
+let currentQuery = '';
+let loadError = null;
+
+const suggestions = {
+  '1age': [
+    ['World', 'world'],
+    ['Games', 'games'],
+    ['Page', 'page'],
+    ['Help', 'help']
+  ],
+  solana: [
+    ['Wallets', 'wallet'],
+    ['DeFi', 'defi'],
+    ['Tools', 'tool'],
+    ['Community', 'community']
+  ]
+};
+
+function element(tag, className, text) {
+  const node = document.createElement(tag);
+  node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
 }
-document.querySelector('[data-close-results]')?.addEventListener('click',closeResults);
-searchForm.addEventListener('keydown',event=>{if(event.key==='Escape')closeResults();});
-resultsSection?.addEventListener('keydown',event=>{if(event.key==='Escape')closeResults();});
+
 function normalize(value) {
-    return String(value ?? "").toLowerCase().trim();
+  return String(value ?? '').toLowerCase().trim();
 }
 
 function scoreEntity(entity, query) {
-    const terms = normalize(query)
-        .split(/\s+/)
-        .filter(Boolean);
+  const terms = normalize(query).split(/\s+/).filter(Boolean);
+  const name = normalize(entity.name);
+  const type = normalize(entity.type);
+  const category = normalize(entity.category);
+  const description = normalize(entity.description);
+  const tags = (entity.tags || []).map(normalize);
 
-    let score = 0;
+  let score = 0;
+  for (const term of terms) {
+    if (name === term) score += 20;
+    else if (name.includes(term)) score += 12;
 
-    const name = normalize(entity.name);
-    const type = normalize(entity.type);
-    const category = normalize(entity.category);
-    const description = normalize(entity.description);
-    const tags = (entity.tags || []).map(normalize);
+    if (type.includes(term)) score += 8;
+    if (category.includes(term)) score += 8;
 
-    for (const term of terms) {
-        if (name === term) {
-            score += 20;
-        } else if (name.includes(term)) {
-            score += 12;
-        }
+    if (tags.some(tag => tag === term)) score += 10;
+    else if (tags.some(tag => tag.includes(term))) score += 6;
 
-        if (type.includes(term)) {
-            score += 8;
-        }
-
-        if (category.includes(term)) {
-            score += 8;
-        }
-
-        if (tags.some(tag => tag === term)) {
-            score += 10;
-        } else if (tags.some(tag => tag.includes(term))) {
-            score += 6;
-        }
-
-        if (description.includes(term)) {
-            score += 3;
-        }
-    }
-
-    return score;
+    if (description.includes(term)) score += 3;
+  }
+  return score;
 }
 
 function searchEntities(query) {
-    return entities
-        .map(entity => ({
-            ...entity,
-            score: scoreEntity(entity, query)
-        }))
-        .filter(entity => entity.score > 0)
-        .sort((a, b) => b.score - a.score);
+  const records = indexes[mode] || [];
+  return records
+    .map(entity => ({...entity, score: scoreEntity(entity, query)}))
+    .filter(entity => entity.score > 0)
+    .sort((a, b) => b.score - a.score);
 }
 
+function validLink(entity) {
+  const raw = entity.official_links?.website;
+  if (typeof raw !== 'string') return null;
 
-function element(tag, className, text) {
- const node = document.createElement(tag); node.className = className;
- if (text !== undefined) node.textContent = text;
- return node;
-}
-function renderResults(items, query) {
- results.replaceChildren();
- resultsLabel.textContent = `${items.length} ${items.length === 1 ? 'result' : 'results'} for “${query}”`;
- if (!items.length) {
-  results.append(element('p','empty-state','No matching entries yet. The early index is still small; try wallets, DeFi, developer tools or community.'));
-  return;
- }
- for (const entity of items) {
-  const card = element('article','result-card');
-  const top = element('div','result-topline');
-  top.append(element('h2','',entity.name),element('span','result-type',entity.type));
-  card.append(top,element('p','result-status',`Directory entry · Reviewed ${entity.last_reviewed || 'date unavailable'}`),element('p','result-description',entity.description));
-  const tags = element('div','result-tags');
-  for (const tag of entity.tags || []) tags.append(element('span','',`#${tag}`));
-  card.append(tags);
   try {
-   const url = new URL(entity.official_links.website);
-   if (url.protocol === 'https:') {
-    const link = element('a','result-link','Visit website ↗');
-    link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';card.append(link);
-   }
-  } catch (_) { /* An invalid directory link is omitted, not executed. */ }
-  results.append(card);
- }
+    const url = new URL(raw, window.location.origin);
+    if (!['https:', 'http:'].includes(url.protocol)) return null;
+    if (url.origin !== window.location.origin &&
+        url.protocol !== 'https:') return null;
+    return url;
+  } catch (_) {
+    return null;
+  }
 }
-function runSearch(query) {
- const cleanQuery = query.trim();
- if (!cleanQuery) return;
- if (resultsSection) resultsSection.hidden = false;
- searchInput.value = cleanQuery;
- if (!ready) { pendingQuery = cleanQuery; resultsLabel.textContent='Loading the early index…'; return; }
- renderResults(searchEntities(cleanQuery), cleanQuery);
- const url = new URL(window.location.href);url.searchParams.set('q',cleanQuery);
- window.history.replaceState(null,'',url);
- if(resultsSection)resultsSection.scrollTop=0;
-}
-searchForm.addEventListener('submit',event=>{event.preventDefault();runSearch(searchInput.value);});
-quickSearchButtons.forEach(button=>button.addEventListener('click',()=>runSearch(button.dataset.query)));
-(async()=>{
- try {
-  const response = await fetch('/data/entities.json');
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const data = await response.json();
-  if (!Array.isArray(data)) throw new Error('Invalid index');
-  entities=data;ready=true;
-  resultsLabel.textContent='Search the directory.';
-  const query=pendingQuery || new URLSearchParams(window.location.search).get('q');
-  if (query) runSearch(query);
- } catch (error) {
-  if (resultsSection) resultsSection.hidden = false;
-  resultsLabel.textContent='Interactive search is temporarily unavailable.';
+
+function render(items, query) {
   results.replaceChildren();
-  const link=element('a','','Browse the readable directory instead ↗');link.href='/directory/';results.append(link);
-  console.error('1AGE index could not load:',error);
- }
+  label.textContent =
+    `${items.length} ${items.length === 1 ? 'result' : 'results'} ` +
+    `for “${query}” in ${mode === '1age' ? '1AGE' : 'Solana'}`;
+
+  if (!items.length) {
+    results.append(element(
+      'p', 'empty-state',
+      'No matching public entries in this early index.'
+    ));
+    return;
+  }
+
+  for (const entity of items) {
+    const card = element('article', 'result-card');
+    const top = element('div', 'result-topline');
+
+    top.append(
+      element('h2', '', entity.name),
+      element('span', 'result-type', entity.type)
+    );
+
+    card.append(
+      top,
+      element(
+        'p', 'result-status',
+        mode === '1age'
+          ? '1AGE · Public information page'
+          : 'Solana · Third-party directory listing · Not independently verified'
+      ),
+      element('p', 'result-description', entity.description)
+    );
+
+    const tags = element('div', 'result-tags');
+    for (const tag of entity.tags || []) {
+      tags.append(element('span', '', `#${tag}`));
+    }
+    card.append(tags);
+
+    const url = validLink(entity);
+    if (url) {
+      const link = element(
+        'a', 'result-link',
+        mode === '1age' ? 'View page ↗' : 'Visit website ↗'
+      );
+      link.href = url.href;
+
+      if (url.origin !== window.location.origin) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+      card.append(link);
+    }
+
+    results.append(card);
+  }
+}
+
+function updateURL() {
+  const url = new URL(window.location.href);
+  if (currentQuery) url.searchParams.set('q', currentQuery);
+  else url.searchParams.delete('q');
+
+  if (mode === 'solana') url.searchParams.set('mode', 'solana');
+  else url.searchParams.delete('mode');
+
+  window.history.replaceState(null, '', url);
+}
+
+function showResults() {
+  section.hidden = false;
+  results.replaceChildren();
+
+  if (loadError) {
+    label.textContent = 'Search index unavailable.';
+    results.append(element(
+      'p', 'empty-state',
+      'The search data could not be loaded. Please try again later.'
+    ));
+    return;
+  }
+
+  if (!indexes[mode]) {
+    label.textContent = 'Loading search index…';
+    return;
+  }
+
+  if (!currentQuery) {
+    label.textContent = 'Enter a search term.';
+    return;
+  }
+
+  render(searchEntities(currentQuery), currentQuery);
+  section.scrollTop = 0;
+}
+
+function runSearch(query) {
+  currentQuery = query.trim();
+  if (!currentQuery) return;
+  input.value = currentQuery;
+  updateURL();
+  showResults();
+}
+
+function updateSuggestions() {
+  quickLinks.replaceChildren();
+
+  for (const [title, query] of suggestions[mode]) {
+    const button = element('button', 'quick-search', title);
+    button.type = 'button';
+    button.dataset.query = query;
+    button.addEventListener('click', () => runSearch(query));
+    quickLinks.append(button);
+  }
+}
+
+function selectMode(next, updateHistory = true) {
+  if (!['1age', 'solana'].includes(next)) return;
+
+  mode = next;
+  buttons.forEach(button => {
+    button.setAttribute(
+      'aria-pressed',
+      String(button.dataset.searchMode === mode)
+    );
+  });
+
+  input.placeholder = mode === '1age'
+    ? 'Search 1AGE destinations…'
+    : 'Search Solana projects…';
+
+  note.textContent = mode === '1age'
+    ? 'Early 1AGE index · Public pages only'
+    : 'Early Solana index · Third-party listings are not verified';
+
+  updateSuggestions();
+  if (updateHistory) updateURL();
+
+  if (!section.hidden) showResults();
+}
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    selectMode(button.dataset.searchMode);
+  });
+});
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  runSearch(input.value);
+});
+
+function closeResults() {
+  section.hidden = true;
+  input.focus({preventScroll: true});
+}
+
+document.querySelector('[data-close-results]')
+  ?.addEventListener('click', closeResults);
+
+for (const node of [form, section]) {
+  node.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeResults();
+  });
+}
+
+const params = new URLSearchParams(window.location.search);
+selectMode(params.get('mode') === 'solana' ? 'solana' : '1age', false);
+
+const initialQuery = params.get('q');
+if (initialQuery) {
+  currentQuery = initialQuery.trim();
+  input.value = currentQuery;
+  document.querySelector('.search-circle')?.setAttribute(
+    'aria-expanded', 'true'
+  );
+  form.hidden = false;
+  document.body.classList.add('search-open');
+  showResults();
+}
+
+(async () => {
+  try {
+    const [ageResponse, solanaResponse] = await Promise.all([
+      fetch('/data/1age-index.json'),
+      fetch('/data/entities.json')
+    ]);
+
+    if (!ageResponse.ok || !solanaResponse.ok) {
+      throw new Error('Search index request failed');
+    }
+
+    const [ageData, solanaData] = await Promise.all([
+      ageResponse.json(),
+      solanaResponse.json()
+    ]);
+
+    if (!Array.isArray(ageData) || !Array.isArray(solanaData)) {
+      throw new Error('Invalid search index format');
+    }
+
+    indexes['1age'] = ageData;
+    indexes.solana = solanaData;
+
+    if (!section.hidden) showResults();
+  } catch (error) {
+    loadError = error;
+    console.error('1AGE Search index error:', error);
+    if (!section.hidden) showResults();
+  }
 })();
 })();
