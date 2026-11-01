@@ -26,7 +26,7 @@
  const peek=globe.querySelector('.project-peek'),expand=$('.preview-expand'),viewer=$('.preview-view'),guide=$('.gesture-guide');
  function sync(){const preview=selected!==null;scene.classList.toggle('showing-peek',preview);scene.classList.toggle('globe-selected',!preview&&highlight);scene.classList.toggle('globe-hover',!preview&&hover);peek.hidden=expand.hidden=!preview;entry.hidden=preview;globe.setAttribute('aria-pressed',String(!preview&&highlight));globe.setAttribute('aria-label',preview?'Project preview. Press to return to 1AGEWorld.':'1AGEWorld. Drag to turn; press to highlight and reveal Enter.');planets.forEach((node,i)=>node.classList.toggle('is-selected',i===selected));}
  function reset(){selected=null;highlight=false;sync();}
- window.addEventListener('1age-project-preview',event=>{if(!slugs[event.detail])return;selected=event.detail;highlight=false;peek.src=`/assets/world-previews/${slugs[selected]}.svg`;peek.alt=`${slugs[selected]} virtual destination concept`;sync();});
+ window.addEventListener('1age-project-preview',event=>{if(!slugs[event.detail])return;selected=null;sync();});
  expand.addEventListener('click',()=>{if(selected===null)return;viewer.querySelector('img').src=peek.src;viewer.querySelector('img').alt=peek.alt;viewer.showModal();});
  for(const node of [globe,entry]){node.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;sync();}});node.addEventListener('pointerleave',e=>{if(!e.relatedTarget?.closest('.world-globe,.world-entry')){hover=false;sync();}});}
  globe.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touches.add(e.pointerId);hover=false;}if(touches.size>1){drag=null;multi=true;scene.classList.remove('globe-pressed');return;}if(e.button!==0)return;multi=false;dragged=false;drag={id:e.pointerId,x:e.clientX,start:e.clientX};if(selected===null)scene.classList.add('globe-pressed');globe.setPointerCapture(e.pointerId);});
@@ -35,7 +35,7 @@
  globe.addEventListener('pointerup',release);globe.addEventListener('pointercancel',e=>{release(e);multi=true;});
  globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}if(selected!==null){reset();return;}highlight=!highlight;sync();});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
- $('[data-dismiss-guide]').addEventListener('click',()=>{try{if($('#hide-gesture-guide').checked)localStorage.setItem('1age-hide-guide','1');}catch(_){}guide.close();});let hide=false;try{hide=localStorage.getItem('1age-hide-guide')==='1';}catch(_){}if(!hide)guide.showModal();
+ $('[data-dismiss-guide]').addEventListener('click',()=>{try{if($('#hide-gesture-guide').checked)localStorage.setItem('1age-hide-guide','1');}catch(_){}guide.close();});let hide=false;try{hide=localStorage.getItem('1age-hide-guide')==='1';}catch(_){}
  function fit(){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
  const landscape=matchMedia('(orientation:landscape) and (max-height:600px)').matches;
  const d=landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
