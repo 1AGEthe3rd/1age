@@ -5,8 +5,49 @@
 [hidden]{display:none!important}
 #pair{top:82px;width:min(280px,calc(100vw - 32px));padding:16px;right:16px;font-size:14px}
 #qr{width:150px;margin:12px auto}#pin{font-size:28px;letter-spacing:5px}#pair p{margin:10px 0}#pair .muted{font-size:11px}
+
+/* Compact shared pairing card */
+#pair {
+  width:min(220px,calc(100vw - 24px));
+  padding:12px;
+  max-height:calc(100dvh - 110px);
+  overflow:auto;
+  font-size:12px;
+}
+#qr {width:128px;margin:8px auto;border-radius:6px}
+#pin {font-size:24px;letter-spacing:4px}
+#pair p {margin:7px 0}
+#pair details {margin-top:8px}
+#pair summary {cursor:pointer}
+
+/* 1AGE QR-only card */
+#pair {
+  width:160px;
+  padding:8px;
+  border-radius:14px;
+}
+#pair > :not(#hide-pair):not(#qr):not(#error) {
+  display:none!important;
+}
+#pair #qr {
+  width:128px;
+  max-width:100%;
+  margin:8px auto;
+}
+#hide-pair {
+  float:none!important;
+  display:block;
+  margin-left:auto;
+}
+#pair #error:empty {
+  display:none;
+}
+#pair #error {
+  font-size:11px;
+  overflow-wrap:anywhere;
+}
 </style></head><body>
 <header><strong>1AGE</strong><span>NorthLeftChef · Build 007 · Gamepad + Keyboard</span><button id="new">Pair phone</button><button id="native">Open World builder</button><button id="show">Show / hide pairing</button><span id="status">Waiting for phone</span></header>
-<aside id="pair"><button id="hide-pair" aria-label="Hide pairing card" style="float:right;padding:4px 10px">×</button><strong>Pair phone</strong><p>Scan the QR, or open this address on your phone and enter the PIN.</p><img id="qr" alt="Phone pairing QR code"><div id="pin">—</div><p id="url"></p><p id="timer" class="muted"></p><p class="muted">Same reachable Wi-Fi network · trusted local network · A / X interact · B sprint or close · Menu opens café controls. Pairing code lasts 2 minutes; control session lasts 30 minutes.</p><p id="error" role="alert"></p></aside>
+<aside id="pair"><button id="hide-pair" aria-label="Hide pairing card" style="float:right;padding:4px 10px">×</button><strong>Pair phone</strong><p>Scan to pair your phone.</p><img id="qr" alt="Phone pairing QR code"><div id="pin">—</div><details><summary>Manual pairing address</summary><p id="url"></p></details><p id="timer" class="muted"></p><details><summary>Controls and session details</summary><p class="muted">Same reachable Wi-Fi network · trusted local network · A / X interact · B sprint or close · Menu opens café controls. Pairing code lasts 2 minutes; control session lasts 30 minutes.</p></details><p id="error" role="alert"></p></aside>
 <iframe id="cafe" src="/cafe/" title="NorthLeftChef local test café" allow="gamepad"></iframe>
 <script src="/static/host.js"></script></body></html>
