@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>1AGE · Phone Controller</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#000;color:#e2ffdc;font:16px system-ui}header{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid #244334}strong{color:#1bfd9c}button,a{border:1px solid #1bfd9c;color:#e2ffdc;background:#09120c;border-radius:24px;padding:10px 18px;font:inherit;cursor:pointer}#pair{position:absolute;z-index:3;top:90px;right:20px;width:min(350px,calc(100vw - 40px));padding:24px;border:1px solid #1bfd9c;border-radius:24px;background:#07100ff5;box-shadow:0 16px 100px #000}#qr{display:block;width:220px;max-width:100%;margin:18px auto;border-radius:12px}#pin{font-size:36px;letter-spacing:8px;text-align:center;color:#1bfd9c}#url{overflow-wrap:anywhere}p{line-height:1.5}.muted{font-size:13px;color:#adc0b3}iframe{border:0;width:100%;height:calc(100dvh - 74px);display:block}#status{margin-left:auto}#error{color:#ffb7ba}
+[hidden]{display:none!important}
+#pair{top:82px;width:min(280px,calc(100vw - 32px));padding:16px;right:16px;font-size:14px}
+#qr{width:150px;margin:12px auto}#pin{font-size:28px;letter-spacing:5px}#pair p{margin:10px 0}#pair .muted{font-size:11px}
+</style></head><body>
+<header><strong>1AGE</strong><span>NorthLeftChef · Build 007 · Gamepad + Keyboard</span><button id="new">Pair phone</button><button id="native">Open World builder</button><button id="show">Show / hide pairing</button><span id="status">Waiting for phone</span></header>
+<aside id="pair"><button id="hide-pair" aria-label="Hide pairing card" style="float:right;padding:4px 10px">×</button><strong>Pair phone</strong><p>Scan the QR, or open this address on your phone and enter the PIN.</p><img id="qr" alt="Phone pairing QR code"><div id="pin">—</div><p id="url"></p><p id="timer" class="muted"></p><p class="muted">Same reachable Wi-Fi network · trusted local network · A / X interact · B sprint or close · Menu opens café controls. Pairing code lasts 2 minutes; control session lasts 30 minutes.</p><p id="error" role="alert"></p></aside>
+<iframe id="cafe" src="/cafe/" title="NorthLeftChef local test café" allow="gamepad"></iframe>
+<script src="/static/host.js"></script></body></html>

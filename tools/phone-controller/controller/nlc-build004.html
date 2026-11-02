@@ -1,0 +1,1275 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>NorthLeftChef • Virtual Café 001</title><style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font:600 16px system-ui,sans-serif}canvas{display:block}button,a{font:inherit}button{cursor:pointer;border:2px solid #1bfd9c;border-radius:24px;background:#06170f;color:white;padding:12px 18px;min-height:52px}button:active{background:#1bfd9c;color:#000}#hud{position:fixed;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;pointer-events:none}#hud>*{pointer-events:auto}#brand{background:#000d;border:1px solid #1bfd9c;border-radius:18px;padding:12px 16px;color:#1bfd9c;font-size:19px}#tools{display:flex;flex-wrap:wrap;justify-content:end;gap:7px}#tools button{padding:8px 12px;min-height:44px;background:#000d}#hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#000e;border:1px solid #1bfd9c;border-radius:18px;padding:10px 16px;text-align:center;max-width:92vw}#crosshair{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px;pointer-events:none;color:#1bfd9c}#panel{display:none;position:fixed;inset:auto 12px 80px 12px;margin:auto;max-width:480px;background:#050b09f5;border:2px solid #1bfd9c;border-radius:24px;padding:20px;box-shadow:0 0 50px #1bfd9c44}#panel h2{margin:0 0 10px}#panel p{line-height:1.45}#panel .row{display:flex;flex-wrap:wrap;gap:10px}#panel a{display:inline-block;border:2px solid #1bfd9c;border-radius:20px;padding:12px 16px;color:white;text-decoration:none;background:#063321}#panel input{max-width:100%}#mobile{position:fixed;bottom:90px;left:12px;display:none;grid-template-columns:repeat(3,60px);gap:5px}#mobile button{border-radius:18px;min-height:56px;padding:0}#mobile .blank{visibility:hidden}#message{position:fixed;top:85px;left:50%;transform:translateX(-50%);background:#000e;border-radius:16px;padding:8px 15px;display:none;text-align:center}@media(pointer:coarse){#mobile{display:grid}#hint{font-size:13px;bottom:10px}#brand{font-size:15px;padding:9px}#tools button{font-size:13px}#panel{bottom:170px}}
+
+/* NLC_CONSOLE_001 */
+#nlcConsoleToggle{
+    position:fixed;right:14px;bottom:18px;z-index:30;
+    background:#06170fee;border-color:#1bfd9c;
+}
+#nlcConsole{
+    position:fixed;inset:0;z-index:20;
+    pointer-events:none;
+}
+#nlcConsole[hidden]{display:none}
+.nlc-stick{
+    position:absolute;bottom:85px;width:145px;height:145px;
+    border:2px solid #1bfd9c99;border-radius:50%;
+    background:#07140e88;pointer-events:auto;
+    touch-action:none;user-select:none;
+}
+#nlcMove{left:24px}
+#nlcLook{right:24px}
+.nlc-knob{
+    position:absolute;left:50%;top:50%;
+    width:58px;height:58px;border-radius:50%;
+    background:#1bfd9caa;border:2px solid #1bfd9c;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
+.nlc-game-buttons{
+    position:absolute;right:185px;bottom:110px;
+    display:grid;grid-template-columns:repeat(2,55px);
+    gap:8px;pointer-events:auto;
+}
+.nlc-game-buttons button{
+    width:55px;height:55px;min-height:55px;
+    padding:0;border-radius:50%;touch-action:none;
+}
+@media(max-width:650px){
+    .nlc-stick{width:105px;height:105px;bottom:75px}
+    .nlc-knob{width:43px;height:43px}
+    #nlcMove{left:10px}
+    #nlcLook{right:10px}
+    .nlc-game-buttons{right:125px;bottom:90px}
+    .nlc-game-buttons button{
+        width:43px;height:43px;min-height:43px;
+    }
+}
+
+/* NLC_MOBILE_003_4 */
+
+:root {
+  --nlc-control-scale: 1;
+  --nlc-control-opacity: .55;
+  --nlc-stick-size: 105px;
+  --nlc-button-size: 43px;
+}
+
+#nlcConsole {
+  opacity: var(--nlc-control-opacity);
+}
+
+.nlc-stick {
+  width: calc(var(--nlc-stick-size) * var(--nlc-control-scale));
+  height: calc(var(--nlc-stick-size) * var(--nlc-control-scale));
+}
+
+.nlc-knob {
+  width: 40%;
+  height: 40%;
+}
+
+.nlc-game-buttons {
+  grid-template-columns: repeat(2, calc(var(--nlc-button-size) * var(--nlc-control-scale)));
+  right: calc(120px * var(--nlc-control-scale));
+}
+
+.nlc-game-buttons button {
+  width: calc(var(--nlc-button-size) * var(--nlc-control-scale));
+  height: calc(var(--nlc-button-size) * var(--nlc-control-scale));
+  min-height: 0;
+}
+
+#nlcControlSettings {
+  position: fixed;
+  z-index: 60;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(340px, 92vw);
+  max-height: 85dvh;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #1bfd9c;
+  border-radius: 20px;
+  background: #06110ff5;
+  box-shadow: 0 20px 80px #000b;
+  color: white;
+}
+
+#nlcControlSettings[hidden] {
+  display: none;
+}
+
+#nlcControlSettings label {
+  display: block;
+  margin: 15px 0;
+}
+
+#nlcControlSettings input {
+  width: 100%;
+  accent-color: #1bfd9c;
+}
+
+#nlcSettingsButton {
+  position: fixed;
+  right: 12px;
+  bottom: calc(75px + env(safe-area-inset-bottom));
+  z-index: 35;
+  padding: 8px 12px;
+  min-height: 38px;
+  font-size: 13px;
+  background: #06170fcc;
+}
+
+@media (pointer: coarse) {
+
+  #mobile {
+    display: none !important;
+  }
+
+  #hud {
+    top: calc(8px + env(safe-area-inset-top));
+    left: 8px;
+    right: 8px;
+  }
+
+  #brand {
+    font-size: 12px;
+    padding: 7px 10px;
+    border-radius: 12px;
+  }
+
+  #brand small {
+    font-size: 9px;
+  }
+
+  #tools {
+    gap: 4px;
+  }
+
+  #tools button {
+    font-size: 11px;
+    padding: 5px 8px;
+    min-height: 34px;
+    border-radius: 12px;
+  }
+
+  #hint {
+    display: none;
+  }
+
+  #nlcMove {
+    left: 12px;
+    bottom: calc(70px + env(safe-area-inset-bottom));
+  }
+
+  #nlcLook {
+    right: 12px;
+    bottom: calc(70px + env(safe-area-inset-bottom));
+  }
+
+  .nlc-game-buttons {
+    bottom: calc(95px + env(safe-area-inset-bottom));
+  }
+
+  #nlcConsoleToggle {
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    min-height: 36px;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  #panel {
+    bottom: calc(120px + env(safe-area-inset-bottom));
+    max-height: 60dvh;
+    overflow-y: auto;
+  }
+}
+
+@media (pointer: coarse) and (orientation: landscape) {
+
+  #brand {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  #tools button {
+    font-size: 10px;
+    min-height: 30px;
+  }
+
+  #nlcMove,
+  #nlcLook {
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .nlc-game-buttons {
+    bottom: calc(35px + env(safe-area-inset-bottom));
+  }
+
+  #nlcSettingsButton {
+    right: 50%;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+
+  #nlcConsoleToggle {
+    right: 10px;
+    bottom: calc(5px + env(safe-area-inset-bottom));
+  }
+}
+
+
+/* NLC_MOBILE_003_5 */
+
+#brand { display:none !important; }
+
+#hud {
+  position:fixed;
+  top:calc(10px + env(safe-area-inset-top));
+  right:10px;
+  left:auto;
+  width:auto;
+  z-index:40;
+}
+
+#tools {
+  display:none;
+  position:fixed;
+  top:calc(60px + env(safe-area-inset-top));
+  right:10px;
+  width:min(240px,85vw);
+  padding:12px;
+  border:1px solid #1bfd9c;
+  border-radius:18px;
+  background:#06120ff2;
+  flex-direction:column;
+  gap:8px;
+  z-index:45;
+}
+
+#tools.nlc-menu-open {
+  display:flex;
+}
+
+#tools button {
+  width:100%;
+  text-align:left;
+  min-height:42px;
+}
+
+#nlcMenuButton {
+  position:fixed;
+  top:calc(10px + env(safe-area-inset-top));
+  right:10px;
+  z-index:50;
+  width:44px;
+  height:44px;
+  min-height:44px;
+  padding:0;
+  border-radius:14px;
+  background:#06170fe8;
+  font-size:22px;
+}
+
+#tools #nlcSettingsButton {
+  display:block;
+  position:static;
+  width:100%;
+  height:auto;
+  text-align:left;
+  font-size:13px;
+  border-radius:12px;
+}
+
+#nlcConsoleToggle {
+  width:44px;
+  height:44px;
+  min-height:44px;
+  padding:0;
+  overflow:hidden;
+  font-size:0;
+  border-radius:50%;
+  right:calc(12px + env(safe-area-inset-right));
+  bottom:calc(12px + env(safe-area-inset-bottom));
+}
+
+#nlcConsoleToggle::before {
+  content:'🎮';
+  font-size:20px;
+}
+
+#nlcMove {
+  left:calc(12px + env(safe-area-inset-left));
+}
+
+#nlcLook {
+  right:calc(12px + env(safe-area-inset-right));
+}
+
+@media(pointer:coarse) and (orientation:landscape) {
+  .nlc-game-buttons {
+    right:calc(135px * var(--nlc-control-scale));
+    bottom:calc(45px + env(safe-area-inset-bottom));
+  }
+
+  #nlcMove,#nlcLook {
+    bottom:calc(15px + env(safe-area-inset-bottom));
+  }
+}
+
+
+/* NLC_MOBILE_003_6 — Refined mobile gamepad */
+
+#nlcMenuButton {
+    width: 46px;
+    height: 46px;
+    min-height: 46px;
+    border-radius: 50%;
+    padding: 0;
+    background: #06170fee;
+    border: 2px solid #1bfd9c;
+    color: white;
+    transition: background .18s ease, color .18s ease;
+}
+
+#nlcMenuButton[aria-expanded="true"] {
+    background: #1bfd9c;
+    color: #03110a;
+}
+
+/* Smaller visible joystick circles */
+.nlc-stick {
+    width: calc(85px * var(--nlc-control-scale));
+    height: calc(85px * var(--nlc-control-scale));
+}
+
+/* Keep the inner indicator at a useful size */
+.nlc-knob {
+    width: 43px;
+    height: 43px;
+}
+
+/* Compact gamepad toggle */
+#nlcConsoleToggle {
+    position: fixed;
+    width: 42px;
+    height: 42px;
+    min-height: 42px;
+    border-radius: 50%;
+    padding: 0;
+    right: calc(10px + env(safe-area-inset-right));
+    bottom: calc(4px + env(safe-area-inset-bottom));
+    z-index: 35;
+}
+
+/* Portrait layout */
+@media (pointer: coarse) and (orientation: portrait) {
+
+    #nlcMove {
+        left: calc(12px + env(safe-area-inset-left));
+        bottom: calc(65px + env(safe-area-inset-bottom));
+    }
+
+    #nlcLook {
+        right: calc(12px + env(safe-area-inset-right));
+        bottom: calc(65px + env(safe-area-inset-bottom));
+    }
+
+    .nlc-game-buttons {
+        right: calc(110px * var(--nlc-control-scale));
+        bottom: calc(85px + env(safe-area-inset-bottom));
+    }
+}
+
+/* Landscape layout */
+@media (pointer: coarse) and (orientation: landscape) {
+
+    #nlcMove {
+        left: calc(12px + env(safe-area-inset-left));
+        bottom: calc(18px + env(safe-area-inset-bottom));
+    }
+
+    #nlcLook {
+        right: calc(12px + env(safe-area-inset-right));
+        bottom: calc(18px + env(safe-area-inset-bottom));
+    }
+
+    .nlc-game-buttons {
+        position: absolute;
+        right: calc(110px * var(--nlc-control-scale));
+        bottom: calc(30px + env(safe-area-inset-bottom));
+        gap: 5px;
+    }
+
+    .nlc-game-buttons button {
+        width: calc(38px * var(--nlc-control-scale));
+        height: calc(38px * var(--nlc-control-scale));
+        font-size: 12px;
+    }
+
+    #nlcConsoleToggle {
+        bottom: calc(3px + env(safe-area-inset-bottom));
+    }
+}
+
+
+/* NLC_MOBILE_003_7 — Gamepad controls at bottom */
+
+/* Portrait: controls at the bottom */
+@media (pointer: coarse) and (orientation: portrait) {
+    #nlcMove,
+    #nlcLook {
+        bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .nlc-game-buttons {
+        bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #nlcConsoleToggle {
+        right: calc(12px + env(safe-area-inset-right)) !important;
+        bottom: calc(145px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+/* Landscape: controls along the bottom edge */
+@media (pointer: coarse) and (orientation: landscape) {
+    #nlcMove,
+    #nlcLook {
+        bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .nlc-game-buttons {
+        right: calc(110px + env(safe-area-inset-right)) !important;
+        bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #nlcConsoleToggle {
+        right: calc(12px + env(safe-area-inset-right)) !important;
+        bottom: calc(115px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+
+/* NLC_BUILD_004_UNIVERSAL */
+#nlcMenuButton {
+    border-radius:50%;
+}
+#nlcMenuButton[aria-expanded="true"] {
+    background:#1bfd9c;
+    color:#03110a;
+}
+#nlcInteract {
+    position:fixed;
+    z-index:38;
+    left:50%;
+    bottom:calc(135px + env(safe-area-inset-bottom));
+    transform:translateX(-50%);
+    min-height:44px;
+    max-width:58vw;
+    padding:8px 14px;
+    font-size:13px;
+    background:#063b27ef;
+}
+#nlcInteract[hidden] {
+    display:none!important;
+}
+#nlcControllerStatus {
+    position:fixed;
+    left:12px;
+    top:calc(12px + env(safe-area-inset-top));
+    z-index:32;
+    font-size:11px;
+    color:#1bfd9c;
+    background:#06170fbb;
+    padding:6px 9px;
+    border-radius:12px;
+    pointer-events:none;
+}
+.nlc-stick {
+    width:calc(88px * var(--nlc-control-scale));
+    height:calc(88px * var(--nlc-control-scale));
+    bottom:calc(12px + env(safe-area-inset-bottom))!important;
+}
+.nlc-knob {
+    width:43px;
+    height:43px;
+}
+#nlcMove {
+    left:calc(12px + env(safe-area-inset-left));
+}
+#nlcLook {
+    right:calc(12px + env(safe-area-inset-right));
+}
+.nlc-game-buttons {
+    right:calc(116px + env(safe-area-inset-right))!important;
+    bottom:calc(15px + env(safe-area-inset-bottom))!important;
+    gap:5px;
+    grid-template-columns:repeat(
+        2,calc(38px * var(--nlc-control-scale))
+    );
+}
+.nlc-game-buttons button {
+    width:calc(38px * var(--nlc-control-scale));
+    height:calc(38px * var(--nlc-control-scale));
+    min-height:0;
+    font-size:12px;
+}
+#nlcConsoleToggle {
+    right:calc(12px + env(safe-area-inset-right))!important;
+    bottom:calc(125px + env(safe-area-inset-bottom))!important;
+    z-index:45;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+}
+@media(pointer:fine) {
+    #nlcInteract {
+        bottom:calc(135px + env(safe-area-inset-bottom));
+    }
+}
+@media(pointer:coarse) and (orientation:landscape) {
+    .nlc-stick {
+        bottom:calc(7px + env(safe-area-inset-bottom))!important;
+    }
+    .nlc-game-buttons {
+        right:calc(113px + env(safe-area-inset-right))!important;
+        bottom:calc(8px + env(safe-area-inset-bottom))!important;
+    }
+    #nlcConsoleToggle {
+        bottom:calc(104px + env(safe-area-inset-bottom))!important;
+    }
+    #nlcInteract {
+        bottom:calc(8px + env(safe-area-inset-bottom));
+    }
+}
+
+</style></head><body><div id="hud"><div id="brand">☕ NORTHLEFTCHEF<br><small style="color:white">VIRTUAL CAFÉ 001</small></div><div id="tools"><button id="radio">▶ RADIO</button><button id="sound">🔊 70%</button><button id="help">? HELP</button></div></div>
+<button id="nlcMenuButton" type="button"
+        aria-label="Open NorthLeftChef menu"
+        aria-expanded="false">☰</button>
+<div id="message"></div><div id="crosshair">+</div><div id="hint">Click to explore • WASD move • Mouse look • E interact • Tap objects on touchscreens</div><div id="mobile"><span class="blank"></span><button data-move="forward">▲</button><span class="blank"></span><button data-move="left">◀</button><button data-move="back">▼</button><button data-move="right">▶</button></div><div id="panel"><h2 id="panelTitle"></h2><p id="panelText"></p><div class="row" id="panelActions"></div><p><button id="close">CLOSE ✕</button></p></div>
+<button id="nlcInteract" type="button" hidden>
+INTERACT
+</button>
+<div id="nlcControllerStatus" aria-live="polite">
+🎮 Controller: not connected
+</div>
+<div id="nlcConsole" hidden aria-label="1AGE Console">
+    <div id="nlcMove" class="nlc-stick" data-axis="move">
+        <span class="nlc-knob"></span>
+    </div>
+    <div id="nlcLook" class="nlc-stick" data-axis="look">
+        <span class="nlc-knob"></span>
+    </div>
+    <div class="nlc-game-buttons">
+        <button data-pad="Y">Y</button>
+        <button data-pad="X">X</button>
+        <button data-pad="B">B</button>
+        <button data-pad="A">A</button>
+    </div>
+</div>
+<button id="nlcConsoleToggle">🎮 GAMEPAD</button>
+
+<button id="nlcSettingsButton" type="button">⚙ CONTROLS</button>
+
+<div id="nlcControlSettings" hidden>
+  <h2>🎮 1AGE Controls</h2>
+
+  <label>
+    Button size: <output id="nlcSizeValue">100%</output>
+    <input id="nlcSize" type="range"
+           min="65" max="150" step="5" value="100">
+  </label>
+
+  <label>
+    Transparency: <output id="nlcOpacityValue">55%</output>
+    <input id="nlcOpacity" type="range"
+           min="20" max="100" step="5" value="55">
+  </label>
+
+  <button id="nlcSettingsClose" type="button">DONE ✓</button>
+</div>
+
+<audio id="player" loop></audio><script type="module">
+import * as THREE from './vendor/three.module.js';
+const scene=new THREE.Scene();scene.background=new THREE.Color('#030504');scene.fog=new THREE.Fog('#030504',22,52);
+const camera=new THREE.PerspectiveCamera(74,innerWidth/innerHeight,.08,100);camera.position.set(-7,1.65,3);camera.rotation.order='YXZ';
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;document.body.prepend(renderer.domElement);
+const nlcHemisphere=new THREE.HemisphereLight(0xffd7a0,0x302015,1.1);
+scene.add(nlcHemisphere);
+const nlcAmbient=new THREE.AmbientLight(0xffc58a,.45);
+scene.add(nlcAmbient);
+function light(x,y,z,color,intensity,dist){const l=new THREE.PointLight(color,intensity,dist);l.position.set(x,y,z);scene.add(l)}light(-4,3,1,0xffc88a,25,13);light(5,3,-2,0x1bfd9c,18,11);light(2,3,-12,0xbb40ff,26,12);light(-4,3,-15,0x3399ff,20,12);
+function mat(color,emissive='#000000',strength=0){return new THREE.MeshStandardMaterial({color,roughness:.7,emissive,emissiveIntensity:strength,side:THREE.DoubleSide})}
+const wood=mat('#88654a'),dark=mat('#343b36'),black=mat('#050608'),green=mat('#123a2c','#1bfd9c',.4),pink=mat('#422044','#e62aff',.6),white=mat('#d9d9d0'),floor=mat('#65574a');
+function box(x,y,z,w,h,d,m){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);scene.add(o);return o}
+function cylinder(x,y,z,r,h,m){const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,24),m);o.position.set(x,y,z);scene.add(o);return o}
+function label(text,x,y,z,color='#ffffff',size=44,rot=0){const c=document.createElement('canvas');c.width=1024;c.height=180;const g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);g.fillStyle=color;g.font=`bold ${size}px system-ui`;g.textAlign='center';g.fillText(text,512,100);const t=new THREE.CanvasTexture(c);const o=new THREE.Mesh(new THREE.PlaneGeometry(4.6,.8),new THREE.MeshBasicMaterial({map:t,transparent:true,side:THREE.DoubleSide}));o.position.set(x,y,z);o.rotation.y=rot;scene.add(o);return o}
+
+// NLC_BUILD_003_SIDE_BY_SIDE
+// 30-unit-wide building, 14-unit depth.
+// Left café (-15..0), right studio (0..15).
+// Parking lot faces z=+7. NE MLK faces x=-15.
+
+// Main floor and ceiling
+box(0,-.13,0,30,.25,14,floor);
+box(0,4.12,0,30,.25,14,black);
+
+// Rear exterior wall
+box(0,2,-7,30,4.3,.25,dark);
+
+// Right exterior wall
+box(15,2,0,.25,4.3,14,dark);
+
+// NE MLK-facing short wall, with café side entrance
+box(-15,2,-4.5,.25,4.3,5,dark);
+box(-15,2,4.5,.25,4.3,5,dark);
+box(-15,3.65,0,.25,1,4,dark);
+
+// NLC_BUILD_003_3 — Acoustic studio partition
+// Two solid wall sections, with a central door opening.
+box(0,2,-4.1,.25,4.3,5.8,wood);
+box(0,2,4.1,.25,4.3,5.8,wood);
+box(0,3.65,0,.25,1,2.4,wood);
+
+// NLC_BUILD_003_1 — Corrected parking-lot façade
+// Solid wall segments exist ONLY between openings.
+
+const nlcEntryGlass=new THREE.MeshPhysicalMaterial({
+    color:0x85c9cf,
+    metalness:.05,
+    roughness:.12,
+    transparent:true,
+    opacity:.38,
+    side:THREE.DoubleSide
+});
+
+// Four windows and two doors, left to right.
+const nlcOpenings=[
+    {x:-12.2,w:2.4,type:'window'},
+    {x:-7.5,w:2.2,type:'door'},
+    {x:-3.2,w:2.4,type:'window'},
+    {x:3.2,w:2.4,type:'window'},
+    {x:8,w:2.2,type:'door'},
+    {x:12.2,w:2.4,type:'window'}
+];
+
+const openings=nlcOpenings.map(o=>({
+    ...o,
+    left:o.x-o.w/2,
+    right:o.x+o.w/2
+}));
+
+// Build solid wall only between openings.
+let previous=-15;
+
+for(const o of openings){
+    const width=o.left-previous;
+
+    if(width>.01){
+        box(previous+width/2,2,7,width,4.3,.25,wood);
+    }
+
+    previous=o.right;
+}
+
+if(previous<15){
+    const width=15-previous;
+    box(previous+width/2,2,7,width,4.3,.25,wood);
+}
+
+// Build openings, glass, and frames.
+for(const o of nlcOpenings){
+    const isDoor=o.type==='door';
+
+    const bottom=isDoor?0:1;
+    const height=isDoor?3:2.1;
+    const centerY=bottom+height/2;
+
+    // Lower wall under windows
+    if(!isDoor){
+        box(o.x,.5,7,o.w,1,.25,wood);
+    }
+
+    // Upper wall above opening
+    const top=bottom+height;
+    const upperHeight=4.15-top;
+
+    if(upperHeight>0){
+        box(o.x,top+upperHeight/2,7,o.w,upperHeight,.25,wood);
+    }
+
+    // Glass
+    box(o.x,centerY,7,o.w-.12,height-.08,.045,nlcEntryGlass);
+
+    // Vertical frame
+    for(const edge of [-1,1]){
+        box(
+            o.x+edge*o.w/2,
+            centerY,
+            6.86,
+            .11,
+            height,
+            .15,
+            dark
+        );
+    }
+
+    // Top frame
+    box(o.x,top,6.86,o.w,.11,.15,dark);
+
+    // Window sill
+    if(!isDoor){
+        box(o.x,bottom,6.86,o.w,.11,.18,wood);
+        box(o.x,centerY,6.84,.075,height,.12,dark);
+    }
+}
+
+// NE MLK side entrance remains on the short left wall.
+box(-15,1.5,0,.045,3,2.2,nlcEntryGlass);
+box(-14.86,3.05,0,.15,.11,2.3,dark);
+box(-14.86,1.5,-1.15,.15,3,.11,dark);
+box(-14.86,1.5,1.15,.15,3,.11,dark);
+
+// Signs
+label('NORTHLEFTCHEF',-7.5,3.7,6.7,'#1bfd9c',60,Math.PI);
+label('MUSIC STUDIO',8,3.7,6.7,'#ff62d9',54,Math.PI);
+
+
+// Solid acoustic-style studio door
+const nlcDoorMaterial=mat('#202426');
+
+const nlcInteriorDoor=box(
+    0,1.5,0,
+    .22,3,2.25,
+    nlcDoorMaterial
+);
+
+const nlcDoorHandle=box(
+    -.16,1.5,.75,
+    .14,.12,.22,
+    mat('#c79a57')
+);
+
+// Door frame
+box(0,3.06,0,.32,.13,2.45,dark);
+box(0,1.5,-1.2,.32,3,.12,dark);
+box(0,1.5,1.2,.32,3,.12,dark);
+
+let nlcDoorOpen=false;
+
+function toggleNLCInteriorDoor(){
+    nlcDoorOpen=!nlcDoorOpen;
+    nlcInteriorDoor.visible=!nlcDoorOpen;
+    nlcDoorHandle.visible=!nlcDoorOpen;
+}
+
+// Interior doorway frame
+
+
+label('NORTHLEFTCHEF',-7,3.7,6.7,'#1bfd9c',60,Math.PI);
+label('MUSIC STUDIO',8,3.7,6.7,'#ff62d9',54,Math.PI);
+
+// Preserve and reposition original furniture and studio equipment
+const nlcOriginalGroup=new THREE.Group();
+scene.add(nlcOriginalGroup);
+
+// Temporarily redirect new meshes into the group
+const nlcSceneAdd=scene.add.bind(scene);
+scene.add=function(object){
+    if(object.isMesh)nlcOriginalGroup.add(object);
+    else nlcSceneAdd(object);
+};
+
+// Two adjoining rooms: café z -6..8, studio z -22..-6; doorway at x=0
+// café counter and coffee equipment
+box(-4.8,.8,-2.4,3.5,1.5,1.2,wood);box(-4.8,1.58,-2.4,3.7,.15,1.35,white);box(-5.2,1.88,-2.4,.75,.48,.5,black);box(-4.2,1.9,-2.4,.35,.5,.35,green);label('NORTHLEFTCHEF',0,3.3,7.84,'#1bfd9c',70,Math.PI);
+for(const [x,z] of [[-3,3],[2.8,3],[3,-2],[-2,-4]]){cylinder(x,.72,z,.85,.12,wood);cylinder(x,.35,z,.12,.7,dark);for(const [dx,dz] of [[-1.2,0],[1.2,0],[0,1.2]]){box(x+dx,.45,z+dz,.65,.13,.65,green);box(x+dx,.22,z+dz,.12,.5,.12,black)}}
+// plants
+for(const [x,z] of [[-6,6],[6,6],[-6,-5]]){cylinder(x,.36,z,.38,.72,wood);cylinder(x,1.05,z,.55,.9,green)}
+// studio stage, equipment desk, screen, beat machine, DJ decks
+box(0,.25,-16,10,.5,5,black);box(0,.95,-17.5,7.8,.22,1.5,wood);box(0,1.6,-18.1,2.8,1.3,.16,green);label('NLC STUDIO',0,2.9,-21.8,'#1bfd9c',90);
+box(-2.7,1.13,-17.1,1.4,.12,.7,pink);box(2.7,1.13,-17.1,1.4,.12,.7,green);box(0,1.1,-16.7,1.1,.12,.7,dark);
+for(const [x,z,txt,col] of [[-5.7,-10,'COSMIC 1969','#ff5ce8'],[5.7,-12,'BLACKLIGHT','#4de4ff'],[-5.7,-18,'MAKE NOISE','#a4ff4d']]){const p=box(x,2.4,z,.07,2.3,2.6,mat(col,col,.65));label(txt,x+(x<0?.08:-.08),2.5,z,col,40,x<0?Math.PI/2:-Math.PI/2)}
+for(const [x,z] of [[-4,-15],[4,-15]]){box(x,1.6,z,.9,2.1,.75,black);cylinder(x,2.1,z,.3,.12,pink);cylinder(x,1.4,z,.2,.12,green)}
+
+
+// Restore normal scene behavior
+scene.add=nlcSceneAdd;
+
+// Rotate old furniture into the side-by-side floor plan
+nlcOriginalGroup.rotation.y=-Math.PI/2;
+nlcOriginalGroup.position.set(-7,0,0);
+// NLC_BUILD_002 — Café and Studio Environment
+
+// Warm café pendant lights
+const amber=mat('#a85d24','#ff9f45',1.2);
+
+for(const [x,z] of [[-3,3],[2.8,3],[-2,-3],[3,-2]]){
+    cylinder(x,3.35,z,.32,.18,amber);
+    cylinder(x,3.72,z,.035,.65,black);
+}
+
+
+// Build 003: façade windows and entrances are defined above.
+// Existing café furniture, lighting and DJ display remain active.
+
+// Large DJ performance display
+const screenFrame=mat('#080909');
+const screenGlow=new THREE.MeshBasicMaterial({
+    color:0x141a28,
+    side:THREE.DoubleSide
+});
+
+box(-7.5,2.45,-6.72,8.8,2.7,.18,screenFrame);
+box(-7.5,2.45,-6.59,8.35,2.3,.06,screenGlow);
+
+// Animated DJ screen graphics
+const djCanvas=document.createElement('canvas');
+djCanvas.width=1024;
+djCanvas.height=512;
+const djContext=djCanvas.getContext('2d');
+const djTexture=new THREE.CanvasTexture(djCanvas);
+
+const djDisplay=new THREE.Mesh(
+    new THREE.PlaneGeometry(8.2,2.2),
+    new THREE.MeshBasicMaterial({map:djTexture,side:THREE.DoubleSide})
+);
+djDisplay.position.set(-7.5,2.45,-6.54);
+scene.add(djDisplay);
+
+function updateDJScreen(time){
+    const g=djContext;
+    const w=djCanvas.width,h=djCanvas.height;
+
+    g.fillStyle='#080512';
+    g.fillRect(0,0,w,h);
+
+    g.fillStyle='#1bfd9c';
+    g.textAlign='center';
+    g.font='bold 70px system-ui';
+    g.fillText('NORTHLEFTCHEF',w/2,110);
+
+    g.fillStyle='#ff62d9';
+    g.font='bold 42px system-ui';
+    g.fillText('VIRTUAL DJ STAGE',w/2,175);
+
+    for(let i=0;i<48;i++){
+        const height=25+Math.abs(Math.sin(time*2+i*.42))*170;
+        g.fillStyle=i%2?'#1bfd9c':'#ff62d9';
+        g.fillRect(65+i*19,h-65-height,11,height);
+    }
+
+    g.fillStyle='#aaaaaa';
+    g.font='24px system-ui';
+    g.fillText('LIVE BROADCASTING — COMING SOON',w/2,h-20);
+
+    djTexture.needsUpdate=true;
+}
+
+// Lighting presets
+const lightModes=[
+    {name:'DAY',ambient:1.3,hemisphere:2.2},
+    {name:'EVENING',ambient:.45,hemisphere:1.1},
+    {name:'LATE NIGHT',ambient:.15,hemisphere:.45}
+];
+
+let lightMode=1;
+
+function setNLCLighting(){
+    const mode=lightModes[lightMode];
+    nlcAmbient.intensity=mode.ambient;
+    nlcHemisphere.intensity=mode.hemisphere;
+    document.getElementById('nlcLights').textContent='💡 '+mode.name;
+}
+
+const lightButton=document.createElement('button');
+lightButton.id='nlcLights';
+lightButton.onclick=()=>{
+    lightMode=(lightMode+1)%lightModes.length;
+    setNLCLighting();
+};
+
+document.getElementById('tools').appendChild(lightButton);
+setNLCLighting();
+
+
+// NLC_BUILD_003_2 — Corrected interactive equipment
+const targets=[];
+
+function target(obj,name,info,action){
+    obj.userData={name,info,action};
+    targets.push(obj);
+}
+
+// Café counter
+target(
+    box(-10,1.3,-2.2,1.8,.8,.7,green),
+    'Café Counter',
+    'Welcome to NorthLeftChef! Virtual café service is coming soon.'
+);
+
+// Café radio
+target(
+    box(-4.5,1.6,-3.2,1.4,.9,.3,green),
+    'Café Radio',
+    'Play your own local audio file.',
+    'radio'
+);
+
+// Music studio equipment
+target(
+    box(7.5,1.6,-4.5,2.6,1.2,.3,pink),
+    'Studio Touchscreen',
+    'Launch the NorthLeftChef music studio.',
+    'studio'
+);
+
+target(
+    box(10.5,1.15,-2.2,2.1,.3,1.1,green),
+    'DJ Decks',
+    'Open the NorthLeftChef DJ booth.',
+    'dj'
+);
+
+target(
+    box(4.5,1.15,-2.2,2.1,.3,1.1,pink),
+    'Beat Machine',
+    'Open the touchscreen beat workstation.',
+    'studio'
+);
+
+// Equipment labels
+label('BEAT MACHINE',4.5,2.2,-2.2,'#ff62d9',45);
+label('DJ DECKS',10.5,2.2,-2.2,'#1bfd9c',45);
+label('STUDIO 007',7.5,2.7,-4.5,'#ffffff',45);
+
+const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();let yaw=0,pitch=0,keys={},moveTouch={forward:false,back:false,left:false,right:false},panelOpen=false;const panel=document.getElementById('panel'),actions=document.getElementById('panelActions');
+function show(t){panelOpen=true;document.exitPointerLock?.();panel.style.display='block';document.getElementById('panelTitle').textContent=t.name;document.getElementById('panelText').textContent=t.info;actions.replaceChildren();if(t.action==='studio'||t.action==='dj'){const a=document.createElement('a');a.href=t.action==='studio'?'../studio-007/':'../studio-008/dj.html';a.target='_blank';a.rel='noopener';a.textContent=t.action==='studio'?'🎹 OPEN STUDIO':'🎧 OPEN DJ BOOTH';actions.append(a)}if(t.action==='radio'){const b=document.createElement('button');b.textContent='🎵 CHOOSE AUDIO FILE';b.onclick=()=>file.click();actions.append(b)}}
+document.getElementById('close').onclick=()=>{panel.style.display='none';panelOpen=false};
+
+function nlcNearbyDoor(){
+    return Math.abs(camera.position.x)<2.0 &&
+           Math.abs(camera.position.z)<2.2;
+}
+function nlcFacingTarget(){
+    pointer.set(0,0);
+    ray.setFromCamera(pointer,camera);
+    const hits=ray.intersectObjects(targets,false);
+    return hits.length && hits[0].distance<6
+        ? hits[0].object.userData : null;
+}
+// NLC_BUILD_004_DOOR_ENTER
+function nlcContext(){
+    if(nlcNearbyDoor()){
+        return {
+            label:nlcDoorOpen?'🚪 CLOSE DOOR':'🚪 OPEN DOOR',
+            door:true
+        };
+    }
+    const t=nlcFacingTarget();
+    if(t){
+        return {
+            label:t.action==='studio'?'🎹 MAKE BEATS':
+                  t.action==='dj'?'🎧 USE DJ DECKS':
+                  t.action==='radio'?'🎵 USE RADIO':
+                  '☕ CAFÉ COUNTER',
+            target:t
+        };
+    }
+    if(nlcNearbyDoor()){
+        return {
+            label:nlcDoorOpen?'🚪 CLOSE DOOR':'🚪 OPEN DOOR',
+            door:true
+        };
+    }
+    return null;
+}
+function nlcInteractNow(){
+    if(panelOpen)return;
+    const context=nlcContext();
+    if(!context)return;
+    if(context.door)toggleNLCInteriorDoor();
+    else show(context.target);
+}
+function pick(){
+    const t=nlcFacingTarget();
+    if(t)show(t);
+}
+const nlcInteractButton=document.getElementById('nlcInteract');
+nlcInteractButton.addEventListener('click',nlcInteractNow);
+function nlcUpdateInteract(){
+    const context=panelOpen?null:nlcContext();
+    nlcInteractButton.hidden=!context;
+    if(context)nlcInteractButton.textContent=context.label;
+}
+
+renderer.domElement.addEventListener('click',e=>{if(panelOpen)return;if(matchMedia('(pointer:coarse)').matches){pointer.x=e.clientX/innerWidth*2-1;pointer.y=-(e.clientY/innerHeight)*2+1;pick()}else if(document.pointerLockElement!==renderer.domElement){renderer.domElement.requestPointerLock()}else{pointer.set(0,0);pick()}});
+document.addEventListener('mousemove',e=>{if(document.pointerLockElement===renderer.domElement&&!panelOpen){yaw-=e.movementX*.0025;pitch=Math.max(-1.25,Math.min(1.25,pitch-e.movementY*.0025))}});
+
+document.addEventListener('keydown',e=>{
+    if(e.code==='KeyF' &&
+       Math.abs(camera.position.x)<2 &&
+       Math.abs(camera.position.z)<2.5){
+        toggleNLCInteriorDoor();
+    }
+});
+
+document.addEventListener('keydown',e=>{if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyE'].includes(e.code))e.preventDefault();keys[e.code]=true;if((e.code==='KeyE'||e.code==='Enter')&&!e.repeat&&!panelOpen){
+    e.preventDefault();
+    nlcInteractNow();
+}if(e.code==='Escape'&&panelOpen)document.getElementById('close').click()});document.addEventListener('keyup',e=>keys[e.code]=false);
+for(const b of document.querySelectorAll('[data-move]')){const k=b.dataset.move;b.addEventListener('pointerdown',e=>{e.preventDefault();moveTouch[k]=true;b.setPointerCapture(e.pointerId)});for(const ev of ['pointerup','pointercancel'])b.addEventListener(ev,()=>moveTouch[k]=false)}
+let dragging=false,lastX=0,lastY=0;renderer.domElement.addEventListener('touchstart',e=>{if(e.touches.length===1){dragging=true;lastX=e.touches[0].clientX;lastY=e.touches[0].clientY}},{passive:true});renderer.domElement.addEventListener('touchmove',e=>{if(dragging&&e.touches.length===1){const t=e.touches[0];yaw-=(t.clientX-lastX)*.005;pitch=Math.max(-1.25,Math.min(1.25,pitch-(t.clientY-lastY)*.005));lastX=t.clientX;lastY=t.clientY}},{passive:true});renderer.domElement.addEventListener('touchend',()=>dragging=false);
+const file=document.createElement('input');file.type='file';file.accept='audio/*';file.style.display='none';document.body.append(file);const audio=document.getElementById('player');let objectURL=null;file.onchange=()=>{const f=file.files[0];if(!f)return;if(objectURL)URL.revokeObjectURL(objectURL);objectURL=URL.createObjectURL(f);audio.src=objectURL;audio.play().then(()=>document.getElementById('radio').textContent='❚❚ RADIO').catch(()=>{});document.getElementById('panelText').textContent='Playing locally: '+f.name+' (not broadcast to other visitors).'};
+document.getElementById('radio').onclick=()=>{if(!audio.src){show({name:'Café Radio',info:'Select an audio file from your device to play locally. This demo does not stream to other visitors.',action:'radio'});return}if(audio.paused){audio.play();document.getElementById('radio').textContent='❚❚ RADIO'}else{audio.pause();document.getElementById('radio').textContent='▶ RADIO'}};let volume=.7;audio.volume=volume;document.getElementById('sound').onclick=()=>{volume=volume===0?.35:volume===.35?.7:volume===.7?1:0;audio.volume=volume;document.getElementById('sound').textContent='🔊 '+Math.round(volume*100)+'%'};
+document.getElementById('help').onclick=()=>show({name:'Explore NorthLeftChef',info:'WASD to walk, mouse to look, E to interact with nearby equipment. On touchscreens, swipe the scene to look, use arrows to walk, and tap equipment. The café and studio are connected through the green doorway.'});
+
+// NLC Console input adapter
+const nlcPad={
+    move:{x:0,y:0},
+    look:{x:0,y:0},
+    buttons:{},
+    previousX:false,
+    gamepadPreviousX:false
+};
+
+const nlcConsole=document.getElementById('nlcConsole');
+const nlcConsoleToggle=document.getElementById('nlcConsoleToggle');
+
+function setNLCConsole(visible){
+    nlcConsole.hidden=!visible;
+    nlcConsoleToggle.textContent=visible?'🎮 HIDE GAMEPAD':'🎮 GAMEPAD';
+    nlcPad.move={x:0,y:0};
+    nlcPad.look={x:0,y:0};
+    nlcPad.buttons={};
+    document.querySelectorAll('.nlc-knob').forEach(
+        n=>n.style.transform='translate(-50%,-50%)'
+    );
+}
+
+nlcConsoleToggle.addEventListener('click',()=>{
+    setNLCConsole(nlcConsole.hidden);
+});
+
+setNLCConsole(true);
+
+// NLC_MOBILE_003_4 — Adjustable controls
+
+const nlcSize = document.getElementById('nlcSize');
+const nlcOpacity = document.getElementById('nlcOpacity');
+const nlcSettings = document.getElementById('nlcControlSettings');
+
+function nlcApplyPreferences() {
+  const size = Number(nlcSize.value);
+  const opacity = Number(nlcOpacity.value);
+
+  document.documentElement.style.setProperty(
+    '--nlc-control-scale', size / 100
+  );
+
+  document.documentElement.style.setProperty(
+    '--nlc-control-opacity', opacity / 100
+  );
+
+  document.getElementById('nlcSizeValue').textContent =
+    size + '%';
+
+  document.getElementById('nlcOpacityValue').textContent =
+    opacity + '%';
+
+  try {
+    localStorage.setItem('nlc-control-size', size);
+    localStorage.setItem('nlc-control-opacity', opacity);
+  } catch (_) {}
+}
+
+try {
+  nlcSize.value = localStorage.getItem('nlc-control-size') || 100;
+  nlcOpacity.value = localStorage.getItem('nlc-control-opacity') || 55;
+} catch (_) {}
+
+nlcSize.addEventListener('input', nlcApplyPreferences);
+nlcOpacity.addEventListener('input', nlcApplyPreferences);
+
+document.getElementById('nlcSettingsButton')
+  .addEventListener('click', () => {
+    nlcSettings.hidden = false;
+  });
+
+document.getElementById('nlcSettingsClose')
+  .addEventListener('click', () => {
+    nlcSettings.hidden = true;
+  });
+
+nlcApplyPreferences();
+
+// NLC_MOBILE_003_5 — Compact interface
+const nlcMenuButton = document.getElementById('nlcMenuButton');
+const nlcTools = document.getElementById('tools');
+
+function nlcCloseMenu() {
+  nlcTools.classList.remove('nlc-menu-open');
+  nlcMenuButton.setAttribute('aria-expanded', 'false');
+}
+
+nlcMenuButton.addEventListener('click', () => {
+  const open = nlcTools.classList.toggle('nlc-menu-open');
+  nlcMenuButton.setAttribute('aria-expanded', String(open));
+});
+
+for (const button of nlcTools.querySelectorAll('button')) {
+  button.addEventListener('click', nlcCloseMenu);
+}
+
+// Move the existing settings button into the menu.
+nlcTools.appendChild(document.getElementById('nlcSettingsButton'));
+
+
+
+document.addEventListener('keydown',e=>{
+    if(e.code==='KeyT'&&!e.repeat){
+        setNLCConsole(nlcConsole.hidden);
+    }
+});
+
+for(const stick of document.querySelectorAll('.nlc-stick')){
+    const axis=stick.dataset.axis;
+    const knob=stick.querySelector('.nlc-knob');
+    let owner=null;
+
+    function update(e){
+        const r=stick.getBoundingClientRect();
+        const radius=r.width*.34;
+        let x=(e.clientX-r.left-r.width/2)/radius;
+        let y=(e.clientY-r.top-r.height/2)/radius;
+        const length=Math.hypot(x,y);
+
+        if(length>1){x/=length;y/=length}
+
+        nlcPad[axis]={x,y};
+        knob.style.transform=
+            `translate(calc(-50% + ${x*radius}px),calc(-50% + ${y*radius}px))`;
+    }
+
+    stick.addEventListener('pointerdown',e=>{
+        e.preventDefault();
+        if(owner!==null)return;
+        owner=e.pointerId;
+        stick.setPointerCapture(owner);
+        update(e);
+    });
+
+    stick.addEventListener('pointermove',e=>{
+        if(owner===e.pointerId)update(e);
+    });
+
+    function release(e){
+        if(owner!==e.pointerId)return;
+        owner=null;
+        nlcPad[axis]={x:0,y:0};
+        knob.style.transform='translate(-50%,-50%)';
+    }
+
+    for(const event of ['pointerup','pointercancel','lostpointercapture']){
+        stick.addEventListener(event,release);
+    }
+}
+
+for(const button of document.querySelectorAll('[data-pad]')){
+    const key=button.dataset.pad;
+    button.addEventListener('pointerdown',e=>{
+        e.preventDefault();
+        button.setPointerCapture(e.pointerId);
+        nlcPad.buttons[key]=true;
+    });
+    for(const event of ['pointerup','pointercancel','lostpointercapture']){
+        button.addEventListener(event,()=>{
+            nlcPad.buttons[key]=false;
+        });
+    }
+}
+
+function nlcReadControls(dt){
+    let mx=nlcPad.move.x;
+    let my=nlcPad.move.y;
+    let lx=nlcPad.look.x;
+    let ly=nlcPad.look.y;
+    let interact=!!nlcPad.buttons.A || !!nlcPad.buttons.X;
+    let sprint=!!nlcPad.buttons.B;
+
+    const pad=[...(navigator.getGamepads?.()||[])]
+        .find(p=>p&&p.connected&&p.mapping==='standard');
+
+    if(pad){
+        const dead=v=>Math.abs(v)<.18?0:v;
+        mx+=dead(pad.axes[0]||0);
+        my+=dead(pad.axes[1]||0);
+        lx+=dead(pad.axes[2]||0);
+        ly+=dead(pad.axes[3]||0);
+        interact=interact||!!pad.buttons[0]?.pressed;
+        sprint=sprint||!!pad.buttons[1]?.pressed;
+    }
+
+    const status=document.getElementById('nlcControllerStatus');
+    const statusText=pad
+        ?'🎮 Controller connected'
+        :'🎮 Controller: not connected';
+    if(status.textContent!==statusText)
+        status.textContent=statusText;
+
+    const options=!!pad?.buttons[9]?.pressed;
+    const cancel=!!pad?.buttons[1]?.pressed ||
+                 !!nlcPad.buttons.B;
+
+    if(options&&!nlcPad.previousOptions)
+        nlcMenuButton.click();
+
+    if(cancel&&!nlcPad.previousCancel&&panelOpen)
+        document.getElementById('close').click();
+
+    nlcPad.previousOptions=options;
+    nlcPad.previousCancel=cancel;
+
+    mx=Math.max(-1,Math.min(1,mx));
+    my=Math.max(-1,Math.min(1,my));
+    lx=Math.max(-1,Math.min(1,lx));
+    ly=Math.max(-1,Math.min(1,ly));
+
+    if(!panelOpen){
+        yaw-=lx*dt*2.2;
+        pitch=Math.max(-1.25,Math.min(1.25,pitch-ly*dt*2.2));
+    }
+
+    if(interact&&!nlcPad.previousX&&!panelOpen){
+        nlcInteractNow();
+    }
+
+    nlcPad.previousX=interact;
+
+    return {
+        forward:-my,
+        side:mx,
+        sprint
+    };
+}
+
+window.addEventListener('blur',()=>{
+    nlcPad.move={x:0,y:0};
+    nlcPad.look={x:0,y:0};
+    nlcPad.buttons={};
+});
+
+const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const dt=Math.min(clock.getDelta(),.05);const nlcInput=nlcReadControls(dt);camera.rotation.set(pitch,yaw,0,'YXZ');
+if (!Number.isFinite(camera.position.x) ||
+    !Number.isFinite(camera.position.y) ||
+    !Number.isFinite(camera.position.z)) {
+  camera.position.set(-7,1.65,3);
+}if(!panelOpen){const fw=Number(keys.KeyW||keys.ArrowUp||moveTouch.forward)-Number(keys.KeyS||keys.ArrowDown||moveTouch.back),side=Number(keys.KeyD||keys.ArrowRight||moveTouch.right)-Number(keys.KeyA||keys.ArrowLeft||moveTouch.left);const speed=(keys.ShiftLeft||keys.ShiftRight||nlcInput.sprint?6:4.2)*dt;
+const combinedForward=Math.max(-1,Math.min(1,fw+nlcInput.forward));
+const combinedSide=Math.max(-1,Math.min(1,side+nlcInput.side));let dx=(Math.sin(yaw)*-combinedForward+Math.cos(yaw)*combinedSide)*speed,dz=(-Math.cos(yaw)*combinedForward-Math.sin(yaw)*combinedSide)*speed;const nx=camera.position.x+dx,nz=camera.position.z+dz;const nearWall=Math.abs(nx)<.35&&(Math.abs(nz)>1.05||!nlcDoorOpen);if(!nearWall){camera.position.x=Math.max(-14.5,Math.min(14.5,nx));camera.position.z=Math.max(-6.5,Math.min(6.5,nz))}}nlcUpdateInteract();updateDJScreen(performance.now()/1000);renderer.render(scene,camera);
+}animate();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+</script></body></html>
