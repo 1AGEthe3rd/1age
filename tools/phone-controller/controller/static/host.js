@@ -4,10 +4,11 @@ if(suppliedToken)sessionStorage.setItem('oneage-host-token',suppliedToken);
 const token=suppliedToken||sessionStorage.getItem('oneage-host-token');
 history.replaceState(null,'',location.pathname);
 const $=s=>document.querySelector(s), frame=$('#cafe');
-let socket=null,expiry=0,qrObject=null,active=false,generation=0;
+let socket=null,expiry=0,qrObject=null,active=false,generation=0,phonePaired=false;
 function relay(data){frame.contentWindow?.postMessage({...data,type:'oneage-phone'},location.origin);}
 function reset(){active=false;relay({state:{move:[0,0],look:[0,0],buttons:{}},events:[],connected:false});}
 async function pair(){
+ $('#new').disabled=true;phonePaired=false;
  const current=++generation;let pairedOnce=false;reset();socket?.close();
  $('#pair').hidden=false;$('#error').textContent='';$('#status').textContent='Creating pairing code…';
  try{
@@ -25,7 +26,8 @@ async function pair(){
   ws.onmessage=event=>{
    if(current!==generation)return;
    const data=JSON.parse(event.data);if(data.type!=='state')return;
-   active=data.connected||data.native;
+   active=data.connected||data.native;phonePaired=!!data.paired;
+   $('#new').textContent=phonePaired?'Phone connected · Disconnect':'Connect phone';
    if(data.paired&&!pairedOnce){pairedOnce=true;$('#pair').hidden=true;}
    const focused=document.hasFocus()&&!document.hidden;
    relay(focused?{...data,session:session.id}:{state:{move:[0,0],look:[0,0],buttons:{}},events:[],connected:false});
@@ -33,15 +35,23 @@ async function pair(){
    $('#status').textContent=data.native?'Controlling native World':active?'Phone connected':data.paired?'Phone paused / disconnected':'Waiting for phone';
    if(active){$('#pin').textContent='Paired';$('#qr').hidden=true;$('#timer').textContent='Session active · use Pair phone for a new session';}
   };
-  ws.onclose=()=>{if(current===generation){reset();$('#status').textContent='Session ended — pair again';}};
+  ws.onclose=()=>{if(current===generation){reset();phonePaired=false;expiry=0;$('#pair').hidden=true;$('#new').textContent='Connect phone';$('#status').textContent='Phone disconnected';}};
   ws.onerror=()=>{$('#error').textContent='Connection failed. Keep the controller terminal running.';};
   $('#qr').hidden=false;
- }catch(error){$('#error').textContent=error.message;$('#status').textContent='Pairing unavailable';}
+ }catch(error){$('#error').textContent=error.message;$('#status').textContent='Pairing unavailable';}finally{$('#new').disabled=false;}
 }
-$('#new').onclick=pair;$('#show').onclick=()=>{$('#pair').hidden=!$('#pair').hidden;};
+function disconnectPhone(){
+ generation++;socket?.close();socket=null;phonePaired=false;expiry=0;reset();
+ $('#pair').hidden=true;$('#new').textContent='Connect phone';$('#status').textContent='';
+}
+$('#new').onclick=()=>{
+ if(phonePaired){disconnectPhone();return;}
+ if(socket&&socket.readyState<=1&&Date.now()<expiry){$('#pair').hidden=!$('#pair').hidden;return;}
+ pair();
+};
 addEventListener('blur',reset);document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});
 setInterval(()=>{if(!active&&expiry)$('#timer').textContent=Date.now()<expiry?'Code expires in '+Math.ceil((expiry-Date.now())/1000)+' seconds':'Code expired — click Pair phone';},500);
-pair();
+$('#pair').hidden=true;$('#status').textContent='';
 
 $('#native').onclick=async()=>{try{const response=await fetch('/api/native/open',{method:'POST',headers:{Authorization:'Bearer '+token}});if(!response.ok)throw Error(await response.text());$('#pair').hidden=true;}catch(error){$('#error').textContent=error.message;$('#pair').hidden=false;}};
 
