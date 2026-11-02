@@ -26,7 +26,7 @@
  const peek=globe.querySelector('.project-peek'),expand=$('.preview-expand'),viewer=$('.preview-view'),guide=$('.gesture-guide');
  function sync(){const preview=selected!==null;scene.classList.toggle('showing-peek',preview);scene.classList.toggle('globe-selected',!preview&&highlight);scene.classList.toggle('globe-hover',!preview&&hover);peek.hidden=expand.hidden=!preview;entry.hidden=preview;globe.setAttribute('aria-pressed',String(!preview&&highlight));globe.setAttribute('aria-label',preview?'Project preview. Press to return to 1AGEWorld.':'1AGEWorld. Drag to turn; press to highlight and reveal Enter.');planets.forEach((node,i)=>node.classList.toggle('is-selected',i===selected));}
  function reset(){selected=null;highlight=false;sync();}
- window.addEventListener('1age-project-preview',event=>{if(!slugs[event.detail])return;selected=null;sync();});
+ window.addEventListener('1age-project-preview',event=>{if(!slugs[event.detail])return;selected=event.detail;highlight=false;peek.src=`/assets/world-previews/${slugs[selected]}.svg`;peek.alt=`${slugs[selected]} virtual destination concept`;sync();});
  expand.addEventListener('click',()=>{if(selected===null)return;viewer.querySelector('img').src=peek.src;viewer.querySelector('img').alt=peek.alt;viewer.showModal();});
  for(const node of [globe,entry]){node.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;sync();}});node.addEventListener('pointerleave',e=>{if(!e.relatedTarget?.closest('.world-globe,.world-entry')){hover=false;sync();}});}
  globe.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touches.add(e.pointerId);hover=false;}if(touches.size>1){drag=null;multi=true;scene.classList.remove('globe-pressed');return;}if(e.button!==0)return;multi=false;dragged=false;drag={id:e.pointerId,x:e.clientX,start:e.clientX};if(selected===null)scene.classList.add('globe-pressed');globe.setPointerCapture(e.pointerId);});
@@ -43,7 +43,7 @@
  const availableHeight=h/2-d/2-28;
  const radius=Math.max(42,Math.min(availableWidth,availableHeight));
  const rx=radius;
- const earth=landscape?Math.max(112,Math.min(h*.70,240,rx*1.03)):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
+ const earth=Math.max(24,Math.min(rx*2-d-30,landscape?240:540));
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',rx*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  new ResizeObserver(fit).observe(scene);fit();sync();

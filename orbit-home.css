@@ -522,3 +522,18 @@
         padding-inline: 7px;
     }
 }
+
+/* Review correction: retain the original controls and explicit press previews. */
+.home-screen .world-controls { display:flex !important; }
+.home-screen .project-peek:not([hidden]),
+.home-screen .preview-expand:not([hidden]) { display:block !important; }
+.home-screen .showing-peek .world-letter { display:none; }
+.home-screen .world-letter { font-size:clamp(15px,2vw,24px);font-weight:700;letter-spacing:normal;text-shadow:0 2px 5px #000; }
+@media(max-height:600px) and (orientation:landscape) {
+ .home-screen .site-header {position:absolute;top:8px;left:10px;width:58px;padding:0;}
+ .home-screen .site-header:has(.brand[aria-expanded="true"]) {position:absolute;left:0;width:100%;background:#000e;}
+ .home-screen .search-home {position:absolute;top:10px;left:calc(50% - 22px);width:auto;padding:0;}
+ .home-screen.search-open .search-home {left:80px;right:80px;width:auto;}
+ .home-screen #main {padding-top:66px;}
+ .home-screen .universe {padding:0 80px;}
+}

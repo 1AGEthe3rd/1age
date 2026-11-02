@@ -3,6 +3,8 @@
  const $=s=>document.querySelector(s),scene=$('.world-scene');if(!scene)return;
  const emit=(name,detail)=>window.dispatchEvent(new CustomEvent(name,{detail}));
  const menuItems={L:[['Page','/ecosystem/#page','♙'],['Space','/ecosystem/#space','☏'],['Cash','/ecosystem/#cash','$']],R:[['Games','/ecosystem/#games','✚'],['Exchange','/ecosystem/#exchange','⇄'],['Quest','/ecosystem/#quest','◇']]};
+ // Use the same destination for side menus and their matching planets.
+ for(const items of Object.values(menuItems))for(const item of items){const planet=[...document.querySelectorAll('.project-planet')].find(node=>node.querySelector('span')?.textContent===item[0]);if(planet)item[1]=planet.getAttribute('href');}
  let open=null;
  document.body.insertAdjacentHTML('beforeend','<nav class="side-menu" aria-label="Ecosystem destinations" hidden></nav><dialog class="planet-options"><form method="dialog"><button aria-label="Close options">×</button></form><h2></h2><div class="option-actions"></div></dialog>');
  const menu=$('.side-menu'),options=$('.planet-options');
@@ -15,7 +17,7 @@
  // A press previews. A short release opens the destination. Holding offers choices.
  let press=null,timer=0;
  function clearPress(){clearTimeout(timer);if(press)press.node.classList.remove('is-pressing');press=null;}
- function hold(node){node.dataset.held='true';options.querySelector('h2').textContent=node.querySelector('span:last-child')?.textContent||node.getAttribute('aria-label')||'Options';const actions=options.querySelector('.option-actions');actions.replaceChildren();
+ function hold(node){if(node.matches('.project-planet'))emit('1age-project-preview',Number(node.dataset.slot));node.dataset.held='true';options.querySelector('h2').textContent=node.querySelector('span:last-child')?.textContent||node.getAttribute('aria-label')||'Options';const actions=options.querySelector('.option-actions');actions.replaceChildren();
   const href=node.getAttribute('href');if(href){const a=document.createElement('a');a.href=href;a.textContent='Open';actions.appendChild(a);}
   if(node.matches('.project-planet')){const preview=document.createElement('button');preview.textContent='Keep preview';preview.onclick=()=>options.close();actions.appendChild(preview);const enlarge=document.createElement('button');enlarge.textContent='Enlarge preview';enlarge.onclick=()=>{options.close();$('.preview-expand')?.click();};actions.appendChild(enlarge);}
   if(node.matches('.brand')){const a=document.createElement('a');a.href='/faq/';a.textContent='Help';actions.appendChild(a);const b=document.createElement('a');b.href='https://1age.design';b.textContent='Build with 1AGE.design';actions.appendChild(b);}
