@@ -39,9 +39,12 @@
  function fit(){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
  const landscape=matchMedia('(orientation:landscape) and (max-height:600px)').matches;
  const d=landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
- const ry=Math.max(42,h/2-d/2-28),rx=landscape?Math.min(w*.33,w/2-d/2-30):Math.min(w/2-d/2-16,ry);
+ const availableWidth=w/2-d/2-30;
+ const availableHeight=h/2-d/2-28;
+ const radius=Math.max(42,Math.min(availableWidth,availableHeight));
+ const rx=radius;
  const earth=landscape?Math.max(112,Math.min(h*.70,240,rx*1.03)):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
- scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',(landscape?Math.max(46,ry)*2:rx*2)+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
+ scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',rx*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  new ResizeObserver(fit).observe(scene);fit();sync();
 })();

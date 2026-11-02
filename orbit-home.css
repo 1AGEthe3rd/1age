@@ -451,3 +451,74 @@
     font-size: clamp(13px, 2.8vw, 20px);
   }
 }
+
+
+/* 1AGE HOMEPAGE BUILD 002 — CANONICAL LAYOUT */
+
+/* Preserve one circular orbit on all screen sizes. */
+.home-screen .project-orbit {
+    width: var(--orbit-diameter, 320px);
+    height: var(--orbit-diameter, 320px);
+    aspect-ratio: 1 / 1;
+}
+
+/* Search icon and expanded field occupy the same line. */
+.home-screen .search-expander {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: min(100%, 760px);
+    min-width: 0;
+    margin-inline: auto;
+}
+
+.home-screen .search-expander > .search-circle {
+    flex: 0 0 44px;
+    order: 0;
+}
+
+.home-screen.search-open .search-expander > .search-form {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    order: 1;
+    align-items: center;
+}
+
+.home-screen .search-expander .search-form[hidden] {
+    display: none !important;
+}
+
+.home-screen .search-expander .search-form input {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.home-screen.search-open .search-expander > .search-modes {
+    display: flex;
+    flex: 0 0 auto;
+    order: 2;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    .home-screen .search-expander {
+        width: calc(100% - 16px);
+        gap: 5px;
+    }
+
+    .home-screen.search-open .search-expander > .search-form {
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .home-screen.search-open .search-expander .search-form button {
+        padding-inline: 7px;
+    }
+}
