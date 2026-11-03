@@ -5,3 +5,18 @@ This development change reuses the 1AGE hosted controller adapter and the homepa
 For a private preview, run the existing hosted controller relay behind HTTPS, add the preview origin to its ALLOWED_ORIGINS, and serve a phone-controller-config.json with a relay property containing the relay's HTTPS origin. Serve the homepage with its existing static assets. No relay endpoint or credentials are included. The native Build 008 service is separate and needs no changes.
 
 Run node tests/phone-controller.cjs for the adapter checks. Before release, verify QR pairing, both sticks, A, focus loss, and disconnect with a real phone and the HTTPS preview.
+
+## Hosting the relay
+
+Use `tools/phone-relay` as the Docker build context on a host that supports
+HTTPS and WebSocket upgrades. Run one instance. Set:
+
+- `PUBLIC_ORIGIN`: the relay's exact HTTPS origin (no path).
+- `ALLOWED_ORIGINS`: the exact HTTPS preview origin; add the production
+  origin only when ready to release.
+- `PORT`: the host-provided port, or 8080 if the host expects that port.
+
+Preserve the public Host header and use `/healthz` for a health check.
+Configure the website's `phone-controller-config.json` only after the
+relay responds successfully at its real HTTPS address. Keep this Docker
+service separate from GitHub Pages, which serves the static homepage.
