@@ -542,7 +542,7 @@
 .home-screen .world-controls > button[data-rotate] { display:none !important; }
 
 /* Desktop controls share a fixed row above the orbit. */
-@media(min-width:1000px) and (min-height:601px) {
+@media(min-width:700px) and (orientation:landscape) {
  .home-screen .site-header,
  .home-screen .site-header:has(.brand[aria-expanded="true"]) {position:absolute;top:10px;left:calc(50% - 82px);right:auto;width:72px;padding:0;}
  .home-screen .header-hub {justify-content:flex-start;}
@@ -559,6 +559,16 @@
  .home-screen .universe {width:100%;padding:0;}
 }
 
-@media(min-width:1000px) and (min-height:601px) {
+@media(min-width:700px) and (orientation:landscape) {
  .home-screen.search-open .search-expander > .search-form {position:static;}
+}
+
+/* Keep the desktop row usable on compact laptop viewports. */
+@media (min-width:700px) and (orientation:landscape) and (max-height:600px) {
+ .home-screen .site-header,
+ .home-screen .site-header:has(.brand[aria-expanded="true"]) {width:48px;left:calc(50% - 58px);background:transparent;}
+ .home-screen .brand-circle {width:48px;height:48px;}
+ .home-screen .header-planet {left:24px;transform:translateX(calc(-50% - (var(--slot) + 2) * 60px));}
+ .home-screen .search-expander > .search-circle {width:48px;height:48px;flex-basis:48px;font-size:30px;}
+ .home-screen #main {padding-top:72px;}
 }
