@@ -541,20 +541,24 @@
 /* Homepage correction: hide edge menu buttons; retain orbit and input handlers. */
 .home-screen .world-controls > button[data-rotate] { display:none !important; }
 
-/* PC composition: corner controls free the full central stage. */
+/* Desktop controls share a fixed row above the orbit. */
 @media(min-width:1000px) and (min-height:601px) {
  .home-screen .site-header,
- .home-screen .site-header:has(.brand[aria-expanded="true"]) {position:absolute;top:20px;left:24px;right:auto;width:96px;padding:0;}
+ .home-screen .site-header:has(.brand[aria-expanded="true"]) {position:absolute;top:10px;left:calc(50% - 82px);right:auto;width:72px;padding:0;}
  .home-screen .header-hub {justify-content:flex-start;}
- .home-screen .brand-circle {width:88px;height:88px;}
+ .home-screen .brand-circle {width:72px;height:72px;}
  .home-screen .brand-name {font-size:18px;}
- .home-screen .header-planet {left:44px;transform:translateX(calc(-50% + (var(--slot) + 2) * 102px));}
+ .home-screen .header-planet {left:36px;transform:translateX(calc(-50% - (var(--slot) + 2) * 102px));}
  .home-screen .search-home,
- .home-screen.search-open .search-home {position:absolute;top:24px;right:24px;left:auto;width:auto;padding:0;}
+ .home-screen.search-open .search-home {position:absolute;top:10px;left:calc(50% + 10px);right:auto;width:auto;padding:0;}
  .home-screen .search-expander {width:auto;justify-content:flex-end;}
  .home-screen .search-expander > .search-circle {width:72px;height:72px;flex-basis:72px;font-size:42px;}
- .home-screen.search-open .search-expander {width:min(640px,calc(100vw - 300px));}
- .home-screen.search-open .search-expander > .search-circle {order:3;}
- .home-screen #main {padding-top:0;}
- .home-screen .universe {width:100%;padding:16px 140px 0;}
+ .home-screen.search-open .search-expander {width:min(640px,calc(50vw - 26px));flex-wrap:nowrap;}
+ .home-screen.search-open .search-expander > .search-circle {order:0;}
+ .home-screen #main {padding-top:92px;}
+ .home-screen .universe {width:100%;padding:0;}
+}
+
+@media(min-width:1000px) and (min-height:601px) {
+ .home-screen.search-open .search-expander > .search-form {position:static;}
 }

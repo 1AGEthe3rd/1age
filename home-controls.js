@@ -41,10 +41,10 @@
  const pc=matchMedia('(min-width:1000px) and (min-height:601px)').matches;
  const d=pc?Math.min(92,h*.12):landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
  const availableWidth=w/2-d/2-30;
- const availableHeight=h/2-d/2-28;
+ const availableHeight=h/2-d/2-(pc?20:28);
  const radius=Math.max(42,Math.min(availableWidth,availableHeight));
  const rx=radius;
- const earth=pc?Math.min(540,rx*1.20):Math.max(24,Math.min(rx*2-d-30,landscape?240:540));
+ const earth=pc?Math.min(640,rx*1.42):Math.max(24,Math.min(rx*2-d-30,landscape?240:540));
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',rx*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  new ResizeObserver(fit).observe(scene);fit();sync();
