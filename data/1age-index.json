@@ -1,0 +1,167 @@
+[
+  {
+    "id": "1age",
+    "name": "1AGE",
+    "type": "platform",
+    "category": "1AGE ecosystem",
+    "description": "Solana discovery and search platform.",
+    "tags": [
+      "1age",
+      "platform",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.com/"
+    }
+  },
+  {
+    "id": "1age-page",
+    "name": "1AGE Page",
+    "type": "identity",
+    "category": "1AGE ecosystem",
+    "description": "Profiles, identity and community discovery.",
+    "tags": [
+      "1age",
+      "identity",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.page/"
+    }
+  },
+  {
+    "id": "1age-world",
+    "name": "1AGE World",
+    "type": "world",
+    "category": "1AGE ecosystem",
+    "description": "Explore the 1AGE virtual world.",
+    "tags": [
+      "1age",
+      "world",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.world/"
+    }
+  },
+  {
+    "id": "1age-space",
+    "name": "1AGE Space",
+    "type": "space",
+    "category": "1AGE ecosystem",
+    "description": "Discover and manage virtual destinations.",
+    "tags": [
+      "1age",
+      "space",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.space/"
+    }
+  },
+  {
+    "id": "1age-games",
+    "name": "1AGE Games",
+    "type": "games",
+    "category": "1AGE ecosystem",
+    "description": "Play games and explore competitive experiences.",
+    "tags": [
+      "1age",
+      "games",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.games/"
+    }
+  },
+  {
+    "id": "1age-exchange",
+    "name": "1AGE Exchange",
+    "type": "exchange",
+    "category": "1AGE ecosystem",
+    "description": "Explore the Solana-based 1AGE economy.",
+    "tags": [
+      "1age",
+      "exchange",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.exchange/"
+    }
+  },
+  {
+    "id": "1age-quest",
+    "name": "1AGE Quest",
+    "type": "quest",
+    "category": "1AGE ecosystem",
+    "description": "Discover missions, challenges and activities.",
+    "tags": [
+      "1age",
+      "quest",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.quest/"
+    }
+  },
+  {
+    "id": "1age-cash",
+    "name": "1AGE Cash",
+    "type": "cash",
+    "category": "1AGE ecosystem",
+    "description": "Off-chain credits for supported 1AGE experiences.",
+    "tags": [
+      "1age",
+      "cash",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.cash/"
+    }
+  },
+  {
+    "id": "1age-design",
+    "name": "1AGE Design",
+    "type": "design",
+    "category": "1AGE ecosystem",
+    "description": "Create and customize digital experiences.",
+    "tags": [
+      "1age",
+      "design",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.design/"
+    }
+  },
+  {
+    "id": "1age-plus",
+    "name": "1AGE Plus",
+    "type": "membership",
+    "category": "1AGE ecosystem",
+    "description": "Explore the system-wide 1AGE membership.",
+    "tags": [
+      "1age",
+      "membership",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.plus/"
+    }
+  },
+  {
+    "id": "1age-shop",
+    "name": "1AGE Shop",
+    "type": "shop",
+    "category": "1AGE ecosystem",
+    "description": "Explore products and experiences.",
+    "tags": [
+      "1age",
+      "shop",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.shop/"
+    }
+  }
+]

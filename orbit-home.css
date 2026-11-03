@@ -99,3 +99,462 @@
 
 .pop-circle svg{width:62%;height:62%;fill:none;stroke:currentColor}
 @media(max-height:600px) and (orientation:landscape){.project-planet[data-concealed="true"]{visibility:hidden;pointer-events:none}.home-screen .header-wings{background:#000e;min-height:85px}}
+
+
+
+/* 1AGE Search Build 001.2 — Mode selection */
+
+.search-expander {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.search-expander .search-form[hidden] {
+  display: none !important;
+}
+
+.search-modes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.search-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  border: 0;
+  background: transparent;
+  color: #E2FFDC;
+  cursor: pointer;
+  font: inherit;
+}
+
+.mode-circle {
+  display: block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.55;
+}
+
+.mode-1age .mode-circle {
+  color: #1BFD9C;
+}
+
+.mode-solana .mode-circle {
+  color: #C7A4FF;
+}
+
+.search-mode[aria-pressed="true"] .mode-circle {
+  background: currentColor;
+  opacity: 1;
+  box-shadow: 0 0 14px currentColor;
+}
+
+.search-mode[aria-pressed="true"] .mode-label {
+  color: #1BFD9C;
+}
+
+.mode-solana[aria-pressed="true"] .mode-label {
+  color: #C7A4FF;
+}
+
+.search-mode:focus-visible {
+  outline: 2px solid #1BFD9C;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+
+
+/* 1AGE Homepage Build 001.3 */
+
+/*
+ * Responsive homepage layout.
+ * Keep the existing globe, orbit and input controllers intact.
+ */
+
+/* Stationary, centered brand */
+.home-screen .site-header,
+.home-screen .site-header:has(.brand[aria-expanded="true"]) {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 100%;
+  min-height: 0;
+  padding: 8px 12px 0;
+  background: transparent;
+  z-index: 24;
+}
+
+.home-screen .header-hub {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-screen .brand {
+  position: relative;
+  z-index: 3;
+  flex: none;
+}
+
+/* Menu icons appear around the stationary logo */
+.home-screen .header-wings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-screen .header-wings[hidden] {
+  display: none !important;
+}
+
+.home-screen .header-planet {
+  pointer-events: auto;
+}
+
+/* Search sits directly below the logo */
+.home-screen .search-home,
+.home-screen.search-open .search-home {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 100%;
+  padding: 8px 12px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 16;
+}
+
+.home-screen .search-expander {
+  position: relative;
+  width: min(100%, 760px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Collapsed: only the original Search circle */
+.home-screen .search-expander > .search-modes {
+  display: none;
+}
+
+/* Expanded: one horizontal Search component */
+.home-screen.search-open .search-expander {
+  justify-content: center;
+}
+
+.home-screen.search-open .search-expander > .search-modes {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  order: 1;
+}
+
+.home-screen.search-open .search-expander > .search-circle {
+  order: 0;
+  flex: none;
+}
+
+.home-screen.search-open .search-expander > .search-form {
+  order: 2;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+/* Compact Search mode buttons */
+.home-screen .search-mode {
+  width: 34px;
+  min-width: 34px;
+  height: 44px;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-screen .search-mode .mode-circle {
+  width: 13px;
+  height: 13px;
+  flex: none;
+}
+
+.home-screen .search-mode .mode-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hide homepage-only orbit buttons and instructions */
+.home-screen .world-controls {
+  display: none !important;
+}
+
+/* Keep the globe beneath the header and Search */
+.home-screen #main {
+  padding-top: 0;
+}
+
+.home-screen .universe {
+  padding-top: 8px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .home-screen .search-expander {
+    width: min(100%, 650px);
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 700px) {
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    padding-top: max(8px, env(safe-area-inset-top));
+  }
+
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    padding: 8px 10px 4px;
+  }
+
+  .home-screen .search-expander {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .home-screen .search-mode {
+    width: 28px;
+    min-width: 28px;
+    height: 44px;
+  }
+
+  .home-screen .search-form {
+    min-width: 0;
+  }
+
+  .home-screen .universe {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .home-screen .header-planet {
+    transform: translateX(
+      calc(-50% + var(--slot) * (var(--ui-planet-size) + 8px))
+    );
+  }
+}
+
+/* Short screens and mobile landscape */
+@media (max-height: 600px) and (orientation: landscape) {
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding: 4px 8px 0;
+  }
+
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    padding: 4px 8px;
+  }
+
+  .home-screen .search-expander {
+    width: min(100%, 650px);
+  }
+
+  .home-screen .universe {
+    padding: 0;
+  }
+}
+
+
+
+/* 1AGE Homepage Build 001.4 */
+
+/* The globe remains the central attraction. */
+.home-screen .project-peek,
+.home-screen .preview-expand {
+  display: none !important;
+}
+
+/* Planet selection no longer changes the globe artwork. */
+.home-screen .showing-peek .world-letter {
+  display: block;
+}
+
+/*
+ * Dimensional World lettering.
+ * Preserve the existing individual-letter rotation animation.
+ */
+.home-screen .world-letter {
+  font-family: system-ui, sans-serif;
+  font-size: clamp(17px, 2.6vw, 30px);
+  font-weight: 950;
+  letter-spacing: 0.025em;
+  color: #e2ffdc;
+  text-shadow:
+    0 1px 0 #a7e4bc,
+    0 2px 0 #70b98e,
+    0 3px 0 #347755,
+    0 4px 0 #16452f,
+    0 6px 5px #000,
+    0 0 13px #1bfd9c80;
+}
+
+.home-screen .world-letter b {
+  font: inherit;
+  text-shadow: inherit;
+  backface-visibility: hidden;
+}
+
+/* Keep the dimensional lettering readable on small screens. */
+@media (max-width: 700px) {
+  .home-screen .world-letter {
+    font-size: clamp(14px, 4vw, 21px);
+    letter-spacing: 0;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .home-screen .world-letter {
+    font-size: clamp(13px, 2.8vw, 20px);
+  }
+}
+
+
+/* 1AGE HOMEPAGE BUILD 002 — CANONICAL LAYOUT */
+
+/* Preserve one circular orbit on all screen sizes. */
+.home-screen .project-orbit {
+    width: var(--orbit-diameter, 320px);
+    height: var(--orbit-diameter, 320px);
+    aspect-ratio: 1 / 1;
+}
+
+/* Search icon and expanded field occupy the same line. */
+.home-screen .search-expander {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: min(100%, 760px);
+    min-width: 0;
+    margin-inline: auto;
+}
+
+.home-screen .search-expander > .search-circle {
+    flex: 0 0 44px;
+    order: 0;
+}
+
+.home-screen.search-open .search-expander > .search-form {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    order: 1;
+    align-items: center;
+}
+
+.home-screen .search-expander .search-form[hidden] {
+    display: none !important;
+}
+
+.home-screen .search-expander .search-form input {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.home-screen.search-open .search-expander > .search-modes {
+    display: flex;
+    flex: 0 0 auto;
+    order: 2;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    .home-screen .search-expander {
+        width: calc(100% - 16px);
+        gap: 5px;
+    }
+
+    .home-screen.search-open .search-expander > .search-form {
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .home-screen.search-open .search-expander .search-form button {
+        padding-inline: 7px;
+    }
+}
+
+/* Review correction: retain the original controls and explicit press previews. */
+.home-screen .world-controls { display:flex !important; }
+.home-screen .project-peek:not([hidden]),
+.home-screen .preview-expand:not([hidden]) { display:block !important; }
+.home-screen .showing-peek .world-letter { display:none; }
+.home-screen .world-letter { font-size:clamp(15px,2vw,24px);font-weight:700;letter-spacing:normal;text-shadow:0 2px 5px #000; }
+@media(max-height:600px) and (orientation:landscape) {
+ .home-screen .site-header {position:absolute;top:8px;left:10px;width:58px;padding:0;}
+ .home-screen .site-header:has(.brand[aria-expanded="true"]) {position:absolute;left:0;width:100%;background:#000e;}
+ .home-screen .search-home {position:absolute;top:10px;left:calc(50% - 22px);width:auto;padding:0;}
+ .home-screen.search-open .search-home {left:80px;right:80px;width:auto;}
+ .home-screen #main {padding-top:66px;}
+ .home-screen .universe {padding:0 80px;}
+}
+
+/* Homepage correction: hide edge menu buttons; retain orbit and input handlers. */
+.home-screen .world-controls > button[data-rotate] { display:none !important; }
+
+/* PC composition: corner controls free the full central stage. */
+@media(min-width:1000px) and (min-height:601px) {
+ .home-screen .site-header,
+ .home-screen .site-header:has(.brand[aria-expanded="true"]) {position:absolute;top:20px;left:24px;right:auto;width:96px;padding:0;}
+ .home-screen .header-hub {justify-content:flex-start;}
+ .home-screen .brand-circle {width:88px;height:88px;}
+ .home-screen .brand-name {font-size:18px;}
+ .home-screen .header-planet {left:44px;transform:translateX(calc(-50% + (var(--slot) + 2) * 102px));}
+ .home-screen .search-home,
+ .home-screen.search-open .search-home {position:absolute;top:24px;right:24px;left:auto;width:auto;padding:0;}
+ .home-screen .search-expander {width:auto;justify-content:flex-end;}
+ .home-screen .search-expander > .search-circle {width:72px;height:72px;flex-basis:72px;font-size:42px;}
+ .home-screen.search-open .search-expander {width:min(640px,calc(100vw - 300px));}
+ .home-screen.search-open .search-expander > .search-circle {order:3;}
+ .home-screen #main {padding-top:0;}
+ .home-screen .universe {width:100%;padding:16px 140px 0;}
+}
