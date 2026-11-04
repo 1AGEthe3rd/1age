@@ -1,4 +1,5 @@
 .living-ticker {
+  --ticker-strip-height: 64px;
   position: relative;
   width: min(42rem, calc(100% - 2rem));
   margin: .5rem auto;
@@ -12,7 +13,7 @@
   display: flex;
   align-items: center;
   gap: .5rem;
-  min-height: 44px;
+  min-height: var(--ticker-strip-height);
   padding: .5rem .75rem;
   cursor: pointer;
   list-style: none;
@@ -35,7 +36,7 @@
 .living-ticker .ticker-pause {
   position: absolute;
   z-index: 1;
-  inset: 0 .25rem auto auto;
+  inset: calc((var(--ticker-strip-height) - 44px) / 2) .25rem auto auto;
   min-width: 4.5rem;
   min-height: 44px;
   padding: .25rem;

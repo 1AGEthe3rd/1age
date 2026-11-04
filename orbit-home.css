@@ -522,7 +522,7 @@
 }
 
 /* Review correction: retain the original controls and explicit press previews. */
-.home-screen .world-controls { display:flex !important; }
+.home-screen .world-controls { display:flex !important; min-height:0; padding:0; }
 .home-screen .project-peek:not([hidden]),
 .home-screen .preview-expand:not([hidden]) { display:block !important; }
 .home-screen .showing-peek .world-letter { display:none; }
