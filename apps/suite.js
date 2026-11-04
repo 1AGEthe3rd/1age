@@ -16,6 +16,6 @@ $('#list').innerHTML=cards(filtered.map(entity=>{
   const description=entity.description||entity.category||'';
   return [entity.name,description+' · '+status,escape(index.validLink(entity)?.href)];
 }));msg(`${filtered.length} matching results shown`)}catch(e){msg('Could not load index: '+e.message)}};bind('#go',run);$('#query').onkeydown=e=>{if(e.key==='Enter')run()};run()}
-else if(app==='world'){set(`<div class="center"><h2>1AGE World</h2><p>Enter the existing World web experience. The canonical Godot Room 001 remains a separate project until a browser export is integrated.</p><a class="button" href="/world/">Open existing World</a></div>`)}
+else if(app==='world'){set(`<div class="center"><h2>1AGE World</h2><p>Explore 1AGE World and find the desktop launch options. The playable browser version is in development.</p><a class="button" href="/world/">Open existing World</a></div>`)}
 else if(app==='app'){const links=[['Search','/apps/search/'],['Page','/apps/page/'],['Space','/apps/space/'],['Design','/apps/design/'],['World','/apps/world/'],['Games','/apps/games/'],['Quest','/apps/quest/'],['Cash','/apps/cash/'],['Exchange','/apps/exchange/'],['Plus','/apps/plus/'],['Store','/apps/store/'],['Shop','/apps/shop/']];set(cards(links.map(([n,u])=>[n,'Open '+n+' workspace',u])))}
 })();
