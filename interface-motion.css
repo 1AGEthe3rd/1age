@@ -1,18 +1,29 @@
+:root {
+  --age-button-hover-scale: 1.08;
+  --age-button-press-scale: .96;
+  --age-button-transition: 180ms;
+  --age-button-easing: cubic-bezier(.2,.8,.2,1);
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  :where(button:not(:disabled, .brand), .button, .project-planet, .world-entry, .ticker-summary) {
+  :is(button:not(:disabled, .brand, .world-globe), .button, .project-planet, .world-entry, .brand-circle, .header-planet-circle, .pop-circle, .ticker-summary) {
     transition-property: scale;
-    transition-duration: 150ms;
-    transition-timing-function: ease-out;
+    transition-duration: var(--age-button-transition);
+    transition-timing-function: var(--age-button-easing);
   }
 
   @media (hover: hover) and (pointer: fine) {
-    :where(button:not(:disabled, .brand), .button, .project-planet, .world-entry, .ticker-summary):hover {
-      scale: 1.05;
+    :is(button:not(:disabled, .brand, .world-globe), .button, .project-planet, .world-entry, .brand-circle, .header-planet-circle, .pop-circle, .ticker-summary):hover,
+    .brand:hover .brand-circle, .header-planet:hover .header-planet-circle, .pop-planet:hover .pop-circle {
+      scale: var(--age-button-hover-scale);
     }
   }
 
-  :where(button:not(:disabled, .brand), .button, .project-planet, .world-entry, .ticker-summary):active {
-    scale: 1.08;
+  :is(button:not(:disabled, .brand, .world-globe), .button, .project-planet, .world-entry, .brand-circle, .header-planet-circle, .pop-circle, .ticker-summary):is(:active, .is-pressing),
+  .brand:is(:active, .is-pressing) .brand-circle,
+  .header-planet:is(:active, .is-pressing) .header-planet-circle,
+  .pop-planet:is(:active, .is-pressing) .pop-circle {
+    scale: var(--age-button-press-scale);
   }
 
 }
