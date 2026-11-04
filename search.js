@@ -40,55 +40,8 @@ function element(tag, className, text) {
   return node;
 }
 
-function normalize(value) {
-  return String(value ?? '').toLowerCase().trim();
-}
-
-function scoreEntity(entity, query) {
-  const terms = normalize(query).split(/\s+/).filter(Boolean);
-  const name = normalize(entity.name);
-  const type = normalize(entity.type);
-  const category = normalize(entity.category);
-  const description = normalize(entity.description);
-  const tags = (entity.tags || []).map(normalize);
-
-  let score = 0;
-  for (const term of terms) {
-    if (name === term) score += 20;
-    else if (name.includes(term)) score += 12;
-
-    if (type.includes(term)) score += 8;
-    if (category.includes(term)) score += 8;
-
-    if (tags.some(tag => tag === term)) score += 10;
-    else if (tags.some(tag => tag.includes(term))) score += 6;
-
-    if (description.includes(term)) score += 3;
-  }
-  return score;
-}
-
 function searchEntities(query) {
-  const records = indexes[mode] || [];
-  return records
-    .map(entity => ({...entity, score: scoreEntity(entity, query)}))
-    .filter(entity => entity.score > 0)
-    .sort((a, b) => b.score - a.score);
-}
-
-function validLink(entity) {
-  const raw = entity.official_links?.website;
-  if (typeof raw !== 'string') return null;
-
-  try {
-    const url = new URL(raw, window.location.origin);
-    if (!['https:', 'http:'].includes(url.protocol)) return null;
-    if (url.origin !== window.location.origin &&
-        url.protocol !== 'https:') return null;
-    return url;
-  } catch (_) {
-    return null;
-  }
+  return window.ageIndex.search(indexes[mode], query, document.body.dataset.searchScope);
 }
 
 function render(items, query) {
@@ -120,10 +73,16 @@ function render(items, query) {
         'p', 'result-status',
         mode === '1age'
           ? '1AGE · Public information page'
-          : 'Solana · Third-party directory listing · Not independently verified'
+          : 'Solana · Third-party directory listing'
       ),
       element('p', 'result-description', entity.description)
     );
+
+    const authenticity = window.ageIndex.authenticity(entity);
+    card.append(element('p', 'result-status', authenticity.label));
+    if (authenticity.reviewedOn) {
+      card.append(element('p', 'result-status', 'Evidence reviewed ' + authenticity.reviewedOn));
+    }
 
     const tags = element('div', 'result-tags');
     for (const tag of entity.tags || []) {
@@ -131,7 +90,7 @@ function render(items, query) {
     }
     card.append(tags);
 
-    const url = validLink(entity);
+    const url = window.ageIndex.validLink(entity);
     if (url) {
       const link = element(
         'a', 'result-link',
@@ -275,24 +234,10 @@ if (initialQuery) {
 
 (async () => {
   try {
-    const [ageResponse, solanaResponse] = await Promise.all([
-      fetch('/data/1age-index.json'),
-      fetch('/data/entities.json')
-    ]);
-
-    if (!ageResponse.ok || !solanaResponse.ok) {
-      throw new Error('Search index request failed');
-    }
-
     const [ageData, solanaData] = await Promise.all([
-      ageResponse.json(),
-      solanaResponse.json()
+      window.ageIndex.load('1age'),
+      window.ageIndex.load('solana')
     ]);
-
-    if (!Array.isArray(ageData) || !Array.isArray(solanaData)) {
-      throw new Error('Invalid search index format');
-    }
-
     indexes['1age'] = ageData;
     indexes.solana = solanaData;
 
