@@ -23,9 +23,9 @@
 .ticker-summary:focus-visible { outline-offset: -4px; }
 .ticker-summary::after { content: '+'; color: #1bfd9c; }
 .living-ticker details[open] .ticker-summary::after { content: '−'; }
-.ticker-label { color: #1bfd9c; font-size: .75rem; font-weight: 700; }
+.ticker-label { color: #1bfd9c; font-size: .875rem; font-weight: 700; }
 .ticker-window { flex: 1; min-width: 0; overflow: hidden; }
-.ticker-headline { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ticker-headline { display: block; font-size: clamp(1.125rem, 2.8vw, 1.375rem); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ticker-headline.ticker-moving { width: max-content; }
 .ticker-details { margin: 0; padding: .5rem 1.75rem 1rem; overflow-wrap: anywhere; }
 .ticker-details li + li { margin-top: .65rem; }
