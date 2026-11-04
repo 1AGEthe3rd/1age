@@ -1,0 +1,18 @@
+@media (prefers-reduced-motion: no-preference) {
+  :where(button:not(:disabled, .brand), .button, .project-planet, .world-entry, .ticker-summary) {
+    transition-property: scale;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where(button:not(:disabled, .brand), .button, .project-planet, .world-entry, .ticker-summary):hover {
+      scale: 1.05;
+    }
+  }
+
+  :where(button:not(:disabled, .brand), .button, .project-planet, .world-entry, .ticker-summary):active {
+    scale: 1.08;
+  }
+
+}
