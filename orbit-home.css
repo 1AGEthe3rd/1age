@@ -67,8 +67,6 @@
 .header-planet-circle{border-color:#fff;color:#fff}
 .header-planet.is-pressing,.pop-planet.is-pressing{color:var(--green)}
 .header-planet.is-pressing .header-planet-circle,.pop-planet.is-pressing .pop-circle{background:var(--green);color:#000;border-color:var(--green)}
-.brand-circle,.header-planet-circle,.pop-circle,.project-planet,.search-circle{transition:scale .14s,background .14s,box-shadow .14s}
-.is-pressing .brand-circle,.is-pressing .header-planet-circle,.is-pressing .pop-circle,.project-planet.is-pressing,.search-circle.is-pressing{scale:1.10}
 .project-planet.is-pressing{background:var(--accent)!important;color:#000!important;box-shadow:0 0 20px var(--accent)!important}
 .project-planet.is-pressing>span{color:var(--green)}
 .home-screen .project-orbit{height:var(--orbit-height,var(--orbit-diameter,320px))}
@@ -524,7 +522,7 @@
 }
 
 /* Review correction: retain the original controls and explicit press previews. */
-.home-screen .world-controls { display:flex !important; }
+.home-screen .world-controls { display:flex !important; min-height:0; padding:0; }
 .home-screen .project-peek:not([hidden]),
 .home-screen .preview-expand:not([hidden]) { display:block !important; }
 .home-screen .showing-peek .world-letter { display:none; }
@@ -571,4 +569,21 @@
  .home-screen .header-planet {left:24px;transform:translateX(calc(-50% - (var(--slot) + 2) * 60px));}
  .home-screen .search-expander > .search-circle {width:48px;height:48px;flex-basis:48px;font-size:30px;}
  .home-screen #main {padding-top:72px;}
+}
+
+/* Let unusually short homepages scroll before the orbit controls overlap. */
+.home-screen .world-scene { min-height: 260px; }
+.app-home-return {
+ position: absolute;
+ z-index: 17;
+ top: max(.5rem, env(safe-area-inset-top));
+ left: .5rem;
+ display: inline-flex;
+ align-items: center;
+ min-height: 44px;
+ padding-inline: .5rem;
+ font-size: .75rem;
+}
+@media (max-width:699px) and (max-height:500px) {
+ .app-home-return { position: static; align-self: center; }
 }

@@ -1,0 +1,47 @@
+.living-ticker {
+  --ticker-strip-height: 64px;
+  position: relative;
+  width: min(42rem, calc(100% - 2rem));
+  margin: .5rem auto;
+  border: 1px solid #1b352b;
+  border-radius: 1rem;
+  background: #000;
+  color: #e2ffdc;
+}
+
+.ticker-summary {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: var(--ticker-strip-height);
+  padding: .5rem .75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ticker-summary::-webkit-details-marker { display: none; }
+.ticker-summary:focus-visible { outline-offset: -4px; }
+.ticker-summary::after { content: '+'; color: #1bfd9c; }
+.living-ticker details[open] .ticker-summary::after { content: '−'; }
+.ticker-label { color: #1bfd9c; font-size: .875rem; font-weight: 700; }
+.ticker-window { flex: 1; min-width: 0; overflow: hidden; }
+.ticker-headline { display: block; font-size: clamp(1.125rem, 2.8vw, 1.375rem); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ticker-headline.ticker-moving { width: max-content; }
+.ticker-details { margin: 0; padding: .5rem 1.75rem 1rem; overflow-wrap: anywhere; }
+.ticker-details li + li { margin-top: .65rem; }
+.ticker-details p { margin: .25rem 0; }
+.ticker-details a { display: block; }
+
+.living-ticker:has(.ticker-pause:not([hidden])) .ticker-summary { padding-right: 5.25rem; }
+.living-ticker .ticker-pause {
+  position: absolute;
+  z-index: 1;
+  inset: calc((var(--ticker-strip-height) - 44px) / 2) .25rem auto auto;
+  min-width: 4.5rem;
+  min-height: 44px;
+  padding: .25rem;
+  font-size: .8rem;
+}
+
+.living-ticker { flex: none; }
+.ticker-details { max-height: min(30dvh, 14rem); overflow-y: auto; }

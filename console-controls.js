@@ -12,7 +12,6 @@
   if(!side)return;for(const [label,href,symbol] of menuItems[side]){const a=document.createElement('a');a.className='pop-planet';a.href=href;a.innerHTML=`<span class="pop-circle" aria-hidden="true">${symbol}</span><span>${label}</span>`;const original=[...document.querySelectorAll('.project-planet')].find(n=>n.getAttribute('href')===href);if(original?.querySelector('svg'))a.querySelector('.pop-circle').replaceChildren(original.querySelector('svg').cloneNode(true));menu.appendChild(a);}}
  document.querySelectorAll('[data-rotate]').forEach(button=>{const side=Number(button.dataset.rotate)<0?'L':'R';button.textContent=side;button.setAttribute('aria-label',side+' ecosystem menu');button.setAttribute('aria-expanded','false');button.addEventListener('click',()=>setMenu(open===side?null:side));});
  window.addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(null);reset();}});
- const search=$('.search-circle'),form=$('#search-form');search?.addEventListener('click',()=>{const expanded=search.getAttribute('aria-expanded')!=='true';search.setAttribute('aria-expanded',String(expanded));form.hidden=!expanded;document.body.classList.toggle('search-open',expanded);if(expanded)$('#search-input').focus();});
  form?.addEventListener('keydown',e=>{if(e.key==='Escape'){form.hidden=true;search.setAttribute('aria-expanded','false');document.body.classList.remove('search-open');search.focus();}});
  // A press previews. A short release opens the destination. Holding offers choices.
  let press=null,timer=0;
