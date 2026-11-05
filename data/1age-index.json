@@ -26,7 +26,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.page/"
+      "website": "https://1age.com/home/page/"
     }
   },
   {
@@ -41,7 +41,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.world/"
+      "website": "https://1age.com/home/world/"
     }
   },
   {
@@ -56,7 +56,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.space/"
+      "website": "https://1age.com/home/space/"
     }
   },
   {
@@ -71,7 +71,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.games/"
+      "website": "https://1age.com/home/games/"
     }
   },
   {
@@ -86,7 +86,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.exchange/"
+      "website": "https://1age.com/home/exchange/"
     }
   },
   {
@@ -101,7 +101,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.quest/"
+      "website": "https://1age.com/home/quest/"
     }
   },
   {
@@ -116,7 +116,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.cash/"
+      "website": "https://1age.com/home/cash/"
     }
   },
   {
@@ -131,7 +131,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.design/"
+      "website": "https://1age.com/home/design/"
     }
   },
   {
@@ -146,7 +146,7 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.plus/"
+      "website": "https://1age.com/home/plus/"
     }
   },
   {
@@ -161,7 +161,37 @@
       "ecosystem"
     ],
     "official_links": {
-      "website": "https://1age.shop/"
+      "website": "https://1age.com/home/shop/"
+    }
+  },
+  {
+    "id": "1age-app",
+    "name": "1AGE App",
+    "type": "platform",
+    "category": "1AGE ecosystem",
+    "description": "Browse the directory of 1AGE application workspaces.",
+    "tags": [
+      "1age",
+      "app",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.com/home/app/"
+    }
+  },
+  {
+    "id": "1age-store",
+    "name": "1AGE Store",
+    "type": "store",
+    "category": "1AGE ecosystem",
+    "description": "Manage a local storefront catalog in the existing 1AGE workspace.",
+    "tags": [
+      "1age",
+      "store",
+      "ecosystem"
+    ],
+    "official_links": {
+      "website": "https://1age.com/home/store/"
     }
   }
 ]

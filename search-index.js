@@ -10,6 +10,11 @@ const scopes = {
   quest: ['quest', 'mission', 'opportunity'],
   cash: ['cash'],
   work: ['job', 'bounty', 'opportunity'],
+  plus: ['membership'],
+  app: ['platform'],
+  store: ['store', 'shop', 'marketplace'],
+  shop: ['shop', 'store', 'marketplace'],
+  world: ['world', 'space', 'virtual destination'],
 };
 let manifestRequest;
 let routingEngine;
