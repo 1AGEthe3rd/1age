@@ -1,28 +1,13 @@
 (() => {
 'use strict';
 
-const scopes = {
-  games: ['games', 'game', 'game developer', 'gaming studio', 'sports', 'competition', 'tournament'],
-  page: ['identity', 'profile', 'creator', 'community'],
-  exchange: ['exchange', 'token', 'market', 'defi'],
-  space: ['space', 'virtual destination', 'business'],
-  design: ['design', 'creator tool'],
-  quest: ['quest', 'mission', 'opportunity'],
-  cash: ['cash'],
-  work: ['job', 'bounty', 'opportunity'],
-  plus: ['membership'],
-  app: ['platform'],
-  store: ['store', 'shop', 'marketplace'],
-  shop: ['shop', 'store', 'marketplace'],
-  world: ['world', 'space', 'virtual destination'],
-};
 let manifestRequest;
 let routingEngine;
 let currentInfo = null;
 const shardRequests = new Map();
 const catalogCache = new Map();
 let libraryRequest;
-const engines = new WeakMap();
+
 const modes = new Set(['all', '1age', 'solana']);
 
 function loadLibrary() {
@@ -70,7 +55,8 @@ async function load(mode = 'all', query) {
       routingEngine = new window.MiniSearch({ fields: ['routing_text'], searchOptions: { prefix: true, combineWith: 'AND', fuzzy: term => term.length >= 4 ? 0.2 : false } });
       routingEngine.addAll(index.shards);
     }
-    const q = normalize(query).slice(0, 200);
+    const q = window.ageSearchCore.plan(query).query;
+    if (query && !q && !window.ageSearchCore.plan(query).browse) { currentInfo={records:index.records,networks:Object.keys(index.networks).length,fallback:false}; return []; }
     const ids = q ? new Set(routingEngine.search(q).map(hit => hit.id)) : null;
     const selected = index.shards.filter(shard => !ids || ids.has(shard.id));
     const cacheKey = mode + ':' + selected.map(shard => shard.url).join('|');
@@ -92,46 +78,10 @@ async function load(mode = 'all', query) {
   }
 }
 
-function normalize(value) { return String(value ?? '').toLowerCase().trim(); }
-function joined(value) { return Array.isArray(value) ? value.join(' ') : String(value || ''); }
-function getEngine(records) {
-  if (engines.has(records)) return engines.get(records);
-  const engine = new window.MiniSearch({
-    fields: ['name', 'id', 'domain', 'aliases', 'identifiers', 'networks', 'type', 'category', 'tags', 'description'],
-    searchOptions: {
-      boost: { name: 8, id: 8, domain: 6, aliases: 5, identifiers: 8, networks: 3, tags: 2, category: 2 },
-      combineWith: 'AND',
-      prefix: true,
-      fuzzy: term => term.length >= 4 ? 0.2 : false,
-    },
-  });
-  engine.addAll(records.map(item => ({ ...item,
-    aliases: joined(item.aliases), identifiers: joined(item.identifiers),
-    networks: joined(item.networks), tags: joined(item.tags),
-  })));
-  const cached = { engine, byId: new Map(records.map(item => [item.id, item])) };
-  engines.set(records, cached);
-  return cached;
-}
-
-function search(records, query, scope) {
-  const term = normalize(query).slice(0, 200);
-  if (!records?.length || !term) return [];
-  const types = Object.hasOwn(scopes, scope) ? scopes[scope] : null;
-  const allowed = item => !types || [item.type, item.category].some(value => types.includes(normalize(value)));
-  const { engine, byId } = getEngine(records);
-  const scored = new Map(engine.search(term).map(hit => [hit.id, hit.score]));
-  // Exact whole identifiers, domains, aliases and names always lead. No brand preference.
-  for (const item of records) {
-    const identifiers = [item.name, item.id, item.domain, ...(item.aliases || []), ...(item.identifiers || [])];
-    if (identifiers.some(value => normalize(value) === term)) scored.set(item.id, 1000000 + (scored.get(item.id) || 0));
-  }
-  const completeness = item => ['description', 'category', 'networks', 'official_links'].filter(key => item[key]?.length || key === 'official_links' && item[key]?.website).length;
-  return [...scored].map(([id, score]) => ({ ...byId.get(id), score }))
-    .filter(allowed)
-    .sort((a, b) => b.score - a.score ||
-      String(b.source_review?.checked_on || '').localeCompare(a.source_review?.checked_on || '') ||
-      completeness(b) - completeness(a) || a.name.localeCompare(b.name));
+let coreEngine;
+function search(records,query,scope){
+ if(!coreEngine)coreEngine=window.ageSearchCore.createEngine(window.MiniSearch);
+ return coreEngine.search(records,query,scope);
 }
 
 function validLink(entity) {

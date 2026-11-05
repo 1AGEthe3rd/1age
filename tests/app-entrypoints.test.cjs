@@ -25,7 +25,7 @@ try {
     assert(home.includes(native?'>Enter</a>':'>Open app</a>'));
     assert(home.includes('/world.js?v=home-refinement-001'));
     assert(home.includes('/living-ticker.js?v=home-refinement-001'));
-    assert(home.includes('/search-index.js?v=daily-index-001'));
+    assert(home.includes('/search-index.js?v=enterprise-001'));
     const workspace=fs.readFileSync(path.join(root,'apps',app.slug,'index.html'),'utf8');
     assert(workspace.includes('<title>'+app.name+'</title>'));
     assert(workspace.includes('/assets/app-icons/'+app.slug+'.svg'));

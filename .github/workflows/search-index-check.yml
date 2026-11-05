@@ -1,7 +1,7 @@
 name: Check independent search index
 on:
   pull_request:
-    paths: ['data/**', 'scripts/**', 'search-index.js', 'search.js', 'tests/**', 'assets/vendor/**', '.github/workflows/**']
+    paths: ['data/**', 'scripts/**', 'search-core.js', 'search-index.js', 'search.js', 'tests/**', 'assets/vendor/**', '.github/workflows/**']
   workflow_dispatch:
 permissions:
   contents: read
@@ -14,4 +14,5 @@ jobs:
       - run: python3 scripts/build-search-index.py --check
       - run: node --check search.js && node --check search-index.js
       - run: node tests/search.test.cjs
+      - run: node tests/search-quality.test.cjs
       - run: python3 -m unittest discover -s tests -p 'test_*.py' -v

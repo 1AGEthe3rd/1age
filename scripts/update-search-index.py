@@ -40,7 +40,7 @@ def run(root=ROOT,http=None,now=None,bootstrap=False,check_links=True):
         auto={x['id']:copy.deepcopy(x) for x in previous_auto}
         for source in config['sources']:
             try:
-                payload,cached=http.json(source_url(source))
+                payload,cached=(http.text(source_url(source)) if source['adapter']=='resource_hub' else http.json(source_url(source)))
                 admitted,reviews=parse_source(source,payload)
                 report['records_requiring_review'].extend(reviews)
                 if not admitted: raise ValueError('No eligible records; retaining prior source records')

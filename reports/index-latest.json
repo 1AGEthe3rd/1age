@@ -1,33 +1,5859 @@
 {
   "schema_version": 1,
-  "started_at": "2026-11-05T15:23:34Z",
-  "status": "success",
-  "total_indexed_records": 94,
-  "new_records_discovered": 9,
-  "existing_records_updated": 13,
-  "duplicate_records_detected": 5,
+  "started_at": "2026-11-05T16:55:04Z",
+  "status": "partial",
+  "total_indexed_records": 308,
+  "new_records_discovered": 210,
+  "existing_records_updated": 3,
+  "duplicate_records_detected": 25,
   "broken_links_detected": 0,
-  "records_requiring_review": [],
+  "records_requiring_review": [
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Invalid protocol identity",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    },
+    {
+      "source_id": "defillama-protocols",
+      "reason": "Expected a credential-free HTTPS URL",
+      "record_reference": "unknown"
+    }
+  ],
   "data_sources_successfully_checked": [
     {
       "id": "evm-chains",
       "eligible_records": 14,
-      "not_modified": false
+      "not_modified": true
     },
     {
       "id": "github-solana",
       "eligible_records": 8,
-      "not_modified": false
+      "not_modified": true
     },
     {
       "id": "github-ethereum",
       "eligible_records": 8,
-      "not_modified": false
+      "not_modified": true
     },
     {
       "id": "github-bitcoin",
       "eligible_records": 2,
-      "not_modified": false
+      "not_modified": true
     },
     {
       "id": "github-base",
@@ -37,11 +5863,32 @@
     {
       "id": "github-polygon",
       "eligible_records": 8,
+      "not_modified": true
+    },
+    {
+      "id": "defillama-protocols",
+      "eligible_records": 200,
+      "not_modified": false
+    },
+    {
+      "id": "ethereum-docs",
+      "eligible_records": 30,
       "not_modified": false
     }
   ],
-  "failed_data_sources": [],
-  "last_successful_indexing_time": "2026-11-05T15:23:34Z",
+  "failed_data_sources": [
+    {
+      "id": "solana-resources",
+      "error": "ValueError: Public hub retrieval not permitted by available robots policy",
+      "previous_records_preserved": true
+    },
+    {
+      "id": "ethereum-resources",
+      "error": "ValueError: Public hub retrieval not permitted by available robots policy",
+      "previous_records_preserved": true
+    }
+  ],
+  "last_successful_indexing_time": "2026-11-05T16:55:04Z",
   "unsupported_sources": [
     {
       "id": "1age-page-public",
@@ -86,29 +5933,328 @@
       "id": "chain:eip155:8453",
       "merged_into": "base",
       "url": "https://base.org"
+    },
+    {
+      "id": "protocol:aave-v3",
+      "merged_into": "protocol:aave-v2",
+      "url": "https://aave.com"
+    },
+    {
+      "id": "protocol:aave-v4",
+      "merged_into": "protocol:aave-v2",
+      "url": "https://aave.com"
+    },
+    {
+      "id": "protocol:bitget-bgbtc",
+      "merged_into": "protocol:bitget",
+      "url": "https://bitget.com"
+    },
+    {
+      "id": "protocol:compound-v3",
+      "merged_into": "protocol:compound-v2",
+      "url": "https://compound.xyz"
+    },
+    {
+      "id": "protocol:fluid-lending",
+      "merged_into": "protocol:fluid-dex",
+      "url": "https://fluid.io"
+    },
+    {
+      "id": "protocol:fluid-lite",
+      "merged_into": "protocol:fluid-dex",
+      "url": "https://fluid.io"
+    },
+    {
+      "id": "protocol:frax-usd",
+      "merged_into": "protocol:frax-ether",
+      "url": "https://frax.com"
+    },
+    {
+      "id": "protocol:fraxtal",
+      "merged_into": "protocol:frax-ether",
+      "url": "https://frax.com"
+    },
+    {
+      "id": "protocol:jupiter-perpetual-exchange",
+      "merged_into": "protocol:jupiter-lend",
+      "url": "https://jup.ag?ref=f6y1ryr2snn3"
+    },
+    {
+      "id": "protocol:jupiter-staked-sol",
+      "merged_into": "protocol:jupiter-lend",
+      "url": "https://jup.ag?ref=f6y1ryr2snn3"
+    },
+    {
+      "id": "protocol:marinade-select",
+      "merged_into": "protocol:marinade-native",
+      "url": "https://app.marinade.finance"
+    },
+    {
+      "id": "protocol:morpho-midnight",
+      "merged_into": "protocol:morpho-blue",
+      "url": "https://app.morpho.org"
+    },
+    {
+      "id": "protocol:phantom-sol",
+      "merged_into": "phantom",
+      "url": "https://phantom.com"
+    },
+    {
+      "id": "protocol:polygon-bridge",
+      "merged_into": "polygon",
+      "url": "https://polygon.technology"
+    },
+    {
+      "id": "protocol:sanctum-validator-lsts",
+      "merged_into": "protocol:sanctum-infinity",
+      "url": "https://sanctum.so"
+    },
+    {
+      "id": "protocol:spark-savings",
+      "merged_into": "protocol:spark-liquidity-layer",
+      "url": "https://spark.finance"
+    },
+    {
+      "id": "protocol:sparklend",
+      "merged_into": "protocol:spark-liquidity-layer",
+      "url": "https://spark.finance"
+    },
+    {
+      "id": "protocol:uniswap-v2",
+      "merged_into": "uniswap",
+      "url": "https://app.uniswap.org"
+    },
+    {
+      "id": "protocol:uniswap-v3",
+      "merged_into": "uniswap",
+      "url": "https://app.uniswap.org"
+    },
+    {
+      "id": "protocol:uniswap-v4",
+      "merged_into": "uniswap",
+      "url": "https://app.uniswap.org"
     }
   ],
   "new_record_ids": [
-    "github:0xpolygon/polygon-agent-cli",
-    "github:ethereum/clear-signing-erc7730-registry",
-    "github:ethereum/discv4-dns-lists",
-    "github:ethereum/ethereum-org-website",
-    "github:ethereum/execution-specs",
-    "github:ethereum/glamsterdam-gas-invariants",
-    "github:solana-program/address-lookup-table",
-    "github:solana-program/token-metadata",
-    "github:solana-program/token-wrap"
+    "ethereum-docs:accounts",
+    "ethereum-docs:apis",
+    "ethereum-docs:blocks",
+    "ethereum-docs:bridges",
+    "ethereum-docs:consensus-mechanisms",
+    "ethereum-docs:dapps",
+    "ethereum-docs:data-and-analytics",
+    "ethereum-docs:data-availability",
+    "ethereum-docs:data-structures-and-encoding",
+    "ethereum-docs:design-and-ux",
+    "ethereum-docs:development-networks",
+    "ethereum-docs:ethereum-stack",
+    "ethereum-docs:evm",
+    "ethereum-docs:frameworks",
+    "ethereum-docs:gas",
+    "ethereum-docs:ides",
+    "ethereum-docs:intro-to-ether",
+    "ethereum-docs:intro-to-ethereum",
+    "ethereum-docs:mev",
+    "ethereum-docs:networking-layer",
+    "ethereum-docs:networks",
+    "ethereum-docs:nodes-and-clients",
+    "ethereum-docs:oracles",
+    "ethereum-docs:programming-languages",
+    "ethereum-docs:scaling",
+    "ethereum-docs:smart-contracts",
+    "ethereum-docs:standards",
+    "ethereum-docs:storage",
+    "ethereum-docs:transactions",
+    "ethereum-docs:web2-vs-web3",
+    "protocol:aave-horizon-rwa",
+    "protocol:aave-v2",
+    "protocol:aera-v3",
+    "protocol:aero-slipstream",
+    "protocol:anemoy-capital",
+    "protocol:arbitrum-bridge",
+    "protocol:armitage-by-wintermute",
+    "protocol:aster-bridge",
+    "protocol:avalanche-core-bridge",
+    "protocol:avalon-cedefi",
+    "protocol:avalon-superearn",
+    "protocol:axelar",
+    "protocol:b14g",
+    "protocol:babylon-protocol",
+    "protocol:backpack",
+    "protocol:base-bridge",
+    "protocol:bedrock-unibtc",
+    "protocol:beefy",
+    "protocol:binance-bitcoin",
+    "protocol:binance-cex",
+    "protocol:binance-staked-eth",
+    "protocol:binance-staked-sol",
+    "protocol:bingx",
+    "protocol:bitfi-basis",
+    "protocol:bitfinex",
+    "protocol:bitget",
+    "protocol:bitkub",
+    "protocol:bitrue",
+    "protocol:bitstamp",
+    "protocol:bitunix",
+    "protocol:bitvavo",
+    "protocol:bybit",
+    "protocol:bybit-staked-sol",
+    "protocol:cap",
+    "protocol:ccip",
+    "protocol:cian-yield-layer",
+    "protocol:clearstar",
+    "protocol:coinbase-bridge",
+    "protocol:coinbase-wrapped-staked-eth",
+    "protocol:coindcx",
+    "protocol:compound-v2",
+    "protocol:concrete",
+    "protocol:convex-finance",
+    "protocol:cooler-loans",
+    "protocol:crvusd",
+    "protocol:crypto-com",
+    "protocol:curve-dex",
+    "protocol:curve-llamalend",
+    "protocol:defi-saver-asset-management",
+    "protocol:deribit",
+    "protocol:derive-v3-options",
+    "protocol:dfdv-staked-sol",
+    "protocol:dolomite",
+    "protocol:doppler-finance",
+    "protocol:drift-staked-sol",
+    "protocol:eigencloud",
+    "protocol:ember",
+    "protocol:ethena-usde",
+    "protocol:ethena-usdtb",
+    "protocol:euler-v2",
+    "protocol:exsat-staking-btc",
+    "protocol:extended-perps",
+    "protocol:falcon-finance",
+    "protocol:fluid-dex",
+    "protocol:forward-industries-sol",
+    "protocol:frax-ether",
+    "protocol:function-fbtc",
+    "protocol:fx-protocol",
+    "protocol:galaxy-curation",
+    "protocol:gate",
+    "protocol:gauntlet",
+    "protocol:gemini",
+    "protocol:grove-finance",
+    "protocol:gtbtc",
+    "protocol:hashkey-exchange",
+    "protocol:htx",
+    "protocol:huma",
+    "protocol:hyperithm",
+    "protocol:indodax",
+    "protocol:jito-liquid-staking",
+    "protocol:jpool",
+    "protocol:jupiter-lend",
+    "protocol:k3-capital",
+    "protocol:kamino-lend",
+    "protocol:kelp",
+    "protocol:korbit",
+    "protocol:kpk",
+    "protocol:kraken-bitcoin",
+    "protocol:kucoin",
+    "protocol:lagoon",
+    "protocol:layerzero-v2",
+    "protocol:lido",
+    "protocol:lighter-bridge",
+    "protocol:lightning-network",
+    "protocol:linea-bridge",
+    "protocol:liquid-collective",
+    "protocol:liquity-v1",
+    "protocol:lista-lending",
+    "protocol:lombard-lbtc",
+    "protocol:lorenzo-enzobtc",
+    "protocol:m0",
+    "protocol:mantle-bridge",
+    "protocol:maple",
+    "protocol:marinade-liquid-staking",
+    "protocol:marinade-native",
+    "protocol:mellow-core",
+    "protocol:merlins-seal",
+    "protocol:meteora-dlmm",
+    "protocol:meth-protocol",
+    "protocol:mexc",
+    "protocol:morpho-blue",
+    "protocol:near-bridge",
+    "protocol:near-intents",
+    "protocol:nexus-btc",
+    "protocol:nexus-mutual-insurance",
+    "protocol:nonce-capital",
+    "protocol:obol",
+    "protocol:okx",
+    "protocol:onre",
+    "protocol:opentrade",
+    "protocol:optimism-bridge",
+    "protocol:orca-dex",
+    "protocol:osl-exchange",
+    "protocol:ourbit",
+    "protocol:pancakeswap-amm",
+    "protocol:pancakeswap-amm-v3",
+    "protocol:pendle-v2",
+    "protocol:phemex",
+    "protocol:pinksale",
+    "protocol:pionex",
+    "protocol:plume-vaults",
+    "protocol:poloniex",
+    "protocol:polymarket-international",
+    "protocol:portal",
+    "protocol:pumpswap",
+    "protocol:railgun",
+    "protocol:raydium-amm",
+    "protocol:re",
+    "protocol:renzo",
+    "protocol:robinhood",
+    "protocol:robinhood-chain-bridge",
+    "protocol:rockawayx",
+    "protocol:rocket-pool",
+    "protocol:sanctum-infinity",
+    "protocol:saturn",
+    "protocol:sentora-curator",
+    "protocol:sky-lending",
+    "protocol:sky-money",
+    "protocol:solstice",
+    "protocol:solv-basis-trading",
+    "protocol:solvbtc",
+    "protocol:sosovalue-indexes",
+    "protocol:spark-liquidity-layer",
+    "protocol:ssv-network",
+    "protocol:stacks-sbtc",
+    "protocol:stader",
+    "protocol:stake-dao-yield",
+    "protocol:stakewise-v3",
+    "protocol:starknet-bridge",
+    "protocol:steakhouse-financial",
+    "protocol:swissborg",
+    "protocol:symbiotic",
+    "protocol:tbtc",
+    "protocol:the-vault-liquid-staking",
+    "protocol:theo-network-thusd",
+    "protocol:tornado-cash",
+    "protocol:uncx-network-v2",
+    "protocol:unit",
+    "protocol:upshift",
+    "protocol:usdd",
+    "protocol:usdt0",
+    "protocol:veda",
+    "protocol:venus-core-pool",
+    "protocol:wbtc",
+    "protocol:weex",
+    "protocol:world-chain-bridge",
+    "protocol:xdai-stake-bridge",
+    "protocol:yearn-finance",
+    "protocol:yield-basis",
+    "protocol:zama"
   ],
-  "links_checked": 24,
-  "links_attempted": 24,
-  "link_check_outcomes": {
-    "ok": 24
-  },
-  "finished_at": "2026-11-05T15:25:27Z",
+  "links_checked": 0,
+  "links_attempted": 0,
+  "link_check_outcomes": {},
+  "finished_at": "2026-11-05T16:55:41Z",
   "network_usage": {
-    "requests": 31,
-    "response_bytes": 2607277,
-    "conditional_cache_hits": 0
+    "requests": 8,
+    "response_bytes": 10003236,
+    "conditional_cache_hits": 5
   },
   "deployment_status": "not_requested_by_indexer"
 }

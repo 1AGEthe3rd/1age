@@ -1,0 +1,206 @@
+{
+  "commit": "eadfc04",
+  "records": 94,
+  "cases": [
+    {
+      "query": "Upland",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "Phantom",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Jupiter",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "MetaMask",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Uniswap",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "query": "Star Atlas",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Skyweaver",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Solscan",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "OpenSea",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Hardhat",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Foundry",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "OpenZeppelin",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Bitcoin",
+      "passed": true,
+      "count": 4
+    },
+    {
+      "query": "Ethereum",
+      "passed": true,
+      "count": 24
+    },
+    {
+      "query": "Solana",
+      "passed": true,
+      "count": 21
+    },
+    {
+      "query": "Backpack",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "Base",
+      "passed": true,
+      "count": 12
+    },
+    {
+      "query": "ENS",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": ".sol",
+      "passed": true,
+      "count": 25
+    },
+    {
+      "query": ".eth",
+      "passed": true,
+      "count": 24
+    },
+    {
+      "query": "top Solana projects",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "best Ethereum wallets",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "find me wallets on Solana",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "blockchain games",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "show me crypto games",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "what is Upland",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "Ethereum NFT marketplace",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "ethereum community",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "query": "solana explorer",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "query": "decentralized finance",
+      "passed": false,
+      "count": 0
+    },
+    {
+      "query": "ethereum developer tools",
+      "passed": true,
+      "count": 18
+    },
+    {
+      "query": "phantm",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "metam",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "BTC",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "query": "solscan.io",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "query": "",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "query": "notarealblockchainprojectzz992",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "query": "solana zxqv987654unknown",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "query": "Upland zxqv987654unknown",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "query": "private-discord-message-7zzn",
+      "passed": true,
+      "count": 0
+    }
+  ]
+}

@@ -27,7 +27,7 @@ def public_url(url):
     except socket.gaierror:
         # Managed outbound proxies may resolve remotely. Only fixed public-source
         # hosts have this fallback; arbitrary catalog URLs remain uncheckable.
-        if urlsplit(url).hostname in {'api.github.com','chainid.network','github.com'}: return url
+        if urlsplit(url).hostname in {'api.github.com','chainid.network','github.com','api.llama.fi'}: return url
         raise
     if not addresses or any(not ipaddress.ip_address(addr[4][0]).is_global for addr in addresses):
         raise ValueError('Destination does not resolve exclusively to public addresses')
@@ -77,6 +77,10 @@ class PublicHTTP:
                 if attempt==self.limits['retries']: raise
             time.sleep(1+attempt)
         raise RuntimeError('Source retrieval failed')
+    def text(self,url):
+        if self.robot_allowed(url) is not True:raise ValueError('Public hub retrieval not permitted by available robots policy')
+        _,_,body,_=self.request(url,headers={'Accept':'text/html'},max_bytes=2000000)
+        return body.decode('utf-8'),False
     def robot_allowed(self,url):
         origin='https://'+urlsplit(url).netloc
         if origin not in self.robots:

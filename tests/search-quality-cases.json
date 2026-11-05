@@ -1,0 +1,197 @@
+[
+  {
+    "query": "Upland",
+    "expected_id": "upland",
+    "within": 3
+  },
+  {
+    "query": "Phantom",
+    "expected_id": "phantom",
+    "within": 3
+  },
+  {
+    "query": "Jupiter",
+    "expected_id": "jupiter",
+    "within": 3
+  },
+  {
+    "query": "MetaMask",
+    "expected_id": "metamask",
+    "within": 3
+  },
+  {
+    "query": "Uniswap",
+    "expected_id": "uniswap",
+    "within": 3
+  },
+  {
+    "query": "Star Atlas",
+    "expected_id": "star-atlas",
+    "within": 3
+  },
+  {
+    "query": "Skyweaver",
+    "expected_id": "skyweaver",
+    "within": 3
+  },
+  {
+    "query": "Solscan",
+    "expected_id": "solscan",
+    "within": 3
+  },
+  {
+    "query": "OpenSea",
+    "expected_id": "opensea",
+    "within": 3
+  },
+  {
+    "query": "Hardhat",
+    "expected_id": "hardhat",
+    "within": 3
+  },
+  {
+    "query": "Foundry",
+    "expected_id": "foundry",
+    "within": 3
+  },
+  {
+    "query": "OpenZeppelin",
+    "expected_id": "openzeppelin",
+    "within": 3
+  },
+  {
+    "query": "Bitcoin",
+    "expected_id": "bitcoin",
+    "within": 3
+  },
+  {
+    "query": "Ethereum",
+    "expected_id": "ethereum",
+    "within": 3
+  },
+  {
+    "query": "Solana",
+    "expected_id": "solana",
+    "within": 3
+  },
+  {
+    "query": "Backpack",
+    "expected_id": "backpack",
+    "within": 3
+  },
+  {
+    "query": "Base",
+    "expected_id": "base",
+    "within": 3
+  },
+  {
+    "query": "ENS",
+    "expected_id": "ens",
+    "within": 3
+  },
+  {
+    "query": ".sol",
+    "expected_id": "sns",
+    "within": 3
+  },
+  {
+    "query": ".eth",
+    "expected_id": "ens",
+    "within": 3
+  },
+  {
+    "query": "top Solana projects",
+    "expected_id": "jupiter",
+    "within": 30
+  },
+  {
+    "query": "best Ethereum wallets",
+    "expected_id": "metamask",
+    "within": 30
+  },
+  {
+    "query": "find me wallets on Solana",
+    "expected_id": "phantom",
+    "within": 30
+  },
+  {
+    "query": "blockchain games",
+    "expected_id": "upland",
+    "within": 30
+  },
+  {
+    "query": "show me crypto games",
+    "expected_id": "star-atlas",
+    "within": 30
+  },
+  {
+    "query": "what is Upland",
+    "expected_id": "upland",
+    "within": 30
+  },
+  {
+    "query": "Ethereum NFT marketplace",
+    "expected_id": "opensea",
+    "within": 30
+  },
+  {
+    "query": "ethereum community",
+    "expected_id": "ethereum-community",
+    "within": 30
+  },
+  {
+    "query": "solana explorer",
+    "expected_id": "solscan",
+    "within": 30
+  },
+  {
+    "query": "decentralized finance",
+    "expected_id": "uniswap",
+    "within": 30
+  },
+  {
+    "query": "ethereum developer tools",
+    "expected_id": "hardhat",
+    "within": 30
+  },
+  {
+    "query": "phantm",
+    "expected_id": "phantom",
+    "within": 30
+  },
+  {
+    "query": "metam",
+    "expected_id": "metamask",
+    "within": 30
+  },
+  {
+    "query": "BTC",
+    "expected_id": "bitcoin",
+    "within": 30
+  },
+  {
+    "query": "solscan.io",
+    "expected_id": "solscan",
+    "within": 30
+  },
+  {
+    "query": "",
+    "expect_empty": true
+  },
+  {
+    "query": "notarealblockchainprojectzz992",
+    "expect_empty": true
+  },
+  {
+    "query": "solana zxqv987654unknown",
+    "expect_empty": true
+  },
+  {
+    "query": "Upland zxqv987654unknown",
+    "expect_empty": true
+  },
+  {
+    "query": "private-discord-message-7zzn",
+    "expect_empty": true
+  }
+]

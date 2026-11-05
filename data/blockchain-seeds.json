@@ -758,7 +758,12 @@
     "type": "project",
     "category": "NFT",
     "description": "Public NFT marketplace and token discovery platform.",
-    "networks": [],
+    "networks": [
+      "Ethereum",
+      "Base",
+      "Polygon",
+      "Solana"
+    ],
     "tags": [
       "NFT",
       "marketplace",
@@ -770,11 +775,43 @@
     },
     "source_review": {
       "status": "source_checked",
-      "checked_on": "2026-11-04",
+      "checked_on": "2026-11-05",
       "evidence": [
-        "https://opensea.io/"
+        "https://opensea.io/",
+        "https://docs.opensea.io/reference/mcp"
       ],
-      "note": "Public project metadata checked; no claim about current supported networks, ownership or safety."
+      "note": "Official documentation lists supported networks; identity, product safety and contract security are not verified."
+    }
+  },
+  {
+    "id": "upland",
+    "name": "Upland",
+    "description": "Blockchain-powered city-building and virtual property game with a shared real-world map.",
+    "type": "game",
+    "category": "Games",
+    "networks": [
+      "Upland"
+    ],
+    "aliases": [
+      "Upland game"
+    ],
+    "identifiers": [],
+    "tags": [
+      "game",
+      "gaming",
+      "virtual world",
+      "city builder"
+    ],
+    "official_links": {
+      "website": "https://upland.me/"
+    },
+    "verification_status": "unverified",
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-05",
+      "evidence": [
+        "https://guides.upland.me/getting-started/basics"
+      ]
     }
   }
 ]

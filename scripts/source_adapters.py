@@ -5,7 +5,7 @@ from indexlib import https_url,canonical
 SUSPICIOUS=re.compile(r'\b(seed phrase|private key|guaranteed profit|double your|wallet recovery)\b',re.I)
 
 def source_url(source,page=1):
-    if source['adapter']=='chain_registry': return source['url']
+    if source['adapter'] in ('chain_registry','protocol_directory','resource_hub','ethereum_docs'): return source['url']
     if source['adapter']=='github_org':
         org=source['org']
         if not re.fullmatch(r'[A-Za-z0-9-]{1,39}',org): raise ValueError('Invalid configured organization')
@@ -13,6 +13,7 @@ def source_url(source,page=1):
     raise ValueError('Unsupported or disabled source adapter')
 
 def parse_source(source,payload):
+    if source['adapter']=='resource_hub':return parse_hub(source,payload)
     if not isinstance(payload,list) or not payload: raise ValueError('Expected a nonempty public registry array')
     out=[];review=[]
     for row in payload:
@@ -26,6 +27,23 @@ def parse_source(source,payload):
                       'type':'blockchain','category':'Network','networks':[network],
                       'aliases':[row.get('shortName',network)],'identifiers':[f'eip155:{chain}'],
                       'tags':['blockchain','network','EVM'],'official_links':{'website':url}}
+            elif source['adapter']=='ethereum_docs':
+                if row.get('type')!='dir':continue
+                slug=row['name']
+                if not re.fullmatch(r'[a-z0-9-]+',slug):raise ValueError('Invalid documentation topic')
+                title='Ethereum '+slug.replace('-',' ')+' documentation'
+                item={'id':'ethereum-docs:'+slug,'name':title,'description':'Official Ethereum developer documentation about '+slug.replace('-',' ')+'.',
+                      'type':'documentation','category':'Developer documentation','networks':['Ethereum'],'aliases':[slug.replace('-',' ')],
+                      'identifiers':[],'tags':['ethereum','developer','documentation',slug],'official_links':{'website':'https://ethereum.org/developers/docs/'+slug+'/'}}
+            elif source['adapter']=='protocol_directory':
+                networks=sorted(set(row.get('chains',[])) & set(source['networks']))
+                if not networks:continue
+                name=row['name'];slug=row['slug'];url=https_url(row['url'])
+                if not isinstance(name,str) or not name.strip() or not re.fullmatch(r'[a-z0-9-]+',slug):raise ValueError('Invalid protocol identity')
+                category=str(row.get('category') or 'DeFi')[:70]
+                item={'id':'protocol:'+slug,'name':name,'description':f'{name}: {category} resource listed by DefiLlama. Networks: '+', '.join(networks)+'.',
+                      'type':'defi','category':category,'networks':networks,'aliases':[slug],
+                      'identifiers':[],'tags':['defi',category.lower()],'official_links':{'website':url}}
             elif source['adapter']=='github_org':
                 if row.get('private') or row.get('fork') or row.get('archived') or row.get('disabled'): continue
                 owner=row.get('owner',{})
@@ -52,3 +70,38 @@ def parse_source(source,payload):
         except (KeyError,TypeError,ValueError) as error:
             review.append({'source_id':source['id'],'reason':str(error),'record_reference':str(row.get('chainId',row.get('full_name','unknown')))[:180] if isinstance(row,dict) else 'invalid row'})
     return out[:source['max_records']],review
+
+from html.parser import HTMLParser
+from urllib.parse import urljoin,urlsplit
+import hashlib
+class HubLinks(HTMLParser):
+    def __init__(self):super().__init__();self.links=[];self.href=None;self.words=[]
+    def handle_starttag(self,tag,attrs):
+        if tag=='a':self.href=dict(attrs).get('href');self.words=[]
+    def handle_data(self,value):
+        if self.href:self.words.append(value)
+    def handle_endtag(self,tag):
+        if tag=='a' and self.href:
+            self.links.append((self.href,' '.join(' '.join(self.words).split())));self.href=None
+
+def parse_hub(source,payload):
+    if not isinstance(payload,str) or '<html' not in payload.lower():raise ValueError('Expected public HTML hub')
+    parser=HubLinks();parser.feed(payload);items={}
+    origin=urlsplit(source['url'])
+    for href,title in parser.links:
+        url=urljoin(source['url'],href);parsed=urlsplit(url)
+        if parsed.hostname!=origin.hostname or parsed.query or parsed.fragment:continue
+        if not any(parsed.path.startswith(prefix) for prefix in source['path_prefixes']):continue
+        if not 4<=len(title)<=160:continue
+        try:https_url(url)
+        except ValueError:continue
+        key=canonical(url)
+        if key in items:continue
+        items[key]={'id':source['id']+':'+hashlib.sha256(key.encode()).hexdigest()[:16],
+          'name':title,'description':'Public '+source['networks'][0]+' ecosystem resource linked from '+source['url']+'.',
+          'type':'tool','category':'Ecosystem resource','networks':source['networks'],'aliases':[],
+          'identifiers':[],'tags':[x for x in parsed.path.split('/') if x], 'official_links':{'website':url},
+          'source_id':source['id'],'verification_status':'unverified',
+          'provenance':[{'url':source['url'],'attribution':source['attribution'],'terms_url':source['terms_url']}]}
+    if not items:raise ValueError('No eligible hub links; retaining previous records')
+    return list(items.values())[:source['max_records']],[]

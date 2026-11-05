@@ -153,7 +153,7 @@ async function showResults() {
     const records = await window.ageIndex.load('all', currentQuery);
     if (version !== requestVersion) return;
     const info = window.ageIndex.info();
-    note.textContent = `${info.records} indexed resources · ${info.networks} networks · ${info.fallback ? 'Backup data loaded · ' : ''}Source checks do not establish ownership or safety`;
+    note.textContent = `${info.records} indexed resources · ${info.networks} networks · ${info.fallback ? 'Backup data loaded · ' : ''}Source checks do not establish ownership or safety${window.ageSearchCore.plan(currentQuery).requestedTop ? ' · Ranked by relevance, not popularity' : ''}`;
     render(searchEntities(currentQuery, records), currentQuery);
     section.scrollTop = 0;
   } catch (error) {
@@ -215,12 +215,20 @@ buttons.forEach(button => {
   });
 });
 
+let typingTimer;
+input.addEventListener('input', () => {
+  clearTimeout(typingTimer); requestVersion++;
+  if(input.value.trim().length<2){section.hidden=true;return;}
+  typingTimer=setTimeout(()=>runSearch(input.value),220);
+});
 form.addEventListener('submit', event => {
+  clearTimeout(typingTimer);
   event.preventDefault();
   runSearch(input.value);
 });
 
 function closeResults() {
+  clearTimeout(typingTimer);
   requestVersion++;
   section.hidden = true;
   input.focus({preventScroll: true});

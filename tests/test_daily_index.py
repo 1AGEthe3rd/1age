@@ -43,7 +43,7 @@ class DailyIndexTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
         for file in ['1age-index.json','entities.json','blockchain-seeds.json','search-overrides.json','index-exclusions.json','index-sources/config.json']:
             target=self.root/'data'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/'data'/file,target)
-        self.config=read(self.root/'data/index-sources/config.json');self.http=FakeHTTP(self.config)
+        self.config=read(self.root/'data/index-sources/config.json');self.config['sources']=[s for s in self.config['sources'] if s['adapter'] in ('chain_registry','github_org')];(self.root/'data/index-sources/config.json').write_text(json.dumps(self.config));self.http=FakeHTTP(self.config)
         records,_=merged_catalog(self.root);self.initial_count=len(records);write_outputs(outputs(records,self.root),self.root)
     def tearDown(self): self.temp.cleanup()
     def run_index(self,**options): return updater.run(self.root,self.http,now=options.pop('now',T1),**options)
