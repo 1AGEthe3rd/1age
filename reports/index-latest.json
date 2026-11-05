@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "started_at": "2026-11-05T07:43:10Z",
+  "started_at": "2026-11-05T15:23:34Z",
   "status": "success",
-  "total_indexed_records": 85,
-  "new_records_discovered": 0,
-  "existing_records_updated": 0,
+  "total_indexed_records": 94,
+  "new_records_discovered": 9,
+  "existing_records_updated": 13,
   "duplicate_records_detected": 5,
   "broken_links_detected": 0,
   "records_requiring_review": [],
@@ -12,36 +12,36 @@
     {
       "id": "evm-chains",
       "eligible_records": 14,
-      "not_modified": true
+      "not_modified": false
     },
     {
       "id": "github-solana",
       "eligible_records": 8,
-      "not_modified": true
+      "not_modified": false
     },
     {
       "id": "github-ethereum",
       "eligible_records": 8,
-      "not_modified": true
+      "not_modified": false
     },
     {
       "id": "github-bitcoin",
       "eligible_records": 2,
-      "not_modified": true
+      "not_modified": false
     },
     {
       "id": "github-base",
       "eligible_records": 8,
-      "not_modified": true
+      "not_modified": false
     },
     {
       "id": "github-polygon",
       "eligible_records": 8,
-      "not_modified": true
+      "not_modified": false
     }
   ],
   "failed_data_sources": [],
-  "last_successful_indexing_time": "2026-11-05T07:43:10Z",
+  "last_successful_indexing_time": "2026-11-05T15:23:34Z",
   "unsupported_sources": [
     {
       "id": "1age-page-public",
@@ -88,18 +88,27 @@
       "url": "https://base.org"
     }
   ],
-  "new_record_ids": [],
-  "links_checked": 17,
+  "new_record_ids": [
+    "github:0xpolygon/polygon-agent-cli",
+    "github:ethereum/clear-signing-erc7730-registry",
+    "github:ethereum/discv4-dns-lists",
+    "github:ethereum/ethereum-org-website",
+    "github:ethereum/execution-specs",
+    "github:ethereum/glamsterdam-gas-invariants",
+    "github:solana-program/address-lookup-table",
+    "github:solana-program/token-metadata",
+    "github:solana-program/token-wrap"
+  ],
+  "links_checked": 24,
   "links_attempted": 24,
   "link_check_outcomes": {
-    "robots_unavailable": 7,
-    "ok": 17
+    "ok": 24
   },
-  "finished_at": "2026-11-05T07:45:00Z",
+  "finished_at": "2026-11-05T15:25:27Z",
   "network_usage": {
-    "requests": 24,
-    "response_bytes": 14540,
-    "conditional_cache_hits": 6
+    "requests": 31,
+    "response_bytes": 2607277,
+    "conditional_cache_hits": 0
   },
   "deployment_status": "not_requested_by_indexer"
 }
