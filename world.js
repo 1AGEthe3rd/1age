@@ -17,59 +17,13 @@
   let selected = -1, animation = 0;
   const touchPointers=new Set();
   let suppressOrbitClick=false;
-  // Previews describe the current project directions and link to readable pages.
-  const previews = [
-    {name:'1AGE Page', description:'Your identity across 1AGE.', cards:[
-      ['Identity','One profile across the ecosystem','Profiles and a persistent identity are in development.','/ecosystem/#page'],
-      ['Messages','A place for direct connection','Messaging is part of the 1AGE Page direction.','/ecosystem/#page'],
-      ['Personal rooms','A place of your own','Customizable personal World rooms are planned.','/world/']]},
-    {name:'1AGE Space', description:'A social destination for the Solana community.', cards:[
-      ['Social','Meet through 1AGE Space','The Solana social network is in development.','/ecosystem/#space'],
-      ['World','A shared social environment','A connected gathering place is planned inside World.','/world/'],
-      ['Development','Follow the ecosystem taking shape','Read the latest published development notes.','/updates/']]},
-    {name:'1AGE Games', description:'Discover games and follow new worlds in development.', cards:[
-      ['No Name Besuto','Train. Explore. Build your fighter.','The in-house fighter lifestyle game is in development.','/ecosystem/#games'],
-      ['Discovery','Find your next game','Explore the gaming direction and the growing Solana directory.','/ecosystem/#games'],
-      ['1AGEWorld','Movement that feels like play','Walking, flying and touch controls work in the native environment.','/world/']]},
-    {name:'1AGE Exchange', description:'Commerce and payments across the ecosystem.', cards:[
-      ['Marketplace','A place to exchange','The marketplace is in development, connected to 1AGE Page identity.','/ecosystem/#exchange'],
-      ['1AGE Pay','One checkout direction','Ecosystem payments are planned through 1AGE Exchange.','/plus/'],
-      ['Membership','1AGE Plus is taking shape','Learn about the membership direction. Payments are not open yet.','/plus/']]},
-    {name:'1AGE Quest', description:'Learn, participate and contribute.', cards:[
-      ['Learning','Explore something new','Interactive learning is part of the Quest direction.','/ecosystem/#quest'],
-      ['Participation','Discover ways to contribute','Quest experiences and participation tools are in development.','/ecosystem/#quest'],
-      ['Discovery','Get to know the ecosystem','Browse the current collection of Solana projects and tools.','/directory/']]},
-    {name:'1AGE Cash', description:'Building 1AGE should feel like playing 1AGE.', cards:[
-      ['1AGE.Desktop','Your cosmic workspace','The installed creator home shares the visual language of World.','/ecosystem/#design'],
-      ['1AGEWorld','Walk. Fly. Create.','The working World foundation runs on ThinkPad and Chuwi.','/world/'],
-      ['Development','See what is being built','Follow progress across the web and native creator environment.','/updates/']]}
-  ];
   function showPreview(index) {
-    window.dispatchEvent?.(new CustomEvent('1age-project-preview',{detail:index}));
     if (selected === index) return;
     selected = index;
     projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
     planets.forEach((planet, i) => {
       planet.classList.toggle('is-selected', i === index);
-      planet.setAttribute('aria-label', `Explore ${previews[i].name}${i === index ? ', selected preview' : ''}`);
     });
-    if (!track) return;
-    const project = previews[index];
-    document.querySelector('#preview-title').textContent = project.name;
-    document.querySelector('#preview-description').textContent = project.description;
-    track.replaceChildren();
-    project.cards.forEach(([category, title, description, href]) => {
-      const card = document.createElement('a'); card.className = 'preview-card'; card.href = href;
-      card.style.setProperty('--accent', planets[index].style.getPropertyValue('--accent'));
-      const visual = document.createElement('div'); visual.className = 'preview-art';
-      visual.setAttribute('aria-hidden', 'true'); visual.appendChild(planets[index].querySelector('svg').cloneNode(true));
-      const eyebrow = document.createElement('span'); eyebrow.className = 'eyebrow'; eyebrow.textContent = category;
-      const heading = document.createElement('h3'); heading.textContent = title;
-      const copy = document.createElement('p'); copy.textContent = description;
-      const link = document.createElement('span'); link.className = 'text-link'; link.textContent = 'Explore ↗';
-      card.append(visual, eyebrow, heading, copy, link); track.appendChild(card);
-    });
-    track.scrollLeft = 0;
   }
   function nearestIndex(value) {
     return ((Math.round((Math.PI - value) / step) % planets.length) + planets.length) % planets.length;

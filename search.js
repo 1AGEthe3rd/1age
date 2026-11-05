@@ -13,17 +13,21 @@ const note = section.querySelector('.index-note');
 const buttons = [...document.querySelectorAll('[data-search-mode]')];
 const quickLinks = document.querySelector('.quick-links');
 
-const indexes = { '1age': null, solana: null };
+let records = null;
+let pendingLoad;
+let requestVersion = 0;
+let pageSize = 20;
 let mode = '1age';
 let currentQuery = '';
-let loadError = null;
+
 
 const suggestions = {
   '1age': [
     ['World', 'world'],
     ['Games', 'games'],
     ['Page', 'page'],
-    ['Help', 'help']
+    ['Wallets', 'wallet'],
+    ['Tools', 'tool']
   ],
   solana: [
     ['Wallets', 'wallet'],
@@ -41,39 +45,39 @@ function element(tag, className, text) {
 }
 
 function searchEntities(query) {
-  return window.ageIndex.search(indexes[mode], query, document.body.dataset.searchScope);
+  return window.ageIndex.search(records, query, document.body.dataset.searchScope);
 }
 
 function render(items, query) {
   results.replaceChildren();
   label.textContent =
     `${items.length} ${items.length === 1 ? 'result' : 'results'} ` +
-    `for “${query}” in ${mode === '1age' ? '1AGE' : 'Solana'}`;
+    `for “${query}”`;
 
   if (!items.length) {
     results.append(element(
       'p', 'empty-state',
-      'No matching public entries in this early index.'
+      'No match in the current index. Try a project, network, wallet, developer tool or community name. Individual wallets, transactions and profiles are not yet indexed.'
     ));
     return;
   }
 
-  for (const entity of items) {
+  for (const entity of items.slice(0, pageSize)) {
     const card = element('article', 'result-card');
     const top = element('div', 'result-topline');
 
     top.append(
       element('h2', '', entity.name),
-      element('span', 'result-type', entity.type)
+      element('span', 'result-type', entity.category || entity.type)
     );
 
     card.append(
       top,
       element(
         'p', 'result-status',
-        mode === '1age'
-          ? '1AGE · Public information page'
-          : 'Solana · Third-party directory listing'
+        (entity.id === '1age' || entity.id?.startsWith('1age-'))
+          ? '1AGE · Ecosystem listing'
+          : (entity.networks || []).join(' · ') || 'Blockchain community · Directory listing'
       ),
       element('p', 'result-description', entity.description)
     );
@@ -82,6 +86,14 @@ function render(items, query) {
     card.append(element('p', 'result-status', authenticity.label));
     if (authenticity.reviewedOn) {
       card.append(element('p', 'result-status', 'Evidence reviewed ' + authenticity.reviewedOn));
+    }
+
+    if (entity.source_review?.status === 'source_checked') {
+      const source = element('a', 'result-link', 'Public source checked ' + entity.source_review.checked_on);
+      source.href = entity.source_review.evidence[0];
+      source.target = '_blank';
+      source.rel = 'noopener noreferrer';
+      card.append(source);
     }
 
     const tags = element('div', 'result-tags');
@@ -94,7 +106,7 @@ function render(items, query) {
     if (url) {
       const link = element(
         'a', 'result-link',
-        mode === '1age' ? 'View page ↗' : 'Visit website ↗'
+        'Visit website ↗'
       );
       link.href = url.href;
 
@@ -106,6 +118,12 @@ function render(items, query) {
     }
 
     results.append(card);
+  }
+  if (items.length > pageSize) {
+    const more = element('button', 'quick-search', `Show more (${items.length - pageSize} remaining)`);
+    more.type = 'button';
+    more.addEventListener('click', () => { pageSize += 20; render(items, query); results.querySelectorAll('.result-card')[pageSize - 20]?.querySelector('a')?.focus(); });
+    results.append(more);
   }
 }
 
@@ -120,37 +138,42 @@ function updateURL() {
   window.history.replaceState(null, '', url);
 }
 
-function showResults() {
+async function ensureRecords() {
+  if (records) return records;
+  if (!pendingLoad) pendingLoad = window.ageIndex.load('all')
+    .then(items => { records = items; return items; })
+    .finally(() => { pendingLoad = null; });
+  return pendingLoad;
+}
+
+async function showResults() {
+  const version = ++requestVersion;
   section.hidden = false;
   results.replaceChildren();
-
-  if (loadError) {
+  if (!currentQuery) { label.textContent = 'Enter a search term.'; return; }
+  label.textContent = 'Loading search index…';
+  try {
+    await ensureRecords();
+    if (version !== requestVersion) return;
+    const networks = new Set(records.flatMap(item => item.networks || []));
+    note.textContent = `${records.length} indexed resources · ${networks.size} networks · Source checks do not establish ownership or safety`;
+    render(searchEntities(currentQuery), currentQuery);
+    section.scrollTop = 0;
+  } catch (error) {
+    if (version !== requestVersion) return;
     label.textContent = 'Search index unavailable.';
-    results.append(element(
-      'p', 'empty-state',
-      'The search data could not be loaded. Please try again later.'
-    ));
-    return;
+    results.append(element('p', 'empty-state', 'Check your connection and try again.'));
+    const retry = element('button', 'quick-search', 'Retry search');
+    retry.type = 'button';
+    retry.addEventListener('click', showResults);
+    results.append(retry);
   }
-
-  if (!indexes[mode]) {
-    label.textContent = 'Loading search index…';
-    return;
-  }
-
-  if (!currentQuery) {
-    label.textContent = 'Enter a search term.';
-    return;
-  }
-
-  render(searchEntities(currentQuery), currentQuery);
-  section.scrollTop = 0;
 }
 
 function runSearch(query) {
-  currentQuery = query.trim();
-  if (!currentQuery) return;
+  currentQuery = query.trim().slice(0, 200);
   input.value = currentQuery;
+  pageSize = 20;
   updateURL();
   showResults();
 }
@@ -178,13 +201,10 @@ function selectMode(next, updateHistory = true) {
     );
   });
 
-  input.placeholder = mode === '1age'
-    ? 'Search 1AGE destinations…'
-    : 'Search Solana projects…';
-
-  note.textContent = mode === '1age'
-    ? 'Early 1AGE index · Public pages only'
-    : 'Early Solana index · Third-party listings are not verified';
+  input.placeholder = document.body.dataset.searchScope
+    ? 'Search ' + document.title.replace(/^1AGE /, '') + '…'
+    : 'Search the blockchain community…';
+  note.textContent = 'Independent multichain index · Listings show their review status';
 
   updateSuggestions();
   if (updateHistory) updateURL();
@@ -204,6 +224,7 @@ form.addEventListener('submit', event => {
 });
 
 function closeResults() {
+  requestVersion++;
   section.hidden = true;
   input.focus({preventScroll: true});
 }
@@ -218,7 +239,7 @@ for (const node of [form, section]) {
 }
 
 const params = new URLSearchParams(window.location.search);
-selectMode(params.get('mode') === 'solana' ? 'solana' : '1age', false);
+selectMode('1age', false);
 
 const initialQuery = params.get('q');
 if (initialQuery) {
@@ -232,20 +253,6 @@ if (initialQuery) {
   showResults();
 }
 
-(async () => {
-  try {
-    const [ageData, solanaData] = await Promise.all([
-      window.ageIndex.load('1age'),
-      window.ageIndex.load('solana')
-    ]);
-    indexes['1age'] = ageData;
-    indexes.solana = solanaData;
-
-    if (!section.hidden) showResults();
-  } catch (error) {
-    loadError = error;
-    console.error('1AGE Search index error:', error);
-    if (!section.hidden) showResults();
-  }
-})();
+// Load data and the vendored engine only when search is used.
+input.addEventListener('focus', () => { ensureRecords().catch(() => {}); });
 })();

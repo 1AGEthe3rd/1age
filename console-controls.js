@@ -2,9 +2,11 @@
  'use strict';
  const $=s=>document.querySelector(s),scene=$('.world-scene');if(!scene)return;
  const emit=(name,detail)=>window.dispatchEvent(new CustomEvent(name,{detail}));
- const menuItems={L:[['Page','/ecosystem/#page','♙'],['Space','/ecosystem/#space','☏'],['Cash','/ecosystem/#cash','$']],R:[['Games','/ecosystem/#games','✚'],['Exchange','/ecosystem/#exchange','⇄'],['Quest','/ecosystem/#quest','◇']]};
- // Use the same destination for side menus and their matching planets.
- for(const items of Object.values(menuItems))for(const item of items){const planet=[...document.querySelectorAll('.project-planet')].find(node=>node.querySelector('span')?.textContent===item[0]);if(planet)item[1]=planet.getAttribute('href');}
+ const destinations=[...document.querySelectorAll('.project-planet')].map(node=>[
+  node.querySelector('span').textContent,node.getAttribute('href'),'·'
+ ]);
+ const half=Math.ceil(destinations.length/2);
+ const menuItems={L:destinations.slice(0,half),R:destinations.slice(half)};
  let open=null;
  document.body.insertAdjacentHTML('beforeend','<nav class="side-menu" aria-label="Ecosystem destinations" hidden></nav><dialog class="planet-options"><form method="dialog"><button aria-label="Close options">×</button></form><h2></h2><div class="option-actions"></div></dialog>');
  const menu=$('.side-menu'),options=$('.planet-options');
@@ -12,16 +14,16 @@
   if(!side)return;for(const [label,href,symbol] of menuItems[side]){const a=document.createElement('a');a.className='pop-planet';a.href=href;a.innerHTML=`<span class="pop-circle" aria-hidden="true">${symbol}</span><span>${label}</span>`;const original=[...document.querySelectorAll('.project-planet')].find(n=>n.getAttribute('href')===href);if(original?.querySelector('svg'))a.querySelector('.pop-circle').replaceChildren(original.querySelector('svg').cloneNode(true));menu.appendChild(a);}}
  document.querySelectorAll('[data-rotate]').forEach(button=>{const side=Number(button.dataset.rotate)<0?'L':'R';button.textContent=side;button.setAttribute('aria-label',side+' ecosystem menu');button.setAttribute('aria-expanded','false');button.addEventListener('click',()=>setMenu(open===side?null:side));});
  window.addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(null);reset();}});
- form?.addEventListener('keydown',e=>{if(e.key==='Escape'){form.hidden=true;search.setAttribute('aria-expanded','false');document.body.classList.remove('search-open');search.focus();}});
+
  // A press previews. A short release opens the destination. Holding offers choices.
  let press=null,timer=0;
  function clearPress(){clearTimeout(timer);if(press)press.node.classList.remove('is-pressing');press=null;}
- function hold(node){if(node.matches('.project-planet'))emit('1age-project-preview',Number(node.dataset.slot));node.dataset.held='true';options.querySelector('h2').textContent=node.querySelector('span:last-child')?.textContent||node.getAttribute('aria-label')||'Options';const actions=options.querySelector('.option-actions');actions.replaceChildren();
+ function hold(node){node.dataset.held='true';options.querySelector('h2').textContent=node.querySelector('span:last-child')?.textContent||node.getAttribute('aria-label')||'Options';const actions=options.querySelector('.option-actions');actions.replaceChildren();
   const href=node.getAttribute('href');if(href){const a=document.createElement('a');a.href=href;a.textContent='Open';actions.appendChild(a);}
-  if(node.matches('.project-planet')){const preview=document.createElement('button');preview.textContent='Keep preview';preview.onclick=()=>options.close();actions.appendChild(preview);const enlarge=document.createElement('button');enlarge.textContent='Enlarge preview';enlarge.onclick=()=>{options.close();$('.preview-expand')?.click();};actions.appendChild(enlarge);}
+
   if(node.matches('.brand')){const a=document.createElement('a');a.href='/faq/';a.textContent='Help';actions.appendChild(a);const b=document.createElement('a');b.href='https://1age.design';b.textContent='Build with 1AGE.design';actions.appendChild(b);}
   if(!actions.children.length){const b=document.createElement('button');b.textContent='Close';b.onclick=()=>options.close();actions.appendChild(b);}options.showModal();}
- document.addEventListener('pointerdown',e=>{const node=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet,[data-rotate],.search-circle');if(!node||node.disabled||e.button!==0)return;clearPress();delete node.dataset.held;press={node,id:e.pointerId,x:e.clientX,y:e.clientY};node.classList.add('is-pressing');if(node.matches('.project-planet'))emit('1age-project-preview',Number(node.dataset.slot));timer=setTimeout(()=>{if(press)hold(node);},550);},true);
+ document.addEventListener('pointerdown',e=>{const node=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet,[data-rotate],.search-circle');if(!node||node.disabled||e.button!==0)return;clearPress();delete node.dataset.held;press={node,id:e.pointerId,x:e.clientX,y:e.clientY};node.classList.add('is-pressing');timer=setTimeout(()=>{if(press)hold(node);},550);},true);
  document.addEventListener('pointermove',e=>{if(press&&press.id===e.pointerId&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>9)clearPress();},true);
  document.addEventListener('pointerup',clearPress,true);document.addEventListener('pointercancel',clearPress,true);
  document.addEventListener('click',e=>{const n=e.target.closest('[data-held]');if(n){e.preventDefault();e.stopImmediatePropagation();delete n.dataset.held;}},true);

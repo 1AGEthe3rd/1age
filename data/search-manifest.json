@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "records": 42,
+  "networks": {
+    "Arbitrum": 1,
+    "Avalanche": 1,
+    "Base": 2,
+    "Bitcoin": 2,
+    "Ethereum": 10,
+    "Optimism": 1,
+    "Polygon": 2,
+    "Solana": 9
+  },
+  "sources": [
+    "data/1age-index.json",
+    "data/entities.json",
+    "data/blockchain-seeds.json"
+  ],
+  "source_checked": 31
+}

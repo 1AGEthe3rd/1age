@@ -1,0 +1,16 @@
+name: Check independent search index
+on:
+  pull_request:
+    paths: ['data/**', 'scripts/build-search-index.py', 'search-index.js', 'search.js', 'tests/**', 'assets/vendor/**', '.github/workflows/search-index-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/build-search-index.py --check
+      - run: node --check search.js && node --check search-index.js
+      - run: node tests/search.test.cjs

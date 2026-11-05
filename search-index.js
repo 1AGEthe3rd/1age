@@ -1,7 +1,6 @@
 (() => {
 'use strict';
 
-const sources = { '1age': '/data/1age-index.json', solana: '/data/entities.json' };
 const scopes = {
   games: ['games', 'game', 'game developer', 'gaming studio', 'sports', 'competition', 'tournament'],
   page: ['identity', 'profile', 'creator', 'community'],
@@ -12,62 +11,82 @@ const scopes = {
   cash: ['cash'],
   work: ['job', 'bounty', 'opportunity'],
 };
-const cache = new Map();
+let dataRequest;
+let libraryRequest;
+const engines = new WeakMap();
+const modes = new Set(['all', '1age', 'solana']);
 
-function load(mode) {
-  if (!Object.hasOwn(sources, mode)) return Promise.reject(new Error('Unknown search mode'));
-  if (!cache.has(mode)) {
-    const request = fetch(sources[mode]).then(response => {
+function loadLibrary() {
+  if (window.MiniSearch) return Promise.resolve();
+  if (!libraryRequest) {
+    libraryRequest = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = '/assets/vendor/minisearch-7.2.0.js';
+      script.onload = () => window.MiniSearch ? resolve() : reject(new Error('Search library unavailable'));
+      script.onerror = () => { script.remove(); reject(new Error('Search library could not load')); };
+      document.head.append(script);
+    }).catch(error => { libraryRequest = null; throw error; });
+  }
+  return libraryRequest;
+}
+
+function load(mode = 'all') {
+  if (!modes.has(mode)) return Promise.reject(new Error('Unknown search mode'));
+  if (!dataRequest) {
+    dataRequest = fetch('/data/search-index.json').then(response => {
       if (!response.ok) throw new Error('Search index request failed');
       return response.json();
     }).then(records => {
-      if (!Array.isArray(records)) throw new Error('Invalid search index format');
+      if (!Array.isArray(records) || records.some(item => !item.id || !item.name)) {
+        throw new Error('Invalid search index format');
+      }
       return records;
-    }).catch(error => {
-      cache.delete(mode);
-      throw error;
-    });
-    cache.set(mode, request);
+    }).catch(error => { dataRequest = null; throw error; });
   }
-  return cache.get(mode);
+  return Promise.all([dataRequest, loadLibrary()]).then(([records]) =>
+    mode === 'solana' ? records.filter(item => item.networks?.includes('Solana')) : records);
 }
 
-function normalize(value) {
-  return String(value ?? '').toLowerCase().trim();
-}
-
-function scoreEntity(entity, query) {
-  const terms = normalize(query).split(/\s+/).filter(Boolean);
-  const name = normalize(entity.name);
-  const type = normalize(entity.type);
-  const category = normalize(entity.category);
-  const description = normalize(entity.description);
-  const tags = (entity.tags || []).map(normalize);
-
-  let score = 0;
-  for (const term of terms) {
-    if (name === term) score += 20;
-    else if (name.includes(term)) score += 12;
-
-    if (type.includes(term)) score += 8;
-    if (category.includes(term)) score += 8;
-
-    if (tags.some(tag => tag === term)) score += 10;
-    else if (tags.some(tag => tag.includes(term))) score += 6;
-
-    if (description.includes(term)) score += 3;
-  }
-  return score;
+function normalize(value) { return String(value ?? '').toLowerCase().trim(); }
+function joined(value) { return Array.isArray(value) ? value.join(' ') : String(value || ''); }
+function getEngine(records) {
+  if (engines.has(records)) return engines.get(records);
+  const engine = new window.MiniSearch({
+    fields: ['name', 'id', 'domain', 'aliases', 'identifiers', 'networks', 'type', 'category', 'tags', 'description'],
+    searchOptions: {
+      boost: { name: 8, id: 8, domain: 6, aliases: 5, identifiers: 8, networks: 3, tags: 2, category: 2 },
+      combineWith: 'AND',
+      prefix: true,
+      fuzzy: term => term.length >= 4 ? 0.2 : false,
+    },
+  });
+  engine.addAll(records.map(item => ({ ...item,
+    aliases: joined(item.aliases), identifiers: joined(item.identifiers),
+    networks: joined(item.networks), tags: joined(item.tags),
+  })));
+  const cached = { engine, byId: new Map(records.map(item => [item.id, item])) };
+  engines.set(records, cached);
+  return cached;
 }
 
 function search(records, query, scope) {
+  const term = normalize(query).slice(0, 200);
+  if (!records?.length || !term) return [];
   const types = Object.hasOwn(scopes, scope) ? scopes[scope] : null;
-  const hasQuery = Boolean(normalize(query));
-  return (records || [])
-    .filter(entity => !types || [entity.type, entity.category].some(value => types.includes(normalize(value))))
-    .map(entity => ({ ...entity, score: hasQuery ? scoreEntity(entity, query) : 1 }))
-    .filter(entity => entity.score > 0)
-    .sort((a, b) => b.score - a.score);
+  const allowed = item => !types || [item.type, item.category].some(value => types.includes(normalize(value)));
+  const { engine, byId } = getEngine(records);
+  const scored = new Map(engine.search(term).map(hit => [hit.id, hit.score]));
+  // Exact whole identifiers, domains, aliases and names always lead. No brand preference.
+  for (const item of records) {
+    const identifiers = [item.name, item.id, item.domain, ...(item.aliases || []), ...(item.identifiers || [])];
+    if (identifiers.some(value => normalize(value) === term)) scored.set(item.id, 1000000 + (scored.get(item.id) || 0));
+  }
+  const completeness = item => ['description', 'category', 'networks', 'official_links'].filter(key => item[key]?.length || key === 'official_links' && item[key]?.website).length;
+  return [...scored].map(([id, score]) => ({ ...byId.get(id), score }))
+    .filter(allowed)
+    .sort((a, b) => b.score - a.score ||
+      String(b.source_review?.checked_on || '').localeCompare(a.source_review?.checked_on || '') ||
+      completeness(b) - completeness(a) || a.name.localeCompare(b.name));
 }
 
 function validLink(entity) {

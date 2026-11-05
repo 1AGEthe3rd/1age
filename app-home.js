@@ -38,38 +38,56 @@
   const orbit = document.querySelector('.project-orbit');
   if (!orbit) return;
 
-  for (const link of orbit.querySelectorAll('.project-planet')) {
-    const app = link.pathname.split('/')[2];
-    if (Object.hasOwn(apps, app)) link.href = homeURL(app);
+
+  const icons = new Map([...orbit.querySelectorAll('.project-planet')].map(link =>
+    [link.pathname.split('/')[2], link.querySelector('svg').cloneNode(true)]));
+  const accents = { page: '#55B8FF', space: '#E2FFDC', games: '#FFBB55', exchange: '#50E3D4', quest: '#C18BFF', cash: '#1BFD9C' };
+  const searchURL = query => homeURL(slug) + '&q=' + encodeURIComponent(query);
+  const categories = {
+    games: [['Play', '/apps/games/', 'games'], ['Discover', searchURL('games'), 'games'], ['Sports', searchURL('sports'), 'quest'], ['World', '/world/', 'space']],
+    page: [['My Page', '/apps/page/', 'page'], ['Community', searchURL('community'), 'space'], ['Profiles', searchURL('profile'), 'page']],
+    exchange: [['Convert', '/apps/exchange/', 'exchange'], ['Markets', searchURL('market'), 'exchange'], ['Tokens', searchURL('token'), 'cash']],
+    space: [['My Spaces', '/apps/space/', 'space'], ['Discover', searchURL('space'), 'space'], ['Businesses', searchURL('business'), 'page']],
+    design: [['Create', '/apps/design/', 'quest'], ['Tools', searchURL('design'), 'quest'], ['Spaces', homeURL('space'), 'space']],
+    quest: [['My Quests', '/apps/quest/', 'quest'], ['Opportunities', searchURL('opportunity'), 'quest'], ['Games', homeURL('games'), 'games']],
+    cash: [['My Ledger', '/apps/cash/', 'cash'], ['Exchange', homeURL('exchange'), 'exchange'], ['About Cash', '/ecosystem/#cash', 'cash']],
+  };
+
+  if (!config) {
+    for (const link of orbit.querySelectorAll('.project-planet')) {
+      const app = link.pathname.split('/')[2];
+      if (Object.hasOwn(apps, app)) link.href = homeURL(app);
+    }
+    return;
   }
 
-  if (!config) return;
   const name = '1AGE ' + config.name;
   const [title, destination] = config.links[0];
   document.body.dataset.searchScope = slug;
   document.title = name;
   document.querySelector('#search-title').textContent = 'Search ' + name;
-  document.querySelector('#search-input').placeholder = 'Search ' + name + '…';
+  document.querySelector('#search-input').placeholder = 'Search ' + config.name + '…';
   document.querySelector('.world-entry').href = destination;
   document.querySelector('.world-entry').setAttribute('aria-label', title);
+  const brand = document.querySelector('.brand');
+  brand.setAttribute('aria-label', config.name + ' menu');
+  brand.style.setProperty('--app-accent', accents[slug] || '#1BFD9C');
+  brand.querySelector('.brand-name').textContent = config.name;
+  const brandVisual = icons.has(slug) ? icons.get(slug).cloneNode(true) : document.querySelector('.brand img').cloneNode();
+  brand.querySelector('.brand-circle').replaceChildren(brandVisual);
 
-  const returnLink = document.createElement('a');
-  returnLink.className = 'app-home-return';
-  returnLink.href = '/';
-  returnLink.textContent = '1AGE Home';
-  document.querySelector('.search-home').after(returnLink);
-
-  const list = document.querySelector('.ticker-details');
-  list.replaceChildren(...config.links.map(([label, href], i) => {
-    const item = document.createElement('li');
-    item.dataset.animation = i === 0 ? 'up' : 'full';
-    const headline = document.createElement('strong');
-    headline.textContent = label;
-    const link = document.createElement('a');
-    link.href = href;
-    link.textContent = label;
-    item.append(headline, link);
-    return item;
+  orbit.replaceChildren(...[...categories[slug], ['1AGE', '/', 'home']].map(([label, href, icon], i) => {
+    const planet = document.createElement('a');
+    planet.className = 'project-planet';
+    planet.href = href;
+    planet.dataset.slot = i;
+    planet.style.setProperty('--accent', accents[icon] || '#1BFD9C');
+    planet.setAttribute('aria-label', 'Open ' + label);
+    const visual = icon === 'home' ? Object.assign(document.createElement('img'), {src: '/assets/1age-logo.svg', alt: ''}) : icons.get(icon).cloneNode(true);
+    visual.setAttribute('aria-hidden', 'true');
+    const caption = document.createElement('span');
+    caption.textContent = label;
+    planet.append(visual, caption);
+    return planet;
   }));
-  document.querySelector('.ticker-headline').textContent = title;
 })();

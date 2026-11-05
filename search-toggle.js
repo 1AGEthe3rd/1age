@@ -11,11 +11,9 @@
   }
 
   control.addEventListener('click', () => setExpanded(form.hidden));
-  if (form.closest('.workspace-search')) {
-    form.addEventListener('keydown', event => {
-      if (event.key !== 'Escape') return;
-      setExpanded(false);
-      control.focus();
-    });
-  }
+  form.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    setExpanded(false);
+    control.focus();
+  });
 })();

@@ -1,0 +1,128 @@
+/* Shared refinements load after the established homepage layout. */
+.home-screen .brand:is(:active, .is-pressing, [aria-expanded="true"]) .brand-circle {
+  background: #000;
+}
+.brand-circle > svg {
+  width: 62%;
+  height: 62%;
+  color: var(--green);
+}
+.project-planet > img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+}
+.living-ticker {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.living-ticker .ticker-pause {
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  font-size: 1.25rem;
+}
+.living-ticker:has(.ticker-pause:not([hidden])) .ticker-summary {
+  padding-right: 3.25rem;
+}
+.ticker-summary:focus-visible, .ticker-pause:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+@media (min-width:700px) and (orientation:landscape) {
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    min-height: 0;
+    padding: 8px 12px 0;
+    background: transparent;
+  }
+  .home-screen .brand-circle {
+    width: clamp(48px, 10dvh, 80px);
+    height: clamp(48px, 10dvh, 80px);
+  }
+  .home-screen .brand-name { font-size: 16px; }
+  .home-screen #main { padding-top: 0; }
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: min(700px, calc(100% - 32px));
+    min-height: 64px;
+    margin: 8px auto 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  .home-screen .search-expander,
+  .home-screen.search-open .search-expander {
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .home-screen .search-expander > .search-circle {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    font-size: 36px;
+    order: 0;
+  }
+  .home-screen .search-form {
+    position: static;
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    margin: 0;
+  }
+  .home-screen .search-home > .living-ticker {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    margin: 0;
+  }
+  .home-screen .search-expander { width: 56px; flex: 0 0 56px; }
+  .home-screen.search-open .search-expander { width: 100%; flex: 1; }
+  .home-screen.search-open .living-ticker { display: none; }
+  .home-screen .quick-links { display: none; }
+  .home-screen .universe { width: min(100%, 1300px); padding: 0; }
+}
+@media (max-height:450px) and (orientation:landscape) {
+  .home-screen .brand-circle { width: 44px; height: 44px; }
+  .home-screen .brand-name { font-size: 12px; }
+}
+@media (min-width:700px) and (orientation:landscape) {
+  .home-screen .header-hub { justify-content: center; }
+}
+
+.home-screen .world-scene .project-planet.is-selected {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 0 3px #000;
+}
+@media (min-width:700px) and (orientation:landscape) {
+  .home-screen .header-planet {
+    left: 50%;
+    transform: translateX(calc(-50% + var(--slot) * (var(--ui-planet-size) + 18px)));
+  }
+}
+.home-screen .brand-circle {
+  border-color: var(--app-accent, var(--green));
+  color: var(--app-accent, var(--green));
+}
+.home-screen .brand-circle > svg { color: inherit; }
