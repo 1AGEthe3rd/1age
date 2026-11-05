@@ -1,5 +1,8 @@
 # Independent multichain search — Build 001
 
+Historical initial release. See [Automatic indexing](AUTOMATIC_INDEXING.md) for
+the current daily-indexing development build, expanded coverage and shard loading.
+
 1AGE owns the catalog and search implementation. No search provider, API key,
 subscription, analytics service or backend is required. Searches execute in the
 visitor's browser, using the MIT-licensed MiniSearch 7.2.0 vendored in this repo.
