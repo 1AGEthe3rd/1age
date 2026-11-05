@@ -1,0 +1,70 @@
+{
+  "jupiter": {
+    "networks": [
+      "Solana"
+    ],
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-04",
+      "evidence": [
+        "https://jup.ag"
+      ],
+      "note": "Public source checked; no identity or safety guarantee."
+    }
+  },
+  "phantom": {
+    "networks": [
+      "Solana"
+    ],
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-04",
+      "evidence": [
+        "https://phantom.com"
+      ],
+      "note": "Public source checked; no identity or safety guarantee."
+    }
+  },
+  "helius": {
+    "networks": [
+      "Solana"
+    ],
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-04",
+      "evidence": [
+        "https://helius.dev"
+      ],
+      "note": "Public source checked; no identity or safety guarantee."
+    }
+  },
+  "backpack": {
+    "networks": [
+      "Solana"
+    ],
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-04",
+      "evidence": [
+        "https://backpack.app"
+      ],
+      "note": "Public source checked; no identity or safety guarantee."
+    }
+  },
+  "superteam": {
+    "networks": [
+      "Solana"
+    ],
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-04",
+      "evidence": [
+        "https://superteam.fun"
+      ],
+      "note": "Public source checked; no identity or safety guarantee."
+    }
+  },
+  "1age": {
+    "description": "Independent multichain blockchain discovery and search platform."
+  }
+}
