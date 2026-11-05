@@ -1,0 +1,12 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),cp=require('node:child_process');
+const root=path.resolve(__dirname,'..'),MiniSearch=require('../assets/vendor/minisearch-7.2.0.js');
+const current=require('../search-core.js').createEngine(MiniSearch);
+const data=JSON.parse(fs.readFileSync(path.join(root,'data/search-index.json')));
+const cases=require('./search-quality-cases.json');
+const baseline=require('./search-quality-baseline.json');
+const check=(rows,c)=>c.expect_empty?rows.length===0:rows.slice(0,c.within).some(x=>x.id===c.expected_id);
+const results=cases.map(c=>{const before=baseline.cases.find(x=>x.query===c.query);const after=current.search(data,c.query);return {...c,before_pass:before?.passed??null,after_pass:check(after,c),before_count:before?.count??null,after_count:after.length,top_results:after.slice(0,5).map(x=>x.name)};});
+const report={baseline_commit:'eadfc04',baseline_records:baseline.records,candidate_records:data.length,total_queries:cases.length,before_passed:results.filter(x=>x.before_pass).length,after_passed:results.filter(x=>x.after_pass).length,results};
+fs.writeFileSync(path.join(root,'reports/search-quality.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({queries:report.total_queries,before:report.before_passed,after:report.after_passed,records:data.length,failures:results.filter(x=>!x.after_pass)},null,2));
+if(report.after_passed!==cases.length)process.exitCode=1;

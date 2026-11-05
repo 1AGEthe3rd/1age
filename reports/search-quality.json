@@ -1,0 +1,530 @@
+{
+  "baseline_commit": "eadfc04",
+  "baseline_records": 94,
+  "candidate_records": 308,
+  "total_queries": 40,
+  "before_passed": 31,
+  "after_passed": 40,
+  "results": [
+    {
+      "query": "Upland",
+      "expected_id": "upland",
+      "within": 3,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 1,
+      "top_results": [
+        "Upland"
+      ]
+    },
+    {
+      "query": "Phantom",
+      "expected_id": "phantom",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Phantom"
+      ]
+    },
+    {
+      "query": "Jupiter",
+      "expected_id": "jupiter",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 2,
+      "top_results": [
+        "Jupiter",
+        "Jupiter Lend"
+      ]
+    },
+    {
+      "query": "MetaMask",
+      "expected_id": "metamask",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "MetaMask"
+      ]
+    },
+    {
+      "query": "Uniswap",
+      "expected_id": "uniswap",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 2,
+      "after_count": 2,
+      "top_results": [
+        "Uniswap",
+        "Uniswap Developers"
+      ]
+    },
+    {
+      "query": "Star Atlas",
+      "expected_id": "star-atlas",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Star Atlas"
+      ]
+    },
+    {
+      "query": "Skyweaver",
+      "expected_id": "skyweaver",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Skyweaver"
+      ]
+    },
+    {
+      "query": "Solscan",
+      "expected_id": "solscan",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Solscan"
+      ]
+    },
+    {
+      "query": "OpenSea",
+      "expected_id": "opensea",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "OpenSea"
+      ]
+    },
+    {
+      "query": "Hardhat",
+      "expected_id": "hardhat",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Hardhat"
+      ]
+    },
+    {
+      "query": "Foundry",
+      "expected_id": "foundry",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Foundry"
+      ]
+    },
+    {
+      "query": "OpenZeppelin",
+      "expected_id": "openzeppelin",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "OpenZeppelin"
+      ]
+    },
+    {
+      "query": "Bitcoin",
+      "expected_id": "bitcoin",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 4,
+      "after_count": 58,
+      "top_results": [
+        "bitcoin/bitcoin",
+        "Bitcoin",
+        "bitcoin/bips",
+        "Binance Bitcoin",
+        "Kraken Bitcoin"
+      ]
+    },
+    {
+      "query": "Ethereum",
+      "expected_id": "ethereum",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 24,
+      "after_count": 203,
+      "top_results": [
+        "Ethereum",
+        "ethereum/go-ethereum",
+        "ethereum/ethereum-org-website",
+        "Ethereum ethereum stack documentation",
+        "Ethereum intro to ethereum documentation"
+      ]
+    },
+    {
+      "query": "Solana",
+      "expected_id": "solana",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 21,
+      "after_count": 90,
+      "top_results": [
+        "Solana",
+        "Solana Developers",
+        "solana-program/actions",
+        "solana-program/stake",
+        "solana-program/token"
+      ]
+    },
+    {
+      "query": "Backpack",
+      "expected_id": "backpack",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 2,
+      "top_results": [
+        "Backpack",
+        "Backpack"
+      ]
+    },
+    {
+      "query": "Base",
+      "expected_id": "base",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 12,
+      "after_count": 75,
+      "top_results": [
+        "base/base",
+        "Base",
+        "Base Documentation",
+        "Base Bridge",
+        "base/.github"
+      ]
+    },
+    {
+      "query": "ENS",
+      "expected_id": "ens",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Ethereum Name Service"
+      ]
+    },
+    {
+      "query": ".sol",
+      "expected_id": "sns",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 25,
+      "after_count": 94,
+      "top_results": [
+        "Solana Name Service",
+        "Binance Staked SOL",
+        "Bybit Staked SOL",
+        "DFDV Staked SOL",
+        "Drift Staked SOL"
+      ]
+    },
+    {
+      "query": ".eth",
+      "expected_id": "ens",
+      "within": 3,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 24,
+      "after_count": 203,
+      "top_results": [
+        "Ethereum Name Service",
+        "Binance staked ETH",
+        "Coinbase Wrapped Staked ETH",
+        "ethereum/EthLib",
+        "Ethereum"
+      ]
+    },
+    {
+      "query": "top Solana projects",
+      "expected_id": "jupiter",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 76,
+      "top_results": [
+        "Solana Name Service",
+        "Backpack",
+        "Jupiter",
+        "Phantom",
+        "OnRe"
+      ]
+    },
+    {
+      "query": "best Ethereum wallets",
+      "expected_id": "metamask",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 1,
+      "top_results": [
+        "MetaMask"
+      ]
+    },
+    {
+      "query": "find me wallets on Solana",
+      "expected_id": "phantom",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 3,
+      "top_results": [
+        "Backpack",
+        "Phantom",
+        "Solscan"
+      ]
+    },
+    {
+      "query": "blockchain games",
+      "expected_id": "upland",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 8,
+      "top_results": [
+        "Gate",
+        "Upland",
+        "1AGE Games",
+        "Star Atlas",
+        "Skyweaver"
+      ]
+    },
+    {
+      "query": "show me crypto games",
+      "expected_id": "star-atlas",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 8,
+      "top_results": [
+        "Gate",
+        "Upland",
+        "1AGE Games",
+        "Star Atlas",
+        "Skyweaver"
+      ]
+    },
+    {
+      "query": "what is Upland",
+      "expected_id": "upland",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 1,
+      "top_results": [
+        "Upland"
+      ]
+    },
+    {
+      "query": "Ethereum NFT marketplace",
+      "expected_id": "opensea",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 1,
+      "top_results": [
+        "OpenSea"
+      ]
+    },
+    {
+      "query": "ethereum community",
+      "expected_id": "ethereum-community",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 2,
+      "after_count": 2,
+      "top_results": [
+        "Ethereum Community",
+        "ethereum/ethereum-org-website"
+      ]
+    },
+    {
+      "query": "solana explorer",
+      "expected_id": "solscan",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 2,
+      "after_count": 2,
+      "top_results": [
+        "Solscan",
+        "1AGE Exchange"
+      ]
+    },
+    {
+      "query": "decentralized finance",
+      "expected_id": "uniswap",
+      "within": 30,
+      "before_pass": false,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 183,
+      "top_results": [
+        "Defi Saver Asset Management",
+        "Uniswap Developers",
+        "DFDV Staked SOL",
+        "Jupiter",
+        "Uniswap"
+      ]
+    },
+    {
+      "query": "ethereum developer tools",
+      "expected_id": "hardhat",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 18,
+      "after_count": 18,
+      "top_results": [
+        "Ethereum Developers",
+        "ethereum/go-ethereum",
+        "ethereum/ethereum-org-website",
+        "ethereum/kohaku",
+        "ethereum/EIPs"
+      ]
+    },
+    {
+      "query": "phantm",
+      "expected_id": "phantom",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Phantom"
+      ]
+    },
+    {
+      "query": "metam",
+      "expected_id": "metamask",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "MetaMask"
+      ]
+    },
+    {
+      "query": "BTC",
+      "expected_id": "bitcoin",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 2,
+      "after_count": 58,
+      "top_results": [
+        "Bitcoin",
+        "Blockstream Explorer",
+        "bitcoin/bitcoin",
+        "bitcoin/bips",
+        "Binance Bitcoin"
+      ]
+    },
+    {
+      "query": "solscan.io",
+      "expected_id": "solscan",
+      "within": 30,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 1,
+      "after_count": 1,
+      "top_results": [
+        "Solscan"
+      ]
+    },
+    {
+      "query": "",
+      "expect_empty": true,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 0,
+      "top_results": []
+    },
+    {
+      "query": "notarealblockchainprojectzz992",
+      "expect_empty": true,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 0,
+      "top_results": []
+    },
+    {
+      "query": "solana zxqv987654unknown",
+      "expect_empty": true,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 0,
+      "top_results": []
+    },
+    {
+      "query": "Upland zxqv987654unknown",
+      "expect_empty": true,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 0,
+      "top_results": []
+    },
+    {
+      "query": "private-discord-message-7zzn",
+      "expect_empty": true,
+      "before_pass": true,
+      "after_pass": true,
+      "before_count": 0,
+      "after_count": 0,
+      "top_results": []
+    }
+  ]
+}

@@ -43,8 +43,8 @@ class DailyIndexTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
         for file in ['1age-index.json','entities.json','blockchain-seeds.json','search-overrides.json','index-exclusions.json','index-sources/config.json']:
             target=self.root/'data'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/'data'/file,target)
-        self.config=read(self.root/'data/index-sources/config.json');self.http=FakeHTTP(self.config)
-        records,_=merged_catalog(self.root);write_outputs(outputs(records,self.root),self.root)
+        self.config=read(self.root/'data/index-sources/config.json');self.config['sources']=[s for s in self.config['sources'] if s['adapter'] in ('chain_registry','github_org')];(self.root/'data/index-sources/config.json').write_text(json.dumps(self.config));self.http=FakeHTTP(self.config)
+        records,_=merged_catalog(self.root);self.initial_count=len(records);write_outputs(outputs(records,self.root),self.root)
     def tearDown(self): self.temp.cleanup()
     def run_index(self,**options): return updater.run(self.root,self.http,now=options.pop('now',T1),**options)
     def test_discovery_dedup_refresh_and_no_verification(self):
@@ -52,7 +52,7 @@ class DailyIndexTests(unittest.TestCase):
         self.assertEqual(first['new_records_discovered'],6)
         self.assertEqual(first['duplicate_records_detected'],1)
         self.assertEqual(first['links_checked'],24)
-        self.assertEqual(first['total_indexed_records'],48)
+        self.assertEqual(first['total_indexed_records'],self.initial_count+6)
         rows=read(self.root/'data/discovered-records.json');self.assertTrue(all(x['verification_status']=='unverified' for x in rows))
         self.assertTrue(all('authenticity' not in x and 'source_review' not in x for x in rows))
         self.http.payloads[source_url(self.config['sources'][1])][0]['description']='Updated public SDK description'
@@ -111,7 +111,7 @@ class DailyIndexTests(unittest.TestCase):
         self.http.link_status='possibly_broken';first,ok=self.run_index();self.assertTrue(ok)
         second,ok=self.run_index(now=T2);self.assertTrue(ok)
         # Oldest-first rotation may defer the same URL. The previously valid records remain.
-        self.assertEqual(second['total_indexed_records'],48)
+        self.assertEqual(second['total_indexed_records'],self.initial_count+6)
         self.assertTrue(any(x['link_health']['status']=='possibly_broken' for x in read(self.root/'data/search-index.json') if 'link_health' in x))
     def test_candidate_revalidated_and_tampering_rejected_before_publication(self):
         self.assertTrue(self.run_index()[1])

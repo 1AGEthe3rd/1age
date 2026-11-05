@@ -9,7 +9,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/search-manifes
 const calls = [];
 let fail = false;
 function makeContext(failure = () => fail) {
-  return { window: { MiniSearch, location: { origin: 'https://1age.com' } }, URL,
+  return { window: { MiniSearch, ageSearchCore: require('../search-core.js'), location: { origin: 'https://1age.com' } }, URL,
     fetch: async url => {
       calls.push(url);
       const file = path.join(root, url.replace(/^\//, ''));

@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "games",
+    "domain": "1age.games",
+    "repository": "1age-games",
+    "checked_at": "2026-11-05T15:50:22+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "page",
+    "domain": "1age.page",
+    "repository": "1agepage",
+    "checked_at": "2026-11-05T15:50:22+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "exchange",
+    "domain": "1age.exchange",
+    "repository": "1age-exchange",
+    "checked_at": "2026-11-05T15:50:22+00:00",
+    "http_status": 200,
+    "expired_notice": true,
+    "title": "",
+    "state": "registration_current_owner_confirmed_hosting_unverified",
+    "registration": {
+      "registrar": "Porkbun",
+      "expires": "2027-04-30",
+      "evidence": "Owner-supplied account screenshot"
+    },
+    "correction": "Earlier HTTP notice does not establish registration status or a need to renew."
+  },
+  {
+    "slug": "space",
+    "domain": "1age.space",
+    "repository": "1age-space",
+    "checked_at": "2026-11-05T15:50:22+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "design",
+    "domain": "1age.design",
+    "repository": "1age-design",
+    "checked_at": "2026-11-05T15:50:22+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "quest",
+    "domain": "1age.quest",
+    "repository": "1age-quest",
+    "checked_at": "2026-11-05T15:50:22+00:00",
+    "state": "unreachable",
+    "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+    "slug": "cash",
+    "domain": "1age.cash",
+    "repository": "1age-cash",
+    "checked_at": "2026-11-05T15:50:26+00:00",
+    "state": "unreachable",
+    "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+    "slug": "plus",
+    "domain": "1age.plus",
+    "repository": "1age-plus",
+    "checked_at": "2026-11-05T15:50:26+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "app",
+    "domain": "1age.app",
+    "repository": "1age-app",
+    "checked_at": "2026-11-05T15:50:27+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "store",
+    "domain": "1age.store",
+    "repository": "1age-store",
+    "checked_at": "2026-11-05T15:50:27+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "shop",
+    "domain": "1age.shop",
+    "repository": "1age-shop",
+    "checked_at": "2026-11-05T15:50:27+00:00",
+    "http_status": 200,
+    "expired_notice": false,
+    "title": "AGE",
+    "state": "reachable"
+  },
+  {
+    "slug": "world",
+    "domain": "1age.world",
+    "repository": null,
+    "checked_at": "2026-11-05T15:50:27+00:00",
+    "state": "unreachable",
+    "error": "HTTP Error 503: Service Unavailable"
+  }
+]

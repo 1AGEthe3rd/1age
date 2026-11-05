@@ -1,0 +1,13 @@
+[
+  {"slug":"games","name":"1AGE Games","domain":"1age.games","repository":"1age-games"},
+  {"slug":"page","name":"1AGE Page","domain":"1age.page","repository":"1agepage"},
+  {"slug":"exchange","name":"1AGE Exchange","domain":"1age.exchange","repository":"1age-exchange"},
+  {"slug":"space","name":"1AGE Space","domain":"1age.space","repository":"1age-space"},
+  {"slug":"design","name":"1AGE Design","domain":"1age.design","repository":"1age-design"},
+  {"slug":"quest","name":"1AGE Quest","domain":"1age.quest","repository":"1age-quest"},
+  {"slug":"cash","name":"1AGE Cash","domain":"1age.cash","repository":"1age-cash"},
+  {"slug":"plus","name":"1AGE Plus","domain":"1age.plus","repository":"1age-plus"},
+  {"slug":"app","name":"1AGE App","domain":"1age.app","repository":"1age-app"},
+  {"slug":"store","name":"1AGE Store","domain":"1age.store","repository":"1age-store"},
+  {"slug":"shop","name":"1AGE Shop","domain":"1age.shop","repository":"1age-shop"}
+]

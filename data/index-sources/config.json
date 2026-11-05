@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "limits": {
-    "max_records": 300,
+    "max_records": 1000,
     "max_new_per_run": 25,
     "max_updated_fraction": 0.5,
-    "max_response_bytes": 3000000,
+    "max_response_bytes": 12000000,
     "min_request_interval_seconds": 1,
     "timeout_seconds": 12,
     "retries": 1,
     "max_link_checks": 24,
-    "max_index_bytes": 600000
+    "max_index_bytes": 2500000
   },
   "sources": [
     {
@@ -101,6 +101,80 @@
       ],
       "max_records": 8,
       "max_pages": 1
+    },
+    {
+      "id": "defillama-protocols",
+      "adapter": "protocol_directory",
+      "url": "https://api.llama.fi/protocols",
+      "attribution": "DefiLlama public protocol metadata",
+      "license_url": "https://api-docs.defillama.com/",
+      "networks": [
+        "Solana",
+        "Ethereum",
+        "Bitcoin",
+        "Base",
+        "Polygon"
+      ],
+      "max_records": 200
+    },
+    {
+      "id": "solana-resources",
+      "adapter": "resource_hub",
+      "url": "https://solana.com/ecosystem",
+      "attribution": "Solana official ecosystem hub; page titles and links",
+      "terms_url": "https://solana.com/disclaimer",
+      "networks": [
+        "Solana"
+      ],
+      "max_records": 20,
+      "path_prefixes": [
+        "/ecosystem",
+        "/gaming",
+        "/developers",
+        "/community",
+        "/wallets",
+        "/depin",
+        "/desci",
+        "/research",
+        "/network",
+        "/news",
+        "/artists"
+      ]
+    },
+    {
+      "id": "ethereum-resources",
+      "adapter": "resource_hub",
+      "url": "https://ethereum.org/",
+      "attribution": "ethereum.org official resource hub; page titles and links",
+      "terms_url": "https://ethereum.org/en/terms-of-use/",
+      "networks": [
+        "Ethereum"
+      ],
+      "max_records": 20,
+      "path_prefixes": [
+        "/apps",
+        "/en/apps",
+        "/wallets",
+        "/en/wallets",
+        "/developers",
+        "/en/developers",
+        "/community",
+        "/en/community",
+        "/defi",
+        "/en/defi",
+        "/nft",
+        "/en/nft",
+        "/guides",
+        "/en/guides"
+      ]
+    },
+    {
+      "id": "ethereum-docs",
+      "adapter": "ethereum_docs",
+      "url": "https://api.github.com/repos/ethereum/ethereum-org-website/contents/public/content/developers/docs?ref=dev",
+      "attribution": "ethereum.org public developer documentation registry (MIT)",
+      "license_url": "https://github.com/ethereum/ethereum-org-website/blob/dev/LICENSE",
+      "max_records": 60
     }
   ],
   "future_sources": [

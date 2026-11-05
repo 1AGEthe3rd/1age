@@ -42,6 +42,7 @@ jobs:
           node --check search-index.js
           node --check search.js
           node tests/search.test.cjs
+          node tests/search-quality.test.cjs
       - name: Run summary
         if: always()
         run: |
@@ -53,7 +54,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: search-index-report-${{ github.run_id }}
-          path: reports/index-latest*.json
+          path: |
+            reports/index-latest*.json
+            reports/search-quality.json
           retention-days: 14
       - name: Save validated candidate
         uses: actions/upload-artifact@v4

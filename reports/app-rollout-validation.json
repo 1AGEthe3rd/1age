@@ -1,0 +1,13 @@
+{
+  "status": "development_candidate_validated_not_deployed",
+  "canonical_base": "eadfc04dd0341b09b785da7b262ded9f166e3643",
+  "canonical_app_routes": 12,
+  "public_app_repository_patches": 11,
+  "search_records": 96,
+  "networks": 16,
+  "python_tests_passed": 13,
+  "javascript_checks": ["app alias titles, icons, fixed canonical destination and query preservation", "shared search ranking, scopes, routed/eager equivalence, retry and fallback"],
+  "browser_checks": ["all 12 route titles, short header labels, app icons, home planets and Enter destinations", "Games search returned three real results", "desktop search hides ticker without shrinking globe", "mobile Page search retains bottom ticker", "390 by 844 mobile document has no overflow", "Store workspace retains catalog controls and expands inline search", "main homepage retains six flagship planets"],
+  "patch_checks": "All 12 patches applied to independent clean base checkouts and produced the exact reviewed Git trees; CNAME and existing workflows unchanged in app repositories; no source file deletions.",
+  "production_changes_performed": false
+}

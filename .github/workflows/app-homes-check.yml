@@ -1,0 +1,16 @@
+name: Check shared app homepages
+on:
+  pull_request:
+    paths: ['index.html', 'app-home.js', 'assets/app-icons/**', 'data/app-domains.json', 'scripts/build-app-*.py', 'home/**', 'tests/app-*.cjs']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/build-app-icons.py --check
+      - run: python3 scripts/build-app-homes.py --check
+      - run: node --check app-home.js
+      - run: node tests/app-entrypoints.test.cjs
