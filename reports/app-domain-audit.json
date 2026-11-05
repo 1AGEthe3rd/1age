@@ -27,7 +27,13 @@
     "http_status": 200,
     "expired_notice": true,
     "title": "",
-    "state": "renewal_required"
+    "state": "registration_current_owner_confirmed_hosting_unverified",
+    "registration": {
+      "registrar": "Porkbun",
+      "expires": "2027-04-30",
+      "evidence": "Owner-supplied account screenshot"
+    },
+    "correction": "Earlier HTTP notice does not establish registration status or a need to renew."
   },
   {
     "slug": "space",

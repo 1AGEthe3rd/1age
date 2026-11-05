@@ -43,8 +43,8 @@ The provided publishing helper only creates and pushes development branches. It 
 
 ## Domain and World limitations
 
-At the recorded audit, `1age.exchange` served a Namecheap expiration notice. Renewal is an owner action and may involve payment. Quest, Cash and World returned HTTP 503 from this environment; this does not establish the cause or their availability for all visitors. See `reports/app-domain-audit.json` for exact observations.
+The owner confirmed `1age.exchange` is registered at Porkbun through 2027-04-30. The earlier Namecheap response was misleading and does not establish expiration. DNS/hosting still require verification. Quest, Cash and World returned HTTP 503 from this environment; this does not establish the cause or their availability for all visitors. See `reports/app-domain-audit.json` for exact observations.
 
-The World route opens the existing launch options. This release does not include a browser-exported 3D build or configure a native launcher on new devices. The main homepage's existing native World entry remains unchanged.
+The World and available application Enter links request their corresponding installed 3D scenes through the destination-aware native launcher. This release does not include a browser-exported 3D build or configure a native launcher on new devices. The main homepage's existing native World entry remains unchanged.
 
 Google can retain older titles/icons until recrawling and may choose its own result titles. Correct metadata does not guarantee immediate search-result changes.

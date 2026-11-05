@@ -19,6 +19,10 @@ try {
     const home=fs.readFileSync(path.join(root,'home',app.slug,'index.html'),'utf8');
     assert(home.includes('<title>'+app.name+'</title>'));
     assert(home.includes('data-home-app="'+app.slug+'"'));
+    const native=['games','page','space','exchange','quest','cash','design'].includes(app.slug);
+    const entry=native?'oneage://world/enter?destination='+app.slug:'/apps/'+app.slug+'/';
+    assert(home.includes('class="world-entry" href="'+entry+'"'));
+    assert(home.includes(native?'>Enter</a>':'>Open app</a>'));
     assert(home.includes('/world.js?v=home-refinement-001'));
     assert(home.includes('/living-ticker.js?v=home-refinement-001'));
     assert(home.includes('/search-index.js?v=daily-index-001'));

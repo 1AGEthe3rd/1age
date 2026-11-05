@@ -1,6 +1,6 @@
 # Publish the shared app homepage updates
 
-This package updates the existing repositories. It does not merge pull requests, change DNS, renew domains or publish a Godot web build.
+This package prepares the existing repositories and the installed World runtime. It does not merge pull requests, change DNS, renew domains or publish a Godot web build.
 
 ## 1. Publish the shared 1AGE.com routes first
 
@@ -45,9 +45,35 @@ Twelve shared homepages (including World launch options), app-specific titles/ic
 
 ## Remaining external issues
 
-- Exchange served an expired-domain notice at audit; renewal is an owner action.
+- Exchange registration is current at Porkbun through 2027-04-30, confirmed by the owner. The earlier Namecheap response does not establish expiration; check DNS/hosting separately.
 - Quest, Cash and World returned HTTP 503 from the development environment. Their domains need separate availability/hosting verification.
-- No public hosting repository for `1age.world` was identified. This package adds `/home/world/` on 1AGE.com but does not expose private Godot source or solve the browser export dependency.
+- No public hosting repository for `1age.world` was identified. `/home/world/` on 1AGE.com uses the native handler on configured laptops. This does not expose private Godot source or solve browser 3D.
 - Google can retain old titles/icons until recrawling; matching metadata does not guarantee an immediate search-result change.
 
 `manifest.json` records every patch base, reviewed tree and SHA-256 checksum. `APP_HOMEPAGES.md`, `app-domain-audit.json` and `validation.json` provide implementation and validation details.
+
+## World 3D and jump-drive setup (updated)
+
+The World work is already saved on GitHub in draft PR #5: `https://github.com/1AGEthe3rd/1age-world/pull/5`. Main has not been merged. The native candidate is pinned at `4fbede9072fe4b4eac2ea1f7855f31269327ea01`.
+
+On the **Chuwi**, from this extracted package, run:
+
+```bash
+python3 finish-setup.py --publish-web
+```
+
+This fetches that exact World revision into an isolated development worktree, runs Godot/Python validation, registers the current-user Enter handler, then pushes the website review branch. It does not merge or deploy. Your dirty `world-room-001` or `world-orbital-test` source files are not overwritten. If a source checkout is unavailable, it clones the same private canonical repository instead.
+
+Godot must already exist at `~/1AGE/Tools/Godot/Godot_v4.7.2-stable_linux.x86_64`. This command starts no engine/template download. The existing main homepage Enter link can use the updated World handler immediately after successful installation. Application-specific Enter links require the website PR to be merged and deployed.
+
+With a single jump drive mounted, add `--usb` to also prepare its offline copy. Or run later:
+
+```bash
+python3 ~/1AGE/World/world-domes-preview/launcher/usb_transfer.py prepare
+```
+
+The helper prints the new USB folder. On the NanoTE, open a terminal in that folder and run `python3 install_on_laptop.py install`. No internet or export templates are needed for that offline installation. The engine/project are copied locally, so you can unplug the drive afterwards. No disk is formatted and existing files are preserved.
+
+Supported direct 3D routes: World, Games, Page, Space, Exchange, Quest, Cash and Design. Games opens its existing complex; the five named flagship pavilions remain observation foundations, and Design uses the builder. Plus/App/Store/Shop retain Open app buttons because they do not yet have established 3D scenes. Phone/browser 3D and headset VR remain separate work.
+
+The domain aliases and the rest of the app rollout still follow steps 1–2 above after the canonical web PR deploys. The World branch is a draft for review; no manual aesthetic checkpoint is required to run its automated tests or prepare the native preview.

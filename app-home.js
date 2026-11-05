@@ -18,6 +18,7 @@
   const config = apps[slug];
   const homeURL = app => '/home/' + encodeURIComponent(app) + '/';
   const workspace = document.body.dataset.app;
+  const spatialApps = new Set(['world', 'games', 'page', 'space', 'exchange', 'quest', 'cash', 'design']);
 
   if (Object.hasOwn(apps, workspace)) {
     const nav = document.querySelector('header nav');
@@ -90,8 +91,10 @@
   document.querySelector('#search-title').textContent = 'Search ' + name;
   document.querySelector('#search-input').placeholder = 'Search ' + config.name + '…';
   document.querySelector('#search-input').setAttribute('aria-label', 'Search ' + name);
-  document.querySelector('.world-entry').href = destination;
-  document.querySelector('.world-entry').setAttribute('aria-label', title);
+  const entry = document.querySelector('.world-entry');
+  entry.href = spatialApps.has(slug) ? 'oneage://world/enter?destination=' + slug : destination;
+  entry.setAttribute('aria-label', spatialApps.has(slug) ? 'Enter 1AGE ' + config.name + ' 3D on this computer' : title);
+  entry.textContent = spatialApps.has(slug) ? 'Enter' : 'Open app';
   const brand = document.querySelector('.brand');
   brand.setAttribute('aria-label', config.name + ' menu');
   brand.style.setProperty('--app-accent', accents[slug] || '#1BFD9C');

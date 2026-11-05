@@ -19,6 +19,11 @@ def homes():
             page=re.sub(r'<meta '+selector+r' content="[^"]*">','<meta '+selector+' content="'+html.escape(value,quote=True)+'">',page,count=1)
         page=re.sub(r'<link rel="canonical" href="[^"]*">','<link rel="canonical" href="'+route+'">',page,count=1)
         page=page.replace('<body class="home-screen">','<body class="home-screen" data-home-app="'+slug+'">',1)
+        native = slug in {'world','games','page','space','exchange','quest','cash','design'}
+        entry = 'oneage://world/enter?destination='+slug if native else '/apps/'+slug+'/'
+        entry_label = 'Enter '+name+' 3D on this computer' if native else 'Open '+name+' app'
+        page=re.sub(r'<a class="world-entry"[^>]*>.*?</a>', '<a class="world-entry" href="'+entry+'" aria-label="'+entry_label+'">'+('Enter' if native else 'Open app')+'</a>',page,count=1)
+
         page=re.sub(r'(<span class="brand-name">).*?(</span>)',lambda m:m[1]+name.removeprefix('1AGE ')+m[2],page,count=1)
         page=re.sub(r'(<h1\b[^>]*id="search-title"[^>]*>).*?(</h1>)',lambda m:m[1]+'Search '+name+m[2],page,count=1,flags=re.S)
         page=re.sub(r'<link rel="icon"[^>]*>','',page)
