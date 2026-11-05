@@ -64,8 +64,10 @@
     min-height: 64px;
     margin: 8px auto 0;
     padding: 0;
+    display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 12px;
   }
   .home-screen .search-expander,
   .home-screen.search-open .search-expander {
@@ -106,21 +108,6 @@
 }
 @media (min-width:700px) and (orientation:landscape) {
   .home-screen .header-hub { justify-content: center; }
-}
-@media (min-width:700px) and (orientation:landscape) {
-  .home-screen .search-home,
-  .home-screen.search-open .search-home {
-    width: min(1200px, calc(100% - 32px));
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr);
-    column-gap: 12px;
-  }
-  .home-screen .search-expander { grid-column: 2; }
-  .home-screen .search-home > .living-ticker { grid-column: 3; }
-  .home-screen.search-open .search-expander {
-    grid-column: 2 / 4;
-    width: 100%;
-  }
 }
 
 .home-screen .world-scene .project-planet.is-selected {
