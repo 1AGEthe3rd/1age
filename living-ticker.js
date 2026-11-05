@@ -22,7 +22,7 @@
       headline.textContent = announcement.querySelector('strong').textContent;
       headline.classList.remove('ticker-moving');
 
-      if (paused || disclosure.open || reducedMotion.matches || document.hidden ||
+      if ((matchMedia('(min-width:700px) and (orientation:landscape)').matches && document.body.classList.contains('search-open')) || paused || disclosure.open || reducedMotion.matches || document.hidden ||
           ticker.querySelector('summary').matches(':focus-visible') ||
           (hoverable.matches && ticker.matches(':hover'))) return;
 
@@ -70,7 +70,9 @@
 
     pause.addEventListener('click', () => {
       paused = !paused;
-      pause.textContent = paused ? 'Resume' : 'Pause';
+      pause.querySelector('span').textContent = paused ? '▶' : 'Ⅱ';
+      pause.setAttribute('aria-label', paused ? 'Resume announcements' : 'Pause announcements');
+      pause.setAttribute('aria-pressed', String(paused));
       showAnnouncement();
     });
     disclosure.addEventListener('toggle', showAnnouncement);
@@ -83,6 +85,7 @@
       showAnnouncement();
     });
     document.addEventListener('visibilitychange', showAnnouncement);
+    new MutationObserver(showAnnouncement).observe(document.body, {attributes: true, attributeFilter: ['class']});
     new ResizeObserver(showAnnouncement).observe(viewport);
     pause.hidden = reducedMotion.matches;
   });

@@ -15,6 +15,10 @@ const scopes = {
 const cache = new Map();
 
 function load(mode) {
+  if (mode === 'all') {
+    return Promise.all([load('1age'), load('solana')]).then(groups =>
+      [...new Map(groups.flat().map(entity => [entity.id, entity])).values()]);
+  }
   if (!Object.hasOwn(sources, mode)) return Promise.reject(new Error('Unknown search mode'));
   if (!cache.has(mode)) {
     const request = fetch(sources[mode]).then(response => {

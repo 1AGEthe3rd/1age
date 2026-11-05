@@ -6,7 +6,7 @@
  document.body.insertAdjacentHTML('beforeend','<dialog class="header-contact"><form method="dialog"><button aria-label="Close contact">×</button></form><h2>Contact 1AGE</h2><p class="contact-copy"></p><a class="contact-link" hidden></a><a href="/updates/">Development updates ↗</a></dialog>');
  function contact(){const a=$('.contact-link');a.hidden=!links.contact_email;$('.contact-copy').textContent=links.contact_email?'Get in touch.':'Official contact details will appear here.';if(links.contact_email){a.textContent=links.contact_email;a.href='mailto:'+links.contact_email;}$('.header-contact').showModal();}
  function header(next){
-  group=next;if(!brand||!wings)return;wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));brand.querySelector('img').src=next==='closed'?'/assets/1age-logo.svg':'/assets/1age-logo-active.svg';
+  group=next;if(!brand||!wings)return;wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
   if(next==='closed')return;
   const items=next==='social'?links.socials:[{name:'Social',icon:'social',action:()=>header('social')},{name:'About',icon:'about',url:'/about/'},{name:'Contact',icon:'contact',action:contact},{name:'Help',symbol:'?',action:()=>document.querySelector('.gesture-guide')?.showModal()}];
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
@@ -18,24 +18,19 @@
  brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  fetch('/data/header-links.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{links.socials=(data.socials||[]).filter(item=>item&&typeof item.name==='string').map(item=>{let url=null;try{if(new URL(item.url).protocol==='https:')url=item.url;}catch(_){}return {name:item.name,symbol:item.symbol||item.name[0],url};});links.contact_email=typeof data.contact_email==='string'&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact_email)?data.contact_email:null;if(group==='social')header('social');}).catch(()=>{links.socials=[{name:'GitHub',symbol:'GH',url:'https://github.com/1AGEthe3rd/1age'}];});
  const scene=$('.world-scene'),globe=$('.world-globe');if(!scene||!globe)return;
- const orbit=$('.project-orbit'),entry=$('.world-entry'),planets=[...orbit.querySelectorAll('.project-planet')],slugs=['page','space','games','exchange','quest','cash'];
- let selected=null,highlight=false,hover=false,drag=null,dragged=false,multi=false;const touches=new Set();
- const globeName=document.body.dataset.searchScope?document.title:'1AGE World';
- globe.insertAdjacentHTML('beforeend','<span class="world-letter" aria-hidden="true">1AGE World</span><img class="project-peek" alt="" hidden>');
- scene.insertAdjacentHTML('beforeend','<button class="preview-expand" type="button" aria-label="Enlarge selected project preview" aria-haspopup="dialog" hidden>⤢</button>');
- document.body.insertAdjacentHTML('beforeend','<dialog class="preview-view" aria-label="Enlarged project preview"><img alt=""><form method="dialog"><button aria-label="Close enlarged preview">×</button></form></dialog><dialog class="gesture-guide" aria-labelledby="gesture-guide-title"><h2 id="gesture-guide-title">Your World, one screen.</h2><div class="gesture-visual" aria-hidden="true">← <span class="demo-globe">✦</span> →</div><p>Drag the globe to turn it.<br>Swipe the planets to explore.<br>Press a planet for a glimpse. Tap to open.<br>Hold for options. L / R open more destinations.<br>Tap the globe to return, then tap again to reveal Enter.</p><label><input type="checkbox" id="hide-gesture-guide"> Don’t show again</label><button type="button" data-dismiss-guide>Let’s explore</button></dialog>');
- globe.querySelector('.world-letter').textContent=globeName;
- const peek=globe.querySelector('.project-peek'),expand=$('.preview-expand'),viewer=$('.preview-view'),guide=$('.gesture-guide');
- function sync(){const preview=selected!==null;scene.classList.toggle('showing-peek',preview);scene.classList.toggle('globe-selected',!preview&&highlight);scene.classList.toggle('globe-hover',!preview&&hover);peek.hidden=expand.hidden=!preview;entry.hidden=preview;globe.setAttribute('aria-pressed',String(!preview&&highlight));globe.setAttribute('aria-label',preview?'Project preview. Press to return to '+globeName+'.':globeName+'. Drag to turn; press to highlight and reveal Enter.');planets.forEach((node,i)=>node.classList.toggle('is-selected',i===selected));}
- function reset(){selected=null;highlight=false;sync();}
- window.addEventListener('1age-project-preview',event=>{if(!slugs[event.detail])return;selected=event.detail;highlight=false;peek.src=`/assets/world-previews/${slugs[selected]}.svg`;peek.alt=`${slugs[selected]} virtual destination concept`;sync();});
- expand.addEventListener('click',()=>{if(selected===null)return;viewer.querySelector('img').src=peek.src;viewer.querySelector('img').alt=peek.alt;viewer.showModal();});
+ const entry=$('.world-entry');
+ let highlight=false,hover=false,drag=null,dragged=false,multi=false;const touches=new Set();
+ globe.insertAdjacentHTML('beforeend','<span class="world-letter" aria-hidden="true">1AGE World</span>');
+ document.body.insertAdjacentHTML('beforeend','<dialog class="gesture-guide" aria-labelledby="gesture-guide-title"><h2 id="gesture-guide-title">Your World, one screen.</h2><p>Drag the globe to turn it.<br>Swipe the planets to explore.<br>Tap a planet to open its destination.<br>Hold for options.<br>Tap the globe to reveal Enter.</p><label><input type="checkbox" id="hide-gesture-guide"> Don’t show again</label><button type="button" data-dismiss-guide>Let’s explore</button></dialog>');
+ const guide=$('.gesture-guide');
+ function sync(){scene.classList.toggle('globe-selected',highlight);scene.classList.toggle('globe-hover',hover);globe.setAttribute('aria-pressed',String(highlight));globe.setAttribute('aria-label','1AGE World. Drag to turn; press to highlight and reveal Enter.');}
+ function reset(){highlight=false;sync();}
  for(const node of [globe,entry]){node.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;sync();}});node.addEventListener('pointerleave',e=>{if(!e.relatedTarget?.closest('.world-globe,.world-entry')){hover=false;sync();}});}
- globe.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touches.add(e.pointerId);hover=false;}if(touches.size>1){drag=null;multi=true;scene.classList.remove('globe-pressed');return;}if(e.button!==0)return;multi=false;dragged=false;drag={id:e.pointerId,x:e.clientX,start:e.clientX};if(selected===null)scene.classList.add('globe-pressed');globe.setPointerCapture(e.pointerId);});
+ globe.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touches.add(e.pointerId);hover=false;}if(touches.size>1){drag=null;multi=true;scene.classList.remove('globe-pressed');return;}if(e.button!==0)return;multi=false;dragged=false;drag={id:e.pointerId,x:e.clientX,start:e.clientX};scene.classList.add('globe-pressed');globe.setPointerCapture(e.pointerId);});
  globe.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;if(Math.abs(e.clientX-drag.start)>6)dragged=true;if(dragged){reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:-(e.clientX-drag.x)/Math.max(1,globe.clientWidth)}));}drag.x=e.clientX;});
  function release(e){touches.delete(e.pointerId);if(drag?.id===e.pointerId)drag=null;scene.classList.remove('globe-pressed');}
  globe.addEventListener('pointerup',release);globe.addEventListener('pointercancel',e=>{release(e);multi=true;});
- globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}if(selected!==null){reset();return;}highlight=!highlight;sync();});
+ globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}highlight=!highlight;sync();});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
  $('[data-dismiss-guide]').addEventListener('click',()=>{try{if($('#hide-gesture-guide').checked)localStorage.setItem('1age-hide-guide','1');}catch(_){}guide.close();});let hide=false;try{hide=localStorage.getItem('1age-hide-guide')==='1';}catch(_){}
  function fit(){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
@@ -43,7 +38,7 @@
  const pc=matchMedia('(min-width:700px) and (orientation:landscape)').matches;
  const d=pc?Math.max(40,Math.min(92,h*.12)):landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
  const availableWidth=w/2-d/2-30;
- const availableHeight=h/2-d/2-(pc?20:28);
+ const availableHeight=h/2-d/2-(pc?32:28);
  const radius=Math.max(42,Math.min(availableWidth,availableHeight));
  const rx=radius;
  const earth=pc?Math.min(640,rx*1.42):Math.max(24,Math.min(rx*2-d-30,landscape?240:540));

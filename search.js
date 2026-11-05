@@ -23,7 +23,8 @@ const suggestions = {
     ['World', 'world'],
     ['Games', 'games'],
     ['Page', 'page'],
-    ['Help', 'help']
+    ['Wallets', 'wallet'],
+    ['Tools', 'tool']
   ],
   solana: [
     ['Wallets', 'wallet'],
@@ -48,7 +49,7 @@ function render(items, query) {
   results.replaceChildren();
   label.textContent =
     `${items.length} ${items.length === 1 ? 'result' : 'results'} ` +
-    `for “${query}” in ${mode === '1age' ? '1AGE' : 'Solana'}`;
+    `for “${query}”`;
 
   if (!items.length) {
     results.append(element(
@@ -71,9 +72,9 @@ function render(items, query) {
       top,
       element(
         'p', 'result-status',
-        mode === '1age'
-          ? '1AGE · Public information page'
-          : 'Solana · Third-party directory listing'
+        (entity.id === '1age' || entity.id?.startsWith('1age-'))
+          ? '1AGE · Ecosystem listing'
+          : 'Blockchain community · Directory listing'
       ),
       element('p', 'result-description', entity.description)
     );
@@ -94,7 +95,7 @@ function render(items, query) {
     if (url) {
       const link = element(
         'a', 'result-link',
-        mode === '1age' ? 'View page ↗' : 'Visit website ↗'
+        'Visit website ↗'
       );
       link.href = url.href;
 
@@ -178,13 +179,10 @@ function selectMode(next, updateHistory = true) {
     );
   });
 
-  input.placeholder = mode === '1age'
-    ? 'Search 1AGE destinations…'
-    : 'Search Solana projects…';
-
-  note.textContent = mode === '1age'
-    ? 'Early 1AGE index · Public pages only'
-    : 'Early Solana index · Third-party listings are not verified';
+  input.placeholder = document.body.dataset.searchScope
+    ? 'Search ' + document.title.replace(/^1AGE /, '') + '…'
+    : 'Search the blockchain community…';
+  note.textContent = 'Early blockchain index · Listings show their review status';
 
   updateSuggestions();
   if (updateHistory) updateURL();
@@ -218,7 +216,7 @@ for (const node of [form, section]) {
 }
 
 const params = new URLSearchParams(window.location.search);
-selectMode(params.get('mode') === 'solana' ? 'solana' : '1age', false);
+selectMode('1age', false);
 
 const initialQuery = params.get('q');
 if (initialQuery) {
@@ -238,7 +236,7 @@ if (initialQuery) {
       window.ageIndex.load('1age'),
       window.ageIndex.load('solana')
     ]);
-    indexes['1age'] = ageData;
+    indexes['1age'] = [...ageData, ...solanaData];
     indexes.solana = solanaData;
 
     if (!section.hidden) showResults();
