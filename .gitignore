@@ -1,0 +1,5 @@
+.index-cache/
+__pycache__/
+*.pyc
+.openai/
+.candidate-index/

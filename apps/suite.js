@@ -10,7 +10,7 @@ else if(app==='plus'){const settings=get('plus',{notifications:false,theme:'sign
 else if(app==='store'||app==='shop'){const name=app==='store'?'Store':'Shop';const render=()=>{$('#list').innerHTML=cards(get(app+'-items',[]).map(x=>[x.name,x.description,x.url]))||'<p>No listings yet.</p>'};set(`<div class="grid"><form id="add" class="tile stack"><h2>${name} listings</h2>${field('Listing title','name')}${field('Public product URL','url','url')}<label class="field">Description<textarea id="description" rows="3"></textarea></label><button>Save listing</button></form><section class="tile"><h2>Your catalog</h2><div id="list"></div>${note}</section></div><p id="message" role="status"></p>`);$('#add').onsubmit=e=>{e.preventDefault();let url=$('#url').value.trim();try{if(!['https:','http:'].includes(new URL(url).protocol))throw Error()}catch{return msg('Use a valid http(s) product URL.')}const a=get(app+'-items',[]);a.push({name:$('#name').value.trim(),description:$('#description').value.trim(),url});put(app+'-items',a);e.target.reset();render();msg('Listing saved locally.')};render()}
 else if(app==='search'){set(`<div class="stack"><div class="actions"><input id="query" aria-label="Search" placeholder="Search the index"><button id="go">Search</button></div><p id="message" role="status"></p><div id="list"></div></div>`);const run=async()=>{try{const index=window.ageIndex;
 const mode='all';
-const filtered=index.search(await index.load(mode),$('#query').value).slice(0,50);
+const filtered=index.search(await index.load(mode,$('#query').value),$('#query').value).slice(0,50);
 $('#list').innerHTML=cards(filtered.map(entity=>{
   const status=index.authenticity(entity).label;
   const description=entity.description||entity.category||'';

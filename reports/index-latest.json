@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-05T07:43:10Z",
+  "status": "success",
+  "total_indexed_records": 85,
+  "new_records_discovered": 0,
+  "existing_records_updated": 0,
+  "duplicate_records_detected": 5,
+  "broken_links_detected": 0,
+  "records_requiring_review": [],
+  "data_sources_successfully_checked": [
+    {
+      "id": "evm-chains",
+      "eligible_records": 14,
+      "not_modified": true
+    },
+    {
+      "id": "github-solana",
+      "eligible_records": 8,
+      "not_modified": true
+    },
+    {
+      "id": "github-ethereum",
+      "eligible_records": 8,
+      "not_modified": true
+    },
+    {
+      "id": "github-bitcoin",
+      "eligible_records": 2,
+      "not_modified": true
+    },
+    {
+      "id": "github-base",
+      "eligible_records": 8,
+      "not_modified": true
+    },
+    {
+      "id": "github-polygon",
+      "eligible_records": 8,
+      "not_modified": true
+    }
+  ],
+  "failed_data_sources": [],
+  "last_successful_indexing_time": "2026-11-05T07:43:10Z",
+  "unsupported_sources": [
+    {
+      "id": "1age-page-public",
+      "adapter": "public_profiles",
+      "enabled": false,
+      "reason": "No deployed public opt-in profile feed is configured."
+    },
+    {
+      "id": "public-naming",
+      "enabled": false,
+      "reason": "ENS/SNS resolution and permitted discovery feeds need separate source approval and implementation."
+    },
+    {
+      "id": "public-communities",
+      "enabled": false,
+      "reason": "No licensed DAO/Discord discovery feed has been configured; existing curated community records remain."
+    }
+  ],
+  "errors": [],
+  "duplicates": [
+    {
+      "id": "chain:eip155:1",
+      "merged_into": "ethereum",
+      "url": "https://ethereum.org"
+    },
+    {
+      "id": "chain:eip155:10",
+      "merged_into": "optimism",
+      "url": "https://optimism.io"
+    },
+    {
+      "id": "chain:eip155:137",
+      "merged_into": "polygon",
+      "url": "https://polygon.technology"
+    },
+    {
+      "id": "chain:eip155:42161",
+      "merged_into": "arbitrum",
+      "url": "https://arbitrum.io"
+    },
+    {
+      "id": "chain:eip155:8453",
+      "merged_into": "base",
+      "url": "https://base.org"
+    }
+  ],
+  "new_record_ids": [],
+  "links_checked": 17,
+  "links_attempted": 24,
+  "link_check_outcomes": {
+    "robots_unavailable": 7,
+    "ok": 17
+  },
+  "finished_at": "2026-11-05T07:45:00Z",
+  "network_usage": {
+    "requests": 24,
+    "response_bytes": 14540,
+    "conditional_cache_hits": 6
+  },
+  "deployment_status": "not_requested_by_indexer"
+}

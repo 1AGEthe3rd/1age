@@ -1,0 +1,94 @@
+name: Daily public blockchain search index
+on:
+  schedule:
+    - cron: '23 9 * * *'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish validated data using the reviewed main/root Pages configuration'
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: daily-search-index
+  cancel-in-progress: false
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      base_sha: ${{ steps.base.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: base
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: .index-cache
+          key: search-source-cache-v1-${{ github.run_id }}
+          restore-keys: search-source-cache-v1-
+      - name: Discover, refresh and validate public metadata
+        env:
+          GH_API_TOKEN: ${{ github.token }}
+        run: python3 scripts/update-search-index.py
+      - name: Validate generated catalog and behavior
+        run: |
+          python3 scripts/build-search-index.py --check
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node --check search-index.js
+          node --check search.js
+          node tests/search.test.cjs
+      - name: Run summary
+        if: always()
+        run: |
+          if [ -f reports/index-latest-attempt.json ]; then
+            python3 scripts/search-report.py >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Save run report even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: search-index-report-${{ github.run_id }}
+          path: reports/index-latest*.json
+          retention-days: 14
+      - name: Save validated candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: search-index-candidate
+          retention-days: 7
+          path: |
+            data/discovered-records.json
+            data/link-health.json
+            data/index-state.json
+            data/index-rollback.json
+            data/search-last-good.json
+            data/search-index.json
+            data/search-manifest.json
+            data/search-shards/
+            reports/index-latest.json
+            reports/index-latest-attempt.json
+  publish:
+    needs: index
+    if: github.repository == '1AGEthe3rd/1age' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || inputs.publish == true)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: search-index-candidate
+          path: .candidate-index
+      - name: Revalidate, commit and request the existing Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: ${{ needs.index.outputs.base_sha }}
+        run: python3 scripts/publish-search-index.py --candidate .candidate-index --expected-sha "$EXPECTED_SHA"

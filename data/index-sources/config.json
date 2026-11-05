@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "max_records": 300,
+    "max_new_per_run": 25,
+    "max_updated_fraction": 0.5,
+    "max_response_bytes": 3000000,
+    "min_request_interval_seconds": 1,
+    "timeout_seconds": 12,
+    "retries": 1,
+    "max_link_checks": 24,
+    "max_index_bytes": 600000
+  },
+  "sources": [
+    {
+      "id": "evm-chains",
+      "adapter": "chain_registry",
+      "url": "https://chainid.network/chains_mini.json",
+      "attribution": "ethereum-lists/chains (MIT)",
+      "license_url": "https://github.com/ethereum-lists/chains/blob/master/LICENSE",
+      "chain_ids": [
+        1,
+        10,
+        56,
+        100,
+        137,
+        250,
+        324,
+        1101,
+        8453,
+        42161,
+        42220,
+        43114,
+        59144,
+        534352
+      ],
+      "max_records": 20,
+      "chain_names": {
+        "1": "Ethereum",
+        "10": "Optimism",
+        "56": "BNB Chain",
+        "100": "Gnosis",
+        "137": "Polygon",
+        "250": "Fantom",
+        "324": "ZKsync Era",
+        "1101": "Polygon zkEVM",
+        "8453": "Base",
+        "42161": "Arbitrum",
+        "42220": "Celo",
+        "43114": "Avalanche",
+        "59144": "Linea",
+        "534352": "Scroll"
+      }
+    },
+    {
+      "id": "github-solana",
+      "adapter": "github_org",
+      "org": "solana-program",
+      "networks": [
+        "Solana"
+      ],
+      "max_records": 8,
+      "max_pages": 1
+    },
+    {
+      "id": "github-ethereum",
+      "adapter": "github_org",
+      "org": "ethereum",
+      "networks": [
+        "Ethereum"
+      ],
+      "max_records": 8,
+      "max_pages": 1
+    },
+    {
+      "id": "github-bitcoin",
+      "adapter": "github_org",
+      "org": "bitcoin",
+      "networks": [
+        "Bitcoin"
+      ],
+      "max_records": 8,
+      "max_pages": 1
+    },
+    {
+      "id": "github-base",
+      "adapter": "github_org",
+      "org": "base",
+      "networks": [
+        "Base"
+      ],
+      "max_records": 8,
+      "max_pages": 1
+    },
+    {
+      "id": "github-polygon",
+      "adapter": "github_org",
+      "org": "0xPolygon",
+      "networks": [
+        "Polygon"
+      ],
+      "max_records": 8,
+      "max_pages": 1
+    }
+  ],
+  "future_sources": [
+    {
+      "id": "1age-page-public",
+      "adapter": "public_profiles",
+      "enabled": false,
+      "reason": "No deployed public opt-in profile feed is configured."
+    },
+    {
+      "id": "public-naming",
+      "enabled": false,
+      "reason": "ENS/SNS resolution and permitted discovery feeds need separate source approval and implementation."
+    },
+    {
+      "id": "public-communities",
+      "enabled": false,
+      "reason": "No licensed DAO/Discord discovery feed has been configured; existing curated community records remain."
+    }
+  ]
+}

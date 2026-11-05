@@ -13,8 +13,6 @@ const note = section.querySelector('.index-note');
 const buttons = [...document.querySelectorAll('[data-search-mode]')];
 const quickLinks = document.querySelector('.quick-links');
 
-let records = null;
-let pendingLoad;
 let requestVersion = 0;
 let pageSize = 20;
 let mode = '1age';
@@ -44,7 +42,7 @@ function element(tag, className, text) {
   return node;
 }
 
-function searchEntities(query) {
+function searchEntities(query, records) {
   return window.ageIndex.search(records, query, document.body.dataset.searchScope);
 }
 
@@ -96,6 +94,13 @@ function render(items, query) {
       card.append(source);
     }
 
+    if (!entity.source_review && entity.provenance?.length) {
+      const source = element('a', 'result-link', 'Source: ' + entity.provenance[0].attribution);
+      const sourceURL = window.ageIndex.validLink({ official_links: { website: entity.provenance[0].url } });
+      if (sourceURL) { source.href = sourceURL.href; source.target = '_blank'; source.rel = 'noopener noreferrer'; card.append(source); }
+      if (entity.updated_at) card.append(element('p', 'result-status', 'Metadata updated ' + new Date(entity.updated_at).toLocaleDateString()));
+    }
+    if (entity.quality_flags?.length) card.append(element('p', 'result-status', 'Needs review: ' + entity.quality_flags.map(flag => flag.replaceAll('_', ' ')).join(' · ')));
     const tags = element('div', 'result-tags');
     for (const tag of entity.tags || []) {
       tags.append(element('span', '', `#${tag}`));
@@ -138,14 +143,6 @@ function updateURL() {
   window.history.replaceState(null, '', url);
 }
 
-async function ensureRecords() {
-  if (records) return records;
-  if (!pendingLoad) pendingLoad = window.ageIndex.load('all')
-    .then(items => { records = items; return items; })
-    .finally(() => { pendingLoad = null; });
-  return pendingLoad;
-}
-
 async function showResults() {
   const version = ++requestVersion;
   section.hidden = false;
@@ -153,11 +150,11 @@ async function showResults() {
   if (!currentQuery) { label.textContent = 'Enter a search term.'; return; }
   label.textContent = 'Loading search index…';
   try {
-    await ensureRecords();
+    const records = await window.ageIndex.load('all', currentQuery);
     if (version !== requestVersion) return;
-    const networks = new Set(records.flatMap(item => item.networks || []));
-    note.textContent = `${records.length} indexed resources · ${networks.size} networks · Source checks do not establish ownership or safety`;
-    render(searchEntities(currentQuery), currentQuery);
+    const info = window.ageIndex.info();
+    note.textContent = `${info.records} indexed resources · ${info.networks} networks · ${info.fallback ? 'Backup data loaded · ' : ''}Source checks do not establish ownership or safety`;
+    render(searchEntities(currentQuery, records), currentQuery);
     section.scrollTop = 0;
   } catch (error) {
     if (version !== requestVersion) return;
@@ -254,5 +251,5 @@ if (initialQuery) {
 }
 
 // Load data and the vendored engine only when search is used.
-input.addEventListener('focus', () => { ensureRecords().catch(() => {}); });
+input.addEventListener('focus', () => { window.ageIndex.prepare().catch(() => {}); });
 })();
