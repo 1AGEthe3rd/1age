@@ -210,3 +210,90 @@
     min-height: 260px;
   }
 }
+
+/* 1AGE mobile landscape — centered World interface */
+@media screen and (orientation: landscape)
+  and (max-height: 600px)
+  and (pointer: coarse) {
+
+  .home-screen #main {
+    padding-top: 52px;
+  }
+
+  .home-screen .universe {
+    position: relative;
+    width: 100%;
+    height: calc(100dvh - 52px);
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-screen .world-scene {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100%, 560px);
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    --earth: clamp(85px, 25dvh, 145px);
+  }
+
+  .home-screen .project-orbit {
+    width: min(65dvh, 300px);
+    height: min(65dvh, 300px);
+    top: 45%;
+    left: 50%;
+  }
+
+  .home-screen .world-globe {
+    top: 45%;
+    left: 50%;
+  }
+}
+
+/* Mobile landscape: final control positioning */
+@media screen and (orientation: landscape)
+  and (max-height: 600px)
+  and (pointer: coarse) {
+
+  /* Restore L/R rotation controls */
+  .home-screen .world-controls > button[data-rotate] {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: 48px;
+    height: 48px;
+    z-index: 32;
+  }
+
+  .home-screen .world-controls > button[data-rotate="-1"] {
+    left: max(12px, env(safe-area-inset-left));
+    right: auto;
+  }
+
+  .home-screen .world-controls > button[data-rotate="1"] {
+    right: max(12px, env(safe-area-inset-right));
+    left: auto;
+  }
+
+  /* Keep ticker beside search */
+  .home-screen .search-home {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .home-screen .search-home > .living-ticker {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Hide the bottom three-line menu */
+  .home-screen .console-menu {
+    display: none !important;
+  }
+}
