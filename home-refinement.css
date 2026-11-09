@@ -150,3 +150,12 @@
 .living-ticker .ticker-summary::after {
   content: none !important;
 }
+
+/* All homescreens: ticker without navigation buttons */
+.living-ticker .ticker-pause {
+  display: none !important;
+}
+
+.living-ticker .ticker-summary::after {
+  content: none !important;
+}
