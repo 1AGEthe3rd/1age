@@ -157,3 +157,9 @@ footer{justify-content:center;text-align:center}footer nav{margin-left:0;justify
  .home-screen .search-form input,.home-screen .search-form button{height:34px}
  .home-screen .world-controls{min-height:38px;padding-bottom:4px}
 }
+
+/* 1AGE UNIVERSAL BOLD TYPOGRAPHY 001 */
+body,
+body * {
+  font-weight: 700 !important;
+}

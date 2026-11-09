@@ -173,7 +173,7 @@
 /* 1AGE MOBILE LANDSCAPE FINAL HEADER */
 @media screen and (orientation: landscape)
   and (max-height: 600px)
-  and (any-pointer: coarse) {
+  and (hover: none) and (pointer: coarse) {
 
   /* Single-screen layout */
   .home-screen {
