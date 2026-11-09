@@ -168,3 +168,175 @@
 .living-ticker .ticker-summary::after {
   content: none !important;
 }
+
+/* 1AGE MOBILE LANDSCAPE FINAL HEADER */
+@media screen and (orientation: landscape)
+  and (max-height: 600px)
+  and (any-pointer: coarse) {
+
+  /* Single-screen layout */
+  .home-screen {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Logo at left */
+  .home-screen .site-header {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    right: auto;
+    width: 44px;
+    padding: 0;
+    z-index: 24;
+  }
+
+  .home-screen .brand-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-screen .brand-name {
+    display: none;
+  }
+
+  /* Search and ticker together */
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    position: absolute;
+    top: 4px;
+    left: 56px;
+    right: 8px;
+    width: auto;
+    height: 42px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
+    z-index: 16;
+  }
+
+  .home-screen .search-expander {
+    width: 40px;
+    flex: 0 0 40px;
+    min-width: 0;
+    margin: 0;
+    gap: 5px;
+  }
+
+  .home-screen .search-expander > .search-circle {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    font-size: 25px;
+  }
+
+  /* Ticker uses remaining width */
+  .home-screen .search-home > .living-ticker {
+    --ticker-strip-height: 40px;
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    margin: 0;
+  }
+
+  .home-screen .ticker-summary,
+  .home-screen .living-ticker:has(
+    .ticker-pause:not([hidden])
+  ) .ticker-summary {
+    min-height: 40px;
+    padding: 2px 4px;
+  }
+
+  .home-screen .ticker-headline {
+    font-size: 13px;
+  }
+
+  /* Search expands in the ticker's position */
+  .home-screen.search-open .search-expander {
+    width: 100%;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+  }
+
+  .home-screen.search-open .search-form {
+    position: static;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    height: 40px;
+    min-height: 40px;
+    margin: 0;
+  }
+
+  .home-screen.search-open .living-ticker {
+    display: none;
+  }
+
+  /* Keep expanded announcements usable */
+  .home-screen .living-ticker details[open] .ticker-details {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #000;
+    max-height: 55dvh;
+    overflow-y: auto;
+  }
+
+  /* World below header */
+  .home-screen #main {
+    padding-top: 52px;
+    min-height: 0;
+  }
+
+  .home-screen .universe {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .home-screen .world-scene {
+    flex: 1 1 auto;
+    min-height: 0;
+    --earth: min(42dvh, 180px);
+  }
+
+  /* Slightly compact circular orbit */
+  .home-screen .project-orbit {
+    width: min(62dvh, 290px);
+    height: min(62dvh, 290px);
+  }
+
+  .home-screen .project-planet {
+    --planet-size: clamp(42px, 12dvh, 54px);
+  }
+
+  .home-screen .project-planet > span {
+    font-size: 11px;
+  }
+
+  /* Smaller joystick rings, same inner indicators */
+  .console-mode .stick {
+    width: 76px;
+    height: 76px;
+  }
+
+  .console-mode .stick span {
+    width: 51px;
+    height: 51px;
+  }
+
+  /* Keep only L/R */
+  .console-mode .game-buttons,
+  .console-mode .altitude-buttons,
+  .console-mode .console-menu {
+    display: none !important;
+  }
+}
