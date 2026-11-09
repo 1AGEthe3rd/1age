@@ -33,8 +33,7 @@
     planets.forEach((planet, i) => {
       const a = -Math.PI / 2 + i * step + angle;
       planet.dataset.upper=String(Math.sin(a)<-.2);
-      const compact=window.matchMedia('(orientation:landscape) and (max-height:600px)').matches;
-      const concealed=false;planet.dataset.concealed=String(concealed);planet.tabIndex=concealed?-1:0;planet.setAttribute('aria-hidden',String(concealed));
+      // Planet visibility is unchanged; avoid repeated DOM writes during rotation.
       planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
       planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
     });
