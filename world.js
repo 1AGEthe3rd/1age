@@ -233,5 +233,5 @@
     if(lettering){if(!lettering.children.length){lettering.textContent='';for(const char of '1AGE WORLD'){const span=document.createElement('b');span.textContent=char===' '?'\u00a0':char;lettering.appendChild(span);}}[...lettering.children].forEach((letter,i)=>{const phase=-turn*Math.PI*2+(i-4.5)*.18,depth=Math.cos(phase);letter.style.transform=`translate(-50%,-50%) translateX(${Math.sin(phase)*globe.clientWidth*.46}px) scaleX(${Math.max(.04,depth)})`;letter.style.opacity=depth>.04?'1':'0';});}
     if (renderSurface && renderSurface(turn)) return;
     texture.style.backgroundPosition = `${turn*100}% center`;
-  }, 33);
+  }, 100);
 })();
