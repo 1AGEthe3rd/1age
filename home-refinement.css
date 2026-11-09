@@ -126,3 +126,87 @@
   color: var(--app-accent, var(--green));
 }
 .home-screen .brand-circle > svg { color: inherit; }
+
+
+/* 1AGE MOBILE LANDSCAPE — FINAL OVERRIDE */
+@media screen and (orientation: landscape)
+  and (max-height: 600px)
+  and (pointer: coarse) {
+
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    position: absolute;
+    top: max(6px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    right: auto;
+    width: 48px;
+    padding: 0;
+    margin: 0;
+    z-index: 24;
+  }
+
+  .home-screen .header-hub {
+    justify-content: flex-start;
+  }
+
+  .home-screen .brand-circle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .home-screen .brand-name {
+    font-size: 12px;
+  }
+
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    position: absolute;
+    top: max(6px, env(safe-area-inset-top));
+    left: max(68px, calc(env(safe-area-inset-left) + 60px));
+    right: max(10px, env(safe-area-inset-right));
+    width: auto;
+    min-height: 44px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .home-screen .search-expander,
+  .home-screen.search-open .search-expander {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .home-screen .search-expander > .search-circle {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    font-size: 28px;
+  }
+
+  .home-screen.search-open .search-expander > .search-form {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .home-screen #main {
+    padding-top: 58px;
+  }
+
+  .home-screen .universe {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .home-screen .world-scene {
+    margin-inline: auto;
+    min-height: 260px;
+  }
+}
