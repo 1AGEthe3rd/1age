@@ -514,3 +514,62 @@ and (pointer: coarse) {
     bottom: max(10px, env(safe-area-inset-bottom)) !important;
   }
 }
+
+
+/* BUILD 007 - LANDSCAPE VIEWPORT FIX */
+@media screen and (orientation: landscape)
+and (max-height: 600px) and (pointer: coarse) {
+
+  /* Let mobile browsers receive vertical swipe gestures. */
+  html {
+    height: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.home-screen {
+    height: auto !important;
+    min-height: calc(100dvh + 96px) !important;
+    overflow-y: visible !important;
+    overflow-x: clip !important;
+  }
+
+  /* Preserve vertical scrolling alongside horizontal rotation. */
+  .home-screen .world-scene,
+  .home-screen .project-orbit,
+  .home-screen .project-planet,
+  .home-screen .world-globe,
+  .home-screen .world-entry {
+    touch-action: pan-y pinch-zoom !important;
+  }
+
+  /* Fill the viewport with the centered World. */
+  .home-screen #main {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    padding: 0 !important;
+    flex: none !important;
+  }
+
+  .home-screen .universe {
+    height: 100dvh !important;
+    min-height: 0 !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    flex: none !important;
+  }
+
+  .home-screen .world-scene {
+    width: 100% !important;
+    height: calc(100dvh - 8px) !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Preserve the existing circular orbit geometry. */
+  .home-screen .project-orbit {
+    width: var(--orbit-diameter) !important;
+    height: var(--orbit-height) !important;
+  }
+}
