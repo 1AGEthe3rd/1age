@@ -590,9 +590,9 @@
 
 /* 1AGE MOBILE LANDSCAPE — isolated layout correction */
 @media screen and (orientation: landscape)
-  and (min-width: 700px)
-  and (max-width: 950px)
-  and (max-height: 500px) {
+  and (hover: none)
+  and (pointer: coarse)
+  and (max-height: 600px) {
 
   /* Keep the original 1AGE logo and search */
   .home-screen .site-header,
