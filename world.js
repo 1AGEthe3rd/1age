@@ -28,6 +28,9 @@
   function nearestIndex(value) {
     return ((Math.round((Math.PI - value) / step) % planets.length) + planets.length) % planets.length;
   }
+  const depthMode = matchMedia(
+    '(orientation: landscape) and (max-height: 600px) and (pointer: coarse)'
+  );
   function layout() {
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
     planets.forEach((planet, i) => {
@@ -36,6 +39,13 @@
       // Planet visibility is unchanged; avoid repeated DOM writes during rotation.
       planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
       planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
+      if (depthMode.matches) {
+        const depth = Math.sin(a);
+        planet.style.setProperty('--depth-scale',
+          (0.76 + (depth + 1) * 0.15).toFixed(3));
+        planet.style.setProperty('--orbit-layer',
+          depth >= 0 ? '7' : '2');
+      }
     });
   }
   function snap(screenDirection) {

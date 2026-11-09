@@ -669,3 +669,58 @@ and (max-height: 600px) and (pointer: coarse) {
     transform: translateX(-50%) !important;
   }
 }
+
+
+/* BUILD 009 STEP 3 - 3D ORBIT */
+@media screen and (orientation: landscape)
+and (max-height: 600px) and (pointer: coarse) {
+
+  /* Larger Earth without increasing canvas workload. */
+  .home-screen .world-scene {
+    --earth: min(76dvh, 330px) !important;
+  }
+
+  /* Elliptical orbit with individual planet depth. */
+  .home-screen .project-orbit {
+    width: min(82vw, 620px) !important;
+    height: min(47dvh, 260px) !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    z-index: auto !important;
+  }
+
+  .home-screen .project-orbit::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(27,253,156,.38);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .home-screen .project-planet {
+    --planet-size: 48px !important;
+    transform:
+      translate(
+        calc(-50% + var(--x, 0px)),
+        calc(-50% + var(--y, 0px))
+      )
+      scale(var(--depth-scale, 1)) !important;
+    z-index: var(--orbit-layer, 2) !important;
+    will-change: transform;
+  }
+
+  .home-screen .world-globe {
+    width: var(--earth) !important;
+    height: var(--earth) !important;
+    z-index: 4 !important;
+  }
+
+  /* Preserve foreground Enter button. */
+  .home-screen .world-entry {
+    z-index: 10 !important;
+  }
+}
