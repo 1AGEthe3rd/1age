@@ -573,3 +573,99 @@ and (max-height: 600px) and (pointer: coarse) {
     height: var(--orbit-height) !important;
   }
 }
+
+
+/* BUILD 009 STEP 2 - CORNER MENU */
+@media screen and (orientation: landscape)
+and (max-height: 600px) and (pointer: coarse) {
+
+  /* Fixed top-right 1AGE button. */
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    position: fixed !important;
+    top: 8px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: 48px !important;
+    max-width: none !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: transparent !important;
+    z-index: 95 !important;
+  }
+
+  .home-screen .header-hub {
+    position: relative !important;
+    width: 48px !important;
+    justify-content: center !important;
+  }
+
+  .home-screen .brand {
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  /* Menu planets expand from the corner. */
+  .home-screen .header-wings:not([hidden]) {
+    position: absolute !important;
+    inset: 0 0 auto auto !important;
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    transform: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+    z-index: 1 !important;
+  }
+
+  .home-screen .header-wings .header-planet {
+    position: absolute !important;
+    display: flex !important;
+    width: 66px !important;
+    left: auto !important;
+    right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .home-screen .header-wings .header-planet:nth-child(1) {
+    transform: translate(-68px, 0) !important;
+  }
+
+  .home-screen .header-wings .header-planet:nth-child(2) {
+    transform: translate(-120px, 45px) !important;
+  }
+
+  .home-screen .header-wings .header-planet:nth-child(3) {
+    transform: translate(-142px, 105px) !important;
+  }
+
+  .home-screen .header-wings .header-planet:nth-child(4) {
+    transform: translate(-120px, 165px) !important;
+  }
+
+  .home-screen .header-wings .header-planet-circle {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  /* Search stays in the opposite corner. */
+  .home-screen:not(.search-open) .search-home {
+    right: auto !important;
+    left: 10px !important;
+    transform: none !important;
+  }
+
+  /* Expanded search remains centered. */
+  .home-screen.search-open .search-home {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+}
