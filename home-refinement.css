@@ -141,3 +141,12 @@
     display: none !important;
   }
 }
+
+
+/* 1AGE ticker: announcements only, no navigation controls */
+.living-ticker .ticker-pause {
+  display: none !important;
+}
+.living-ticker .ticker-summary::after {
+  content: none !important;
+}
