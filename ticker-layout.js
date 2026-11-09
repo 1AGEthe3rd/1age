@@ -4,7 +4,7 @@
   if (!ticker || !search) return;
   const marker = document.createComment('mobile ticker position');
   ticker.before(marker);
-  const desktop = matchMedia('(min-width:700px) and (orientation:landscape)');
+  const desktop = matchMedia('((min-width:700px) and (orientation:landscape)) or ((orientation:landscape) and (max-height:600px) and (any-pointer:coarse))');
   function placeTicker() {
     if (desktop.matches) search.append(ticker);
     else marker.after(ticker);
