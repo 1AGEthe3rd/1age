@@ -341,3 +341,176 @@
     display: none !important;
   }
 }
+
+
+/* 1AGE BUILD 006 - SIMPLE LANDSCAPE */
+
+/* Prevent the ticker from briefly overlapping during startup. */
+.home-screen:not(.ticker-positioned) .living-ticker {
+  visibility: hidden;
+}
+
+@media screen and (orientation: landscape)
+and (max-height: 600px)
+and (pointer: coarse) {
+
+  /* Let the browser address bar collapse through normal scrolling. */
+  html {
+    overflow-x: clip !important;
+    overflow-y: auto !important;
+  }
+
+  body.home-screen {
+    height: auto !important;
+    min-height: calc(100dvh + 48px) !important;
+    overflow-x: clip !important;
+    overflow-y: auto !important;
+  }
+
+  /* No ticker or title in mobile landscape. */
+  .home-screen .living-ticker,
+  .home-screen .brand-name,
+  .home-screen .quick-links {
+    display: none !important;
+  }
+
+  /* 1AGE logo: top-left corner. */
+  .home-screen .site-header {
+    position: fixed !important;
+    top: 8px !important;
+    left: 10px !important;
+    right: auto !important;
+    width: 48px !important;
+    padding: 0 !important;
+    z-index: 90 !important;
+    background: transparent !important;
+  }
+
+  .home-screen .header-hub {
+    justify-content: center !important;
+  }
+
+  .home-screen .brand-circle {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  /* Expanded 1AGE menu moves to the top center. */
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    left: 50% !important;
+    width: min(90vw, 420px) !important;
+    transform: translateX(-50%);
+  }
+
+  .home-screen .header-wings:not([hidden]) {
+    position: absolute !important;
+    inset: 56px auto auto 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: max-content !important;
+    max-width: 92vw !important;
+    padding: 12px !important;
+    border-radius: 18px !important;
+    background: rgba(0,0,0,.94) !important;
+    z-index: 91 !important;
+    pointer-events: auto !important;
+  }
+
+  .home-screen .header-wings[hidden] {
+    display: none !important;
+  }
+
+  .home-screen .header-wings .header-planet {
+    position: static !important;
+    transform: none !important;
+    font-size: 11px !important;
+  }
+
+  .home-screen .header-wings .header-planet-circle {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  /* Search: top-right corner. */
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    position: fixed !important;
+    top: 8px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: 48px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 89 !important;
+  }
+
+  .home-screen .search-expander {
+    width: 48px !important;
+    flex: 0 0 48px !important;
+    min-width: 0 !important;
+  }
+
+  .home-screen .search-expander > .search-circle {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px !important;
+  }
+
+  /* Search moves to top center when pressed. */
+  .home-screen.search-open .search-home {
+    left: 50% !important;
+    right: auto !important;
+    width: min(90vw, 460px) !important;
+    transform: translateX(-50%);
+    z-index: 92 !important;
+  }
+
+  .home-screen.search-open .search-expander {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+
+  .home-screen.search-open .search-form {
+    position: static !important;
+    display: flex !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  .home-screen .search-form[hidden] {
+    display: none !important;
+  }
+
+  .home-screen.search-open .search-form input {
+    min-width: 0 !important;
+    font-size: 16px !important;
+  }
+
+  /* Give the original circular dial more vertical room. */
+  .home-screen #main {
+    padding-top: 58px !important;
+    min-height: 100dvh !important;
+  }
+
+  .home-screen .universe {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 8px !important;
+  }
+
+  /* Keep current globe and orbit dimensions and geometry. */
+
+  .home-screen .world-controls button {
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+  }
+}

@@ -11,4 +11,11 @@
   }
   desktop.addEventListener('change', placeTicker);
   placeTicker();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.body.classList.add('ticker-positioned');
+    });
+  });
+  window.addEventListener('load', placeTicker, {once:true});
+  window.addEventListener('orientationchange', placeTicker);
 })();

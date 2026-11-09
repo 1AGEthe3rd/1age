@@ -44,5 +44,17 @@
  const earth=pc?Math.min(640,rx*1.42):Math.max(24,Math.min(rx*2-d-30,landscape?240:540));
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',rx*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
- new ResizeObserver(fit).observe(scene);fit();sync();
+ let fitFrame = 0;
+ function scheduleFit() {
+   cancelAnimationFrame(fitFrame);
+   fitFrame = requestAnimationFrame(fit);
+ }
+ new ResizeObserver(scheduleFit).observe(scene);
+ window.addEventListener('load', scheduleFit, {once:true});
+ window.addEventListener('resize', scheduleFit, {passive:true});
+ window.addEventListener('orientationchange', scheduleFit);
+ window.visualViewport?.addEventListener('resize', scheduleFit);
+ document.fonts?.ready.then(scheduleFit);
+ scheduleFit();
+ sync();
 })();
