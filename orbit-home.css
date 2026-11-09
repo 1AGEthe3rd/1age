@@ -587,3 +587,67 @@
 @media (max-width:699px) and (max-height:500px) {
  .app-home-return { position: static; align-self: center; }
 }
+
+/* 1AGE MOBILE LANDSCAPE — isolated layout correction */
+@media screen and (orientation: landscape)
+  and (min-width: 700px)
+  and (max-width: 950px)
+  and (max-height: 500px) {
+
+  /* Keep the original 1AGE logo and search */
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    right: auto;
+    width: 48px;
+    padding: 0;
+  }
+
+  .home-screen .brand-circle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .home-screen .search-home,
+  .home-screen.search-open .search-home {
+    position: absolute;
+    top: 6px;
+    left: 72px;
+    right: 12px;
+    width: auto;
+    padding: 0;
+  }
+
+  .home-screen .search-expander {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .home-screen .search-expander > .search-circle {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+    font-size: 30px;
+  }
+
+  .home-screen.search-open .search-expander {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Preserve the original Earth, orbit and planets */
+  .home-screen #main {
+    padding-top: 62px;
+  }
+
+  .home-screen .universe {
+    width: 100%;
+    padding: 0;
+  }
+
+  .home-screen .world-scene {
+    margin-inline: auto;
+  }
+}
