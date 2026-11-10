@@ -724,3 +724,181 @@ and (max-height: 600px) and (pointer: coarse) {
     z-index: 10 !important;
   }
 }
+
+
+/* 1AGE REPAIR 010 — GLOBE AND SEARCH */
+
+/* Search remains closed until explicitly activated. */
+.home-screen:not(.search-open) .search-form {
+    display: none !important;
+}
+
+/* Mobile portrait */
+@media (orientation: portrait) and (max-width: 700px) {
+
+    .home-screen .world-scene {
+        --earth: clamp(190px, 54vw, 260px) !important;
+    }
+
+    .home-screen:not(.search-open) .search-home {
+        position: relative !important;
+        inset: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .home-screen:not(.search-open) .search-expander {
+        width: 52px !important;
+        flex: 0 0 52px !important;
+        margin: 0 auto !important;
+        justify-content: center !important;
+    }
+}
+
+/* Mobile landscape */
+@media (orientation: landscape)
+and (max-height: 600px)
+and (pointer: coarse) {
+
+    .home-screen:not(.search-open) .search-home {
+        position: fixed !important;
+        top: 8px !important;
+        left: 10px !important;
+        right: auto !important;
+        width: 48px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        z-index: 89 !important;
+    }
+
+    .home-screen:not(.search-open) .search-expander {
+        width: 48px !important;
+        flex: 0 0 48px !important;
+    }
+
+    .home-screen .world-scene {
+        --earth: min(82dvh, 370px) !important;
+    }
+}
+
+
+/* 1AGE MINI LAPTOP ORBITAL LAYOUT */
+@media screen
+and (orientation: landscape)
+and (min-height: 601px)
+and (max-height: 900px)
+and (max-width: 1600px)
+and (any-pointer: coarse) {
+
+  .home-screen .living-ticker {
+    display: none !important;
+  }
+
+  .home-screen .site-header,
+  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+    position: fixed !important;
+    top: 10px !important;
+    right: 14px !important;
+    left: auto !important;
+    width: 60px !important;
+    padding: 0 !important;
+    z-index: 95 !important;
+  }
+
+  .home-screen .brand-circle {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .home-screen .brand-name {
+    display: none !important;
+  }
+
+  .home-screen:not(.search-open) .search-home {
+    position: fixed !important;
+    top: 10px !important;
+    left: 14px !important;
+    right: auto !important;
+    width: 60px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 90 !important;
+  }
+
+  .home-screen:not(.search-open) .search-expander {
+    width: 56px !important;
+    flex: 0 0 56px !important;
+  }
+
+  .home-screen .search-expander > .search-circle {
+    width: 56px !important;
+    height: 56px !important;
+    flex: 0 0 56px !important;
+  }
+
+  .home-screen.search-open .search-home {
+    position: fixed !important;
+    top: 10px !important;
+    left: 50% !important;
+    right: auto !important;
+    width: min(70vw, 570px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateX(-50%) !important;
+    z-index: 96 !important;
+  }
+
+  .home-screen.search-open .search-expander {
+    width: 100% !important;
+  }
+
+  .home-screen .search-form[hidden] {
+    display: none !important;
+  }
+
+  .home-screen .world-scene {
+    --earth: min(58dvh, 390px) !important;
+  }
+
+  .home-screen .project-orbit {
+    width: min(80vw, 850px) !important;
+    height: min(68dvh, 490px) !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    border-radius: 50% !important;
+  }
+
+  .home-screen .project-planet {
+    transform:
+      translate(
+        calc(-50% + var(--x, 0px)),
+        calc(-50% + var(--y, 0px))
+      )
+      scale(var(--depth-scale, 1)) !important;
+    z-index: var(--orbit-layer, 2) !important;
+  }
+
+  .console-mode .console-controls {
+    display: block !important;
+  }
+
+  .console-mode .stick {
+    width: 110px;
+    height: 110px;
+    bottom: 20px;
+  }
+
+  .console-mode .stick-left {
+    left: 18px;
+  }
+
+  .console-mode .stick-right {
+    right: 18px;
+  }
+}

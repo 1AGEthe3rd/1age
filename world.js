@@ -29,7 +29,7 @@
     return ((Math.round((Math.PI - value) / step) % planets.length) + planets.length) % planets.length;
   }
   const depthMode = matchMedia(
-    '(orientation: landscape) and (max-height: 600px) and (pointer: coarse)'
+    '(orientation: landscape) and (max-height: 900px) and (any-pointer: coarse)'
   );
   function layout() {
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
