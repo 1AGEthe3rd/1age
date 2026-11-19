@@ -21,7 +21,7 @@
  function hold(node){node.dataset.held='true';options.querySelector('h2').textContent=node.querySelector('span:last-child')?.textContent||node.getAttribute('aria-label')||'Options';const actions=options.querySelector('.option-actions');actions.replaceChildren();
   const href=node.getAttribute('href');if(href){const a=document.createElement('a');a.href=href;a.textContent='Open';actions.appendChild(a);}
 
-  if(node.matches('.brand')){const a=document.createElement('a');a.href='/faq/';a.textContent='Help';actions.appendChild(a);const b=document.createElement('a');b.href='https://1age.design';b.textContent='Build with 1AGE.design';actions.appendChild(b);}
+  if(node.matches('.brand')){const b=document.createElement('a');b.href='https://1age.design';b.textContent='Build with 1AGE.design';actions.appendChild(b);}
   if(!actions.children.length){const b=document.createElement('button');b.textContent='Close';b.onclick=()=>options.close();actions.appendChild(b);}options.showModal();}
  document.addEventListener('pointerdown',e=>{const node=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet,[data-rotate],.search-circle');if(!node||node.disabled||e.button!==0)return;clearPress();delete node.dataset.held;press={node,id:e.pointerId,x:e.clientX,y:e.clientY};node.classList.add('is-pressing');timer=setTimeout(()=>{if(press)hold(node);},550);},true);
  document.addEventListener('pointermove',e=>{if(press&&press.id===e.pointerId&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>9)clearPress();},true);

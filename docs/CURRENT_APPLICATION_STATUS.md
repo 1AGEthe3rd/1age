@@ -58,3 +58,11 @@ Search starts closed on all homepage routes, with a centered icon on the 2D and 
 ## Dial selection and contextual ticker
 
 Initial homepage load leaves every planet unselected. Turning the dial activates the planet nearest the top; the selection follows rendered rotation and uses its existing accent color. The ticker replaces unrelated announcements with that application's purpose, current tools and development status. Touch landscape reserves a lower-center strip after selection. Expanded ticker lists contain only the selected application's information. Browser checks confirmed initial selected count zero, then Space and Games each matched the top planet and ticker. JavaScript syntax, app-entry, search and generated-home checks passed. Touch hardware validation remains pending; no publication performed.
+
+## Logo menu slider and About
+
+Replaced the logo's spread-out menu with a horizontal, scrollable slider shared by the generated application homepages. Store and Blog link directly to https://1age.store/ and https://1age.blog/. Social, About and Contact remain available. Mouse dragging, native touch scrolling and arrow/Home/End keyboard navigation are supported. Escape and outside press close the menu. Removed Help from both logo menus and removed the gesture-instruction popup.
+
+About now describes the all-blockchain scope, Solana infrastructure foundation, application identities, studio role and current implementation limits. Store and Blog 3D destinations and their World placement remain future design work; no new planets were added. Contact is preserved, but data/header-links.json has no contact email configured, so it currently displays a placeholder rather than a working inquiry destination.
+
+Browser review confirmed the five menu items, correct Store/Blog URLs, keyboard navigation to Contact, absence of the instruction popup, and updated About text. At 390px portrait width the slider stays within the viewport (12–378px) and scrolls horizontally to Contact. Hardware swipe validation remains pending. Syntax, search, application-entry and generated-home checks passed. All changes remain unpublished.
