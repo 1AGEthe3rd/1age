@@ -10,20 +10,8 @@
     if (expanded) form.querySelector('#search-input').focus();
   }
 
-  // Open search by default on mobile portrait.
-  const portrait = matchMedia(
-    '(orientation: portrait) and (max-width: 700px) and (pointer: coarse)'
-  );
-
-  function initializePortraitSearch() {
-    if (!portrait.matches || !form.hidden) return;
-    control.setAttribute('aria-expanded', 'true');
-    form.hidden = false;
-    document.body.classList.add('search-open');
-  }
-
-  initializePortraitSearch();
-  portrait.addEventListener('change', initializePortraitSearch);
+  // Start closed on every device. Explicit ?q= links are handled by search.js.
+  setExpanded(false);
 
   control.addEventListener('click', () => setExpanded(form.hidden));
   form.addEventListener('keydown', event => {

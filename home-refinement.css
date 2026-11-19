@@ -726,3 +726,9 @@
 /* Allow the shared scene to shrink below the historical 260px floor. */
 .home-screen .world-scene { min-height: 0; }
 .home-screen .world-scene { width: 100%; }
+
+/* A closed search is a centered icon; compact touch keeps its corner rule. */
+.home-screen:not(.search-open) .search-expander {
+  margin-inline: auto;
+  justify-content: center;
+}

@@ -4,12 +4,12 @@
   if (!ticker || !search) return;
   const marker = document.createComment('mobile ticker position');
   ticker.before(marker);
-  const desktop = matchMedia('((min-width:700px) and (orientation:landscape)) or ((orientation:landscape) and (max-height:600px) and (any-pointer:coarse))');
+  const compactTouch = matchMedia('(orientation:landscape) and (max-height:900px) and (max-width:1400px) and (any-pointer:coarse), (orientation:landscape) and (max-height:600px) and (pointer:coarse)');
   function placeTicker() {
-    if (desktop.matches) search.append(ticker);
+    if (compactTouch.matches) search.append(ticker);
     else marker.after(ticker);
   }
-  desktop.addEventListener('change', placeTicker);
+  compactTouch.addEventListener('change', placeTicker);
   placeTicker();
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {

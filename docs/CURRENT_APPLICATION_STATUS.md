@@ -50,3 +50,7 @@ Changes are on fix/responsive-homepage, not published. No DNS, hosting, merges o
 ## Founder identity clarification — November 19, 2026
 
 1AGE is a blockchain search engine and application ecosystem for all blockchains. Solana is the infrastructure foundation. Multichain scope is not a claim of complete index coverage or completed application integrations. Updated homepage metadata, shared WebSite structured data, About, FAQ, directory framing and README in the unpublished branch. The current source homepage title was already 1AGE; the Google screenshot shows AGE. No claim is made that Google has refreshed its title, snippet or AI Overview. After approved publication, inspect the live source and request recrawling through an authorized Search Console account if available. Google controls generated results and timing.
+
+## Search default — founder revision
+
+Search starts closed on all homepage routes, with a centered icon on the 2D and portrait layouts. Compact touchscreen landscape retains the top-left closed icon. Removed portrait auto-opening, including automatic opening on orientation change. Explicit search URLs with a q parameter still open their requested results. Announcements return to their existing lower-page marker outside compact touch landscape so the closed search icon can remain centered. Click and Escape behavior checked; shared app and search checks pass. Unpublished.
