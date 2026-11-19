@@ -72,3 +72,9 @@ Browser review confirmed the five menu items, correct Store/Blog URLs, keyboard 
 After release 68b8604 was published successfully on November 19, the founder requested a lower dial/globe and more separation using the studio portrait homepage as reference. On fix/portrait-dial-spacing, portrait ticker reservation is reduced to a 44px strip with no outside margin, giving the scene 36px more vertical room. The dial gains up to 8px additional radius within screen bounds, independently of globe sizing. This applies only to portrait screens up to 700px wide.
 
 Browser comparison: at 320x556, globe top moved from 229.39 to 247.39px, diameter stayed 160px, and orbit diameter increased from 232.19 to 259.19px. At 390x690, globe moved down 18px, stayed 195px diameter, and orbit increased from 303.39 to 319.39px. Both remained one viewport high. Non-touch 1024x600 and 844x390 measurements were unchanged. iPhone Safari hardware validation is pending. Shared app homepages regenerated; syntax, app-entry and generation checks passed. Not published.
+
+## Inline logo slider follow-up — unpublished
+
+Founder requested the round menu buttons return to the logo's horizontal plane while retaining horizontal sliding. Replaced the dropdown panel with transparent sliding wings on each side of the centered logo. Compact touch landscape extends the wings leftward from its corner logo. Circles use the logo's measured diameter; Store, Blog, Social, About and Contact remain. Mouse dragging now scrolls the touched wing, with native horizontal touch scrolling and keyboard navigation retained.
+
+Browser checks at 320px confirmed matching button row, overflow within the left wing and keyboard scrolling to Social (56px scroll). At 1024px the logo and all menu circle top edges aligned at 8px. Native touch hardware validation remains pending. Syntax, application-entry and generated-home checks passed. Includes the pending portrait-spacing change; not published.

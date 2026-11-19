@@ -752,31 +752,45 @@
  .home-screen.project-selected.search-open .living-ticker { display: none !important; }
 }
 
-/* Swipeable logo menu; same slider on touch, keyboard and mouse layouts. */
+/* Round logo-menu buttons share the logo row; each wing can slide. */
 .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
- position: absolute !important; display: flex !important;
- inset: calc(100% + 10px) auto auto 50% !important;
- width: min(520px, calc(100vw - 24px)) !important; height: auto !important;
- min-height: 0 !important; max-width: calc(100vw - 24px) !important;
- transform: translateX(-50%) !important; gap: 16px !important;
- padding: 14px !important; margin: 0 !important; border: 1px solid #24523e !important;
- border-radius: 24px !important; background: #000f !important; z-index: 96 !important;
- overflow-x: auto !important; overflow-y: hidden !important;
- touch-action: pan-x; overscroll-behavior-x: contain; scroll-snap-type: x proximity;
- scrollbar-width: thin; scrollbar-color: #1bfd9c #102019;
- pointer-events: auto !important;
+ position: absolute !important; display: grid !important;
+ grid-template-columns: minmax(0, 1fr) var(--menu-circle-size, 48px) minmax(0, 1fr);
+ inset: 0 auto auto 50% !important;
+ width: calc(100vw - 24px) !important; height: auto !important;
+ min-height: 0 !important; max-width: 1000px !important;
+ transform: translateX(-50%) !important; gap: 12px !important;
+ padding: 0 !important; margin: 0 !important; border: 0 !important;
+ border-radius: 0 !important; background: transparent !important; z-index: 1 !important;
+ overflow: visible !important; pointer-events: none !important;
 }
+.home-screen .header-slider-track {
+ display: flex; align-items: flex-start; gap: 12px; min-width: 0;
+ overflow-x: auto; overflow-y: hidden; padding: 0 0 6px;
+ touch-action: pan-x; overscroll-behavior-x: contain; scroll-snap-type: x proximity;
+ scrollbar-width: thin; scrollbar-color: #1bfd9c #102019; pointer-events: auto;
+}
+.home-screen .header-slider-track[data-side="left"] { grid-column: 1; }
+.home-screen .header-slider-track[data-side="right"] { grid-column: 3; }
+.home-screen .header-slider-track::before { content: ''; margin-left: auto; }
+.home-screen .header-slider-track[data-side="right"]::before { display: none; }
 .home-screen .header-hub .header-slider .header-planet:nth-child(n) {
  position: static !important; inset: auto !important; transform: none !important;
- flex: 0 0 72px; width: 72px !important; scroll-snap-align: center;
- font-size: 14px !important; line-height: 20px; gap: 6px;
+ flex: 0 0 var(--menu-circle-size, 48px); width: var(--menu-circle-size, 48px) !important;
+ scroll-snap-align: center; font-size: 12px !important; line-height: 20px; gap: 6px;
 }
-.home-screen .header-slider .header-planet-circle { width: 52px !important; height: 52px !important; }
+.home-screen .header-hub .header-slider .header-planet-circle {
+ width: var(--menu-circle-size, 48px) !important; height: var(--menu-circle-size, 48px) !important;
+}
+.home-screen .header-slider .header-planet:focus-visible { outline-offset: -2px; }
+.home-screen .header-hub:has(.header-slider:not([hidden])) .brand { z-index: 2; }
 @media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
  .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
-   inset: calc(100% + 10px) 0 auto auto !important; transform: none !important;
-   width: min(480px, calc(100vw - 24px)) !important;
+   inset: 0 calc(var(--menu-circle-size, 48px) + 12px) auto auto !important;
+   transform: none !important; display: flex !important;
+   width: min(620px, calc(100vw - 140px)) !important; gap: 12px !important;
  }
+ .home-screen .header-slider-track { flex: 1; }
 }
 
 /* Match the studio portrait composition: more scene room below Search. */

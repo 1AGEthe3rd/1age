@@ -9,12 +9,15 @@
   group=next;if(!brand||!wings)return;wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label',next==='social'?'Social links':'1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
   if(next==='closed')return;
   const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'About',icon:'about',url:'/about/'},{name:'Contact',icon:'contact',action:contact}];
+  const tracks=[document.createElement('div'),document.createElement('div')];
+  tracks.forEach((track,i)=>{track.className='header-slider-track';track.dataset.side=i?'right':'left';wings.append(track);});
+  const split=Math.ceil(items.length/2);
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
    if(item.url){node.href=item.url;if(next==='social'){node.target='_blank';node.rel='noopener noreferrer';}}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;node.title='Official link not added yet';}}
    const circle=document.createElement('span');circle.className='header-planet-circle';if(item.icon)circle.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">${paths[item.icon]}</svg>`;else circle.textContent=item.symbol;
-   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);wings.appendChild(node);
+   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);tracks[index<split?0:1].appendChild(node);
   });
-  wings.scrollLeft=0;
+  tracks.forEach(track=>{track.scrollLeft=0;});
  }
  brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  if(wings){
@@ -27,8 +30,8 @@
    nodes[index]?.focus();nodes[index]?.scrollIntoView({block:'nearest',inline:'nearest'});
   });
   let slide=null;
-  wings.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button===0)slide={x:e.clientX,left:wings.scrollLeft,moved:false};});
-  wings.addEventListener('pointermove',e=>{if(!slide)return;if(Math.abs(e.clientX-slide.x)>8){slide.moved=true;wings.scrollLeft=slide.left+slide.x-e.clientX;}});
+  wings.addEventListener('pointerdown',e=>{const track=e.target.closest('.header-slider-track');if(track&&e.pointerType==='mouse'&&e.button===0)slide={track,x:e.clientX,left:track.scrollLeft,moved:false};});
+  wings.addEventListener('pointermove',e=>{if(!slide)return;if(Math.abs(e.clientX-slide.x)>8){slide.moved=true;slide.track.scrollLeft=slide.left+slide.x-e.clientX;}});
   wings.addEventListener('click',e=>{if(slide?.moved){e.preventDefault();e.stopImmediatePropagation();}slide=null;},true);
   wings.addEventListener('pointerleave',()=>{slide=null;});
   wings.addEventListener('dragstart',e=>e.preventDefault());
@@ -49,7 +52,7 @@
  globe.addEventListener('pointerup',release);globe.addEventListener('pointercancel',e=>{release(e);multi=true;});
  globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}highlight=!highlight;sync();});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
- function fit(){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
+ function fit(){wings?.style.setProperty('--menu-circle-size',brand.querySelector('.brand-circle').getBoundingClientRect().width+'px');const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
  const landscape=matchMedia('(orientation:landscape) and (max-height:600px)').matches;
  const pc=matchMedia('(min-width:700px) and (orientation:landscape)').matches;
  const d=pc?Math.max(40,Math.min(92,h*.12)):landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
