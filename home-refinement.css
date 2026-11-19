@@ -778,3 +778,8 @@
    width: min(480px, calc(100vw - 24px)) !important;
  }
 }
+
+/* Match the studio portrait composition: more scene room below Search. */
+@media (orientation: portrait) and (max-width: 700px) {
+ .home-screen .living-ticker { --ticker-strip-height: 44px; margin: 0 auto; }
+}

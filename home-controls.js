@@ -58,7 +58,10 @@
  const ry=Math.max(42,h/2-d/2-(pc?32:28));
  const rx=compact?Math.min(w*.31,280,Math.max(42,(w-220)/2)):pc?Math.max(42,Math.min(w/2-d/2-30,ry)):Math.max(42,Math.min(w/2-d/2-16,ry));
  const earth=compact?Math.min(innerHeight*.65,300):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
- scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',rx*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
+ // Add breathing room around the same-sized globe on phone portrait.
+ const portrait=matchMedia('(orientation:portrait) and (max-width:700px)').matches;
+ const dialRadius=portrait?Math.min(rx+8,w/2-d/2-8,ry):rx;
+ scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',dialRadius*2+'px');scene.style.setProperty('--orbit-height',dialRadius*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  let fitFrame = 0;
  function scheduleFit() {
