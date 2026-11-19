@@ -1,0 +1,48 @@
+# 1AGE application organization and responsive draft
+
+Reviewed November 19, 2026. Source baseline: main 0ffce2a. This is a source inspection, not confirmation of current production services.
+
+## Working order
+
+1. Finish responsive 1age.com and shared application entrances.
+2. Verify search, navigation, globe interaction and Enter behavior.
+3. Reconcile domains and public World arrivals against the separate World web release.
+4. Develop each approved application's useful core, reusing existing code.
+5. Publish only after founder approval. Cloudflare setup and the property prototype remain paused.
+
+## Application inventory
+
+All twelve `/home/<app>/` entrances are generated from the canonical homepage. Shared browser workspaces are at `/apps/<app>/`. Domain/repository mappings remain in `data/app-domains.json`; configured mappings are not proof of deployment.
+
+| Application | Existing source implementation | Missing approved functionality |
+| --- | --- | --- |
+| Search / 1age.com | Search catalog, shared dial, ticker and navigation | Device review; reconcile browser World entry; community identity coverage |
+| World | Native launch links in this repo; released browser export in 1age-world-web | Reconcile browser/native entry, runtime destination verification |
+| Page | Browser-local profile editor and JSON export | Orbital external profiles, shareable handles, authentication; native messaging later |
+| Space | Browser-local space link directory and export | Shared property index, property discovery/detail and authorized 3D links |
+| Games | Local two-player tic-tac-toe | Game discovery and in-house game integration; preserve existing Godot work |
+| Exchange | Manual-rate conversion sandbox | Existing-wallet connections and financial interactions |
+| Quest | Local objective checklist | Discover index, Page identity chapter, story progression and demo reward tracking |
+| Cash | Local editable ledger and export | Shared account-based credit ledger; no real credit balances implied |
+| Design | Local title/subtitle/color preview and export | Reconcile with existing native creator tools |
+| Plus | Local preferences | Membership account and approved payment implementation |
+| Shop | Local product link catalog | Shared creator marketplace discovery |
+| Store | Local product link catalog | Official studio catalog and purchase flow |
+| App | Application link directory | Confirm distribution/discovery scope |
+
+Shop and Store remain distinct. Cash is internal credit; proposed $1AGE is separate. Native destinations and browser-local workspaces do not establish online services.
+
+## Responsive draft
+
+- Touch landscape on compact screens uses the existing depth-aware ellipse, narrowed to leave room for side controls.
+- Touch capability uses any-pointer so a touchscreen laptop can qualify even with a trackpad.
+- Mouse-only machines retain the 2D layout.
+- Portrait globe and dial calculations reuse the studio homepage proportions.
+- Removed forced extra landscape scroll height and the legacy 260px scene minimum. Explicit scene width prevents size-container collapse on short screens.
+- Shared generated app homes refreshed; original six planets, search and exact Enter label retained.
+
+## Verification
+
+JavaScript syntax, app entry checks, search checks and generated homepage validation passed. Browser layout measurements for the non-touch preview at 390x690, 1024x600 and 844x390 showed scroll dimensions equal to viewport dimensions after the scene-width correction. Desktop search expansion was inspected in browser. Real touchscreen, Safari browser chrome, Chuwi zoom and orientation transitions still require device validation. Do not describe the touch layouts as verified on hardware.
+
+Changes are on fix/responsive-homepage, not published. No DNS, hosting, merges or production changes performed. Rollback before publication: retain main; after an approved publication, revert the responsive commits normally without rewriting history.
