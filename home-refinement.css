@@ -131,9 +131,7 @@
 
 
 /* Mobile landscape: preserve the Chuwi homepage layout. */
-@media screen and (orientation:landscape)
-  and (max-height:600px)
-  and (any-pointer:coarse) {
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
   .home-screen .world-controls > button[data-rotate],
   .console-mode .game-buttons,
   .console-mode .altitude-buttons,
@@ -171,9 +169,7 @@
 
 
 /* 1AGE MOBILE LANDSCAPE FINAL HEADER */
-@media screen and (orientation: landscape)
-  and (max-height: 600px)
-  and (hover: none) and (pointer: coarse) {
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
 
   /* Single-screen layout */
   .home-screen {
@@ -350,9 +346,7 @@
   visibility: hidden;
 }
 
-@media screen and (orientation: landscape)
-and (max-height: 600px)
-and (pointer: coarse) {
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
 
   /* Let the browser address bar collapse through normal scrolling. */
   html {
@@ -361,8 +355,8 @@ and (pointer: coarse) {
   }
 
   body.home-screen {
-    height: auto !important;
-    min-height: calc(100dvh + 48px) !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
     overflow-x: clip !important;
     overflow-y: auto !important;
   }
@@ -517,8 +511,7 @@ and (pointer: coarse) {
 
 
 /* BUILD 007 - LANDSCAPE VIEWPORT FIX */
-@media screen and (orientation: landscape)
-and (max-height: 600px) and (pointer: coarse) {
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
 
   /* Let mobile browsers receive vertical swipe gestures. */
   html {
@@ -528,8 +521,8 @@ and (max-height: 600px) and (pointer: coarse) {
   }
 
   body.home-screen {
-    height: auto !important;
-    min-height: calc(100dvh + 96px) !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
     overflow-y: visible !important;
     overflow-x: clip !important;
   }
@@ -576,8 +569,7 @@ and (max-height: 600px) and (pointer: coarse) {
 
 
 /* BUILD 009 STEP 2 - CORNER MENU */
-@media screen and (orientation: landscape)
-and (max-height: 600px) and (pointer: coarse) {
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
 
   /* Fixed top-right 1AGE button. */
   .home-screen .site-header,
@@ -672,17 +664,16 @@ and (max-height: 600px) and (pointer: coarse) {
 
 
 /* BUILD 009 STEP 3 - 3D ORBIT */
-@media screen and (orientation: landscape)
-and (max-height: 600px) and (pointer: coarse) {
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
 
   /* Larger Earth without increasing canvas workload. */
   .home-screen .world-scene {
-    --earth: min(76dvh, 330px) !important;
+    --earth: min(65dvh, 300px) !important;
   }
 
   /* Elliptical orbit with individual planet depth. */
   .home-screen .project-orbit {
-    width: min(82vw, 620px) !important;
+    width: min(68vw, 560px) !important;
     height: min(47dvh, 260px) !important;
     left: 50% !important;
     top: 50% !important;
@@ -723,4 +714,11 @@ and (max-height: 600px) and (pointer: coarse) {
   .home-screen .world-entry {
     z-index: 10 !important;
   }
+}
+
+/* Fit the compact touch homepage inside the visible browser viewport. */
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
+  body.home-screen { overflow: hidden !important; }
+  .home-screen .project-orbit { height: min(38dvh, 230px) !important; }
+  .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
 }

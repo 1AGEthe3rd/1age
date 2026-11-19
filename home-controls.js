@@ -37,11 +37,11 @@
  const landscape=matchMedia('(orientation:landscape) and (max-height:600px)').matches;
  const pc=matchMedia('(min-width:700px) and (orientation:landscape)').matches;
  const d=pc?Math.max(40,Math.min(92,h*.12)):landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
- const availableWidth=w/2-d/2-30;
- const availableHeight=h/2-d/2-(pc?32:28);
- const radius=Math.max(42,Math.min(availableWidth,availableHeight));
- const rx=radius;
- const earth=pc?Math.min(640,rx*1.42):Math.max(24,Math.min(rx*2-d-30,landscape?240:540));
+ // Portrait uses the existing studio homepage proportions.
+ const compact=matchMedia('(orientation:landscape) and (max-height:900px) and (max-width:1400px) and (any-pointer:coarse), (orientation:landscape) and (max-height:600px) and (pointer:coarse)').matches;
+ const ry=Math.max(42,h/2-d/2-(pc?32:28));
+ const rx=compact?Math.min(w*.34,280):pc?Math.max(42,Math.min(w/2-d/2-30,ry)):Math.max(42,Math.min(w/2-d/2-16,ry));
+ const earth=compact?Math.min(innerHeight*.65,300):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',rx*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  let fitFrame = 0;

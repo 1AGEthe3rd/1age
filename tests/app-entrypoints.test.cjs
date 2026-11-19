@@ -23,7 +23,7 @@ try {
     const entry=native?'oneage://world/enter?destination='+app.slug:'/apps/'+app.slug+'/';
     assert(home.includes('class="world-entry" href="'+entry+'"'));
     assert(home.includes(native?'>Enter</a>':'>Open app</a>'));
-    assert(home.includes('/world.js?v=home-refinement-001'));
+    assert(home.includes(fs.readFileSync(path.join(root,'index.html'),'utf8').match(/<script src="(\/world\.js[^"]*)"/)[1]));
     assert(home.includes('/living-ticker.js?v=home-refinement-001'));
     assert(home.includes('/search-index.js?v=enterprise-001'));
     const workspace=fs.readFileSync(path.join(root,'apps',app.slug,'index.html'),'utf8');
