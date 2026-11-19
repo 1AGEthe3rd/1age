@@ -46,3 +46,7 @@ Shop and Store remain distinct. Cash is internal credit; proposed $1AGE is separ
 JavaScript syntax, app entry checks, search checks and generated homepage validation passed. Browser layout measurements for the non-touch preview at 390x690, 1024x600 and 844x390 showed scroll dimensions equal to viewport dimensions after the scene-width correction. Desktop search expansion was inspected in browser. Real touchscreen, Safari browser chrome, Chuwi zoom and orientation transitions still require device validation. Do not describe the touch layouts as verified on hardware.
 
 Changes are on fix/responsive-homepage, not published. No DNS, hosting, merges or production changes performed. Rollback before publication: retain main; after an approved publication, revert the responsive commits normally without rewriting history.
+
+## Founder identity clarification — November 19, 2026
+
+1AGE is a blockchain search engine and application ecosystem for all blockchains. Solana is the infrastructure foundation. Multichain scope is not a claim of complete index coverage or completed application integrations. Updated homepage metadata, shared WebSite structured data, About, FAQ, directory framing and README in the unpublished branch. The current source homepage title was already 1AGE; the Google screenshot shows AGE. No claim is made that Google has refreshed its title, snippet or AI Overview. After approved publication, inspect the live source and request recrawling through an authorized Search Console account if available. Google controls generated results and timing.

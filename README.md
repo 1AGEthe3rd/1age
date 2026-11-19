@@ -1,6 +1,6 @@
 # 1AGE
 
-**Organizing the Solana ecosystem.**
+**Blockchain search. Solana-based infrastructure.**
 
 Discover.
 Build.
@@ -10,7 +10,7 @@ Grow.
 
 ## Mission
 
-1AGE is an open-source platform dedicated to making the Solana ecosystem easier to discover, navigate, and contribute to.
+1AGE is a blockchain search engine and connected application ecosystem for all blockchains. Solana is its infrastructure foundation; its search and applications have a multichain scope.
 
 Our goal is to organize projects, opportunities, communities, tools, games, and builders into one accessible ecosystem.
 
