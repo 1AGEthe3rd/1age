@@ -110,7 +110,7 @@
   .home-screen .header-hub { justify-content: center; }
 }
 
-.home-screen .world-scene .project-planet.is-selected {
+.home-screen .world-scene .project-orbit .project-planet.is-selected {
   background: var(--accent);
   color: #000;
   box-shadow: 0 0 0 3px #000;
@@ -796,4 +796,30 @@
 /* Match the studio portrait composition: more scene room below Search. */
 @media (orientation: portrait) and (max-width: 700px) {
  .home-screen .living-ticker { --ticker-strip-height: 44px; margin: 0 auto; }
+}
+
+/* Compact laptops can report a mouse even when their display supports touch.
+   Keep the circular dial, with a shallow header and a larger scene. */
+@media (min-width: 700px) and (orientation: landscape) and (max-height: 700px) and (not (any-pointer: coarse)) {
+ .home-screen .site-header,
+ .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+   position: absolute; inset: 8px 0 auto; width: 100%; padding: 0;
+   max-width: none; background: transparent;
+ }
+ .home-screen .header-hub { justify-content: center; }
+ .home-screen .brand-circle { width: 48px; height: 48px; }
+ .home-screen .brand-name { font-size: 14px; line-height: 18px; }
+ .home-screen #main { padding-top: 80px; }
+ .home-screen .search-home, .home-screen.search-open .search-home {
+   position: absolute; inset: 8px auto auto 12px; width: 48px;
+   min-height: 48px; margin: 0; padding: 0;
+ }
+ .home-screen .search-expander > .search-circle {
+   width: 48px; height: 48px; flex-basis: 48px; font-size: 30px;
+ }
+ .home-screen.search-open .search-home { width: calc(100% - 24px); z-index: 98; }
+ .home-screen.search-open .search-expander { background: #000; }
+ .home-screen .universe { padding: 0; }
+ .home-screen .living-ticker { --ticker-strip-height: 44px; margin: 0 auto; }
+ .home-screen .results-section { top: 72px; max-height: calc(100dvh - 84px); }
 }
