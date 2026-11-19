@@ -54,3 +54,7 @@ Changes are on fix/responsive-homepage, not published. No DNS, hosting, merges o
 ## Search default — founder revision
 
 Search starts closed on all homepage routes, with a centered icon on the 2D and portrait layouts. Compact touchscreen landscape retains the top-left closed icon. Removed portrait auto-opening, including automatic opening on orientation change. Explicit search URLs with a q parameter still open their requested results. Announcements return to their existing lower-page marker outside compact touch landscape so the closed search icon can remain centered. Click and Escape behavior checked; shared app and search checks pass. Unpublished.
+
+## Dial selection and contextual ticker
+
+Initial homepage load leaves every planet unselected. Turning the dial activates the planet nearest the top; the selection follows rendered rotation and uses its existing accent color. The ticker replaces unrelated announcements with that application's purpose, current tools and development status. Touch landscape reserves a lower-center strip after selection. Expanded ticker lists contain only the selected application's information. Browser checks confirmed initial selected count zero, then Space and Games each matched the top planet and ticker. JavaScript syntax, app-entry, search and generated-home checks passed. Touch hardware validation remains pending; no publication performed.

@@ -7,8 +7,40 @@
     const headline = ticker.querySelector('.ticker-headline');
     const viewport = headline.parentElement;
     const pause = ticker.querySelector('.ticker-pause');
-    const announcements = [...ticker.querySelectorAll('[data-animation]')]
+    let announcements = [...ticker.querySelectorAll('[data-animation]')]
       .sort((a, b) => Number(b.dataset.priority || 0) - Number(a.dataset.priority || 0));
+
+    const projects = {
+      page: ['1AGE Page — Identity and social discovery.', 'Create a profile in the current browser workspace.', 'The planned 3D social interface links your external profiles through orbiting planets. Shared accounts and native messaging are in development.'],
+      space: ['1AGE Space — Virtual Spaces. Real Places.', 'Discover virtual spaces and commercial properties.', 'The current workspace saves space links locally. Property search, owner claims and authorized virtual occupancy are planned.'],
+      games: ['1AGE Games — Discover games. Find your next experience.', 'Play the existing local two-player game.', 'Gaming discovery and in-house titles, including NNB, are part of the development roadmap.'],
+      exchange: ['1AGE Exchange — A free Virtual Financial Platform.', 'Connect existing wallets across chains: the product direction.', 'The current browser tool is a manual conversion sandbox. Wallet connections, payments and swaps are in development.'],
+      quest: ['1AGE Quest — Explore. Learn. Earn.', 'Discover blockchain learning opportunities and a connected story adventure.', 'The current workspace tracks local objectives. Page Identity is the planned first story chapter; rewards are not live.'],
+      cash: ['1AGE Cash — Internal ecosystem credits.', 'Cash is account-based credit, separate from the proposed $1AGE cryptocurrency.', 'The current workspace is a local demonstration ledger. It does not issue real credits, hold money or perform blockchain transactions.'],
+      design: ['1AGE Design — Create your next space.', 'Try the browser title, subtitle and accent-color workspace.', 'Environment creation and publishing connect to the wider creator-tool roadmap.'],
+      plus: ['1AGE Plus — Optional membership.', 'The planned membership is $1 per month.', 'Current preferences are local. This page does not enroll or charge anyone.'],
+      shop: ['1AGE Shop — Discover blockchain creators and products.', 'The public marketplace direction connects independent creators and merchants.', 'The current product-link catalog is browser-local. Shared marketplace services are in development.'],
+      store: ['1AGE Store — Official studio products.', 'The official store belongs to 1AGEthe3rd.', 'The current browser catalog is local. Checkout and public product listings are not connected here.'],
+      app: ['1AGE App — Discover the applications.', 'Browse links to the existing 1AGE workspaces.', 'Application discovery and distribution scope will expand as features are completed.'],
+      world: ['1AGE World — One connected universe.', 'Explore the immersive environment and its application destinations.', 'Web hosting and native launch paths are being reconciled; application services develop independently.']
+    };
+    window.addEventListener('1age-project-selected', event => {
+      const {slug, name, accent} = event.detail || {};
+      document.body.classList.add('project-selected');
+      const facts = projects[slug] || [name, 'Explore this destination through the shared 1AGE interface.'];
+      const list = ticker.querySelector('.ticker-details');
+      list.replaceChildren();
+      facts.forEach((fact, i) => {
+        const li = document.createElement('li');
+        li.dataset.animation = ['full','left','right'][i % 3];
+        const title = document.createElement('strong'); title.textContent = fact; li.append(title); list.append(li);
+      });
+      announcements = [...list.children];
+      index = 0;
+      ticker.style.setProperty('--ticker-accent', accent || '#1bfd9c');
+      ticker.setAttribute('aria-label', name + ' information');
+      showAnnouncement();
+    });
 
     let index = 0;
     let timer;

@@ -14,7 +14,7 @@
   const projectButtons = [...document.querySelectorAll('[data-project]')];
   const step = Math.PI * 2 / planets.length;
   let angle = 0, targetAngle = 0, gesture = null, moved = false, open = true;
-  let selected = -1, animation = 0;
+  let selected = -1, animation = 0, hasTurned = false;
   const touchPointers=new Set();
   let suppressOrbitClick=false;
   function showPreview(index) {
@@ -23,10 +23,15 @@
     projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
     planets.forEach((planet, i) => {
       planet.classList.toggle('is-selected', i === index);
+      if(i === index) planet.setAttribute('aria-current','true');
+      else planet.removeAttribute('aria-current');
     });
+    const planet = planets[index];
+    const slug = new URL(planet.href, location.href).pathname.match(/\/(?:home|apps)\/([^/]+)/)?.[1] || document.body.dataset.homeApp;
+    window.dispatchEvent(new CustomEvent('1age-project-selected', {detail:{slug, name:planet.querySelector('span')?.textContent || '1AGE', accent:planet.style.getPropertyValue('--accent')}}));
   }
   function nearestIndex(value) {
-    return ((Math.round((Math.PI - value) / step) % planets.length) + planets.length) % planets.length;
+    return ((Math.round(-value / step) % planets.length) + planets.length) % planets.length;
   }
   const depthMode = matchMedia(
     '(orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), (orientation: landscape) and (max-height: 600px) and (pointer: coarse)'
@@ -47,9 +52,11 @@
           depth >= 0 ? '7' : '2');
       }
     });
+    if (hasTurned) showPreview(nearestIndex(angle));
   }
   function snap(screenDirection) {
     if (!open) return;
+    hasTurned = true;
     // At the front/bottom of the orbit, move planets in the arrow's screen direction.
     const direction = -screenDirection;
     cancelAnimationFrame(animation);
@@ -63,7 +70,6 @@
     cancelAnimationFrame(animation);
     targetAngle = destination;
     const from = angle, to = targetAngle, started = performance.now();
-    showPreview(nearestIndex(to));
     function tick(now) {
       const t = reduced.matches ? 1 : Math.min(1, (now - started) / 550);
       angle = from + (to - from) * (1 - Math.pow(1 - t, 3)); layout();
@@ -98,7 +104,7 @@
     gesture.pending += Math.atan2(Math.sin(now-gesture.last), Math.cos(now-gesture.last));
     gesture.last = now;
     if (Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>10) moved = true;
-    if (moved) { angle += gesture.pending; gesture.pending = 0; targetAngle = angle; layout(); }
+    if (moved) { hasTurned = true; angle += gesture.pending; gesture.pending = 0; targetAngle = angle; layout(); }
   });
   scene.addEventListener('pointerup', event => {
     if(event.pointerType==='touch')touchPointers.delete(event.pointerId);
@@ -132,7 +138,8 @@
     open=true;orbit.hidden=false;globe.setAttribute('aria-expanded','true');
     document.querySelectorAll('[data-rotate]').forEach(arrow => {arrow.disabled=false;});
     const index = Number(button.dataset.project);
-    const desired = Math.PI-index*step;
+    hasTurned = true;
+    const desired = -index*step;
     const shortest = Math.atan2(Math.sin(desired-angle), Math.cos(desired-angle));
     animateTo(angle+shortest);
   }));
@@ -187,7 +194,7 @@
       orbit.focus({preventScroll:true});
     }
   });
-  new ResizeObserver(layout).observe(orbit); layout(); showPreview(nearestIndex(angle));
+  new ResizeObserver(layout).observe(orbit); layout();
   const texture = document.querySelector('.globe-texture');
   // Project one continuous world map onto the sphere. No atlas handoff or fade.
   function movingGlobe() {

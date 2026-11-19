@@ -732,3 +732,22 @@
   margin-inline: auto;
   justify-content: center;
 }
+
+/* Selection color follows the active application. */
+.living-ticker .ticker-headline { color: var(--ticker-accent, #e2ffdc); }
+
+/* Selected-project information also has a reserved strip on touch landscape. */
+@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
+ .home-screen.project-selected .living-ticker {
+   display: block !important; position: fixed; bottom: 0; top: auto;
+   left: 110px; right: 110px; width: auto; margin: 0; z-index: 20;
+   --ticker-strip-height: 48px;
+ }
+ .home-screen.project-selected #main,
+ .home-screen.project-selected .universe { height: calc(100dvh - 52px) !important; min-height: 0 !important; }
+ .home-screen.project-selected .world-scene { height: calc(100dvh - 60px) !important; }
+ .home-screen.project-selected .living-ticker details[open] .ticker-details {
+   top: auto; bottom: 100%; max-height: 55dvh; background: #000;
+ }
+ .home-screen.project-selected.search-open .living-ticker { display: none !important; }
+}
