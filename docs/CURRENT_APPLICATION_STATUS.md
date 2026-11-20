@@ -126,3 +126,7 @@ Removed the debounced search-on-input behavior. Typing now edits the query witho
 Results use a solid black, borderless surface with no panel outline, radius or panel shadow; cards have no dividing borders. The homepage scene and controls are hidden while results are open. The 1AGE return button, close control and Escape restore the closed homepage icon and remove q from the URL. The landscape scroll runway is suspended while viewing results.
 
 Browser checks: typing Phantom left results hidden with zero cards; Enter produced one Phantom result in a 390x690 full viewport. Editing to Ethereum did not replace the displayed Phantom results before submission. Returning home restored the closed icon. Landscape submission produced Ethereum results, and direct q=Phantom links opened full-page results in portrait and landscape. Final landscape bounds were 844x390, black background and 0px border. Search catalog/ranking, app-entry, device-layout, gesture and generated-home checks passed. Not published.
+
+## Ticker typography and search logo — unpublished
+
+Ticker copy is white; application-name spans retain the selected application's accent color in both the headline and expanded details. The search-results return-home control now uses the existing 1AGE logo with an accessible button label. Browser checks confirmed white copy, accented 1AGE Space text and a loaded logo image. JavaScript syntax, generated-home and application-entry checks passed. Not published.

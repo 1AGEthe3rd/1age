@@ -10,6 +10,20 @@
     let announcements = [...ticker.querySelectorAll('[data-animation]')]
       .sort((a, b) => Number(b.dataset.priority || 0) - Number(a.dataset.priority || 0));
 
+    let activeName = '';
+    function paintText(node, text) {
+      node.replaceChildren();
+      if(!activeName){node.textContent=text;return;}
+      const names=new RegExp('\\b(?:1AGE\\s+)?'+activeName+'\\b','g');
+      let start=0;
+      for(const match of text.matchAll(names)){
+        node.append(document.createTextNode(text.slice(start,match.index)));
+        const name=document.createElement('span');name.className='ticker-app-name';name.textContent=match[0];node.append(name);
+        start=match.index+match[0].length;
+      }
+      node.append(document.createTextNode(text.slice(start)));
+    }
+
     const projects = {
       page: ['1AGE Page — Identity and social discovery.', 'Create a profile in the current browser workspace.', 'The planned 3D social interface links your external profiles through orbiting planets. Shared accounts and native messaging are in development.'],
       space: ['1AGE Space — Virtual Spaces. Real Places.', 'Discover virtual spaces and commercial properties.', 'The current workspace saves space links locally. Property search, owner claims and authorized virtual occupancy are planned.'],
@@ -28,12 +42,13 @@
       const {slug, name, accent} = event.detail || {};
       document.body.classList.add('project-selected');
       const facts = projects[slug] || [name, 'Explore this destination through the shared 1AGE interface.'];
+      activeName=Object.hasOwn(projects,slug)?slug[0].toUpperCase()+slug.slice(1):'';
       const list = ticker.querySelector('.ticker-details');
       list.replaceChildren();
       facts.forEach((fact, i) => {
         const li = document.createElement('li');
         li.dataset.animation = ['full','left','right'][i % 3];
-        const title = document.createElement('strong'); title.textContent = fact; li.append(title); list.append(li);
+        const title = document.createElement('strong'); paintText(title, fact); li.append(title); list.append(li);
       });
       announcements = [...list.children];
       index = 0;
@@ -51,7 +66,7 @@
       clearTimeout(timer);
       animation?.cancel();
       const announcement = announcements[index];
-      headline.textContent = announcement.querySelector('strong').textContent;
+      headline.replaceChildren(...[...announcement.querySelector('strong').childNodes].map(node=>node.cloneNode(true)));
       headline.classList.remove('ticker-moving');
 
       if ((matchMedia('(min-width:700px) and (orientation:landscape)').matches && document.body.classList.contains('search-open')) || paused || disclosure.open || reducedMotion.matches || document.hidden ||

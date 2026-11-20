@@ -582,7 +582,7 @@ html[data-touch-layout="landscape"] .home-screen .project-orbit { height: min(38
 }
 
 /* Selection color follows the active application. */
-.living-ticker .ticker-headline { color: var(--ticker-accent, #e2ffdc); }
+.living-ticker .ticker-headline { color: #fff; }
 
 /* Selected-project information also has a reserved strip on touch landscape. */
 html[data-touch-layout="landscape"] .home-screen.project-selected .living-ticker {
@@ -711,3 +711,9 @@ body.home-screen.results-open :is(.site-header,.search-home,.universe,.living-ti
 html[data-touch-layout] body.home-screen.results-open {
  height: 100dvh !important; min-height: 0 !important; overflow: hidden !important;
 }
+
+/* White ticker copy with only the selected application name accented. */
+.living-ticker, .living-ticker .ticker-details strong { color: #fff; }
+.living-ticker .ticker-app-name { color: var(--ticker-accent, #fff); }
+.results-home { display: grid; place-items: center; width: 44px; min-height: 44px; padding: 0; }
+.results-home img { display: block; width: 44px; height: 44px; object-fit: contain; }
