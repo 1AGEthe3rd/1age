@@ -560,7 +560,15 @@ html[data-touch-layout="landscape"] .home-screen .project-planet {
 
 
 /* Fit the compact touch homepage inside the visible browser viewport. */
-html[data-touch-layout="landscape"] body.home-screen { overflow: hidden !important; }html[data-touch-layout="landscape"] .home-screen .project-orbit { height: min(38dvh, clamp(230px, calc(50vw - 282px), 420px)) !important; }html[data-touch-layout="landscape"] .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
+/* A short scroll runway lets mobile browsers collapse their toolbars.
+   The scene stays pinned while the browser's visible viewport changes. */
+html[data-touch-layout="landscape"] body.home-screen {
+ height: calc(100dvh + 72px) !important;
+ min-height: calc(100dvh + 72px) !important;
+ overflow: visible !important;
+}
+html[data-touch-layout="landscape"] .home-screen #main { position: sticky; top: 0; }
+html[data-touch-layout="landscape"] .home-screen .project-orbit { height: min(38dvh, clamp(230px, calc(50vw - 282px), 420px)) !important; }html[data-touch-layout="landscape"] .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
 
 
 /* Allow the shared scene to shrink below the historical 260px floor. */

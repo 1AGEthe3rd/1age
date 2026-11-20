@@ -91,17 +91,30 @@
     const box = orbit.getBoundingClientRect();
     const radius = Math.hypot((event.clientX-box.left-box.width/2)/(box.width/2),
                               (event.clientY-box.top-box.height/2)/(box.height/2));
-    if (!link && (radius < .72 || radius > 1.30)) return;
+    const linear = event.pointerType==='touch' && depthMode.matches;
+    // Landscape touch can start on the open scene, not only the thin ellipse.
+    if (!linear && !link && (radius < .72 || radius > 1.30)) return;
     cancelAnimationFrame(animation); moved = false;
-    gesture = {id:event.pointerId, x:event.clientX, y:event.clientY, last:pointAngle(event), pending:0, link,touch:event.pointerType==='touch'};
-    scene.setPointerCapture(event.pointerId);
+    gesture = {id:event.pointerId, x:event.clientX, y:event.clientY, last:pointAngle(event), pending:0, link,touch:event.pointerType==='touch',linear,lastX:event.clientX,intent:linear?'pending':'rotate'};
+    if(!linear)scene.setPointerCapture(event.pointerId);
   });
   scene.addEventListener('pointermove', event => {
     if (!gesture || event.pointerId !== gesture.id) return;
-    const now = pointAngle(event);
-    gesture.pending += Math.atan2(Math.sin(now-gesture.last), Math.cos(now-gesture.last));
-    gesture.last = now;
-    if (Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>10) moved = true;
+    if(gesture.linear){
+      const dx=event.clientX-gesture.x,dy=event.clientY-gesture.y;
+      if(gesture.intent==='pending'){
+        if(Math.abs(dy)>6 && Math.abs(dy)>Math.abs(dx)*1.15){suppressOrbitClick=true;cancel();return;}
+        if(Math.abs(dx)<=6 || Math.abs(dx)<=Math.abs(dy)*1.15)return;
+        gesture.intent='rotate';scene.setPointerCapture(event.pointerId);
+      }
+      gesture.pending -= (event.clientX-gesture.lastX)/Math.max(100,orbit.clientWidth*.25);
+      gesture.lastX=event.clientX;moved=true;
+    }else{
+      const now = pointAngle(event);
+      gesture.pending += Math.atan2(Math.sin(now-gesture.last), Math.cos(now-gesture.last));
+      gesture.last = now;
+      if (Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>(gesture.touch?6:10)) moved = true;
+    }
     if (moved) { hasTurned = true; angle += gesture.pending; gesture.pending = 0; targetAngle = angle; layout(); }
   });
   scene.addEventListener('pointerup', event => {
@@ -113,7 +126,7 @@
     if (!moved && link && !link.dataset.held) window.location.assign(link.href);
     else if (moved) showPreview(nearestIndex(angle));
   });
-  function cancel() { gesture = null; moved = true; targetAngle = angle; }
+  function cancel() { const id=gesture?.id;gesture = null; moved = true; targetAngle = angle;if(id!==undefined&&scene.hasPointerCapture(id))scene.releasePointerCapture(id); }
   scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
   scene.addEventListener('lostpointercapture', () => { gesture = null; });
   orbit.addEventListener('dragstart',event=>event.preventDefault());
