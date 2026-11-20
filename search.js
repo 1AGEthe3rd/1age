@@ -250,6 +250,7 @@ function closeResults() {
   control?.setAttribute('aria-expanded','false');
   currentQuery='';updateURL();
   control?.focus({preventScroll:true});
+  window.dispatchEvent(new Event('1age-home-restored'));
 }
 
 document.querySelector('[data-close-results]')

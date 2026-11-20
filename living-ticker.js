@@ -5,6 +5,15 @@
   document.querySelectorAll('.living-ticker').forEach(ticker => {
     const disclosure = ticker.querySelector('details');
     const headline = ticker.querySelector('.ticker-headline');
+    // Keep the floating panel outside native details-content clipping/containment.
+    const panel=ticker.querySelector('.ticker-details');
+    if(document.body.classList.contains('home-screen')){
+      panel.id ||= 'ticker-details';
+      disclosure.querySelector('summary').setAttribute('aria-controls',panel.id);
+      disclosure.after(panel);
+      const syncPanel=()=>{panel.hidden=!disclosure.open;};
+      disclosure.addEventListener('toggle',syncPanel);syncPanel();
+    }
     const viewport = headline.parentElement;
     const pause = ticker.querySelector('.ticker-pause');
     let announcements = [...ticker.querySelectorAll('[data-animation]')]
@@ -63,6 +72,10 @@
     let paused = false;
 
     function showAnnouncement() {
+      if(document.body.classList.contains('results-open') && disclosure.open){
+        disclosure.open=false;
+        if(panel.parentElement===ticker)panel.hidden=true;
+      }
       clearTimeout(timer);
       animation?.cancel();
       const announcement = announcements[index];
