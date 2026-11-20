@@ -10,7 +10,7 @@
   if(next==='closed')return;
   const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'About',icon:'about',url:'/about/'},{name:'Contact',icon:'contact',action:contact}];
   const tracks=[document.createElement('div'),document.createElement('div')];
-  tracks.forEach((track,i)=>{track.className='header-slider-track';track.dataset.side=i?'right':'left';wings.append(track);});
+  tracks.forEach((track,i)=>{track.className='header-slider-track';track.dataset.side=i?'right':'left';track.tabIndex=0;track.setAttribute('aria-label',i?'More menu options':'Menu options');wings.append(track);});
   const split=Math.ceil(items.length/2);
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
    if(item.url){node.href=item.url;if(next==='social'){node.target='_blank';node.rel='noopener noreferrer';}}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;node.title='Official link not added yet';}}

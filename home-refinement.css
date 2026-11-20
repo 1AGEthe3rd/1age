@@ -319,7 +319,7 @@ html[data-touch-layout="landscape"] .home-screen .quick-links {
     left: 50% !important;
     width: min(90vw, 420px) !important;
     transform: translateX(-50%);
-  }html[data-touch-layout="landscape"] .home-screen .header-wings:not([hidden]) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider):not([hidden]) {
     position: absolute !important;
     inset: 56px auto auto 50% !important;
     transform: translateX(-50%) !important;
@@ -334,13 +334,13 @@ html[data-touch-layout="landscape"] .home-screen .quick-links {
     background: rgba(0,0,0,.94) !important;
     z-index: 91 !important;
     pointer-events: auto !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings[hidden] {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider)[hidden] {
     display: none !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet {
     position: static !important;
     transform: none !important;
     font-size: 11px !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet-circle {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet-circle {
     width: 42px !important;
     height: 42px !important;
   }html[data-touch-layout="landscape"] .home-screen .search-home,
@@ -460,7 +460,7 @@ html[data-touch-layout="landscape"] .home-screen .site-header:has(.brand[aria-ex
   }html[data-touch-layout="landscape"] .home-screen .brand {
     position: relative !important;
     z-index: 2 !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings:not([hidden]) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider):not([hidden]) {
     position: absolute !important;
     inset: 0 0 auto auto !important;
     display: block !important;
@@ -475,7 +475,7 @@ html[data-touch-layout="landscape"] .home-screen .site-header:has(.brand[aria-ex
     background: transparent !important;
     overflow: visible !important;
     z-index: 1 !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet {
     position: absolute !important;
     display: flex !important;
     width: 66px !important;
@@ -484,15 +484,15 @@ html[data-touch-layout="landscape"] .home-screen .site-header:has(.brand[aria-ex
     top: 0 !important;
     transform: none !important;
     pointer-events: auto !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(1) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet:nth-child(1) {
     transform: translate(-68px, 0) !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(2) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet:nth-child(2) {
     transform: translate(-120px, 45px) !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(3) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet:nth-child(3) {
     transform: translate(-142px, 105px) !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(4) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet:nth-child(4) {
     transform: translate(-120px, 165px) !important;
-  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet-circle {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not(.header-slider) .header-planet-circle {
     width: 42px !important;
     height: 42px !important;
   }html[data-touch-layout="landscape"] .home-screen:not(.search-open) .search-home {
@@ -631,7 +631,8 @@ html[data-touch-layout="landscape"] .home-screen .site-header .header-hub .heade
    inset: 0 calc(var(--menu-circle-size, 48px) + 12px) auto auto !important;
    transform: none !important; display: flex !important;
    width: min(620px, calc(100vw - 140px)) !important; gap: 12px !important;
- }html[data-touch-layout="landscape"] .home-screen .header-slider-track { flex: 1; }
+   justify-content: flex-end;
+ }html[data-touch-layout="landscape"] .home-screen .header-slider-track { flex: 0 1 auto; }
 
 
 /* Match the studio portrait composition: more scene room below Search. */

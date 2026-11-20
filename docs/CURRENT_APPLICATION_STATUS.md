@@ -130,3 +130,9 @@ Browser checks: typing Phantom left results hidden with zero cards; Enter produc
 ## Ticker typography and search logo — unpublished
 
 Ticker copy is white; application-name spans retain the selected application's accent color in both the headline and expanded details. The search-results return-home control now uses the existing 1AGE logo with an accessible button label. Browser checks confirmed white copy, accented 1AGE Space text and a loaded logo image. JavaScript syntax, generated-home and application-entry checks passed. Not published.
+
+## Logo slider repair — unpublished
+
+Scoped legacy touchscreen fan-menu rules away from the horizontal slider. Their per-button transforms were moving slider buttons out of their tracks and clipping them. Round buttons now retain a common top edge with the logo; landscape tracks align directly beside the corner logo. Overflow tracks remain horizontally scrollable and keyboard focusable. Store, Blog, Social, About and Contact remain; Help is absent and the existing updated About content is preserved.
+
+Browser previews at 390x740, 844x390 and 1280x720 verified aligned circles and no legacy transforms. Portrait overflow advanced to scrollLeft 56 and returned to 0 using menu keyboard navigation. Store and Blog URLs, Social submenu and Contact dialog were checked. Device hardware swipe feel remains to be checked. Syntax, app entry and generated-home checks passed. Production remains at 703609b.
