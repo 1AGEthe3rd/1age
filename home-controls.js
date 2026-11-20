@@ -8,10 +8,10 @@
  function header(next){
   group=next;if(!brand||!wings)return;wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label',next==='social'?'Social links':'1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
   if(next==='closed')return;
-  const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'About',icon:'about',url:'/about/'},{name:'Contact',icon:'contact',action:contact}];
+  const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'Contact',icon:'contact',action:contact},{name:'About',icon:'about',url:'/about/'}];
   const tracks=[document.createElement('div'),document.createElement('div')];
   tracks.forEach((track,i)=>{track.className='header-slider-track';track.dataset.side=i?'right':'left';track.tabIndex=0;track.setAttribute('aria-label',i?'More menu options':'Menu options');wings.append(track);});
-  const split=Math.ceil(items.length/2);
+  const split=next==='main'?2:Math.ceil(items.length/2);
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
    if(item.url){node.href=item.url;if(next==='social'){node.target='_blank';node.rel='noopener noreferrer';}}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;node.title='Official link not added yet';}}
    const circle=document.createElement('span');circle.className='header-planet-circle';if(item.icon)circle.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">${paths[item.icon]}</svg>`;else circle.textContent=item.symbol;

@@ -136,3 +136,7 @@ Ticker copy is white; application-name spans retain the selected application's a
 Scoped legacy touchscreen fan-menu rules away from the horizontal slider. Their per-button transforms were moving slider buttons out of their tracks and clipping them. Round buttons now retain a common top edge with the logo; landscape tracks align directly beside the corner logo. Overflow tracks remain horizontally scrollable and keyboard focusable. Store, Blog, Social, About and Contact remain; Help is absent and the existing updated About content is preserved.
 
 Browser previews at 390x740, 844x390 and 1280x720 verified aligned circles and no legacy transforms. Portrait overflow advanced to scrollLeft 56 and returned to 0 using menu keyboard navigation. Store and Blog URLs, Social submenu and Contact dialog were checked. Device hardware swipe feel remains to be checked. Syntax, app entry and generated-home checks passed. Production remains at 703609b.
+
+## Menu priority order — unpublished
+
+Main menu order is Store, Blog, Social, Contact, then About. The main menu splits after Blog so the two priority options occupy each side of the centered logo; About follows Contact in the overflow track. Existing social submenu splitting is unchanged. Syntax, application-entry and generated-home checks passed.
