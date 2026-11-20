@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {recoveryStore} from '../../experiences/checkout/recovery.mjs';
+const data=new Map(),storage={getItem:k=>data.get(k)||null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};
+const plus=recoveryStore(storage,'plus'),cash=recoveryStore(storage,'cash');
+assert.equal(plus.read(),null);
+plus.write({mode:'backend',requestKey:'retry-key',order:null,consent:true});
+assert.equal(plus.read().requestKey,'retry-key');assert.equal(plus.read().consent,true);assert.equal(cash.read(),null);
+plus.write({...plus.read(),order:{id:'demo-order',access_token:'demo-capability',state:'paid'}});
+assert.equal(recoveryStore(storage,'plus').read().order.id,'demo-order');
+plus.clear();assert.equal(plus.read(),null);
+storage.setItem('1age-checkout-demo-v2:plus','broken JSON');assert.equal(plus.read(),null);
+storage.setItem('1age-checkout-demo-v2:plus',JSON.stringify({version:2,app:'cash',mode:'backend',requestKey:'retry-key'}));assert.equal(plus.read(),null);
+assert.equal(recoveryStore(null,'plus').write({mode:'browser',requestKey:'blocked'}),false);
+assert.equal(recoveryStore(null,'plus').read(),null);
+console.log('Checkout recovery: reload, app isolation, consent, reset and blocked storage passed');

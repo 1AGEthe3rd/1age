@@ -15,7 +15,14 @@ class Handler(SimpleHTTPRequestHandler):
  def do_GET(self):
   if self.path=='/api/catalog':return self.json_response(200,{'mode':'demonstration','offers':__import__('core').CATALOG})
   if self.path.startswith('/api/orders/'):
-   try:return self.json_response(200,self.server.checkout.read(self.path.split('/')[-1],self.headers.get('Authorization','').removeprefix('Bearer ')))
+   try:
+    parts=urlparse(self.path).path.strip('/').split('/')
+    if len(parts) not in (3,4) or (len(parts)==4 and parts[3]!='receipt'):return self.json_response(404,{'error':'Unknown order operation'})
+    order=self.server.checkout.read(parts[2],self.headers.get('Authorization','').removeprefix('Bearer '))
+    if len(parts)==4:
+     if not order['receipt']:return self.json_response(409,{'error':'Receipt not issued for this order state'})
+     return self.json_response(200,{'mode':'demonstration','order_id':order['id'],'reference':order['receipt'],'state':order['state'],'label':order['label'],'amount':order['amount'],'currency':order['currency'],'membership':order['membership'],'notice':'No real money or products changed hands.'})
+    return self.json_response(200,order)
    except CheckoutError as e:return self.json_response(403,{'error':str(e)})
   # Static preview must never expose service source, runtime databases, or repository metadata.
   if not posixpath.normpath(unquote(urlparse(self.path).path)).startswith(('/experiences/','/assets/')):return self.send_error(404)

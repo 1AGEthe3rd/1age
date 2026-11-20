@@ -1,6 +1,6 @@
 # Work Session 002 — development report
 
-November 19, 2026 · Unpublished review build
+Updated November 20, 2026 · Unpublished review build
 
 ## Result
 
@@ -44,7 +44,7 @@ An additional independent-package regression test passed, checking local asset/n
 
 Browser-tested desktop Store rendering and camera control, Store-to-checkout navigation, Plus consent/activation/cancellation, Cash success/refund and Blog GLB/reading view. At 390px phone frames, Store/Blog/Checkout content width matched available width (375px after scrollbar), with no horizontal overflow. A no-3D-bootstrap fixture confirmed a visible 2D monogram and available checkout navigation. The updated legacy Plus entry and homepage preview-menu-to-Store path were verified. Phone gesture feel and lower-powered hardware performance still require physical-device testing. No measured hardware performance guarantee is made.
 
-The static browser review uses an in-memory browser-only simulation. Backend order/event/accounting flows were tested through real local HTTP and SQLite, but the browser review was not connected to that backend. A real provider sandbox and hosted checkout have **not** been integrated or tested.
+The initial static review used a browser-only simulation. The November 20 follow-up connected the browser to the local mock backend and verified pending and paid order recovery, receipt download, refund balance reversal, Plus consent and cancellation recovery. A real provider sandbox and hosted checkout have **not** been integrated or tested.
 
 ## Files and review locations
 
@@ -62,3 +62,13 @@ Legacy `apps/store/`, `apps/plus/` and `/plus/` entry pages now redirect to the 
 Run `python3 services/checkout/server.py` and open `http://127.0.0.1:4180/experiences/` to review with the local mock API. Use `python3 scripts/build-commerce-apps.py --out <new-empty-directory>` to prepare independent static bundles. These packages contain only frontend files, never backend secrets or databases.
 
 Founder review: assess Store/Blog/Plus visual direction and confirm Blog repository/hosting assignment. Then select a provider and complete sandbox onboarding. Next engineering milestone: verified sandbox checkout and subscription lifecycle with authenticated identity. Public app updates and any backend deployment still need explicit approval. Rollback for a future static release is the prior reviewed Git commit; no history rewriting is needed. Database migration/backup strategy must be defined before any real ledger exists.
+
+## November 20 follow-up — recovery and receipts
+
+- Tab-scoped recovery retains application, request key, consent and demonstration order. A lost create response can be retried with the same key. Backend recovery re-reads authoritative mock status; saved UI state cannot create a backend payment result.
+- Catalog discovery completes before order creation is enabled. Static 404 selects the explicitly labeled browser simulation. Timeouts, unexpected responses and environment mismatches stop checkout rather than silently switching a saved backend order to browser mode.
+- A protected receipt endpoint rejects unauthorized requests and orders without issued receipts. Receipt downloads fetch the current backend record; refunded receipts show the refund state.
+- Added Refresh order status and Start another demonstration controls. Flow selection updates the URL so refresh restores the correct application.
+- Fourteen Python tests passed, plus the JavaScript recovery checks and the existing homepage/search/ticker/device/navigation checks. Browser verification used the connected local backend for Cash and Plus. The same Cash order ID survived refresh before and after success, balance changed once to 1 and returned to 0 on refund. Plus cancellation survived refresh.
+- Recovery uses sessionStorage for demonstration capabilities, never provider keys. It is tab-scoped, is lost when the tab/session is cleared, and may be unavailable when browser storage is blocked. This is not production authentication. Browser-only records remain editable demonstrations, never trusted payment records.
+- No public update or payment-provider connection was made. Store/Blog/Plus visuals and the homepage were preserved in this follow-up.
