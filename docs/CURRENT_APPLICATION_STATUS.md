@@ -118,3 +118,11 @@ Tests exercise the actual pointer handlers for wide touch hit area, jitter, hori
 Added a lightweight spherical visual treatment to the existing app planets in touch landscape: curved radial lighting, a small specular highlight, shaded edges and inset/drop shadows. Icons remain upright and legible; labels stay outside the sphere. Selected planets retain their full accent fill and dark icons with the spherical shading. Existing depth scale, front/back layering and interactions are reused; no new WebGL scene or assets.
 
 Browser phone and Chuwi landscape previews showed the dimensional spheres. Selected Space retained rgb(226,255,220) base fill, black icon and nonempty shading gradients. Portrait selectors are unchanged. Generated homepage and app-entry checks passed. Not published.
+
+## Submit-only full-page search — unpublished
+
+Removed the debounced search-on-input behavior. Typing now edits the query without opening or replacing results. Submitting with Enter/Search opens a viewport-filling results page using the existing index and result renderer. The existing form moves into a sticky results search bar, so subsequent queries remain editable without duplicate forms or IDs. Explicit q links still open their requested results. Empty submissions keep focus in the input.
+
+Results use a solid black, borderless surface with no panel outline, radius or panel shadow; cards have no dividing borders. The homepage scene and controls are hidden while results are open. The 1AGE return button, close control and Escape restore the closed homepage icon and remove q from the URL. The landscape scroll runway is suspended while viewing results.
+
+Browser checks: typing Phantom left results hidden with zero cards; Enter produced one Phantom result in a 390x690 full viewport. Editing to Ethereum did not replace the displayed Phantom results before submission. Returning home restored the closed icon. Landscape submission produced Ethereum results, and direct q=Phantom links opened full-page results in portrait and landscape. Final landscape bounds were 844x390, black background and 0px border. Search catalog/ranking, app-entry, device-layout, gesture and generated-home checks passed. Not published.

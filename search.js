@@ -12,6 +12,16 @@ const section = $('#results-section');
 const note = section.querySelector('.index-note');
 const buttons = [...document.querySelectorAll('[data-search-mode]')];
 const quickLinks = document.querySelector('.quick-links');
+const formHome = document.createComment('homepage search position');
+form.before(formHome);
+const searchBar = document.createElement('div');
+searchBar.className = 'results-searchbar';
+const homeButton = document.createElement('button');
+homeButton.type = 'button';homeButton.className = 'results-home';
+homeButton.textContent = '1AGE';homeButton.setAttribute('aria-label','Return to 1AGE home');
+homeButton.addEventListener('click',closeResults);
+searchBar.append(homeButton);section.prepend(searchBar);
+label.tabIndex = -1;
 
 let requestVersion = 0;
 let pageSize = 20;
@@ -146,6 +156,10 @@ function updateURL() {
 async function showResults() {
   const version = ++requestVersion;
   section.hidden = false;
+  document.body.classList.add('results-open', 'search-open');
+  form.hidden = false;
+  document.querySelector('.search-circle')?.setAttribute('aria-expanded','true');
+  if(form.parentElement!==searchBar)searchBar.append(form);
   results.replaceChildren();
   if (!currentQuery) { label.textContent = 'Enter a search term.'; return; }
   label.textContent = 'Loading search index…';
@@ -168,11 +182,14 @@ async function showResults() {
 }
 
 function runSearch(query) {
+  if(!query.trim()){input.focus();return;}
   currentQuery = query.trim().slice(0, 200);
   input.value = currentQuery;
   pageSize = 20;
   updateURL();
+  input.blur();
   showResults();
+  label.focus({preventScroll:true});
 }
 
 function updateSuggestions() {
@@ -215,23 +232,21 @@ buttons.forEach(button => {
   });
 });
 
-let typingTimer;
-input.addEventListener('input', () => {
-  clearTimeout(typingTimer); requestVersion++;
-  if(input.value.trim().length<2){section.hidden=true;return;}
-  typingTimer=setTimeout(()=>runSearch(input.value),220);
-});
+// Typing only edits the query. Submit explicitly to load or refresh results.
 form.addEventListener('submit', event => {
-  clearTimeout(typingTimer);
   event.preventDefault();
   runSearch(input.value);
 });
 
 function closeResults() {
-  clearTimeout(typingTimer);
   requestVersion++;
   section.hidden = true;
-  input.focus({preventScroll: true});
+  document.body.classList.remove('results-open','search-open');
+  formHome.after(form);form.hidden = true;
+  const control=document.querySelector('.search-circle');
+  control?.setAttribute('aria-expanded','false');
+  currentQuery='';updateURL();
+  control?.focus({preventScroll:true});
 }
 
 document.querySelector('[data-close-results]')
