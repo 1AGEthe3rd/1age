@@ -4,12 +4,12 @@
   if (!ticker || !search) return;
   const marker = document.createComment('mobile ticker position');
   ticker.before(marker);
-  const compactTouch = matchMedia('(orientation:landscape) and (max-height:900px) and (max-width:1400px) and (any-pointer:coarse), (orientation:landscape) and (max-height:600px) and (pointer:coarse)');
+  const compactTouch = {get matches(){return document.documentElement.dataset.touchLayout==='landscape';}};
   function placeTicker() {
     if (compactTouch.matches) search.append(ticker);
     else marker.after(ticker);
   }
-  compactTouch.addEventListener('change', placeTicker);
+  window.addEventListener('1age-layout-change', placeTicker);
   placeTicker();
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {

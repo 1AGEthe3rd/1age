@@ -131,14 +131,13 @@
 
 
 /* Mobile landscape: preserve the Chuwi homepage layout. */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-  .home-screen .world-controls > button[data-rotate],
-  .console-mode .game-buttons,
-  .console-mode .altitude-buttons,
-  .console-mode .console-menu {
+html[data-touch-layout="landscape"] .home-screen .world-controls > button[data-rotate],
+html[data-touch-layout="landscape"] .console-mode .game-buttons,
+html[data-touch-layout="landscape"] .console-mode .altitude-buttons,
+html[data-touch-layout="landscape"] .console-mode .console-menu {
     display: none !important;
   }
-}
+
 
 
 /* 1AGE ticker: announcements only, no navigation controls */
@@ -169,17 +168,11 @@
 
 
 /* 1AGE MOBILE LANDSCAPE FINAL HEADER */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-
-  /* Single-screen layout */
-  .home-screen {
+html[data-touch-layout="landscape"] .home-screen {
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
-  }
-
-  /* Logo at left */
-  .home-screen .site-header {
+  }html[data-touch-layout="landscape"] .home-screen .site-header {
     position: absolute;
     top: 4px;
     left: 8px;
@@ -187,20 +180,13 @@
     width: 44px;
     padding: 0;
     z-index: 24;
-  }
-
-  .home-screen .brand-circle {
+  }html[data-touch-layout="landscape"] .home-screen .brand-circle {
     width: 40px;
     height: 40px;
-  }
-
-  .home-screen .brand-name {
+  }html[data-touch-layout="landscape"] .home-screen .brand-name {
     display: none;
-  }
-
-  /* Search and ticker together */
-  .home-screen .search-home,
-  .home-screen.search-open .search-home {
+  }html[data-touch-layout="landscape"] .home-screen .search-home,
+html[data-touch-layout="landscape"] .home-screen.search-open .search-home {
     position: absolute;
     top: 4px;
     left: 56px;
@@ -216,52 +202,36 @@
     align-items: center;
     gap: 6px;
     z-index: 16;
-  }
-
-  .home-screen .search-expander {
+  }html[data-touch-layout="landscape"] .home-screen .search-expander {
     width: 40px;
     flex: 0 0 40px;
     min-width: 0;
     margin: 0;
     gap: 5px;
-  }
-
-  .home-screen .search-expander > .search-circle {
+  }html[data-touch-layout="landscape"] .home-screen .search-expander > .search-circle {
     width: 40px;
     height: 40px;
     flex: 0 0 40px;
     font-size: 25px;
-  }
-
-  /* Ticker uses remaining width */
-  .home-screen .search-home > .living-ticker {
+  }html[data-touch-layout="landscape"] .home-screen .search-home > .living-ticker {
     --ticker-strip-height: 40px;
     width: auto;
     min-width: 0;
     flex: 1 1 auto;
     margin: 0;
-  }
-
-  .home-screen .ticker-summary,
-  .home-screen .living-ticker:has(
+  }html[data-touch-layout="landscape"] .home-screen .ticker-summary,
+html[data-touch-layout="landscape"] .home-screen .living-ticker:has(
     .ticker-pause:not([hidden])
   ) .ticker-summary {
     min-height: 40px;
     padding: 2px 4px;
-  }
-
-  .home-screen .ticker-headline {
+  }html[data-touch-layout="landscape"] .home-screen .ticker-headline {
     font-size: 13px;
-  }
-
-  /* Search expands in the ticker's position */
-  .home-screen.search-open .search-expander {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-expander {
     width: 100%;
     flex: 1 1 auto;
     justify-content: flex-start;
-  }
-
-  .home-screen.search-open .search-form {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-form {
     position: static;
     flex: 1 1 auto;
     width: auto;
@@ -269,14 +239,9 @@
     height: 40px;
     min-height: 40px;
     margin: 0;
-  }
-
-  .home-screen.search-open .living-ticker {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .living-ticker {
     display: none;
-  }
-
-  /* Keep expanded announcements usable */
-  .home-screen .living-ticker details[open] .ticker-details {
+  }html[data-touch-layout="landscape"] .home-screen .living-ticker details[open] .ticker-details {
     position: absolute;
     top: 100%;
     left: 0;
@@ -284,59 +249,37 @@
     background: #000;
     max-height: 55dvh;
     overflow-y: auto;
-  }
-
-  /* World below header */
-  .home-screen #main {
+  }html[data-touch-layout="landscape"] .home-screen #main {
     padding-top: 52px;
     min-height: 0;
-  }
-
-  .home-screen .universe {
+  }html[data-touch-layout="landscape"] .home-screen .universe {
     flex: 1 1 auto;
     min-height: 0;
     margin: 0 auto;
     padding: 0;
-  }
-
-  .home-screen .world-scene {
+  }html[data-touch-layout="landscape"] .home-screen .world-scene {
     flex: 1 1 auto;
     min-height: 0;
     --earth: min(42dvh, 180px);
-  }
-
-  /* Slightly compact circular orbit */
-  .home-screen .project-orbit {
+  }html[data-touch-layout="landscape"] .home-screen .project-orbit {
     width: min(62dvh, 290px);
     height: min(62dvh, 290px);
-  }
-
-  .home-screen .project-planet {
+  }html[data-touch-layout="landscape"] .home-screen .project-planet {
     --planet-size: clamp(42px, 12dvh, 54px);
-  }
-
-  .home-screen .project-planet > span {
+  }html[data-touch-layout="landscape"] .home-screen .project-planet > span {
     font-size: 11px;
-  }
-
-  /* Smaller joystick rings, same inner indicators */
-  .console-mode .stick {
+  }html[data-touch-layout="landscape"] .console-mode .stick {
     width: 76px;
     height: 76px;
-  }
-
-  .console-mode .stick span {
+  }html[data-touch-layout="landscape"] .console-mode .stick span {
     width: 51px;
     height: 51px;
-  }
-
-  /* Keep only L/R */
-  .console-mode .game-buttons,
-  .console-mode .altitude-buttons,
-  .console-mode .console-menu {
+  }html[data-touch-layout="landscape"] .console-mode .game-buttons,
+html[data-touch-layout="landscape"] .console-mode .altitude-buttons,
+html[data-touch-layout="landscape"] .console-mode .console-menu {
     display: none !important;
   }
-}
+
 
 
 /* 1AGE BUILD 006 - SIMPLE LANDSCAPE */
@@ -346,30 +289,19 @@
   visibility: hidden;
 }
 
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-
-  /* Let the browser address bar collapse through normal scrolling. */
-  html {
+html[data-touch-layout="landscape"] {
     overflow-x: clip !important;
     overflow-y: auto !important;
-  }
-
-  body.home-screen {
+  }html[data-touch-layout="landscape"] body.home-screen {
     height: 100dvh !important;
     min-height: 0 !important;
     overflow-x: clip !important;
     overflow-y: auto !important;
-  }
-
-  /* No ticker or title in mobile landscape. */
-  .home-screen .living-ticker,
-  .home-screen .brand-name,
-  .home-screen .quick-links {
+  }html[data-touch-layout="landscape"] .home-screen .living-ticker,
+html[data-touch-layout="landscape"] .home-screen .brand-name,
+html[data-touch-layout="landscape"] .home-screen .quick-links {
     display: none !important;
-  }
-
-  /* 1AGE logo: top-left corner. */
-  .home-screen .site-header {
+  }html[data-touch-layout="landscape"] .home-screen .site-header {
     position: fixed !important;
     top: 8px !important;
     left: 10px !important;
@@ -378,25 +310,16 @@
     padding: 0 !important;
     z-index: 90 !important;
     background: transparent !important;
-  }
-
-  .home-screen .header-hub {
+  }html[data-touch-layout="landscape"] .home-screen .header-hub {
     justify-content: center !important;
-  }
-
-  .home-screen .brand-circle {
+  }html[data-touch-layout="landscape"] .home-screen .brand-circle {
     width: 48px !important;
     height: 48px !important;
-  }
-
-  /* Expanded 1AGE menu moves to the top center. */
-  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+  }html[data-touch-layout="landscape"] .home-screen .site-header:has(.brand[aria-expanded="true"]) {
     left: 50% !important;
     width: min(90vw, 420px) !important;
     transform: translateX(-50%);
-  }
-
-  .home-screen .header-wings:not([hidden]) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not([hidden]) {
     position: absolute !important;
     inset: 56px auto auto 50% !important;
     transform: translateX(-50%) !important;
@@ -411,26 +334,17 @@
     background: rgba(0,0,0,.94) !important;
     z-index: 91 !important;
     pointer-events: auto !important;
-  }
-
-  .home-screen .header-wings[hidden] {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings[hidden] {
     display: none !important;
-  }
-
-  .home-screen .header-wings .header-planet {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet {
     position: static !important;
     transform: none !important;
     font-size: 11px !important;
-  }
-
-  .home-screen .header-wings .header-planet-circle {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet-circle {
     width: 42px !important;
     height: 42px !important;
-  }
-
-  /* Search: top-right corner. */
-  .home-screen .search-home,
-  .home-screen.search-open .search-home {
+  }html[data-touch-layout="landscape"] .home-screen .search-home,
+html[data-touch-layout="landscape"] .home-screen.search-open .search-home {
     position: fixed !important;
     top: 8px !important;
     right: 10px !important;
@@ -441,139 +355,94 @@
     margin: 0 !important;
     padding: 0 !important;
     z-index: 89 !important;
-  }
-
-  .home-screen .search-expander {
+  }html[data-touch-layout="landscape"] .home-screen .search-expander {
     width: 48px !important;
     flex: 0 0 48px !important;
     min-width: 0 !important;
-  }
-
-  .home-screen .search-expander > .search-circle {
+  }html[data-touch-layout="landscape"] .home-screen .search-expander > .search-circle {
     width: 48px !important;
     height: 48px !important;
     flex: 0 0 48px !important;
-  }
-
-  /* Search moves to top center when pressed. */
-  .home-screen.search-open .search-home {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-home {
     left: 50% !important;
     right: auto !important;
     width: min(90vw, 460px) !important;
     transform: translateX(-50%);
     z-index: 92 !important;
-  }
-
-  .home-screen.search-open .search-expander {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-expander {
     width: 100% !important;
     flex: 1 1 auto !important;
     display: flex !important;
     flex-direction: row !important;
     gap: 8px !important;
-  }
-
-  .home-screen.search-open .search-form {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-form {
     position: static !important;
     display: flex !important;
     flex: 1 1 auto !important;
     min-width: 0 !important;
     width: auto !important;
     margin: 0 !important;
-  }
-
-  .home-screen .search-form[hidden] {
+  }html[data-touch-layout="landscape"] .home-screen .search-form[hidden] {
     display: none !important;
-  }
-
-  .home-screen.search-open .search-form input {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-form input {
     min-width: 0 !important;
     font-size: 16px !important;
-  }
-
-  /* Give the original circular dial more vertical room. */
-  .home-screen #main {
+  }html[data-touch-layout="landscape"] .home-screen #main {
     padding-top: 58px !important;
     min-height: 100dvh !important;
-  }
-
-  .home-screen .universe {
+  }html[data-touch-layout="landscape"] .home-screen .universe {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 8px !important;
-  }
-
-  /* Keep current globe and orbit dimensions and geometry. */
-
-  .home-screen .world-controls button {
+  }html[data-touch-layout="landscape"] .home-screen .world-controls button {
     bottom: max(10px, env(safe-area-inset-bottom)) !important;
   }
-}
+
 
 
 /* BUILD 007 - LANDSCAPE VIEWPORT FIX */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-
-  /* Let mobile browsers receive vertical swipe gestures. */
-  html {
+html[data-touch-layout="landscape"] {
     height: auto !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
-  }
-
-  body.home-screen {
+  }html[data-touch-layout="landscape"] body.home-screen {
     height: 100dvh !important;
     min-height: 0 !important;
     overflow-y: visible !important;
     overflow-x: clip !important;
-  }
-
-  /* Preserve vertical scrolling alongside horizontal rotation. */
-  .home-screen .world-scene,
-  .home-screen .project-orbit,
-  .home-screen .project-planet,
-  .home-screen .world-globe,
-  .home-screen .world-entry {
+  }html[data-touch-layout="landscape"] .home-screen .world-scene,
+html[data-touch-layout="landscape"] .home-screen .project-orbit,
+html[data-touch-layout="landscape"] .home-screen .project-planet,
+html[data-touch-layout="landscape"] .home-screen .world-globe,
+html[data-touch-layout="landscape"] .home-screen .world-entry {
     touch-action: pan-y pinch-zoom !important;
-  }
-
-  /* Fill the viewport with the centered World. */
-  .home-screen #main {
+  }html[data-touch-layout="landscape"] .home-screen #main {
     height: 100dvh !important;
     min-height: 100dvh !important;
     padding: 0 !important;
     flex: none !important;
-  }
-
-  .home-screen .universe {
+  }html[data-touch-layout="landscape"] .home-screen .universe {
     height: 100dvh !important;
     min-height: 0 !important;
     padding: 4px 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     flex: none !important;
-  }
-
-  .home-screen .world-scene {
+  }html[data-touch-layout="landscape"] .home-screen .world-scene {
     width: 100% !important;
     height: calc(100dvh - 8px) !important;
     min-height: 0 !important;
     margin: 0 !important;
-  }
-
-  /* Preserve the existing circular orbit geometry. */
-  .home-screen .project-orbit {
+  }html[data-touch-layout="landscape"] .home-screen .project-orbit {
     width: var(--orbit-diameter) !important;
     height: var(--orbit-height) !important;
   }
-}
+
 
 
 /* BUILD 009 STEP 2 - CORNER MENU */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-
-  /* Fixed top-right 1AGE button. */
-  .home-screen .site-header,
-  .home-screen .site-header:has(.brand[aria-expanded="true"]) {
+html[data-touch-layout="landscape"] .home-screen .site-header,
+html[data-touch-layout="landscape"] .home-screen .site-header:has(.brand[aria-expanded="true"]) {
     position: fixed !important;
     top: 8px !important;
     right: 10px !important;
@@ -584,21 +453,14 @@
     transform: none !important;
     background: transparent !important;
     z-index: 95 !important;
-  }
-
-  .home-screen .header-hub {
+  }html[data-touch-layout="landscape"] .home-screen .header-hub {
     position: relative !important;
     width: 48px !important;
     justify-content: center !important;
-  }
-
-  .home-screen .brand {
+  }html[data-touch-layout="landscape"] .home-screen .brand {
     position: relative !important;
     z-index: 2 !important;
-  }
-
-  /* Menu planets expand from the corner. */
-  .home-screen .header-wings:not([hidden]) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings:not([hidden]) {
     position: absolute !important;
     inset: 0 0 auto auto !important;
     display: block !important;
@@ -613,9 +475,7 @@
     background: transparent !important;
     overflow: visible !important;
     z-index: 1 !important;
-  }
-
-  .home-screen .header-wings .header-planet {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet {
     position: absolute !important;
     display: flex !important;
     width: 66px !important;
@@ -624,55 +484,33 @@
     top: 0 !important;
     transform: none !important;
     pointer-events: auto !important;
-  }
-
-  .home-screen .header-wings .header-planet:nth-child(1) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(1) {
     transform: translate(-68px, 0) !important;
-  }
-
-  .home-screen .header-wings .header-planet:nth-child(2) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(2) {
     transform: translate(-120px, 45px) !important;
-  }
-
-  .home-screen .header-wings .header-planet:nth-child(3) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(3) {
     transform: translate(-142px, 105px) !important;
-  }
-
-  .home-screen .header-wings .header-planet:nth-child(4) {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet:nth-child(4) {
     transform: translate(-120px, 165px) !important;
-  }
-
-  .home-screen .header-wings .header-planet-circle {
+  }html[data-touch-layout="landscape"] .home-screen .header-wings .header-planet-circle {
     width: 42px !important;
     height: 42px !important;
-  }
-
-  /* Search stays in the opposite corner. */
-  .home-screen:not(.search-open) .search-home {
+  }html[data-touch-layout="landscape"] .home-screen:not(.search-open) .search-home {
     right: auto !important;
     left: 10px !important;
     transform: none !important;
-  }
-
-  /* Expanded search remains centered. */
-  .home-screen.search-open .search-home {
+  }html[data-touch-layout="landscape"] .home-screen.search-open .search-home {
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) !important;
   }
-}
+
 
 
 /* BUILD 009 STEP 3 - 3D ORBIT */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-
-  /* Larger Earth without increasing canvas workload. */
-  .home-screen .world-scene {
+html[data-touch-layout="landscape"] .home-screen .world-scene {
     --earth: min(65dvh, 300px) !important;
-  }
-
-  /* Elliptical orbit with individual planet depth. */
-  .home-screen .project-orbit {
+  }html[data-touch-layout="landscape"] .home-screen .project-orbit {
     width: min(62vw, 560px, calc(100vw - 220px)) !important;
     height: min(47dvh, 260px) !important;
     left: 50% !important;
@@ -681,18 +519,14 @@
     border: 0 !important;
     border-radius: 50% !important;
     z-index: auto !important;
-  }
-
-  .home-screen .project-orbit::before {
+  }html[data-touch-layout="landscape"] .home-screen .project-orbit::before {
     content: "";
     position: absolute;
     inset: 0;
     border: 1px solid rgba(27,253,156,.38);
     border-radius: 50%;
     pointer-events: none;
-  }
-
-  .home-screen .project-planet {
+  }html[data-touch-layout="landscape"] .home-screen .project-planet {
     --planet-size: 48px !important;
     transform:
       translate(
@@ -702,26 +536,18 @@
       scale(var(--depth-scale, 1)) !important;
     z-index: var(--orbit-layer, 2) !important;
     will-change: transform;
-  }
-
-  .home-screen .world-globe {
+  }html[data-touch-layout="landscape"] .home-screen .world-globe {
     width: var(--earth) !important;
     height: var(--earth) !important;
     z-index: 4 !important;
-  }
-
-  /* Preserve foreground Enter button. */
-  .home-screen .world-entry {
+  }html[data-touch-layout="landscape"] .home-screen .world-entry {
     z-index: 10 !important;
   }
-}
+
 
 /* Fit the compact touch homepage inside the visible browser viewport. */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
-  body.home-screen { overflow: hidden !important; }
-  .home-screen .project-orbit { height: min(38dvh, 230px) !important; }
-  .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
-}
+html[data-touch-layout="landscape"] body.home-screen { overflow: hidden !important; }html[data-touch-layout="landscape"] .home-screen .project-orbit { height: min(38dvh, 230px) !important; }html[data-touch-layout="landscape"] .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
+
 
 /* Allow the shared scene to shrink below the historical 260px floor. */
 .home-screen .world-scene { min-height: 0; }
@@ -737,20 +563,15 @@
 .living-ticker .ticker-headline { color: var(--ticker-accent, #e2ffdc); }
 
 /* Selected-project information also has a reserved strip on touch landscape. */
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
- .home-screen.project-selected .living-ticker {
+html[data-touch-layout="landscape"] .home-screen.project-selected .living-ticker {
    display: block !important; position: fixed; bottom: 0; top: auto;
    left: 110px; right: 110px; width: auto; margin: 0; z-index: 20;
    --ticker-strip-height: 48px;
- }
- .home-screen.project-selected #main,
- .home-screen.project-selected .universe { height: calc(100dvh - 52px) !important; min-height: 0 !important; }
- .home-screen.project-selected .world-scene { height: calc(100dvh - 60px) !important; }
- .home-screen.project-selected .living-ticker details[open] .ticker-details {
+ }html[data-touch-layout="landscape"] .home-screen.project-selected #main,
+html[data-touch-layout="landscape"] .home-screen.project-selected .universe { height: calc(100dvh - 52px) !important; min-height: 0 !important; }html[data-touch-layout="landscape"] .home-screen.project-selected .world-scene { height: calc(100dvh - 60px) !important; }html[data-touch-layout="landscape"] .home-screen.project-selected .living-ticker details[open] .ticker-details {
    top: auto; bottom: 100%; max-height: 55dvh; background: #000;
- }
- .home-screen.project-selected.search-open .living-ticker { display: none !important; }
-}
+ }html[data-touch-layout="landscape"] .home-screen.project-selected.search-open .living-ticker { display: none !important; }
+
 
 /* Round logo-menu buttons share the logo row; each wing can slide. */
 .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
@@ -784,42 +605,14 @@
 }
 .home-screen .header-slider .header-planet:focus-visible { outline-offset: -2px; }
 .home-screen .header-hub:has(.header-slider:not([hidden])) .brand { z-index: 2; }
-@media screen and (orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), screen and (orientation: landscape) and (max-height: 600px) and (pointer: coarse) {
- .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
+html[data-touch-layout="landscape"] .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
    inset: 0 calc(var(--menu-circle-size, 48px) + 12px) auto auto !important;
    transform: none !important; display: flex !important;
    width: min(620px, calc(100vw - 140px)) !important; gap: 12px !important;
- }
- .home-screen .header-slider-track { flex: 1; }
-}
+ }html[data-touch-layout="landscape"] .home-screen .header-slider-track { flex: 1; }
+
 
 /* Match the studio portrait composition: more scene room below Search. */
-@media (orientation: portrait) and (max-width: 700px) {
+@media (orientation: portrait) {
  .home-screen .living-ticker { --ticker-strip-height: 44px; margin: 0 auto; }
-}
-
-/* Compact laptops can report a mouse even when their display supports touch.
-   Keep the circular dial, with a shallow header and a larger scene. */
-@media (min-width: 700px) and (orientation: landscape) and (max-height: 700px) and (not (any-pointer: coarse)) {
- .home-screen .site-header,
- .home-screen .site-header:has(.brand[aria-expanded="true"]) {
-   position: absolute; inset: 8px 0 auto; width: 100%; padding: 0;
-   max-width: none; background: transparent;
- }
- .home-screen .header-hub { justify-content: center; }
- .home-screen .brand-circle { width: 48px; height: 48px; }
- .home-screen .brand-name { font-size: 14px; line-height: 18px; }
- .home-screen #main { padding-top: 80px; }
- .home-screen .search-home, .home-screen.search-open .search-home {
-   position: absolute; inset: 8px auto auto 12px; width: 48px;
-   min-height: 48px; margin: 0; padding: 0;
- }
- .home-screen .search-expander > .search-circle {
-   width: 48px; height: 48px; flex-basis: 48px; font-size: 30px;
- }
- .home-screen.search-open .search-home { width: calc(100% - 24px); z-index: 98; }
- .home-screen.search-open .search-expander { background: #000; }
- .home-screen .universe { padding: 0; }
- .home-screen .living-ticker { --ticker-strip-height: 44px; margin: 0 auto; }
- .home-screen .results-section { top: 72px; max-height: calc(100dvh - 84px); }
 }

@@ -33,9 +33,7 @@
   function nearestIndex(value) {
     return ((Math.round(-value / step) % planets.length) + planets.length) % planets.length;
   }
-  const depthMode = matchMedia(
-    '(orientation: landscape) and (max-height: 900px) and (max-width: 1400px) and (any-pointer: coarse), (orientation: landscape) and (max-height: 600px) and (pointer: coarse)'
-  );
+  const depthMode = {get matches(){return document.documentElement.dataset.touchLayout==='landscape';}};
   function layout() {
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
     planets.forEach((planet, i) => {
@@ -194,6 +192,7 @@
       orbit.focus({preventScroll:true});
     }
   });
+  window.addEventListener('1age-layout-change',layout);
   new ResizeObserver(layout).observe(orbit); layout();
   const texture = document.querySelector('.globe-texture');
   // Project one continuous world map onto the sphere. No atlas handoff or fade.
