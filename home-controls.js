@@ -59,8 +59,8 @@
  // Portrait uses the existing studio homepage proportions.
  const compact=document.documentElement.dataset.touchLayout==='landscape';
  const ry=Math.max(42,h/2-d/2-(pc?32:28));
- const rx=compact?Math.min(w*.31,280,Math.max(42,(w-220)/2)):pc?Math.max(42,Math.min(w/2-d/2-30,ry)):Math.max(42,Math.min(w/2-d/2-16,ry));
- const earth=compact?Math.min(innerHeight*.65,300):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
+ const rx=compact?Math.min(w*.31,Math.max(280,Math.min(520,(innerWidth-464)/2)),Math.max(42,(w-220)/2)):pc?Math.max(42,Math.min(w/2-d/2-30,ry)):Math.max(42,Math.min(w/2-d/2-16,ry));
+ const earth=compact?Math.min(innerHeight*.65,Math.max(300,Math.min(520,innerWidth*.5-250))):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
  // Add breathing room around the same-sized globe on phone portrait.
  const portrait=matchMedia('(orientation:portrait)').matches;
  const dialRadius=portrait?Math.min(rx+8,w/2-d/2-8,ry):rx;

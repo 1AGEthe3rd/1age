@@ -509,9 +509,9 @@ html[data-touch-layout="landscape"] .home-screen .site-header:has(.brand[aria-ex
 
 /* BUILD 009 STEP 3 - 3D ORBIT */
 html[data-touch-layout="landscape"] .home-screen .world-scene {
-    --earth: min(65dvh, 300px) !important;
+    --earth: min(65dvh, clamp(300px, calc(50vw - 250px), 520px)) !important;
   }html[data-touch-layout="landscape"] .home-screen .project-orbit {
-    width: min(62vw, 560px, calc(100vw - 220px)) !important;
+    width: min(62vw, clamp(560px, calc(100vw - 464px), 1040px), calc(100vw - 220px)) !important;
     height: min(47dvh, 260px) !important;
     left: 50% !important;
     top: 50% !important;
@@ -546,7 +546,7 @@ html[data-touch-layout="landscape"] .home-screen .world-scene {
 
 
 /* Fit the compact touch homepage inside the visible browser viewport. */
-html[data-touch-layout="landscape"] body.home-screen { overflow: hidden !important; }html[data-touch-layout="landscape"] .home-screen .project-orbit { height: min(38dvh, 230px) !important; }html[data-touch-layout="landscape"] .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
+html[data-touch-layout="landscape"] body.home-screen { overflow: hidden !important; }html[data-touch-layout="landscape"] .home-screen .project-orbit { height: min(38dvh, clamp(230px, calc(50vw - 282px), 420px)) !important; }html[data-touch-layout="landscape"] .home-screen .results-section { top: 64px; max-height: calc(100dvh - 80px); }
 
 
 /* Allow the shared scene to shrink below the historical 260px floor. */
@@ -616,3 +616,6 @@ html[data-touch-layout="landscape"] .home-screen .site-header .header-hub .heade
 @media (orientation: portrait) {
  .home-screen .living-ticker { --ticker-strip-height: 44px; margin: 0 auto; }
 }
+
+/* Wide touch displays center the scene in the whole viewport. */
+html[data-touch-layout="landscape"] .home-screen .universe { width: 100% !important; max-width: none !important; }

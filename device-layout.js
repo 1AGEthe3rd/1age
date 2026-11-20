@@ -14,6 +14,7 @@
  coarse.addEventListener('change',sync);
  orientation.addEventListener('change',sync);
  window.addEventListener('resize',sync,{passive:true});
+ window.screen?.orientation?.addEventListener('change',sync);
  window.addEventListener('pointerdown',event=>{
   if(event.pointerType==='touch'&&!observedTouch){observedTouch=true;sync();}
  },{passive:true,capture:true});
