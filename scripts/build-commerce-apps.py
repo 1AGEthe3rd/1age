@@ -16,7 +16,7 @@ for app in ['store','blog','plus','checkout']:
   s=f.read_text()
   # Root app and nested checkout resolve the shared folder correctly.
   if f.parent==dest:s=s.replace('../shared/','./shared/').replace('../checkout/','./checkout/')
-  for sibling in ['store','blog','plus']:s=s.replace('../'+sibling+'/',f'https://1age.{sibling}/')
+  for sibling in ['store','blog','plus']:s=s.replace('../'+sibling+'/',('https://1age.com/experiences/blog/' if sibling=='blog' else f'https://1age.{sibling}/'))
   if app=='checkout' and f.parent==dest:s=s.replace('./checkout/','./').replace("'../store/'","'https://1age.store/'").replace("'../plus/'","'https://1age.plus/'")
   f.write_text(s)
  # Keep build previews out of search results until separately authorized.
