@@ -513,9 +513,10 @@ html[data-touch-layout="landscape"] .home-screen .world-scene {
   }html[data-touch-layout="landscape"] .home-screen .project-orbit {
     width: min(62vw, clamp(560px, calc(100vw - 464px), 1040px), calc(100vw - 220px)) !important;
     height: min(47dvh, 260px) !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    /* Center without a transform: planets must share the globe stacking context. */
+    inset: 0 !important;
+    margin: auto !important;
+    transform: none !important;
     border: 0 !important;
     border-radius: 50% !important;
     z-index: auto !important;
@@ -526,7 +527,20 @@ html[data-touch-layout="landscape"] .home-screen .world-scene {
     border: 1px solid rgba(27,253,156,.38);
     border-radius: 50%;
     pointer-events: none;
-  }html[data-touch-layout="landscape"] .home-screen .project-planet {
+    clip-path: inset(0 0 50% 0);
+    z-index: 1;
+  }
+html[data-touch-layout="landscape"] .home-screen .project-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(27,253,156,.38);
+    border-radius: 50%;
+    clip-path: inset(50% 0 0 0);
+    pointer-events: none;
+    z-index: 6;
+  }
+html[data-touch-layout="landscape"] .home-screen .project-planet {
     --planet-size: 48px !important;
     transform:
       translate(

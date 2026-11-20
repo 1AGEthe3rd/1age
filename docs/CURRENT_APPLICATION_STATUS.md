@@ -98,3 +98,9 @@ Browser fixtures simulate maxTouchPoints=10 with a mouse-like primary pointer. A
 The shared touch detector and orientation rules also cover NanoTE without model-name detection. Added native screen-orientation change notification alongside viewport changes. Landscape sizing caps now grow with available width instead of retaining phone-sized 560px/300px caps on large touch displays. Wide touch scenes use full viewport width to keep the globe centered.
 
 Simulated maxTouchPoints browser checks: NanoTE 1200x1920 portrait uses a 1012px circular orbit and 550px globe, fitting its viewport. At 1920x1200 landscape, the ellipse is 1040x420px with a 520px globe centered at x=960. Chuwi 1024x600 remains a 560x228px ellipse with 300px globe. No overflow in the checked sizes. These are viewport simulations, not checks on physical NanoTE hardware; OS scaling and zoom determine actual CSS viewport size. Device-layout, application-entry, JavaScript syntax and generated-home checks passed. Not published.
+
+## Landscape front/back orbit layering — unpublished
+
+Fixed touch-landscape stacking: the orbit's centering transform created a stacking context that trapped all its planets behind the globe, despite their individual front/back z-index values. Replaced transform centering with absolute inset/margin centering. Front planets can now paint above the globe and rear planets behind it. Split the decorative ellipse into rear and front arcs so the lower/front line also passes in front. This is shared by phone, Chuwi and NanoTE touch landscape layouts.
+
+Browser hit testing at overlapping planet centers confirmed rear Page is behind globe-texture/world-globe, while front Exchange is above both. Orbit transform is none, globe layer 4, rear planets layer 2, front arc layer 6 and front planets layer 7. Visual preview confirmed Exchange and front arc overlap Earth correctly. Application-entry and generated-home checks passed. No publication performed.
