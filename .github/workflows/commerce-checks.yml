@@ -1,0 +1,18 @@
+name: Check virtual commerce prototypes
+on:
+  pull_request:
+    paths: ['experiences/**', 'services/checkout/**', 'tests/commerce/**', 'scripts/build-commerce-apps.py', '.github/workflows/commerce-checks.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s tests/commerce -v
+      - run: node --check experiences/shared/viewer.js
+      - run: node --check experiences/checkout/checkout.js
+      - run: node --check experiences/blog/blog.js
+      - run: python3 scripts/build-app-homes.py --check
+      - run: node tests/app-entrypoints.test.cjs

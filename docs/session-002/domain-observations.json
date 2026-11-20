@@ -1,0 +1,272 @@
+[
+  {
+    "domain": "1age.com",
+    "NS": [
+      {
+        "name": "1age.com.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "maceio.ns.porkbun.com."
+      },
+      {
+        "name": "1age.com.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "curitiba.ns.porkbun.com."
+      },
+      {
+        "name": "1age.com.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "salvador.ns.porkbun.com."
+      },
+      {
+        "name": "1age.com.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "fortaleza.ns.porkbun.com."
+      }
+    ],
+    "CNAME": [],
+    "A": [
+      {
+        "name": "1age.com.",
+        "type": 1,
+        "TTL": 600,
+        "data": "185.199.111.153"
+      },
+      {
+        "name": "1age.com.",
+        "type": 1,
+        "TTL": 600,
+        "data": "185.199.109.153"
+      },
+      {
+        "name": "1age.com.",
+        "type": 1,
+        "TTL": 600,
+        "data": "185.199.110.153"
+      },
+      {
+        "name": "1age.com.",
+        "type": 1,
+        "TTL": 600,
+        "data": "185.199.108.153"
+      }
+    ],
+    "http": [
+      "HTTP/1.1 200 OK",
+      "date: Fri, 20 Nov 2026 04:18:48 GMT",
+      "",
+      "HTTP/2 200 ",
+      "server: envoy",
+      "content-type: text/html; charset=utf-8",
+      "last-modified: Fri, 20 Nov 2026 01:24:20 GMT",
+      "access-control-allow-origin: *",
+      "etag: \"6affa144-26a3\"",
+      "expires: Fri, 20 Nov 2026 04:28:48 GMT",
+      "cache-control: max-age=600",
+      "x-proxy-cache: MISS"
+    ],
+    "http_error": ""
+  },
+  {
+    "domain": "1age.store",
+    "NS": [
+      {
+        "name": "1age.store.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns2.registrar-servers.com."
+      },
+      {
+        "name": "1age.store.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns1.registrar-servers.com."
+      }
+    ],
+    "CNAME": [],
+    "A": [
+      {
+        "name": "1age.store.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.108.153"
+      },
+      {
+        "name": "1age.store.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.111.153"
+      },
+      {
+        "name": "1age.store.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.109.153"
+      },
+      {
+        "name": "1age.store.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.110.153"
+      }
+    ],
+    "http": [
+      "HTTP/1.1 200 OK",
+      "date: Fri, 20 Nov 2026 04:18:49 GMT",
+      "",
+      "HTTP/2 200 ",
+      "server: envoy",
+      "content-type: text/html; charset=utf-8",
+      "last-modified: Sat, 24 Oct 2026 01:19:59 GMT",
+      "access-control-allow-origin: *",
+      "etag: \"6adc07bf-207c\"",
+      "expires: Fri, 20 Nov 2026 04:28:49 GMT",
+      "cache-control: max-age=600",
+      "x-proxy-cache: MISS"
+    ],
+    "http_error": ""
+  },
+  {
+    "domain": "1age.blog",
+    "NS": [
+      {
+        "name": "1age.blog.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns2.registrar-servers.com."
+      },
+      {
+        "name": "1age.blog.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns1.registrar-servers.com."
+      }
+    ],
+    "CNAME": [],
+    "A": [
+      {
+        "name": "1age.blog.",
+        "type": 1,
+        "TTL": 1800,
+        "data": "192.64.119.243"
+      }
+    ],
+    "http": [
+      "HTTP/1.1 200 OK",
+      "date: Fri, 20 Nov 2026 04:18:49 GMT",
+      "",
+      "HTTP/2 503 ",
+      "content-length: 91",
+      "content-type: text/plain",
+      "date: Fri, 20 Nov 2026 04:18:54 GMT",
+      "server: envoy",
+      ""
+    ],
+    "http_error": ""
+  },
+  {
+    "domain": "1age.plus",
+    "NS": [
+      {
+        "name": "1age.plus.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns2.registrar-servers.com."
+      },
+      {
+        "name": "1age.plus.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns1.registrar-servers.com."
+      }
+    ],
+    "CNAME": [],
+    "A": [
+      {
+        "name": "1age.plus.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.109.153"
+      },
+      {
+        "name": "1age.plus.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.110.153"
+      },
+      {
+        "name": "1age.plus.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.108.153"
+      },
+      {
+        "name": "1age.plus.",
+        "type": 1,
+        "TTL": 1799,
+        "data": "185.199.111.153"
+      }
+    ],
+    "http": [
+      "HTTP/1.1 200 OK",
+      "date: Fri, 20 Nov 2026 04:18:48 GMT",
+      "",
+      "HTTP/2 200 ",
+      "server: envoy",
+      "content-type: text/html; charset=utf-8",
+      "last-modified: Sat, 24 Oct 2026 01:19:53 GMT",
+      "access-control-allow-origin: *",
+      "etag: \"6adc07b9-207c\"",
+      "expires: Fri, 20 Nov 2026 04:28:48 GMT",
+      "cache-control: max-age=600",
+      "x-proxy-cache: MISS"
+    ],
+    "http_error": ""
+  },
+  {
+    "domain": "1age.cash",
+    "NS": [
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "maceio.ns.porkbun.com."
+      },
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "fortaleza.ns.porkbun.com."
+      },
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "curitiba.ns.porkbun.com."
+      },
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "salvador.ns.porkbun.com."
+      }
+    ],
+    "CNAME": [],
+    "A": [],
+    "http": [
+      "HTTP/1.1 200 OK",
+      "date: Fri, 20 Nov 2026 04:18:47 GMT",
+      "",
+      "HTTP/2 503 ",
+      "content-length: 98",
+      "content-type: text/plain",
+      "date: Fri, 20 Nov 2026 04:18:47 GMT",
+      "server: envoy",
+      ""
+    ],
+    "http_error": ""
+  }
+]

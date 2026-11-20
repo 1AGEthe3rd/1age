@@ -7,9 +7,9 @@
     design: { name: 'Design', links: [['Open the design studio', '/apps/design/']] },
     quest: { name: 'Quest', links: [['Open the quest workspace', '/apps/quest/']] },
     cash: { name: 'Cash', links: [['Open the local ledger', '/apps/cash/']] },
-    plus: { name: 'Plus', links: [['Open membership preferences', '/apps/plus/']] },
+    plus: { name: 'Plus', links: [['Explore optional membership', '/apps/plus/']] },
     app: { name: 'App', links: [['Open the application directory', '/apps/app/']] },
-    store: { name: 'Store', links: [['Open the local storefront workspace', '/apps/store/']] },
+    store: { name: 'Store', links: [['Enter the virtual showroom', '/apps/store/']] },
     shop: { name: 'Shop', links: [['Open the local shopping workspace', '/apps/shop/']] },
     world: { name: 'World', links: [['Open 1AGE World launch options', '/world/']] },
   };

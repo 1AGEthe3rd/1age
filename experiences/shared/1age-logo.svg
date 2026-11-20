@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<circle cx="512" cy="512" r="508" fill="#000"/>
+<g transform="translate(512 512) scale(.88) translate(-687 -535)">
+  <defs>
+    <filter id="signalGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#1BFD9C" flood-opacity="0.48" result="glowColor"/>
+      <feComposite in="glowColor" in2="blur" operator="in" result="softGlow"/>
+      <feMerge>
+        <feMergeNode in="softGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1AGE Design System v2: source-master canvas -->
+
+
+  <!-- Structural geometry: white -->
+  <g fill="#FFFFFF">
+    <rect id="top-bar" x="408" y="490" width="435" height="45"/>
+    <rect id="left-upper-bar" x="278" y="584" width="321" height="47"/>
+    <rect id="e-upper-bar" x="644" y="584" width="287" height="47"/>
+    <path id="g-corner" d="M408 680 H599 V820 H552 V727 H408 Z"/>
+    <rect id="e-middle-bar" x="644" y="681" width="199" height="47"/>
+    <rect id="e-lower-bar" x="644" y="774" width="303" height="46"/>
+    <!-- diagonal stroke -->
+    <path id="diagonal" d="M725 251 L1096 633 L1062 666 L692 284 Z"/>
+  </g>
+
+  <!-- Active identity element -->
+  <path id="signal-1" d="M 570 364 L 570 384 L 594 384 L 594 442 L 573 448 L 573 467 L 669 468 L 669 448 L 649 442 L 649 337 L 621 335 L 596 354 L 573 363 L 572 382 L 581 384 L 570 383 Z" fill="#1BFD9C" filter="url(#signalGlow)"/>
+</g></svg>

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "identity-in-depth",
+    "title": "Identity, in depth",
+    "date": "2026-11-19",
+    "type": "model",
+    "status": "Original demonstration",
+    "media": {
+      "kind": "procedural",
+      "model": "brand"
+    },
+    "description": "A dimensional interpretation of the official 1AGE monogram.",
+    "body": [
+      "The exhibition uses the structural bars and diagonal of the existing official logo. This study explores depth, light and restrained motion without changing the brand identity.",
+      "The showroom is a foundation for future product presentation. It has no merchandise inventory and does not imply products are available."
+    ],
+    "technical": "Original procedural geometry derived from the repository's assets/1age-logo.svg; Three.js 0.180.0, MIT. This is a visual study, not a product for sale."
+  },
+  {
+    "id": "pocket-interface",
+    "title": "A pocket-sized possibility",
+    "date": "2026-11-19",
+    "type": "model",
+    "status": "Exploratory concept",
+    "media": {
+      "kind": "procedural",
+      "model": "pocket"
+    },
+    "description": "An abstract device study for the 1AGE Pocket interface direction.",
+    "body": [
+      "This original model illustrates a compact screen and two touch controls. Its proportions are illustrative; it is not a manufactured device, hardware specification or production prototype.",
+      "The direction is a familiar interface across phone, touchscreen and portable computers. Existing devices remain the practical place to test those controls."
+    ],
+    "technical": "Original box and ring geometry created for this demonstration. No third-party device design or manufacturing claims."
+  },
+  {
+    "id": "space-massing",
+    "title": "Space before the city",
+    "date": "2026-11-19",
+    "type": "model",
+    "status": "Demonstration template",
+    "media": {
+      "kind": "gltf",
+      "model": "property",
+      "src": "../shared/property-study.glb"
+    },
+    "description": "A simple architectural massing model for discussing virtual commercial spaces.",
+    "body": [
+      "This fictional building is a generic original template. It does not represent a real address, verified vacancy or authorized commercial listing.",
+      "1AGE Space's intended first utility is sourced property discovery with separate physical and virtual availability. Architectural visualization should connect to reliable records rather than substitute for them."
+    ],
+    "technical": "Original, small uncompressed GLB massing block, generated for this demonstration; no real address, property rights or availability implied."
+  },
+  {
+    "id": "space-concept-image",
+    "title": "A window into Space",
+    "date": "2026-11-19",
+    "type": "image",
+    "status": "Existing concept asset",
+    "media": {
+      "kind": "image",
+      "src": "../shared/space-concept.svg",
+      "alt": "Existing stylized 1AGE Space environment concept"
+    },
+    "description": "An existing repository concept image, preserved as visual source material.",
+    "body": [
+      "This concept image comes from the existing 1AGE project assets. It is a reference for discussion, not evidence of a completed commercial-property application."
+    ],
+    "technical": "Source: assets/world-previews/space.svg in 1AGEthe3rd/1age. Reused within the same project; external publication rights still require founder review."
+  }
+]

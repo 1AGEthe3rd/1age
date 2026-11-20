@@ -28,9 +28,16 @@ try {
     assert(home.includes('/search-index.js?v=enterprise-001'));
     const workspace=fs.readFileSync(path.join(root,'apps',app.slug,'index.html'),'utf8');
     assert(workspace.includes('<title>'+app.name+'</title>'));
-    assert(workspace.includes('/assets/app-icons/'+app.slug+'.svg'));
-    assert(workspace.includes('src="/app-home.js"'));
-    assert(workspace.includes('src="/search-toggle.js"'));
+    if(['store','plus'].includes(app.slug)){
+      assert(workspace.includes('/experiences/'+app.slug+'/'), 'Updated legacy entry reaches its independent experience');
+      const experience=fs.readFileSync(path.join(root,'experiences',app.slug,'index.html'),'utf8');
+      assert(experience.includes('1AGE '+app.slug[0].toUpperCase()+app.slug.slice(1)));
+      assert(experience.includes('../shared/1age-logo.svg'));
+    }else{
+      assert(workspace.includes('/assets/app-icons/'+app.slug+'.svg'));
+      assert(workspace.includes('src="/app-home.js"'));
+      assert(workspace.includes('src="/search-toggle.js"'));
+    }
   }
   console.log(`App entry checks passed: ${apps.length} aliases, exact titles, approved circle icons, query preservation, open-redirect prevention and canonical shared components.`);
 }finally{fs.rmSync(directory,{recursive:true,force:true});}
