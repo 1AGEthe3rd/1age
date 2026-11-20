@@ -14,6 +14,8 @@
  coarse.addEventListener('change',sync);
  orientation.addEventListener('change',sync);
  window.addEventListener('resize',sync,{passive:true});
+ window.addEventListener('pageshow',sync);
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')sync();});
  window.screen?.orientation?.addEventListener('change',sync);
  window.addEventListener('pointerdown',event=>{
   if(event.pointerType==='touch'&&!observedTouch){observedTouch=true;sync();}

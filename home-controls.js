@@ -52,7 +52,10 @@
  globe.addEventListener('pointerup',release);globe.addEventListener('pointercancel',e=>{release(e);multi=true;});
  globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}highlight=!highlight;sync();});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
- function fit(){wings?.style.setProperty('--menu-circle-size',brand.querySelector('.brand-circle').getBoundingClientRect().width+'px');const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
+ function fit(){
+ if(document.visibilityState==='hidden'||document.body.classList.contains('results-open'))return;
+ const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
+ wings?.style.setProperty('--menu-circle-size',brand.querySelector('.brand-circle').offsetWidth+'px');
  const landscape=matchMedia('(orientation:landscape) and (max-height:600px)').matches;
  const pc=document.documentElement.dataset.touchLayout!=='landscape' && matchMedia('(min-width:700px) and (orientation:landscape)').matches;
  const d=pc?Math.max(40,Math.min(92,h*.12)):landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
@@ -66,11 +69,28 @@
  const dialRadius=portrait?Math.min(rx+8,w/2-d/2-8,ry):rx;
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',dialRadius*2+'px');scene.style.setProperty('--orbit-height',dialRadius*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
- let fitFrame = 0;
+ let fitFrame = 0, restoreFrame = 0, restoreTimer = 0;
  function scheduleFit() {
    cancelAnimationFrame(fitFrame);
    fitFrame = requestAnimationFrame(fit);
  }
+ // Back/Forward cache restores do not rerun load or necessarily emit resize.
+ // Measure again after restored styles and browser toolbars have settled.
+ function restoreFit() {
+   scheduleFit();
+   cancelAnimationFrame(restoreFrame);
+   restoreFrame=requestAnimationFrame(()=>{restoreFrame=0;scheduleFit();});
+   clearTimeout(restoreTimer);
+   restoreTimer=setTimeout(scheduleFit,180);
+ }
+ window.addEventListener('pageshow',restoreFit);
+ document.addEventListener('visibilitychange',()=>{
+   if(document.visibilityState==='visible')restoreFit();
+ });
+ window.addEventListener('pagehide',()=>{
+   cancelAnimationFrame(fitFrame);cancelAnimationFrame(restoreFrame);
+   clearTimeout(restoreTimer);
+ });
  new ResizeObserver(scheduleFit).observe(scene);
  window.addEventListener('load', scheduleFit, {once:true});
  window.addEventListener('resize', scheduleFit, {passive:true});

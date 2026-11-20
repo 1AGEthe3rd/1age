@@ -12,8 +12,8 @@ function device(points, coarsePointer, landscape) {
   return media[query] ||= {matches: query.includes('coarse') ? coarsePointer : landscape,
    addEventListener(name, fn) {this.change = fn;}};
  }
- vm.runInNewContext(source, {document:{documentElement:root}, navigator:{maxTouchPoints:points}, window, matchMedia, Event:class {constructor(type){this.type=type;}}});
- return {root, window, rotate(value) {const q=media['(orientation: landscape)'];q.matches=value;q.change();}};
+ vm.runInNewContext(source, {document:{documentElement:root,addEventListener(){}}, navigator:{maxTouchPoints:points}, window, matchMedia, Event:class {constructor(type){this.type=type;}}});
+ return {root, window, media, rotate(value) {const q=media['(orientation: landscape)'];q.matches=value;q.change();}};
 }
 const hybrid=device(10,false,true);
 assert.equal(hybrid.root.dataset.touchLayout,'landscape','Touchscreen with a fine primary pointer uses touch landscape');
@@ -30,4 +30,7 @@ assert.equal(desktop.root.dataset.touchLayout,'landscape','An observed touch cor
 desktop.rotate(false);
 assert.equal(desktop.root.dataset.touchLayout,'portrait');
 assert.equal(device(0,true,true).root.dataset.touchLayout,'landscape');
+hybrid.media['(orientation: landscape)'].matches=false;
+hybrid.window.dispatchEvent({type:'pageshow',persisted:true});
+assert.equal(hybrid.root.dataset.touchLayout,'portrait','Back restores recheck orientation even without a resize event');
 console.log('Device layout checks passed: hybrid input, orientation changes, desktop and observed-touch fallback.');

@@ -140,3 +140,9 @@ Browser previews at 390x740, 844x390 and 1280x720 verified aligned circles and n
 ## Menu priority order — unpublished
 
 Main menu order is Store, Blog, Social, Contact, then About. The main menu splits after Blog so the two priority options occupy each side of the centered logo; About follows Contact in the overflow track. Existing social submenu splitting is unchanged. Syntax, application-entry and generated-home checks passed.
+
+## Back-navigation layout recovery — unpublished
+
+Homepage sizing now reruns on pageshow and when a hidden tab becomes visible. A second animation-frame pass and one bounded 180ms follow-up accommodate restored viewport geometry and browser toolbar settling; pagehide cancels pending recovery. Device capability/orientation detection is rechecked on restore. Hidden pages and search-results views cannot overwrite homepage measurements. Menu circle sizing uses the untransformed offset width instead of transient hover/press scaling.
+
+Regression tests exercised cached-page restoration without resize, transient small geometry followed by settled geometry, hidden results/background guards and cleanup. Device-layout and generated application checks passed. Browser About → Back preserved the exact globe dimensions (373.171875px before and after). The intermittent shrinking was not independently reproduced on the user's phone; physical-device confirmation remains necessary. Production unchanged.
