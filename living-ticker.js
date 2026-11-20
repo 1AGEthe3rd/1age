@@ -5,18 +5,43 @@
   document.querySelectorAll('.living-ticker').forEach(ticker => {
     const disclosure = ticker.querySelector('details');
     const headline = ticker.querySelector('.ticker-headline');
-    // Keep the floating panel outside native details-content clipping/containment.
     const panel=ticker.querySelector('.ticker-details');
-    if(document.body.classList.contains('home-screen')){
-      panel.id ||= 'ticker-details';
-      disclosure.querySelector('summary').setAttribute('aria-controls',panel.id);
-      disclosure.after(panel);
-      const syncPanel=()=>{panel.hidden=!disclosure.open;};
-      disclosure.addEventListener('toggle',syncPanel);syncPanel();
+    const summary=disclosure.querySelector('summary');
+    const trigger=document.createElement('button');
+    trigger.type='button';trigger.className='ticker-summary';
+    trigger.setAttribute('aria-haspopup','dialog');
+    trigger.setAttribute('aria-controls','application-information');
+    trigger.title='Drag left to skip, right to replay. Tap for application information.';
+    trigger.append(...summary.childNodes);
+    disclosure.replaceWith(trigger);
+    const info=document.createElement('dialog');
+    info.id='application-information';info.className='application-information';
+    info.setAttribute('aria-labelledby','application-information-title');
+    info.innerHTML='<header><button type="button" class="info-home" aria-label="Return to 1AGE home"><img src="/assets/1age-logo.svg" alt="" width="44" height="44"></button><h1 id="application-information-title" tabindex="-1">1AGE information</h1><button type="button" class="info-close" aria-label="Close application information">×</button></header>';
+    panel.hidden=false;info.append(panel);document.body.append(info);
+    function openInfo(push=true){
+      if(info.open)return;
+      if(push && location.hash!=='#application-info')history.pushState({...history.state,ageTickerInfo:true},'',location.pathname+location.search+'#application-info');
+      document.body.classList.add('information-open');info.showModal();
+      info.querySelector('h1').focus({preventScroll:true});showAnnouncement();
     }
+    function closeInfo(navigate=true){
+      if(info.open)info.close();
+      document.body.classList.remove('information-open');
+      if(navigate && location.hash==='#application-info'){
+        if(history.state?.ageTickerInfo)history.back();
+        else history.replaceState(history.state,'',location.pathname+location.search);
+      }
+      trigger.focus({preventScroll:true});
+      window.dispatchEvent(new Event('1age-home-restored'));showAnnouncement();
+    }
+    info.querySelector('.info-home').addEventListener('click',()=>closeInfo());
+    info.querySelector('.info-close').addEventListener('click',()=>closeInfo());
+    info.addEventListener('cancel',event=>{event.preventDefault();closeInfo();});
+    window.addEventListener('popstate',()=>{if(location.hash==='#application-info')openInfo(false);else if(info.open)closeInfo(false);});
     const viewport = headline.parentElement;
     const pause = ticker.querySelector('.ticker-pause');
-    let announcements = [...ticker.querySelectorAll('[data-animation]')]
+    let announcements = [...panel.querySelectorAll('[data-animation]')]
       .sort((a, b) => Number(b.dataset.priority || 0) - Number(a.dataset.priority || 0));
 
     let activeName = '';
@@ -52,7 +77,7 @@
       document.body.classList.add('project-selected');
       const facts = projects[slug] || [name, 'Explore this destination through the shared 1AGE interface.'];
       activeName=Object.hasOwn(projects,slug)?slug[0].toUpperCase()+slug.slice(1):'';
-      const list = ticker.querySelector('.ticker-details');
+      const list = panel;
       list.replaceChildren();
       facts.forEach((fact, i) => {
         const li = document.createElement('li');
@@ -63,6 +88,8 @@
       index = 0;
       ticker.style.setProperty('--ticker-accent', accent || '#1bfd9c');
       ticker.setAttribute('aria-label', name + ' information');
+      info.style.setProperty('--ticker-accent',accent||'#1bfd9c');
+      info.querySelector('h1').textContent=(activeName?'1AGE '+activeName:name)+' information';
       showAnnouncement();
     });
 
@@ -70,20 +97,17 @@
     let timer;
     let animation;
     let paused = false;
+    let drag=null,suppressTap=false;
 
-    function showAnnouncement() {
-      if(document.body.classList.contains('results-open') && disclosure.open){
-        disclosure.open=false;
-        if(panel.parentElement===ticker)panel.hidden=true;
-      }
+    function showAnnouncement(manual=false) {
       clearTimeout(timer);
       animation?.cancel();
       const announcement = announcements[index];
       headline.replaceChildren(...[...announcement.querySelector('strong').childNodes].map(node=>node.cloneNode(true)));
       headline.classList.remove('ticker-moving');
 
-      if ((matchMedia('(min-width:700px) and (orientation:landscape)').matches && document.body.classList.contains('search-open')) || paused || disclosure.open || reducedMotion.matches || document.hidden ||
-          ticker.querySelector('summary').matches(':focus-visible') ||
+      if ((matchMedia('(min-width:700px) and (orientation:landscape)').matches && document.body.classList.contains('search-open')) || paused || info.open || drag || reducedMotion.matches || document.hidden ||
+          trigger.matches(':focus-visible') ||
           (hoverable.matches && ticker.matches(':hover'))) return;
 
       const hold = Number(announcement.dataset.duration) || 4000;
@@ -121,7 +145,7 @@
           break;
       }
 
-      if (frames) animation = headline.animate(frames, { duration, fill: 'both' });
+      if (frames && manual!==true) animation = headline.animate(frames, { duration, fill: 'both' });
       timer = setTimeout(() => {
         index = (index + 1) % announcements.length;
         showAnnouncement();
@@ -135,7 +159,47 @@
       pause.setAttribute('aria-pressed', String(paused));
       showAnnouncement();
     });
-    disclosure.addEventListener('toggle', showAnnouncement);
+    function stepMessage(direction){
+      index=(index+direction+announcements.length)%announcements.length;
+      showAnnouncement(true);
+    }
+    trigger.addEventListener('click',event=>{
+      event.preventDefault();
+      if(suppressTap){suppressTap=false;return;}
+      openInfo();
+    });
+    trigger.addEventListener('keydown',event=>{
+      if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
+      event.preventDefault();stepMessage(event.key==='ArrowRight'?1:-1);
+    });
+    trigger.addEventListener('pointerdown',event=>{
+      if(event.button!==0 || drag)return;
+      suppressTap=false;drag={id:event.pointerId,x:event.clientX,y:event.clientY,last:event.clientX,active:false};
+      clearTimeout(timer);animation?.pause();
+    });
+    trigger.addEventListener('pointermove',event=>{
+      if(!drag || drag.id!==event.pointerId)return;
+      const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+      if(!drag.active){
+        if(Math.max(Math.abs(dx),Math.abs(dy))<8)return;
+        if(Math.abs(dy)>Math.abs(dx)){drag=null;suppressTap=true;showAnnouncement();return;}
+        drag.active=true;suppressTap=true;trigger.setPointerCapture(event.pointerId);
+      }
+      event.preventDefault();
+      const distance=event.clientX-drag.last;
+      const steps=Math.trunc(distance/48);
+      if(steps){drag.last+=steps*48;for(let n=0;n<Math.abs(steps);n++)stepMessage(steps<0?1:-1);}
+    });
+    function endDrag(event){
+      if(!drag || drag.id!==event.pointerId)return;
+      drag=null;
+      if(trigger.hasPointerCapture(event.pointerId))trigger.releasePointerCapture(event.pointerId);
+      showAnnouncement(true);
+    }
+    trigger.addEventListener('pointerup',endDrag);
+    trigger.addEventListener('pointercancel',event=>{suppressTap=true;endDrag(event);});
+    trigger.addEventListener('lostpointercapture',()=>{if(drag){drag=null;showAnnouncement(true);}});
+    trigger.addEventListener('dragstart',event=>event.preventDefault());
     ticker.addEventListener('pointerenter', showAnnouncement);
     ticker.addEventListener('pointerleave', showAnnouncement);
     ticker.addEventListener('focusin', showAnnouncement);
@@ -148,5 +212,6 @@
     new MutationObserver(showAnnouncement).observe(document.body, {attributes: true, attributeFilter: ['class']});
     new ResizeObserver(showAnnouncement).observe(viewport);
     pause.hidden = reducedMotion.matches;
+    if(location.hash==='#application-info')openInfo(false);
   });
 })();

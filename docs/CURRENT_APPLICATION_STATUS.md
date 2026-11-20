@@ -152,3 +152,11 @@ Regression tests exercised cached-page restoration without resize, transient sma
 Reproduced the screenshot's underlying flex-layout compression: opening ticker details at 390x740 reduced orbit width from 317px to 210px and scene height from 543px to 323px. The details now float above the ticker with bounded scrolling, outside native details-content containment, instead of consuming scene space. Stable scrollbar gutters prevent width changes on browsers with non-overlay scrollbars.
 
 Sizing ignores focused editors as well as hidden search scenes; focus exit and the explicit search-close event schedule recovery. Search submission closes ticker details; they can be reopened after returning. Browser verification retained a 305px orbit and 186px globe before expansion and after a complete Phantom search round trip. Expanded copy remained readable after reopening. Automated restore/editor guards, search, device-layout, app-entry, syntax and generated-home checks passed. Actual iPhone keyboard behavior remains a hardware verification item. Not published.
+
+## Ticker replay and information page — unpublished
+
+Replaced inline/overlay ticker expansion with a dedicated full-viewport, borderless black application-information view. A ticker tap opens the selected application's facts with the existing 1AGE logo, close control and accessible dialog focus. The #application-info history entry supports browser Back/Forward; returning preserves the orbit state and recalculates sizing. White copy and application accents are retained.
+
+The homepage strip is a touch/mouse scrub control: horizontal dragging skips or replays messages at 48px intervals, and arrows support keyboard next/previous. Horizontal intent requires 8px, vertical movement remains native page scrolling, and drag/cancel suppress accidental tap navigation. Automatic playback pauses during dragging and the information view.
+
+Browser checks verified full-page details, Back and logo return, unchanged 305px orbit/186px globe, keyboard replay and an actual mouse drag changing text without opening details. Regression tests cover advance/replay, wrapping, vertical scrolling, taps, cancellation and keyboard access. Physical phone swipe feel remains to be checked. Previous floating-details implementation is superseded. Not published.
