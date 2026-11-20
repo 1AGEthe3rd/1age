@@ -112,3 +112,9 @@ Restored 72px of document scroll space on touch landscape and made the main scen
 Landscape touch rotation now accepts horizontal drags in the open scene outside the globe and controls, rather than requiring a narrow elliptical ring hit. Directional intent is resolved after 6px: horizontal movement captures rotation; vertical movement cancels dial interaction and leaves native pan-y scrolling available. Horizontal sensitivity is based on a quarter of orbit width. Pinch gestures cancel rotation; ordinary taps and mouse ring dragging remain separate. Portrait touch retains angular dragging with a reduced 6px threshold.
 
 Tests exercise the actual pointer handlers for wide touch hit area, jitter, horizontal movement, vertical release, pinch cancellation and unchanged mouse hit area. Browser at 844x390 confirmed 462px document height, scrollTop=72 after page scrolling, with main top=0 and globe top unchanged at 68.25px. Device-layout, app-entry, JavaScript syntax and generated-home checks passed. Touchscreen gesture feel and Safari toolbar collapse need device validation. Not published.
+
+## Spherical touch-landscape planets — unpublished
+
+Added a lightweight spherical visual treatment to the existing app planets in touch landscape: curved radial lighting, a small specular highlight, shaded edges and inset/drop shadows. Icons remain upright and legible; labels stay outside the sphere. Selected planets retain their full accent fill and dark icons with the spherical shading. Existing depth scale, front/back layering and interactions are reused; no new WebGL scene or assets.
+
+Browser phone and Chuwi landscape previews showed the dimensional spheres. Selected Space retained rgb(226,255,220) base fill, black icon and nonempty shading gradients. Portrait selectors are unchanged. Generated homepage and app-entry checks passed. Not published.
