@@ -8,7 +8,7 @@
  function header(next){
   group=next;if(!brand||!wings)return;wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label',next==='social'?'Social links':'1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
   if(next==='closed')return;
-  const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'Contact',icon:'contact',action:contact},{name:'About',icon:'about',url:'/about/'}];
+  const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'/experiences/blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'Contact',icon:'contact',action:contact},{name:'About',icon:'about',url:'/about/'}];
   const tracks=[document.createElement('div'),document.createElement('div')];
   tracks.forEach((track,i)=>{track.className='header-slider-track';track.dataset.side=i?'right':'left';track.tabIndex=0;track.setAttribute('aria-label',i?'More menu options':'Menu options');wings.append(track);});
   const split=next==='main'?2:Math.ceil(items.length/2);
