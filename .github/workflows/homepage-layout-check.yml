@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: node --check world.js
       - run: node --check home-controls.js
+      - run: node tests/gamepad-input.test.mjs
       - run: node tests/orbit-layout.test.cjs
       - run: node tests/homepage-restore.test.cjs
       - run: node tests/device-layout.test.cjs

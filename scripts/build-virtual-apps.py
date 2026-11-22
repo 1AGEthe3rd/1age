@@ -29,7 +29,7 @@ def build(out):
     for target in apps:
      for prefix in ('/apps/','/home/','/experiences/','../'):
       s=s.replace(prefix+target['slug']+'/', '/' if target['slug']==slug else 'https://'+target['domain']+'/')
-    if f.name=='virtual-entry.mjs' and (commerce/slug).exists():s=s.replace("'/experiences/shared/viewer.js'","'/shared/viewer.js'").replace("'/assets/1age-logo.svg'","'/shared/1age-logo.svg'")
+    if f.name=='virtual-entry.mjs' and (commerce/slug).exists():s=s.replace("'/experiences/shared/viewer.js'","'/shared/viewer.js'").replace("'/assets/1age-logo.svg'","'/shared/1age-logo.svg'").replace("'/experiences/shared/gamepad.mjs'","'/shared/gamepad.mjs'")
     if f.name=='virtual-entry.mjs':
      s=s.replace("location.pathname!==routes[slug]", "location.pathname!=='/'&&location.pathname!==routes[slug]")
     s=s.replace('/apps/search/','https://1age.com/').replace('/apps/world/','https://1age.world/').replace('/home/world/','https://1age.world/').replace('/world/','https://1age.world/')

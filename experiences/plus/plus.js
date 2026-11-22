@@ -5,6 +5,7 @@ trigger.addEventListener('click',()=>show(true));$('#close-membership').addEvent
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));$('#destinations').hidden=!open;});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!panel.hidden){show(false);e.preventDefault();}else if(!$('#destinations').hidden){$('#destinations').hidden=true;menu.setAttribute('aria-expanded','false');menu.focus();}}});
 try {
+ const {subscribeInput}=await import('../shared/gamepad.mjs');
  const THREE=await import('../shared/vendor/three.module.js');
  const host=$('#universe'),renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});
  renderer.setPixelRatio(Math.min(devicePixelRatio||1,(navigator.hardwareConcurrency||4)<=4?1:1.5));renderer.setClearColor(0x000000);host.append(renderer.domElement);
@@ -32,7 +33,8 @@ try {
  const rays=new THREE.Raycaster();canvas.addEventListener('pointerup',e=>{if(!drag||drag.id!==e.pointerId)return;const tap=!drag.moved;drag=null;if(!tap)return;const b=canvas.getBoundingClientRect();rays.setFromCamera(new THREE.Vector2((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1),camera);if(rays.intersectObjects(plus.children).length)show(true);});
  for(const type of ['pointercancel','lostpointercapture'])canvas.addEventListener(type,()=>{drag=null;});
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);canvas.hidden=true;$('#fallback').hidden=false;$('#view-status').textContent='3D unavailable. Select Plus to access the same membership information.';});
+ const unpad=subscribeInput((input,dt)=>{yaw+=(input.move.x+input.look.x)*dt;pitch=Math.max(-.4,Math.min(.4,pitch+input.look.y*dt));draw();});
  const observer=new ResizeObserver(()=>draw());observer.observe(host);document.addEventListener('visibilitychange',motion);reduced.addEventListener('change',motion);
- window.addEventListener('pagehide',e=>{cancelAnimationFrame(frame);if(e.persisted)return;disposed=true;observer.disconnect();document.removeEventListener('visibilitychange',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();if(o.material){o.material.map?.dispose();o.material.dispose();}});renderer.dispose();});window.addEventListener('pageshow',motion);
+ window.addEventListener('pagehide',e=>{cancelAnimationFrame(frame);if(e.persisted)return;disposed=true;unpad();observer.disconnect();document.removeEventListener('visibilitychange',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();if(o.material){o.material.map?.dispose();o.material.dispose();}});renderer.dispose();});window.addEventListener('pageshow',motion);
  motion();
 }catch{$('#view-status').textContent='2D fallback. Select Plus to access membership information and test checkout.';}

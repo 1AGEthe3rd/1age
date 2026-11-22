@@ -1,3 +1,4 @@
+import '/experiences/shared/gamepad.mjs';
 // Independent spatial entrances. Legacy workspaces are not public launch destinations.
 const routes={page:'/experiences/page/',games:'/experiences/games/',exchange:'/experiences/exchange/',plus:'/experiences/plus/',store:'/experiences/store/',blog:'/experiences/blog/',cash:'/experiences/cash/'};
 const labels={page:'Page',games:'Games',exchange:'Exchange',plus:'Plus',store:'Store',blog:'Blog',cash:'Cash',space:'Space',design:'Design',quest:'Quest',shop:'Shop',app:'App',world:'World',checkout:'Checkout'};

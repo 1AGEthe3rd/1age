@@ -1,3 +1,4 @@
+import {subscribeInput} from './gamepad.mjs';
 import * as THREE from './vendor/three.module.js';
 // Original lightweight cosmic showroom; reuses the approved World surface and monogram.
 export async function createShowroom(host,{buttons,onSelect}){
@@ -27,8 +28,9 @@ export async function createShowroom(host,{buttons,onSelect}){
  canvas.addEventListener('pointerup',e=>{if(!pointer||pointer.id!==e.pointerId)return;const tap=!pointer.drag;pointer=null;if(!tap)return;const rect=canvas.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const hits=ray.intersectObjects([...nodes.values()],true);if(hits[0]){let object=hits[0].object;while(object.parent&&![...nodes.values()].includes(object))object=object.parent;const key=[...nodes].find(([,value])=>value===object)?.[0];if(key)onSelect(key);}});
  for(const event of ['pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>pointer=null);
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);canvas.hidden=true;document.body.classList.add('fallback');document.querySelector('#view-status').textContent='3D paused. Display buttons still provide access.';});
+ const unpad=subscribeInput((input,dt)=>{yaw=Math.max(-.7,Math.min(.7,yaw+(input.move.x+input.look.x)*dt));draw();});
  const observer=new ResizeObserver(()=>draw());observer.observe(host);document.addEventListener('visibilitychange',motion);reduced.addEventListener('change',motion);
- function dispose(){disposed=true;cancelAnimationFrame(frame);observer.disconnect();document.removeEventListener('visibilitychange',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();o.material?.map?.dispose();o.material?.dispose();});renderer.dispose();}
+ function dispose(){disposed=true;unpad();cancelAnimationFrame(frame);observer.disconnect();document.removeEventListener('visibilitychange',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();o.material?.map?.dispose();o.material?.dispose();});renderer.dispose();}
  window.addEventListener('pagehide',e=>e.persisted?cancelAnimationFrame(frame):dispose());window.addEventListener('pageshow',motion);motion();
  return {turn(direction){yaw=direction==='reset'?0:Math.max(-.65,Math.min(.65,yaw+(direction==='left'?-.15:.15)));draw();},highlight(key){for(const [id,node] of nodes)node.scale.setScalar(id===key?1.1:1);draw();},dispose};
 }

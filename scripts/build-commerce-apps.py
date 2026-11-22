@@ -23,7 +23,7 @@ for app in ['store','blog','plus','checkout','page','games','exchange']:
   if f.suffix=='.html':
    s=s.replace('/virtual-entry.css',os.path.relpath(dest/'virtual-entry.css',f.parent)).replace('/virtual-entry.mjs',os.path.relpath(dest/'virtual-entry.mjs',f.parent))
   f.write_text(s)
- (dest/'virtual-entry.mjs').write_text((dest/'virtual-entry.mjs').read_text().replace("'/experiences/shared/viewer.js'","'/shared/viewer.js'").replace("'/assets/1age-logo.svg'","'/shared/1age-logo.svg'"))
+ (dest/'virtual-entry.mjs').write_text((dest/'virtual-entry.mjs').read_text().replace("'/experiences/shared/viewer.js'","'/shared/viewer.js'").replace("'/assets/1age-logo.svg'","'/shared/1age-logo.svg'").replace("'/experiences/shared/gamepad.mjs'","'/shared/gamepad.mjs'"))
  # Keep build previews out of search results until separately authorized.
  (dest/'robots.txt').write_text('User-agent: *\nDisallow: /\n')
  if app!='checkout':(dest/'CNAME').write_text('1age.'+app+'\n')

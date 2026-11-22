@@ -1,3 +1,4 @@
+import {subscribeInput} from '../shared/gamepad.mjs';
 import * as THREE from '../shared/vendor/three.module.js';
 export function createStoryScene(host,records,buttons,onSelect){
  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,(navigator.hardwareConcurrency||4)<=4?1:1.5));renderer.setClearColor(0);host.append(renderer.domElement);
@@ -22,7 +23,8 @@ export function createStoryScene(host,records,buttons,onSelect){
  canvas.addEventListener('pointerup',e=>{if(!pointer||pointer.id!==e.pointerId)return;const tap=!pointer.drag;pointer=null;if(!tap)return;const b=canvas.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1),camera);const hit=ray.intersectObjects(nodes.map(n=>n.children[0]))[0];if(hit)onSelect(records[hit.object.userData.index]);});
  for(const event of ['pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>pointer=null);
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);canvas.hidden=true;document.body.classList.add('archive-fallback');});
+ const unpad=subscribeInput((input,dt)=>{yaw=Math.max(-.7,Math.min(.7,yaw+(input.move.x+input.look.x)*dt));draw();});
  const observer=new ResizeObserver(()=>draw());observer.observe(host);document.addEventListener('visibilitychange',motion);reduced.addEventListener('change',motion);
  window.addEventListener('pageshow',motion);motion();
- return {refresh(){draw();},layout(value){constellation=value;while(lines.children.length){const item=lines.children[0];item.geometry.dispose();lines.remove(item);}draw();},turn(direction){yaw=direction==='reset'?0:Math.max(-.7,Math.min(.7,yaw+(direction==='left'?-.15:.15)));draw();},dispose(){if(disposed)return;disposed=true;cancelAnimationFrame(frame);observer.disconnect();document.removeEventListener('visibilitychange',motion);window.removeEventListener('pageshow',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});renderer.dispose();canvas.remove();}};
+ return {refresh(){draw();},layout(value){constellation=value;while(lines.children.length){const item=lines.children[0];item.geometry.dispose();lines.remove(item);}draw();},turn(direction){yaw=direction==='reset'?0:Math.max(-.7,Math.min(.7,yaw+(direction==='left'?-.15:.15)));draw();},dispose(){if(disposed)return;disposed=true;unpad();cancelAnimationFrame(frame);observer.disconnect();document.removeEventListener('visibilitychange',motion);window.removeEventListener('pageshow',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});renderer.dispose();canvas.remove();}};
 }

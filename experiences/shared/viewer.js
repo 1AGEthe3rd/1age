@@ -1,3 +1,4 @@
+import {subscribeInput} from './gamepad.mjs';
 import * as THREE from './vendor/three.module.js';
 // Shared, dependency-pinned viewer. All initial geometry is original demonstration content.
 export function createViewer(host,{model='brand',showroom=false}={}){
@@ -59,6 +60,7 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   object.position.y=.2;scene.add(object);draw();
  }
  let frame=0,last=0,disposed=false;
+ const unpad=subscribeInput((input,dt)=>{const x=input.move.x+input.look.x;if(!x&&!input.move.y&&!input.look.y)return;auto=false;yaw-=x*dt*1.8;pitch=Math.max(-.3,Math.min(.9,pitch-input.look.y*dt));targetDistance=Math.max(4,Math.min(13,targetDistance+input.move.y*dt*3));draw();});
  function draw(){if(disposed)return;const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;if(renderer.domElement.width!==Math.floor(w*renderer.getPixelRatio())||renderer.domElement.height!==Math.floor(h*renderer.getPixelRatio()))renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();distance=reduced?targetDistance:distance+(targetDistance-distance)*.2;camera.position.set(Math.sin(yaw)*distance,Math.sin(pitch)*distance+1,Math.cos(yaw)*distance);camera.lookAt(0,-.1,0);renderer.render(scene,camera);}
  function tick(t){frame=requestAnimationFrame(tick);if(!active||document.hidden||t-last<33)return;last=t;if(auto){yaw+=.002;object.position.y=.2+Math.sin(t*.0007)*.055;}draw();}
  function action(name){auto=false;if(name==='left')yaw-=.3;if(name==='right')yaw+=.3;if(name==='in')targetDistance=Math.max(4,targetDistance-.6);if(name==='out')targetDistance=Math.min(13,targetDistance+.6);if(name==='front'){yaw=0;pitch=.05;}if(name==='angle'){yaw=.7;pitch=.4;}if(name==='reset'){yaw=.3;pitch=.16;targetDistance=8;auto=!reduced;}draw();}
@@ -81,5 +83,5 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   object=gltf.scene;const bounds=new THREE.Box3().setFromObject(object),size=bounds.getSize(new THREE.Vector3()),center=bounds.getCenter(new THREE.Vector3());
   const scale=2.7/Math.max(size.x,size.y,size.z,.001);object.scale.setScalar(scale);object.position.copy(center.multiplyScalar(-scale));object.position.y+=.2;scene.add(object);draw();
  }
- return {setModel,loadGLTF,action,dispose(){disposed=true;cancelAnimationFrame(frame);for(const [b,fn] of handlers)b.removeEventListener('click',fn);host.removeEventListener('keydown',keyHandler);renderer.domElement.remove();host.classList.remove('render-ready');observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
+ return {setModel,loadGLTF,action,dispose(){unpad();disposed=true;cancelAnimationFrame(frame);for(const [b,fn] of handlers)b.removeEventListener('click',fn);host.removeEventListener('keydown',keyHandler);renderer.domElement.remove();host.classList.remove('render-ready');observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
 }
