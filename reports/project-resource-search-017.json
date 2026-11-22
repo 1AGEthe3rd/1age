@@ -1,0 +1,60 @@
+{
+  "records": 324,
+  "cases": [
+    {
+      "query": "Jupiter docs",
+      "count": 1,
+      "top": [
+        "jupiter-docs"
+      ],
+      "scope": "developers",
+      "milliseconds": 24.64
+    },
+    {
+      "query": "Helius docs",
+      "count": 1,
+      "top": [
+        "helius-docs"
+      ],
+      "scope": "developers",
+      "milliseconds": 4.26
+    },
+    {
+      "query": "Phantom docs",
+      "count": 1,
+      "top": [
+        "phantom-docs"
+      ],
+      "scope": "developers",
+      "milliseconds": 1.74
+    },
+    {
+      "query": "Jupiter discord",
+      "count": 1,
+      "top": [
+        "jupiter-discord"
+      ],
+      "scope": "communities",
+      "milliseconds": 0.93
+    },
+    {
+      "query": "Jupiter social",
+      "count": 1,
+      "top": [
+        "jupiter-developer-social"
+      ],
+      "scope": "social",
+      "milliseconds": 0.98
+    },
+    {
+      "query": "Phantom support",
+      "count": 1,
+      "top": [
+        "phantom-help"
+      ],
+      "scope": "content",
+      "milliseconds": 1.26
+    }
+  ],
+  "notes": "Publisher linkage checked; not an identity/security guarantee. X content inaccessible, so only source-page linkage checked."
+}

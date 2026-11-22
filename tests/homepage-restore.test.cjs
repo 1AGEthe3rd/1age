@@ -56,3 +56,8 @@ assert.equal(properties['--earth'],normal);
 events.pageshow({persisted:true});events.pagehide();
 assert.equal(frames.size,0);assert.equal(timers.size,0,'Navigation cancels pending recovery');
 console.log('Homepage restore checks passed: Back cache, settling viewport, hidden results, visibility and cleanup.');
+// A transient short flat layout must never put the globe outside its orbit.
+scene.clientHeight=120;events.resize();flushFrames();
+const diameter=parseFloat(properties['--orbit-diameter']),earth=parseFloat(properties['--earth']),planet=parseFloat(properties['--ui-planet-size']);
+assert(earth+planet<=diameter,'Flat globe and planet diameter stay inside the dial during compression');
+scene.clientHeight=500;events.pageshow({persisted:true});flushFrames();flushTimers();assert.equal(properties['--earth'],normal,'Normal composition remains unchanged after recovery');

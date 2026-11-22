@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Generate app domain entrypoints that reuse the canonical 1AGE homepage.
+"""LEGACY compatibility aliases. New independent apps use build-virtual-apps.py.
+
+Generate app domain entrypoints that reuse the canonical 1AGE homepage.
 
 Only a staging/output directory is written. Existing repositories and CNAME files
 are not touched by this generator.

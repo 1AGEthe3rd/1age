@@ -1,0 +1,31 @@
+name: Independent 3D domain review packages
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate independent preview packages
+        run: python3 -m unittest discover -s tests -p 'test_domain_previews.py' -v
+      - name: Prepare offline artifacts only
+        run: python3 scripts/build-domain-previews.py --out "$RUNNER_TEMP/domain-previews"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: independent-3d-domain-previews-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/domain-previews/*-preview.zip
+            ${{ runner.temp }}/domain-previews/cloudflare-preview/
+            ${{ runner.temp }}/domain-previews/packages/
+            ${{ runner.temp }}/domain-previews/domain-readiness.json
+            ${{ runner.temp }}/domain-previews/README.md
+          if-no-files-found: error
+          retention-days: 7

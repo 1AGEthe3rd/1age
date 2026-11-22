@@ -1,3 +1,5 @@
+> Historical redirect-based rollout. Do not use these publication instructions for the current independent 3D release. See docs/release/RELEASE-030.md.
+
 # World + website setup
 
 Use this updated package in place of the earlier app-only download.

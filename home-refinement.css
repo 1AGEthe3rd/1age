@@ -595,44 +595,40 @@ html[data-touch-layout="landscape"] .home-screen.project-selected .universe { he
  }html[data-touch-layout="landscape"] .home-screen.project-selected.search-open .living-ticker { display: none !important; }
 
 
-/* Round logo-menu buttons share the logo row; each wing can slide. */
+/* One continuous slider: destinations and the original logo move together. */
+.home-screen .header-hub:has(.header-slider:not([hidden])) {
+ min-height: var(--menu-row-height, 106px);
+}
 .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
- position: absolute !important; display: grid !important;
- grid-template-columns: minmax(0, 1fr) var(--menu-circle-size, 48px) minmax(0, 1fr);
+ position: absolute !important; display: block !important;
  inset: 0 auto auto 50% !important;
- width: calc(100vw - 24px) !important; height: auto !important;
- min-height: 0 !important; max-width: 1000px !important;
- transform: translateX(-50%) !important; gap: 12px !important;
+ width: calc(100vw - 24px) !important; max-width: 1000px !important;
+ height: auto !important; min-height: 0 !important;
+ transform: translateX(-50%) !important;
  padding: 0 !important; margin: 0 !important; border: 0 !important;
- border-radius: 0 !important; background: transparent !important; z-index: 1 !important;
+ border-radius: 0 !important; background: transparent !important; z-index: 2 !important;
  overflow: visible !important; pointer-events: none !important;
 }
 .home-screen .header-slider-track {
- display: flex; align-items: flex-start; gap: 12px; min-width: 0;
- overflow-x: auto; overflow-y: hidden; padding: 0 0 6px;
+ display: flex; align-items: flex-start; gap: 12px; width: 100%;
+ overflow-x: auto; overflow-y: hidden;
+ padding: 0 calc(50% - var(--menu-circle-size, 48px) / 2) 6px;
  touch-action: pan-x; overscroll-behavior-x: contain; scroll-snap-type: x proximity;
  scrollbar-width: thin; scrollbar-color: #1bfd9c #102019; pointer-events: auto;
 }
-.home-screen .header-slider-track[data-side="left"] { grid-column: 1; }
-.home-screen .header-slider-track[data-side="right"] { grid-column: 3; }
-.home-screen .header-slider-track::before { content: ''; margin-left: auto; }
-.home-screen .header-slider-track[data-side="right"]::before { display: none; }
-.home-screen .header-hub .header-slider .header-planet:nth-child(n) {
- position: static !important; inset: auto !important; transform: none !important;
+.home-screen .header-hub .header-slider .header-planet:nth-child(n),
+.home-screen .header-hub .header-slider .brand {
+ position: relative !important; inset: auto !important; transform: none !important;
  flex: 0 0 var(--menu-circle-size, 48px); width: var(--menu-circle-size, 48px) !important;
- scroll-snap-align: center; font-size: 12px !important; line-height: 20px; gap: 6px;
+ margin: 0 !important; scroll-snap-align: center;
+}
+.home-screen .header-hub .header-slider .header-planet:nth-child(n) {
+ font-size: 12px !important; line-height: 20px; gap: 6px;
 }
 .home-screen .header-hub .header-slider .header-planet-circle {
  width: var(--menu-circle-size, 48px) !important; height: var(--menu-circle-size, 48px) !important;
 }
-.home-screen .header-slider .header-planet:focus-visible { outline-offset: -2px; }
-.home-screen .header-hub:has(.header-slider:not([hidden])) .brand { z-index: 2; }
-html[data-touch-layout="landscape"] .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {
-   inset: 0 calc(var(--menu-circle-size, 48px) + 12px) auto auto !important;
-   transform: none !important; display: flex !important;
-   width: min(620px, calc(100vw - 140px)) !important; gap: 12px !important;
-   justify-content: flex-end;
- }html[data-touch-layout="landscape"] .home-screen .header-slider-track { flex: 0 1 auto; }
+.home-screen .header-slider :focus-visible { outline-offset: -2px; }
 
 
 /* Match the studio portrait composition: more scene room below Search. */
@@ -754,3 +750,16 @@ html:has(body.home-screen) { scrollbar-gutter: stable; }
 body.home-screen.information-open :is(.site-header,#main,.console-controls,.starfield) {display:none!important;}
 html[data-touch-layout] body.home-screen.information-open {height:100dvh!important;min-height:0!important;overflow:hidden!important;}
 @media(max-width:600px){.application-information{padding-inline:16px}.application-information>header{gap:12px}}
+
+
+/* Short portrait viewports need room for the established circular composition.
+   Let the page scroll instead of collapsing the dial through the globe. */
+@media (orientation: portrait) and (max-height: 600px) {
+ body.home-screen:not(.results-open):not(.information-open) {
+  height:auto;min-height:100dvh;overflow-y:auto;
+ }
+ .home-screen:not(.results-open):not(.information-open) #main {flex:1 0 auto;}
+ .home-screen:not(.results-open):not(.information-open) .world-scene {
+  min-height:calc(min(100vw, 480px) - 16px);flex-shrink:0;
+ }
+}

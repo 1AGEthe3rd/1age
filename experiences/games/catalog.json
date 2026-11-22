@@ -1,0 +1,61 @@
+{
+  "games": [
+    {
+      "id": "skyweaver",
+      "name": "Skyweaver",
+      "description": "Browser-based trading card game with tradable NFT cards.",
+      "website": "https://www.skyweaver.net/",
+      "source_review": {
+        "checked_on": "2026-11-04",
+        "evidence": [
+          "https://www.skyweaver.net/"
+        ],
+        "note": "Public project metadata checked; no claim about current supported networks, ownership or safety.",
+        "status": "source_checked"
+      },
+      "ecosystem": null,
+      "ecosystem_evidence": null,
+      "network_checked_on": null,
+      "rewards_status": "not verified",
+      "playability_status": "not tested"
+    },
+    {
+      "id": "star-atlas",
+      "name": "Star Atlas",
+      "description": "Space exploration game project with public game information and marketplace links.",
+      "website": "https://staratlas.com/",
+      "source_review": {
+        "checked_on": "2026-11-04",
+        "evidence": [
+          "https://staratlas.com/"
+        ],
+        "note": "Public project metadata checked; no claim about current supported networks, ownership or safety.",
+        "status": "source_checked"
+      },
+      "ecosystem": "Solana",
+      "ecosystem_evidence": "https://build.staratlas.com/introduction/what-is-star-atlas",
+      "network_checked_on": "2026-11-22",
+      "rewards_status": "not verified",
+      "playability_status": "not tested"
+    },
+    {
+      "id": "upland",
+      "name": "Upland",
+      "description": "Blockchain-powered city-building and virtual property game with a shared real-world map.",
+      "website": "https://upland.me/",
+      "source_review": {
+        "checked_on": "2026-11-05",
+        "evidence": [
+          "https://guides.upland.me/getting-started/basics"
+        ],
+        "status": "source_checked"
+      },
+      "ecosystem": null,
+      "ecosystem_evidence": null,
+      "network_checked_on": null,
+      "rewards_status": "not verified",
+      "playability_status": "not tested"
+    }
+  ],
+  "coverage": "Seed catalog only; not comprehensive blockchain-game coverage."
+}

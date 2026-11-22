@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {createWorldHandler} from '../deployment/world/world-handler.mjs';
+const chunks=new Map([['/chunks/0','engine-'],['/chunks/1','bytes']]);
+const manifest={path:'/index.wasm',bytes:12,sha256:'fixture-hash',chunks:[{path:'/chunks/0'},{path:'/chunks/1'}]};
+const called=[];const env={ASSETS:{async fetch(request){const path=new URL(request.url).pathname;called.push(path);return chunks.has(path)?new Response(chunks.get(path)):new Response('missing',{status:404});}}};
+const handler=createWorldHandler(manifest);
+let response=await handler.fetch(new Request('https://preview.example/index.wasm?v=1'),env);
+assert.equal(await response.text(),'engine-bytes');assert.equal(response.headers.get('Content-Type'),'application/wasm');assert.equal(response.headers.get('Content-Length'),'12');assert.deepEqual(called,['/chunks/0','/chunks/1']);
+called.length=0;response=await handler.fetch(new Request('https://preview.example/index.wasm',{method:'HEAD'}),env);assert.equal(await response.text(),'');assert.equal(called.length,0);
+response=await handler.fetch(new Request('https://preview.example/index.wasm',{headers:{'If-None-Match':'"fixture-hash"'}}),env);assert.equal(response.status,304);
+response=await handler.fetch(new Request('https://preview.example/index.wasm',{method:'POST'}),env);assert.equal(response.status,405);
+response=await handler.fetch(new Request('https://preview.example/other'),env);assert.equal(response.status,404);
+chunks.delete('/chunks/0');response=await handler.fetch(new Request('https://preview.example/index.wasm'),env);assert.equal(response.status,502);
+chunks.set('/chunks/0','engine-');chunks.delete('/chunks/1');response=await handler.fetch(new Request('https://preview.example/index.wasm'),env);await assert.rejects(response.text());
+console.log('World streaming handler passed: ordered bytes, MIME, HEAD, ETag, method limits, static fallback and fail-closed missing chunks.');

@@ -1,0 +1,1965 @@
+{
+  "checkedAt": "2026-11-22T21:01:49.010193+00:00",
+  "method": "Public recursive DNS via Cloudflare DoH, RDAP registry responses, HTTPS requests. Not authenticated zone inventories. No private contacts retained.",
+  "apps": [
+    {
+      "slug": "games",
+      "name": "1AGE Games",
+      "domain": "1age.games",
+      "repository": "1age-games",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "NameCheap, Inc."
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.games"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.games",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.109.153"
+            },
+            {
+              "name": "1age.games",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.games",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.games",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.108.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.games",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.games",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.games",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.games",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.games",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.games",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.games",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.games",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.games&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.games",
+              "type": 5,
+              "ttl": 1800,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.games&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.games/",
+        "server": "envoy",
+        "title": "AGE",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "page",
+      "name": "1AGE Page",
+      "domain": "1age.page",
+      "repository": "1agepage",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "curitiba.ns.porkbun.com",
+          "fortaleza.ns.porkbun.com",
+          "maceio.ns.porkbun.com",
+          "salvador.ns.porkbun.com"
+        ],
+        "registrationStatus": [
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.page"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.page",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.page",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.page",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.109.153"
+            },
+            {
+              "name": "1age.page",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.108.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.page",
+              "type": 2,
+              "ttl": 86400,
+              "data": "curitiba.ns.porkbun.com."
+            },
+            {
+              "name": "1age.page",
+              "type": 2,
+              "ttl": 86400,
+              "data": "fortaleza.ns.porkbun.com."
+            },
+            {
+              "name": "1age.page",
+              "type": 2,
+              "ttl": 86400,
+              "data": "maceio.ns.porkbun.com."
+            },
+            {
+              "name": "1age.page",
+              "type": 2,
+              "ttl": 86400,
+              "data": "salvador.ns.porkbun.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.page&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.page",
+              "type": 5,
+              "ttl": 600,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.page&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.page/",
+        "server": "envoy",
+        "title": "AGE",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "exchange",
+      "name": "1AGE Exchange",
+      "domain": "1age.exchange",
+      "repository": "1age-exchange",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "dns102.registrar-servers.com",
+          "dns101.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.exchange"
+      },
+      "dns": {
+        "A": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=A"
+        },
+        "NS": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=NS"
+        },
+        "CNAME": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=CNAME"
+        },
+        "MX": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=MX"
+        },
+        "TXT": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=TXT"
+        },
+        "AAAA": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=AAAA"
+        },
+        "CAA": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.exchange&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.exchange&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": false,
+        "error": "HTTPError: HTTP Error 503: Service Unavailable",
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "space",
+      "name": "1AGE Space",
+      "domain": "1age.space",
+      "repository": "1age-space",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "curitiba.ns.porkbun.com",
+          "fortaleza.ns.porkbun.com",
+          "maceio.ns.porkbun.com",
+          "salvador.ns.porkbun.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited",
+          "client delete prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.space"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.space",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.space",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.108.153"
+            },
+            {
+              "name": "1age.space",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.space",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.109.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.space",
+              "type": 2,
+              "ttl": 86400,
+              "data": "curitiba.ns.porkbun.com."
+            },
+            {
+              "name": "1age.space",
+              "type": 2,
+              "ttl": 86400,
+              "data": "fortaleza.ns.porkbun.com."
+            },
+            {
+              "name": "1age.space",
+              "type": 2,
+              "ttl": 86400,
+              "data": "maceio.ns.porkbun.com."
+            },
+            {
+              "name": "1age.space",
+              "type": 2,
+              "ttl": 86400,
+              "data": "salvador.ns.porkbun.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.space&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.space",
+              "type": 5,
+              "ttl": 600,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.space&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.space/",
+        "server": "envoy",
+        "title": "1AGE Space \u2014 Virtual Spaces. Real Places.",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "design",
+      "name": "1AGE Design",
+      "domain": "1age.design",
+      "repository": "1age-design",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "NameCheap, Inc."
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.design"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.design",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.design",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.design",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.108.153"
+            },
+            {
+              "name": "1age.design",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.109.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.design",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.design",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.design",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.design",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.design",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.design",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.design",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.design",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.design&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.design",
+              "type": 5,
+              "ttl": 1800,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.design&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.design/",
+        "server": "envoy",
+        "title": "AGE",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "quest",
+      "name": "1AGE Quest",
+      "domain": "1age.quest",
+      "repository": "1age-quest",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited",
+          "client delete prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.quest"
+      },
+      "dns": {
+        "A": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=A"
+        },
+        "NS": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=NS"
+        },
+        "CNAME": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=CNAME"
+        },
+        "MX": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=MX"
+        },
+        "TXT": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=TXT"
+        },
+        "AAAA": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=AAAA"
+        },
+        "CAA": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.quest&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": false,
+          "rcode": 2,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.quest&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": false,
+        "error": "HTTPError: HTTP Error 503: Service Unavailable",
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "cash",
+      "name": "1AGE Cash",
+      "domain": "1age.cash",
+      "repository": "1age-cash",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "maceio.ns.porkbun.com",
+          "curitiba.ns.porkbun.com",
+          "salvador.ns.porkbun.com",
+          "fortaleza.ns.porkbun.com"
+        ],
+        "registrationStatus": [
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.cash"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.cash",
+              "type": 2,
+              "ttl": 86400,
+              "data": "curitiba.ns.porkbun.com."
+            },
+            {
+              "name": "1age.cash",
+              "type": 2,
+              "ttl": 86400,
+              "data": "fortaleza.ns.porkbun.com."
+            },
+            {
+              "name": "1age.cash",
+              "type": 2,
+              "ttl": 86400,
+              "data": "maceio.ns.porkbun.com."
+            },
+            {
+              "name": "1age.cash",
+              "type": 2,
+              "ttl": 86400,
+              "data": "salvador.ns.porkbun.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.cash&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": false,
+          "rcode": 3,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.cash&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": false,
+        "error": "HTTPError: HTTP Error 503: Service Unavailable",
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "plus",
+      "name": "1AGE Plus",
+      "domain": "1age.plus",
+      "repository": "1age-plus",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "NameCheap, Inc."
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.plus"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.plus",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.plus",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.plus",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.109.153"
+            },
+            {
+              "name": "1age.plus",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.108.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.plus",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.plus",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.plus",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.plus",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.plus",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.plus",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.plus",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.plus",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.plus&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.plus",
+              "type": 5,
+              "ttl": 1800,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.plus&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.plus/",
+        "server": "envoy",
+        "title": "1AGE Plus \u00b7 Build 001",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "app",
+      "name": "1AGE App",
+      "domain": "1age.app",
+      "repository": "1age-app",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Namecheap Inc."
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.app"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.app",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.109.153"
+            },
+            {
+              "name": "1age.app",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.app",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.app",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.108.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.app",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.app",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.app",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.app",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.app",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.app",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.app",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.app",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.app&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.app",
+              "type": 5,
+              "ttl": 1800,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.app&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.app/",
+        "server": "envoy",
+        "title": "AGE",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "store",
+      "name": "1AGE Store",
+      "domain": "1age.store",
+      "repository": "1age-store",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "NameCheap, Inc."
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.store"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.store",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.store",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.store",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.108.153"
+            },
+            {
+              "name": "1age.store",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.109.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.store",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.store",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.store",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.store",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.store",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.store",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.store",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.store",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.store&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.store",
+              "type": 5,
+              "ttl": 1800,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.store&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.store/",
+        "server": "envoy",
+        "title": "1AGE Store \u00b7 Build 001",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "shop",
+      "name": "1AGE Shop",
+      "domain": "1age.shop",
+      "repository": "1age-shop",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Namecheap, Inc."
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.shop"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.shop",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.shop",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.shop",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.108.153"
+            },
+            {
+              "name": "1age.shop",
+              "type": 1,
+              "ttl": 1799,
+              "data": "185.199.109.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.shop",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.shop",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.shop",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.shop",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.shop",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.shop",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.shop",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.shop",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.shop&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.shop",
+              "type": 5,
+              "ttl": 1800,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.shop&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.shop/",
+        "server": "envoy",
+        "title": "AGE",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "blog",
+      "name": "1AGE Blog",
+      "domain": "1age.blog",
+      "repository": "1age-blog",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Namecheap"
+        ],
+        "nameservers": [
+          "dns1.registrar-servers.com",
+          "dns2.registrar-servers.com"
+        ],
+        "registrationStatus": [
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.blog"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.blog",
+              "type": 1,
+              "ttl": 1800,
+              "data": "192.64.119.243"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.blog",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns1.registrar-servers.com."
+            },
+            {
+              "name": "1age.blog",
+              "type": 2,
+              "ttl": 1800,
+              "data": "dns2.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.blog",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward1.registrar-servers.com."
+            },
+            {
+              "name": "1age.blog",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward2.registrar-servers.com."
+            },
+            {
+              "name": "1age.blog",
+              "type": 15,
+              "ttl": 1800,
+              "data": "10 eforward3.registrar-servers.com."
+            },
+            {
+              "name": "1age.blog",
+              "type": 15,
+              "ttl": 1800,
+              "data": "15 eforward4.registrar-servers.com."
+            },
+            {
+              "name": "1age.blog",
+              "type": 15,
+              "ttl": 1800,
+              "data": "20 eforward5.registrar-servers.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.blog",
+              "type": 16,
+              "ttl": 1800,
+              "data": "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.blog&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.blog",
+              "type": 5,
+              "ttl": 1800,
+              "data": "parkingpage.namecheap.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.blog&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": false,
+        "error": "HTTPError: HTTP Error 503: Service Unavailable",
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "world",
+      "name": "1AGE World",
+      "domain": "1age.world",
+      "repository": "1age-world-web",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "maceio.ns.porkbun.com",
+          "curitiba.ns.porkbun.com",
+          "salvador.ns.porkbun.com",
+          "fortaleza.ns.porkbun.com"
+        ],
+        "registrationStatus": [
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.world"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.world",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.110.153"
+            },
+            {
+              "name": "1age.world",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.world",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.108.153"
+            },
+            {
+              "name": "1age.world",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.109.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.world",
+              "type": 2,
+              "ttl": 86400,
+              "data": "curitiba.ns.porkbun.com."
+            },
+            {
+              "name": "1age.world",
+              "type": 2,
+              "ttl": 86400,
+              "data": "fortaleza.ns.porkbun.com."
+            },
+            {
+              "name": "1age.world",
+              "type": 2,
+              "ttl": 86400,
+              "data": "maceio.ns.porkbun.com."
+            },
+            {
+              "name": "1age.world",
+              "type": 2,
+              "ttl": 86400,
+              "data": "salvador.ns.porkbun.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.world&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.world",
+              "type": 5,
+              "ttl": 600,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.world&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.world/",
+        "server": "envoy",
+        "title": "Explore 1AGE",
+        "3dSignals": [
+          "index.wasm",
+          "godot"
+        ],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    },
+    {
+      "slug": "search",
+      "name": "1AGE Search",
+      "domain": "1age.com",
+      "repository": "1age",
+      "ownershipVerified": false,
+      "registration": {
+        "ok": true,
+        "registrars": [
+          "Porkbun LLC"
+        ],
+        "nameservers": [
+          "CURITIBA.NS.PORKBUN.COM",
+          "FORTALEZA.NS.PORKBUN.COM",
+          "MACEIO.NS.PORKBUN.COM",
+          "SALVADOR.NS.PORKBUN.COM"
+        ],
+        "registrationStatus": [
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "source": "https://rdap.org/domain/1age.com"
+      },
+      "dns": {
+        "A": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.com",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.108.153"
+            },
+            {
+              "name": "1age.com",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.111.153"
+            },
+            {
+              "name": "1age.com",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.109.153"
+            },
+            {
+              "name": "1age.com",
+              "type": 1,
+              "ttl": 600,
+              "data": "185.199.110.153"
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=A"
+        },
+        "NS": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "1age.com",
+              "type": 2,
+              "ttl": 86400,
+              "data": "curitiba.ns.porkbun.com."
+            },
+            {
+              "name": "1age.com",
+              "type": 2,
+              "ttl": 86400,
+              "data": "fortaleza.ns.porkbun.com."
+            },
+            {
+              "name": "1age.com",
+              "type": 2,
+              "ttl": 86400,
+              "data": "maceio.ns.porkbun.com."
+            },
+            {
+              "name": "1age.com",
+              "type": 2,
+              "ttl": 86400,
+              "data": "salvador.ns.porkbun.com."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=NS"
+        },
+        "CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=CNAME"
+        },
+        "MX": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=MX"
+        },
+        "TXT": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=TXT"
+        },
+        "AAAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=AAAA"
+        },
+        "CAA": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [],
+          "source": "https://cloudflare-dns.com/dns-query?name=1age.com&type=CAA"
+        },
+        "www-CNAME": {
+          "ok": true,
+          "rcode": 0,
+          "answers": [
+            {
+              "name": "www.1age.com",
+              "type": 5,
+              "ttl": 600,
+              "data": "1agethe3rd.github.io."
+            }
+          ],
+          "source": "https://cloudflare-dns.com/dns-query?name=www.1age.com&type=CNAME"
+        }
+      },
+      "https": {
+        "ok": true,
+        "httpStatus": 200,
+        "finalUrl": "https://1age.com/",
+        "server": "envoy",
+        "title": "1AGE",
+        "3dSignals": [],
+        "browserVerified": false
+      },
+      "changesApplied": false
+    }
+  ],
+  "changesApplied": {
+    "dns": false,
+    "hosting": false,
+    "production": false
+  }
+}

@@ -1,3 +1,5 @@
+> Historical redirect-based rollout. Do not use these publication instructions for the current independent 3D release. See docs/release/RELEASE-030.md.
+
 # Publish the shared app homepage updates
 
 This package prepares the existing repositories and the installed World runtime. It does not merge pull requests, change DNS, renew domains or publish a Godot web build.

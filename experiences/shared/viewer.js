@@ -46,12 +46,12 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   }else{object.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1.4,1),new THREE.MeshStandardMaterial({color:0x073c25,wireframe:true,emissive:0x1bfd9c,emissiveIntensity:.6})));}
   object.position.y=.2;scene.add(object);draw();
  }
- let frame=0,last=0;
- function draw(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;if(renderer.domElement.width!==Math.floor(w*renderer.getPixelRatio())||renderer.domElement.height!==Math.floor(h*renderer.getPixelRatio()))renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();distance=reduced?targetDistance:distance+(targetDistance-distance)*.2;camera.position.set(Math.sin(yaw)*distance,Math.sin(pitch)*distance+1,Math.cos(yaw)*distance);camera.lookAt(0,-.1,0);renderer.render(scene,camera);}
+ let frame=0,last=0,disposed=false;
+ function draw(){if(disposed)return;const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;if(renderer.domElement.width!==Math.floor(w*renderer.getPixelRatio())||renderer.domElement.height!==Math.floor(h*renderer.getPixelRatio()))renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();distance=reduced?targetDistance:distance+(targetDistance-distance)*.2;camera.position.set(Math.sin(yaw)*distance,Math.sin(pitch)*distance+1,Math.cos(yaw)*distance);camera.lookAt(0,-.1,0);renderer.render(scene,camera);}
  function tick(t){frame=requestAnimationFrame(tick);if(!active||document.hidden||t-last<33)return;last=t;if(auto){yaw+=.002;object.position.y=.2+Math.sin(t*.0007)*.055;}draw();}
  function action(name){auto=false;if(name==='left')yaw-=.3;if(name==='right')yaw+=.3;if(name==='in')targetDistance=Math.max(4,targetDistance-.6);if(name==='out')targetDistance=Math.min(13,targetDistance+.6);if(name==='front'){yaw=0;pitch=.05;}if(name==='angle'){yaw=.7;pitch=.4;}if(name==='reset'){yaw=.3;pitch=.16;targetDistance=8;auto=!reduced;}draw();}
- const buttons=host.closest('.scene').querySelectorAll('[data-view]');buttons.forEach(b=>b.addEventListener('click',()=>action(b.dataset.view)));
- host.addEventListener('keydown',e=>{const map={ArrowLeft:'left',ArrowRight:'right','+':'in','=':'in','-':'out',Home:'reset'};if(map[e.key]){e.preventDefault();action(map[e.key]);}});
+ const buttons=host.closest('.scene').querySelectorAll('[data-view]');const handlers=new Map();buttons.forEach(b=>{const fn=()=>action(b.dataset.view);handlers.set(b,fn);b.addEventListener('click',fn);});
+ const keyHandler=e=>{const map={ArrowLeft:'left',ArrowRight:'right','+':'in','=':'in','-':'out',Home:'reset'};if(map[e.key]){e.preventDefault();action(map[e.key]);}};host.addEventListener('keydown',keyHandler);
  let pointer=null;
  const canvas=renderer.domElement;
  canvas.addEventListener('pointerdown',e=>{if(e.button===0)pointer={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,drag:false};});
@@ -64,9 +64,10 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   const url=new URL(src,location.href);if(url.origin!==location.origin)throw Error('Only packaged media is permitted');
   const {GLTFLoader}=await import('./vendor/GLTFLoader.js');
   const gltf=await new GLTFLoader().loadAsync(url.href);
+  if(disposed){gltf.scene.traverse(n=>{n.geometry?.dispose();n.material?.dispose();});return;}
   if(object){scene.remove(object);object.traverse(n=>n.geometry?.dispose());}
   object=gltf.scene;const bounds=new THREE.Box3().setFromObject(object),size=bounds.getSize(new THREE.Vector3()),center=bounds.getCenter(new THREE.Vector3());
   const scale=2.7/Math.max(size.x,size.y,size.z,.001);object.scale.setScalar(scale);object.position.copy(center.multiplyScalar(-scale));object.position.y+=.2;scene.add(object);draw();
  }
- return {setModel,loadGLTF,dispose(){cancelAnimationFrame(frame);observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
+ return {setModel,loadGLTF,dispose(){disposed=true;cancelAnimationFrame(frame);for(const [b,fn] of handlers)b.removeEventListener('click',fn);host.removeEventListener('keydown',keyHandler);renderer.domElement.remove();host.classList.remove('render-ready');observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
 }

@@ -34,12 +34,18 @@ class Checkout:
    adapter=MockAdapter(key_path.read_bytes())
   self.adapter=adapter
   with self.connect() as c:
+   if c.execute("SELECT name FROM sqlite_master WHERE name='orders'").fetchone() and not c.execute("SELECT name FROM sqlite_master WHERE name='refund_recovery'").fetchone():
+    backup_path=Path(self.db+'.before-refund-recovery-'+uuid.uuid4().hex[:8]+'.sqlite3')
+    with sqlite3.connect(backup_path) as backup:c.backup(backup)
+    backup_path.chmod(0o600)
    c.executescript('''PRAGMA journal_mode=WAL;
    CREATE TABLE IF NOT EXISTS orders(id TEXT PRIMARY KEY, token_hash TEXT, account TEXT, app TEXT, sku TEXT, amount INTEGER, currency TEXT, kind TEXT, label TEXT, terms TEXT, state TEXT, session TEXT UNIQUE, created INTEGER);
    CREATE TABLE IF NOT EXISTS events(id TEXT PRIMARY KEY, order_id TEXT, state TEXT, created INTEGER);
    CREATE TABLE IF NOT EXISTS ledger(id TEXT PRIMARY KEY, account TEXT, order_id TEXT, delta INTEGER, reason TEXT, UNIQUE(order_id,reason));
    CREATE TABLE IF NOT EXISTS memberships(order_id TEXT PRIMARY KEY, account TEXT, status TEXT);
-   CREATE TABLE IF NOT EXISTS fulfillment(order_id TEXT, kind TEXT, state TEXT, PRIMARY KEY(order_id,kind));''')
+   CREATE TABLE IF NOT EXISTS fulfillment(order_id TEXT, kind TEXT, state TEXT, PRIMARY KEY(order_id,kind));
+   CREATE TABLE IF NOT EXISTS refund_recovery(order_id TEXT PRIMARY KEY, account TEXT NOT NULL, amount INTEGER NOT NULL CHECK(amount>0), status TEXT NOT NULL CHECK(status IN ('pending_review','recovered')), created INTEGER NOT NULL, recovered INTEGER);
+   CREATE INDEX IF NOT EXISTS refund_recovery_account ON refund_recovery(account,status);''')
  @contextmanager
  def connect(self):
   c=sqlite3.connect(self.db,timeout=10);c.row_factory=sqlite3.Row
@@ -72,6 +78,8 @@ class Checkout:
    result['balance_minor']=c.execute('SELECT COALESCE(SUM(delta),0) FROM ledger WHERE account=?',(row['account'],)).fetchone()[0]
    member=c.execute('SELECT status FROM memberships WHERE order_id=?',(oid,)).fetchone()
    result['membership']=member[0] if member else 'inactive'
+   recovery=c.execute('SELECT status,amount FROM refund_recovery WHERE order_id=?',(oid,)).fetchone()
+   result['refund_recovery']=dict(recovery) if recovery else None
    return result
  def webhook(self, body, signature):
   event=self.adapter.verify(body,signature)
@@ -99,13 +107,26 @@ class Checkout:
     if state=='refunded' and old!='refunded':
      if row['kind']=='credits':
       balance=c.execute('SELECT COALESCE(SUM(delta),0) FROM ledger WHERE account=?',(account,)).fetchone()[0]
-      if balance<100: raise CheckoutError('Refund requires review: demo credits already spent')
-      c.execute('INSERT INTO ledger VALUES(?,?,?,?,?)',(uuid.uuid4().hex,account,oid,-100,'demo-refund'))
+      recovered=balance>=100
+      if recovered:c.execute('INSERT INTO ledger VALUES(?,?,?,?,?)',(uuid.uuid4().hex,account,oid,-100,'demo-refund'))
+      c.execute('INSERT INTO refund_recovery VALUES(?,?,?,?,?,?)',(oid,account,100,'recovered' if recovered else 'pending_review',int(time.time()),int(time.time()) if recovered else None))
      c.execute('UPDATE memberships SET status=? WHERE order_id=?',('inactive',oid))
      c.execute('UPDATE fulfillment SET state=? WHERE order_id=?',('reversed',oid))
     c.execute('UPDATE orders SET state=? WHERE id=?',(state,oid))
    c.execute('INSERT INTO events VALUES(?,?,?,?)',(event['event_id'],oid,state,int(time.time())))
   return {'duplicate':False}
+ def recover_refund(self,oid):
+  """Explicit trusted TEST-operator action; never called automatically or via HTTP."""
+  with self.connect() as c:
+   c.execute('BEGIN IMMEDIATE')
+   row=c.execute('SELECT r.*,o.state FROM refund_recovery r JOIN orders o ON o.id=r.order_id AND o.account=r.account WHERE r.order_id=?',(oid,)).fetchone()
+   if not row or row['state']!='refunded':raise CheckoutError('Unknown refunded credit order')
+   if row['status']=='recovered':return {'status':'recovered','duplicate':True}
+   balance=c.execute('SELECT COALESCE(SUM(delta),0) FROM ledger WHERE account=?',(row['account'],)).fetchone()[0]
+   if balance<row['amount']:return {'status':'pending_review','duplicate':False}
+   c.execute('INSERT INTO ledger VALUES(?,?,?,?,?)',(uuid.uuid4().hex,row['account'],oid,-row['amount'],'demo-refund'))
+   c.execute('UPDATE refund_recovery SET status=?,recovered=? WHERE order_id=?',('recovered',int(time.time()),oid))
+   return {'status':'recovered','duplicate':False}
  def simulate(self, oid, token, state):
   order=self.read(oid,token)
   event={k:order[k] for k in ('session','amount','currency')};event.update(event_id=uuid.uuid4().hex,order_id=oid,state=state)

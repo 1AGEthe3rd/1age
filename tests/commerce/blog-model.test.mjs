@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+const source=fs.readFileSync(new URL('../../experiences/blog/blog-model.js',import.meta.url),'utf8');
+const {validatePublications,filterPublications,storyURL}=await import('data:text/javascript,'+encodeURIComponent(source));
+const records=JSON.parse(fs.readFileSync(new URL('../../experiences/blog/publications.json',import.meta.url)));
+assert.equal(validatePublications(records).length,4);
+assert.deepEqual(filterPublications(records,'pocket').map(x=>x.id),['pocket-interface']);
+assert(filterPublications(records,'physical vacancy').some(x=>x.id==='space-massing'),'Article body is searchable');
+assert.equal(filterPublications(records,'zz-no-matching-story-zz').length,0);
+assert.equal(filterPublications(records,'').length,4);
+assert.throws(()=>validatePublications([...records,records[0]]),/identifier/);
+const broken=structuredClone(records);broken[0].related=['missing-record'];assert.throws(()=>validatePublications(broken),/relationship/);
+const unsupported=structuredClone(records);unsupported[0].media.kind='script';assert.throws(()=>validatePublications(unsupported),/media/);
+const badText=structuredClone(records);badText[0].body=[{html:'<script>'}];assert.throws(()=>validatePublications(badText),/body/);
+const url=storyURL('https://example.com/blog/?mode=gallery','space-massing');assert.equal(url.searchParams.get('story'),'space-massing');assert.equal(url.searchParams.get('mode'),'gallery');assert.equal(storyURL(url,null).searchParams.has('story'),false);
+for(const r of records)assert(r.status&&r.technical&&r.body.length,'Preserve content and development disclosures');
+console.log('Blog publication checks passed: preserved records, body search, unknown query, duplicate IDs, relationships, media kinds, text-only articles and permalinks.');

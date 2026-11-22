@@ -43,8 +43,45 @@ class CheckoutTests(unittest.TestCase):
   o=self.order();self.service.webhook(*self.event(o));self.service.debit('account-a',25,'spend-1');self.service.debit('account-a',25,'spend-1')
   self.assertEqual(self.service.read(o['id'],o['access_token'])['balance_minor'],75)
   with self.assertRaises(CheckoutError):self.service.debit('account-a',100,'spend-2')
-  with self.assertRaises(CheckoutError):self.service.simulate(o['id'],o['access_token'],'refunded')
-  self.assertEqual(self.service.read(o['id'],o['access_token'])['state'],'paid')
+  status=self.service.simulate(o['id'],o['access_token'],'refunded')
+  self.assertEqual(status['state'],'refunded');self.assertEqual(status['balance_minor'],75)
+  self.assertEqual(status['refund_recovery'],{'status':'pending_review','amount':100})
+ def test_refund_replay_and_explicit_recovery_are_idempotent(self):
+  order=self.order();self.service.simulate(order['id'],order['access_token'],'paid')
+  self.service.debit('account-a',100,'spent-all')
+  event=self.event(order,'refunded','refund-event')
+  self.service.webhook(*event);self.assertTrue(self.service.webhook(*event)['duplicate'])
+  self.assertEqual(self.service.recover_refund(order['id'])['status'],'pending_review')
+  self.assertEqual(self.service.read(order['id'],order['access_token'])['balance_minor'],0)
+  second=self.order(key='second-order');self.service.simulate(second['id'],second['access_token'],'paid')
+  # A later grant is not automatically consumed by the pending review.
+  self.assertEqual(self.service.read(order['id'],order['access_token'])['balance_minor'],100)
+  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+   results=list(pool.map(lambda _:self.service.recover_refund(order['id']),range(8)))
+  self.assertEqual(sum(not r['duplicate'] for r in results),1)
+  self.assertEqual(self.service.read(order['id'],order['access_token'])['balance_minor'],0)
+  self.service.webhook(*self.event(order,'refunded','another-refund-event'))
+  with self.service.connect() as c:
+   self.assertEqual(c.execute("SELECT COUNT(*) FROM ledger WHERE reason='demo-refund'").fetchone()[0],1)
+   self.assertEqual(c.execute('SELECT COUNT(*) FROM refund_recovery').fetchone()[0],1)
+ def test_invalid_recovery_does_not_modify_state(self):
+  order=self.order()
+  with self.assertRaises(CheckoutError):self.service.recover_refund(order['id'])
+  with self.assertRaises(CheckoutError):self.service.recover_refund('unknown-order')
+  with self.service.connect() as c:
+   self.assertEqual(c.execute('SELECT COUNT(*) FROM ledger').fetchone()[0],0)
+ def test_existing_database_backup_before_refund_migration(self):
+  order=self.order()
+  with self.service.connect() as c:c.execute('DROP TABLE refund_recovery')
+  Checkout(self.db)
+  backups=list(Path(self.tmp.name).glob('*.before-refund-recovery-*.sqlite3'))
+  self.assertEqual(len(backups),1)
+  import sqlite3
+  with sqlite3.connect(backups[0]) as c:
+   self.assertEqual(c.execute('SELECT id FROM orders').fetchone()[0],order['id'])
+   self.assertIsNone(c.execute("SELECT name FROM sqlite_master WHERE name='refund_recovery'").fetchone())
+  Checkout(self.db)
+  self.assertEqual(len(list(Path(self.tmp.name).glob('*.before-refund-recovery-*.sqlite3'))),1)
  def test_recurring_consent_required(self):
   with self.assertRaises(CheckoutError):self.service.create('plus','plus-demo','account-a','plus-no-consent')
  def test_refund_and_subscription(self):

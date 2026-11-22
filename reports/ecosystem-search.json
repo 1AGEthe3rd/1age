@@ -1,0 +1,174 @@
+{
+  "records": 324,
+  "cases": [
+    {
+      "query": "Solana",
+      "count": 106,
+      "types": [
+        "blockchain",
+        "tool",
+        "community",
+        "content",
+        "social",
+        "opportunity",
+        "person",
+        "identity",
+        "wallet",
+        "project",
+        "documentation",
+        "defi",
+        "explorer",
+        "exchange"
+      ],
+      "elapsed_ms": 28.06,
+      "top": [
+        "solana",
+        "solana-developers",
+        "solana-reddit",
+        "solana-video",
+        "solana-social"
+      ]
+    },
+    {
+      "query": "Phantom",
+      "count": 3,
+      "types": [
+        "wallet",
+        "documentation",
+        "content"
+      ],
+      "elapsed_ms": 1.83,
+      "top": [
+        "phantom",
+        "phantom-docs",
+        "phantom-help"
+      ]
+    },
+    {
+      "query": "Solana developer",
+      "count": 23,
+      "types": [
+        "tool",
+        "social",
+        "community",
+        "documentation",
+        "person"
+      ],
+      "elapsed_ms": 1.01,
+      "top": [
+        "solana-developers",
+        "jupiter-developer-social",
+        "github:solana-program/actions",
+        "github:solana-program/stake",
+        "github:solana-program/token"
+      ]
+    },
+    {
+      "query": "Solana discord",
+      "count": 3,
+      "types": [
+        "community"
+      ],
+      "elapsed_ms": 0.96,
+      "top": [
+        "solana-discord",
+        "jupiter-discord",
+        "solana-community"
+      ]
+    },
+    {
+      "query": "Star Atlas",
+      "count": 1,
+      "types": [
+        "games"
+      ],
+      "elapsed_ms": 0.75,
+      "top": [
+        "star-atlas"
+      ]
+    },
+    {
+      "query": "Solana grant",
+      "count": 2,
+      "types": [
+        "opportunity",
+        "community"
+      ],
+      "elapsed_ms": 0.56,
+      "top": [
+        "solana-funding",
+        "superteam"
+      ]
+    },
+    {
+      "query": "1AGE Space",
+      "count": 1,
+      "types": [
+        "space"
+      ],
+      "elapsed_ms": 0.47,
+      "top": [
+        "1age-space"
+      ]
+    },
+    {
+      "query": "phantm",
+      "count": 3,
+      "types": [
+        "wallet",
+        "documentation",
+        "content"
+      ],
+      "elapsed_ms": 0.35,
+      "top": [
+        "phantom",
+        "phantom-docs",
+        "phantom-help"
+      ]
+    },
+    {
+      "query": "Anatoly Yakovenko",
+      "count": 1,
+      "types": [
+        "person"
+      ],
+      "elapsed_ms": 0.63,
+      "top": [
+        "anatoly-yakovenko"
+      ]
+    },
+    {
+      "query": "Mert Mumtaz",
+      "count": 1,
+      "types": [
+        "person"
+      ],
+      "elapsed_ms": 0.27,
+      "top": [
+        "mert-mumtaz"
+      ]
+    },
+    {
+      "query": "Solana founder",
+      "count": 4,
+      "types": [
+        "person"
+      ],
+      "elapsed_ms": 0.63,
+      "top": [
+        "anatoly-yakovenko",
+        "mert-mumtaz",
+        "nicolas-pennie",
+        "liam-vovk"
+      ]
+    },
+    {
+      "query": "zznonexistentzz",
+      "count": 0,
+      "types": [],
+      "elapsed_ms": 0.44,
+      "top": []
+    }
+  ],
+  "people_coverage": "4 source-backed public professional records; no claimed 1AGE profiles"
+}

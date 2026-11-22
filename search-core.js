@@ -1,7 +1,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ageSearchCore=factory();})(typeof window!=='undefined'?window:globalThis,function(){
 'use strict';
 const instructionWords = new Set(['find','show','me','list','top','best','popular','recommended','recommend','the','a','an','for','on','in','of','please','what','is','who','where','how','to','can','i','get','use','are','some','projects','project','apps','applications','blockchain','crypto']);
-const aliases = {wallets:'wallet',games:'game',gaming:'game',exchanges:'exchange',tokens:'token',communities:'community',developers:'developer',tools:'tool',build:'developer',nfts:'nft',eth:'ethereum',sol:'solana',btc:'bitcoin'};
+const aliases = {docs:'documentation',wallets:'wallet',games:'game',gaming:'game',exchanges:'exchange',tokens:'token',communities:'community',developers:'developer',tools:'tool',build:'developer',nfts:'nft',eth:'ethereum',sol:'solana',btc:'bitcoin'};
 function plan(value) {
  const raw=normalize(value).slice(0,200);
  const phrase=raw.replace(/decentralized finance/g,'defi').replace(/non[ -]fungible tokens?/g,'nft');
@@ -52,7 +52,8 @@ function search(records, query, scope) {
   const raw = normalize(query).slice(0, 200);
   const term = plan(query).query;
   if (!records?.length || (!term && !plan(query).browse)) return [];
-  const types = Object.hasOwn(scopes, scope) ? scopes[scope] : null;
+  const categories = {projects:['project','defi','wallet','explorer','blockchain','platform'],people:['person'],communities:['community'],social:['social'],opportunities:['opportunity'],content:['content','documentation'],developers:['tool','documentation']};
+  const types = categories[scope] || (Object.hasOwn(scopes, scope) ? scopes[scope] : null);
   const intent=plan(query);
   const projectDiscovery=intent.projectOnly&&!/\b(developer|sdk|tool|repository|code)\b/.test(term);
   const allowed = item => (!projectDiscovery || !['blockchain','tool','documentation'].includes(item.type)) && (!types || [item.type, item.category].some(value => types.includes(normalize(value))));
@@ -64,14 +65,22 @@ function search(records, query, scope) {
     if (identifiers.some(value => normalize(value) === raw)) scored.set(item.id, 1000000 + (scored.get(item.id) || 0));
   }
   const completeness = item => ['description', 'category', 'networks', 'official_links'].filter(key => item[key]?.length || key === 'official_links' && item[key]?.website).length;
-  return [...scored].map(([id, score]) => ({ ...byId.get(id), score }))
+  const ranked = [...scored].map(([id, score]) => ({ ...byId.get(id), score }))
     .filter(allowed)
     .sort((a, b) => b.score - a.score ||
       String(b.source_review?.checked_on || '').localeCompare(a.source_review?.checked_on || '') ||
       completeness(b) - completeness(a) || a.name.localeCompare(b.name));
+  // For a single ecosystem name, show its breadth before repeating one record type.
+  if (!scope && ranked[0]?.type === 'blockchain' && ranked[0].score >= 1000000) {
+    const seen=new Set(), leading=[], rest=[];
+    for (const item of ranked) {if(!seen.has(item.type)){seen.add(item.type);leading.push(item);}else rest.push(item);}
+    return leading.concat(rest);
+  }
+  return ranked;
 }
 
-return {search,plan};
+function related(records,id){return records.filter(item => item.id !== id && ((item.relationships || []).some(link => link.target === id && link.status === 'source_checked') || (records.find(row=>row.id===id)?.relationships || []).some(link=>link.target===item.id && link.status==='source_checked')));}
+return {search,plan,related};
 }
 return {createEngine,plan,version:1};
 });

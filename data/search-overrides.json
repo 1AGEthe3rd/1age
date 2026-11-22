@@ -10,6 +10,13 @@
         "https://jup.ag"
       ],
       "note": "Public source checked; no identity or safety guarantee."
+    },
+    "official_links": {
+      "discord": "https://discord.gg/jup",
+      "docs": "https://developers.jup.ag/",
+      "github": null,
+      "website": "https://jup.ag",
+      "x": null
     }
   },
   "phantom": {
@@ -23,6 +30,13 @@
         "https://phantom.com"
       ],
       "note": "Public source checked; no identity or safety guarantee."
+    },
+    "official_links": {
+      "discord": null,
+      "docs": "https://docs.phantom.com/",
+      "github": null,
+      "website": "https://phantom.com",
+      "x": null
     }
   },
   "helius": {
@@ -36,6 +50,13 @@
         "https://helius.dev"
       ],
       "note": "Public source checked; no identity or safety guarantee."
+    },
+    "official_links": {
+      "discord": null,
+      "docs": "https://www.helius.dev/docs",
+      "github": null,
+      "website": "https://helius.dev",
+      "x": null
     }
   },
   "backpack": {
@@ -66,5 +87,23 @@
   },
   "1age": {
     "description": "Independent multichain blockchain discovery and search platform."
+  },
+  "solana-developers": {
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/developers"
+      ],
+      "note": "Publisher-listed destination; not an identity or safety endorsement."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/developers"
+      }
+    ]
   }
 }

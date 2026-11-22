@@ -1,0 +1,103 @@
+[
+  {
+    "domain": "1age.exchange",
+    "type": "A",
+    "rcode": 2,
+    "answers": [],
+    "source": "https://dns.google/resolve?name=1age.exchange&type=A"
+  },
+  {
+    "domain": "1age.exchange",
+    "type": "NS",
+    "rcode": 2,
+    "answers": [],
+    "source": "https://dns.google/resolve?name=1age.exchange&type=NS"
+  },
+  {
+    "domain": "1age.quest",
+    "type": "A",
+    "rcode": 2,
+    "answers": [],
+    "source": "https://dns.google/resolve?name=1age.quest&type=A"
+  },
+  {
+    "domain": "1age.quest",
+    "type": "NS",
+    "rcode": 2,
+    "answers": [],
+    "source": "https://dns.google/resolve?name=1age.quest&type=NS"
+  },
+  {
+    "domain": "1age.cash",
+    "type": "A",
+    "rcode": 0,
+    "answers": [],
+    "source": "https://dns.google/resolve?name=1age.cash&type=A"
+  },
+  {
+    "domain": "1age.cash",
+    "type": "NS",
+    "rcode": 0,
+    "answers": [
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "fortaleza.ns.porkbun.com."
+      },
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "salvador.ns.porkbun.com."
+      },
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "maceio.ns.porkbun.com."
+      },
+      {
+        "name": "1age.cash.",
+        "type": 2,
+        "TTL": 21600,
+        "data": "curitiba.ns.porkbun.com."
+      }
+    ],
+    "source": "https://dns.google/resolve?name=1age.cash&type=NS"
+  },
+  {
+    "domain": "1age.blog",
+    "type": "A",
+    "rcode": 0,
+    "answers": [
+      {
+        "name": "1age.blog.",
+        "type": 1,
+        "TTL": 1800,
+        "data": "192.64.119.243"
+      }
+    ],
+    "source": "https://dns.google/resolve?name=1age.blog&type=A"
+  },
+  {
+    "domain": "1age.blog",
+    "type": "NS",
+    "rcode": 0,
+    "answers": [
+      {
+        "name": "1age.blog.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns2.registrar-servers.com."
+      },
+      {
+        "name": "1age.blog.",
+        "type": 2,
+        "TTL": 1800,
+        "data": "dns1.registrar-servers.com."
+      }
+    ],
+    "source": "https://dns.google/resolve?name=1age.blog&type=NS"
+  }
+]

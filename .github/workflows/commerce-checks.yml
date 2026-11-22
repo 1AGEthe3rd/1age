@@ -14,6 +14,14 @@ jobs:
       - run: node --check experiences/shared/viewer.js
       - run: node --check experiences/checkout/checkout.js
       - run: node tests/commerce/recovery.test.mjs
+      - run: node tests/commerce/blog-model.test.mjs
+      - run: node --check experiences/blog/story-scene.js
+      - run: node --check experiences/shared/viewer.js
+      - run: node tests/commerce/store-interaction.test.mjs
+      - run: node --check experiences/shared/showroom.js
+      - run: node tests/commerce/plus-interaction.test.cjs
+      - run: node --check experiences/plus/plus.js
+      - run: node --check experiences/cash/cash.js
       - run: node --check experiences/blog/blog.js
       - run: python3 scripts/build-app-homes.py --check
       - run: node tests/app-entrypoints.test.cjs
