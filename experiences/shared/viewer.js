@@ -31,6 +31,18 @@ export function createViewer(host,{model='brand',showroom=false}={}){
    polygon(object,[[408,680],[599,680],[599,820],[552,820],[552,727],[408,727]]);
    polygon(object,[[725,251],[1096,633],[1062,666],[692,284]]);
    polygon(object,[[570,364],[570,384],[594,384],[594,442],[573,448],[573,467],[669,468],[669,448],[649,442],[649,337],[621,335],[596,354],[573,363]],glow);
+  }else if(kind==='quest'){
+   const gate=new THREE.Mesh(new THREE.TorusGeometry(1.35,.1,12,64),glow);gate.position.set(0,.35,-.7);object.add(gate);
+   for(let i=0;i<6;i++){const a=i*.95;const node=new THREE.Mesh(new THREE.DodecahedronGeometry(.22+i*.025,0),i===5?glow:white);node.position.set(Math.sin(a)*1.7,-.95+i*.32,Math.cos(a)*1.2);object.add(node);}
+   const horizon=new THREE.Mesh(new THREE.TorusGeometry(2.4,.025,8,64),glow);horizon.rotation.x=Math.PI/2;horizon.position.y=-1.2;object.add(horizon);
+  }else if(kind==='design'){
+   box(object,0,-.65,0,3.1,.16,1.8,metal);for(const x of [-1.3,1.3])for(const z of [-.65,.65])box(object,x,-1.1,z,.1,.8,.1,white);
+   const study=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,1),new THREE.MeshStandardMaterial({color:0x1bfd9c,wireframe:true,emissive:0x1bfd9c,emissiveIntensity:.4}));study.position.y=.35;object.add(study);
+   for(const x of [-1.5,1.5]){const guide=new THREE.Mesh(new THREE.TorusGeometry(.5,.025,8,40),glow);guide.position.set(x,.3,0);object.add(guide);}
+  }else if(kind==='shop'){
+   for(const x of [-1.4,0,1.4]){box(object,x,-.9,0,1,.16,1.2,white);box(object,x,.15,-.55,.06,2,.06,glow);box(object,x+.85,.15,-.55,.06,2,.06,glow);box(object,x+.42,1.15,-.55,.9,.06,.06,glow);}
+  }else if(kind==='app'){
+   object.add(new THREE.Mesh(new THREE.IcosahedronGeometry(.65,1),glow));for(let i=0;i<6;i++){const a=i*Math.PI/3;const portal=new THREE.Mesh(new THREE.TorusGeometry(.3,.055,8,32),white);portal.position.set(Math.sin(a)*1.6,Math.cos(a)*1.4,0);object.add(portal);}
   }else if(kind==='pocket'){
    box(object,0,0,0,1.8,2.65,.24);box(object,0,.18,.14,1.55,1.9,.02,new THREE.MeshStandardMaterial({color:0x071b10,emissive:0x06311c}));
    for(const x of [-.55,.55]){const joy=new THREE.Mesh(new THREE.TorusGeometry(.21,.03,8,32),glow);joy.position.set(x,-.9,.17);object.add(joy);}
@@ -69,5 +81,5 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   object=gltf.scene;const bounds=new THREE.Box3().setFromObject(object),size=bounds.getSize(new THREE.Vector3()),center=bounds.getCenter(new THREE.Vector3());
   const scale=2.7/Math.max(size.x,size.y,size.z,.001);object.scale.setScalar(scale);object.position.copy(center.multiplyScalar(-scale));object.position.y+=.2;scene.add(object);draw();
  }
- return {setModel,loadGLTF,dispose(){disposed=true;cancelAnimationFrame(frame);for(const [b,fn] of handlers)b.removeEventListener('click',fn);host.removeEventListener('keydown',keyHandler);renderer.domElement.remove();host.classList.remove('render-ready');observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
+ return {setModel,loadGLTF,action,dispose(){disposed=true;cancelAnimationFrame(frame);for(const [b,fn] of handlers)b.removeEventListener('click',fn);host.removeEventListener('keydown',keyHandler);renderer.domElement.remove();host.classList.remove('render-ready');observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
 }

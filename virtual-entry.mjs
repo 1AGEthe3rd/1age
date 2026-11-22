@@ -1,17 +1,27 @@
-// Application entrances remain independent; legacy tools open only by explicit action.
+// Independent spatial entrances. Legacy workspaces are not public launch destinations.
 const routes={page:'/experiences/page/',games:'/experiences/games/',exchange:'/experiences/exchange/',plus:'/experiences/plus/',store:'/experiences/store/',blog:'/experiences/blog/',cash:'/experiences/cash/'};
 const labels={page:'Page',games:'Games',exchange:'Exchange',plus:'Plus',store:'Store',blog:'Blog',cash:'Cash',space:'Space',design:'Design',quest:'Quest',shop:'Shop',app:'App',world:'World',checkout:'Checkout'};
 const slug=document.body.dataset.app||document.body.dataset.homeApp||(/^\/world\/(index\.html)?$/.test(location.pathname)?'world':null);
+const foundations=new Set(['quest','design','shop','app']);
 if(labels[slug]){
- const legacy=new URLSearchParams(location.search).get('workspace')==='1';
+ const foundation=foundations.has(slug);
+ const legacy=!foundation&&new URLSearchParams(location.search).get('workspace')==='1';
  if(routes[slug]&&!legacy&&location.pathname!==routes[slug]){location.replace(routes[slug]);}
  else{
- const body=document.body;body.classList.add('virtual-entry');
- const host=document.createElement('div');host.className='scene virtual-stage';host.tabIndex=0;host.setAttribute('role','group');host.setAttribute('aria-label','3D '+labels[slug]+' entrance. Arrow keys rotate; plus and minus zoom.');const fallback=document.createElement('p');fallback.className='fallback-note';fallback.textContent='3D requires a supported browser. The tools remain accessible.';host.append(fallback);
- const head=document.createElement('header');head.className='virtual-header';const menu=document.createElement('button');menu.textContent='1AGE';const img=document.createElement('img');img.src='/assets/1age-logo.svg';img.alt='';menu.prepend(img);menu.setAttribute('aria-label','1AGE menu');menu.setAttribute('aria-expanded','false');const nav=document.createElement('nav');nav.hidden=true;for(const [name,url]of[['Store','/experiences/store/'],['Blog','/experiences/blog/']]){const a=document.createElement('a');a.href=url;a.textContent=name;nav.append(a);}menu.addEventListener('click',()=>{nav.hidden=!nav.hidden;menu.setAttribute('aria-expanded',String(!nav.hidden));});head.append(menu,nav);
- const title=document.createElement('section');title.className='virtual-caption';const h=document.createElement('h1');h.textContent='1AGE '+labels[slug];const p=document.createElement('p');p.textContent='Virtual platform foundation. Existing tools are available; connected services are still in development.';title.append(h,p);
- const tools=document.createElement('button');tools.className='virtual-tools-toggle';tools.textContent='Open '+labels[slug]+' controls';tools.setAttribute('aria-expanded','false');tools.addEventListener('click',()=>{const open=body.classList.toggle('virtual-tools');tools.setAttribute('aria-expanded',String(open));tools.textContent=(open?'Close ':'Open ')+labels[slug]+' controls';});
- body.append(host,head,title,tools);document.addEventListener('keydown',e=>{if(e.key==='Escape'){body.classList.remove('virtual-tools');tools.setAttribute('aria-expanded','false');nav.hidden=true;menu.setAttribute('aria-expanded','false');tools.focus();}});
- try{const {createViewer}=await import('/experiences/shared/viewer.js');const viewer=createViewer(host,{model:slug==='space'?'property':['cash','checkout'].includes(slug)?'terminal':'brand'});addEventListener('pagehide',e=>{if(!e.persisted)viewer.dispose();});}catch{fallback.textContent='3D unavailable. Open the same controls to continue.';}
+  const body=document.body;body.classList.add('virtual-entry');
+  if(foundation)body.classList.add('virtual-foundation');
+  const el=(tag,text)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;return node;};
+  const host=el('div');host.className='scene virtual-stage';host.tabIndex=0;host.setAttribute('role','group');host.setAttribute('aria-label','3D '+labels[slug]+' environment. Arrow keys rotate; plus and minus zoom.');
+  const fallback=el('p','Loading the 3D environment. Scene controls are keyboard accessible.');fallback.className='fallback-note';host.append(fallback);
+  const head=el('header');head.className='virtual-header';const menu=el('button');const img=el('img');img.src='/assets/1age-logo.svg';img.alt='';menu.prepend(img);menu.setAttribute('aria-label','1AGE menu');menu.setAttribute('aria-expanded','false');
+  const nav=el('nav');nav.hidden=true;for(const [name,url]of[['Store','/experiences/store/'],['Blog','/experiences/blog/']]){const a=el('a',name);a.href=url;nav.append(a);}menu.addEventListener('click',()=>{nav.hidden=!nav.hidden;menu.setAttribute('aria-expanded',String(!nav.hidden));});const home=el('a','Home');home.href='https://1age.com/';head.append(menu,nav,home);
+  let viewer;const tools=el('button',foundation?'Scene controls':'Open '+labels[slug]+' controls');tools.className='virtual-tools-toggle';tools.setAttribute('aria-expanded','false');
+  const camera=el('section');camera.className='virtual-camera';camera.hidden=true;camera.setAttribute('aria-label','3D scene controls');
+  for(const [name,action]of[['Turn left','left'],['Turn right','right'],['Zoom in','in'],['Zoom out','out'],['Reset view','reset']]){const button=el('button',name);button.addEventListener('click',()=>viewer?.action?.(action));camera.append(button);}
+  tools.addEventListener('click',()=>{if(foundation){camera.hidden=!camera.hidden;tools.setAttribute('aria-expanded',String(!camera.hidden));return;}const open=body.classList.toggle('virtual-tools');tools.setAttribute('aria-expanded',String(open));tools.textContent=(open?'Close ':'Open ')+labels[slug]+' controls';});
+  body.append(host,head,tools);if(foundation)body.append(camera);
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){body.classList.remove('virtual-tools');camera.hidden=true;tools.setAttribute('aria-expanded','false');nav.hidden=true;menu.setAttribute('aria-expanded','false');tools.focus();}});
+  try{const {createViewer}=await import('/experiences/shared/viewer.js');viewer=createViewer(host,{model:foundation?slug:slug==='space'?'property':['cash','checkout'].includes(slug)?'terminal':'brand'});addEventListener('pagehide',event=>{if(!event.persisted)viewer.dispose();});}
+  catch{fallback.textContent='The 3D environment is unavailable in this browser. Use a WebGL-capable browser to enter this virtual platform.';}
  }
 }

@@ -31,7 +31,7 @@ function fromURL(){const id=new URL(location.href).searchParams.get('story');if(
 window.addEventListener('popstate',fromURL);
 function render(){const shown=filterPublications(records,$('#story-query').value);archive?.dispose();archive=null;gallery.replaceChildren();
  for(const row of shown){const button=text('button',row.title);button.className='story-node';button.type='button';button.dataset.story=row.id;button.append(text('span',row.status));button.setAttribute('aria-label','Read '+row.title);button.addEventListener('click',()=>open(row,button));gallery.append(button);}
- status.textContent=shown.length?`${shown.length} visual ${shown.length===1?'publication':'publications'}. Select a story to inspect or read. Concepts retain their development labels.`:'No matching publications. Try Space, Pocket or identity.';
+ status.textContent=shown.length?'':'No matching publications. Try Space, Pocket or identity.';
  const revision=++render.revision;
  if(!shown.length){document.body.classList.add('archive-fallback');return;}
  import('./story-scene.js').then(({createStoryScene})=>{if(revision!==render.revision)return;archive=createStoryScene($('#story-universe'),shown,[...gallery.querySelectorAll('button')],row=>open(row,gallery.querySelector(`[data-story="${row.id}"]`)));document.body.classList.remove('archive-fallback');archive.layout($('#layout-toggle').getAttribute('aria-pressed')==='true');}).catch(()=>{if(revision===render.revision){document.body.classList.add('archive-fallback');status.textContent+=' 3D unavailable; all story buttons remain usable.';}});

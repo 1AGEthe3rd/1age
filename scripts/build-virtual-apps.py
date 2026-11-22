@@ -35,6 +35,10 @@ def build(out):
     s=s.replace('/apps/search/','https://1age.com/').replace('/apps/world/','https://1age.world/').replace('/home/world/','https://1age.world/').replace('/world/','https://1age.world/')
     if f.name=='app-home.js':s=s.replace('action="/"','action="https://1age.com/"')
     f.write_text(s)
+   if slug in {'quest','design','shop','app'}:
+    title=app['name'];description={'quest':'A 3D virtual mission environment. Gameplay and rewards are in development.','design':'A 3D virtual creator studio.','shop':'A 3D virtual marketplace foundation.','app':'A 3D application discovery hub.'}[slug]
+    (dest/'index.html').write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title><meta name="description" content="{description}"><meta name="robots" content="noindex"><link rel="icon" href="/assets/1age-logo.svg"><link rel="stylesheet" href="/virtual-entry.css"></head><body data-app="{slug}" class="virtual-entry"><script type="module" src="/virtual-entry.mjs"></script><noscript>Enable JavaScript and WebGL to enter this 3D virtual environment.</noscript></body></html>')
+   (dest/'.nojekyll').write_text('')
    (dest/'CNAME').write_text(app['domain']+'\n');(dest/'robots.txt').write_text('User-agent: *\nDisallow: /\n')
    (dest/'VIRTUAL-BUILD.json').write_text(json.dumps({'app':slug,'presentation':'3d-first','liveBackend':False,'domainVerified':False,'deployment':'not-published','geometry':'existing experience or labeled generic entrance'},indent=2)+'\n')
    for manifest in dest.rglob('checksums.json'):manifest.unlink()
