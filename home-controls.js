@@ -10,7 +10,7 @@
   if(wings.contains(brand))hub.append(brand);
   wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label','1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
   if(next==='closed'){if(restoreFocus)brand.focus({preventScroll:true});return;}
-  const items=[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'/experiences/blog/'}];
+  const items=[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'}];
   const track=document.createElement('div');track.className='header-slider-track';track.tabIndex=0;track.setAttribute('aria-label','Slide the whole 1AGE menu');wings.append(track);
   const split=Math.ceil(items.length/2);
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
