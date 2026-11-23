@@ -33,12 +33,13 @@ class StripePlusSandboxTests(unittest.TestCase):
         self.gateway = StripePlusTest(self.config, transport=fake_transport)
 
     def price(self, **overrides):
-        return dict(
+        price = dict(
             id=self.config.price_id, active=True, livemode=False,
             type="recurring", currency="usd", unit_amount=333,
             recurring={"interval": "month", "interval_count": 1},
-            **overrides
         )
+        price.update(overrides)
+        return price
 
     def test_configuration_rejects_live_secret_and_non_1age_redirects(self):
         c = vars(self.config).copy()
