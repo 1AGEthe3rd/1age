@@ -35,6 +35,7 @@ def homes():
                 if obj.get('@type')=='WebPage':obj.update({'@id':route+'#page','url':route,'name':name,'description':description})
             return '<script type="application/ld+json">'+json.dumps(value,separators=(',',':'))+'</script>'
         page=re.sub(r'<script type="application/ld\+json">(.*?)</script>',schema,page,count=1,flags=re.S)
+        page=page.replace('class="home-screen"','class="virtual-entry home-screen"',1).replace('</head>','<link rel="stylesheet" href="/virtual-entry.css"></head>',1).replace('</body>','<script type="module" src="/virtual-entry.mjs"></script><noscript><p>Enable JavaScript for the 3D environment.</p></noscript></body>',1)
         result[f'home/{slug}/index.html']=page
     return result
 if __name__=='__main__':

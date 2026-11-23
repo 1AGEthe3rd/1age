@@ -36,6 +36,7 @@
   const depthMode = {get matches(){return document.documentElement.dataset.touchLayout==='landscape';}};
   function layout() {
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
+    if(rx<=0||ry<=0)return; // Hidden search/cache scenes must not collapse saved planet offsets.
     planets.forEach((planet, i) => {
       const a = -Math.PI / 2 + i * step + angle;
       planet.dataset.upper=String(Math.sin(a)<-.2);
@@ -206,7 +207,17 @@
     }
   });
   window.addEventListener('1age-layout-change',layout);
-  new ResizeObserver(layout).observe(orbit); layout();
+  new ResizeObserver(layout).observe(orbit);
+  let layoutFrame=0,settleFrame=0;
+  function restoreOrbitLayout(){
+    cancelAnimationFrame(layoutFrame);cancelAnimationFrame(settleFrame);
+    layoutFrame=requestAnimationFrame(()=>{layout();settleFrame=requestAnimationFrame(layout);});
+  }
+  window.addEventListener('pageshow',restoreOrbitLayout);
+  window.addEventListener('1age-home-restored',restoreOrbitLayout);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')restoreOrbitLayout();});
+  window.addEventListener('pagehide',()=>{cancelAnimationFrame(layoutFrame);cancelAnimationFrame(settleFrame);});
+  layout();
   const texture = document.querySelector('.globe-texture');
   // Project one continuous world map onto the sphere. No atlas handoff or fade.
   function movingGlobe() {

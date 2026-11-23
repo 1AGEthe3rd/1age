@@ -1,0 +1,19 @@
+name: Check homepage layout recovery
+on:
+  pull_request:
+    paths: ['world.js', 'home-controls.js', 'home-refinement.css', 'device-layout.js', 'tests/*layout*.cjs', 'tests/homepage-restore.test.cjs', 'tests/world-touch-drag.test.cjs', '.github/workflows/homepage-layout-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node --check world.js
+      - run: node --check home-controls.js
+      - run: node tests/gamepad-input.test.mjs
+      - run: node tests/orbit-layout.test.cjs
+      - run: node tests/homepage-restore.test.cjs
+      - run: node tests/device-layout.test.cjs
+      - run: node tests/world-touch-drag.test.cjs

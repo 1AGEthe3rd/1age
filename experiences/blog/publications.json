@@ -14,7 +14,17 @@
       "The exhibition uses the structural bars and diagonal of the existing official logo. This study explores depth, light and restrained motion without changing the brand identity.",
       "The showroom is a foundation for future product presentation. It has no merchandise inventory and does not imply products are available."
     ],
-    "technical": "Original procedural geometry derived from the repository's assets/1age-logo.svg; Three.js 0.180.0, MIT. This is a visual study, not a product for sale."
+    "technical": "Original procedural geometry derived from the repository's assets/1age-logo.svg; Three.js 0.180.0, MIT. This is a visual study, not a product for sale.",
+    "categories": [
+      "Design"
+    ],
+    "tags": [
+      "1AGE",
+      "identity"
+    ],
+    "related": [
+      "pocket-interface"
+    ]
   },
   {
     "id": "pocket-interface",
@@ -31,7 +41,17 @@
       "This original model illustrates a compact screen and two touch controls. Its proportions are illustrative; it is not a manufactured device, hardware specification or production prototype.",
       "The direction is a familiar interface across phone, touchscreen and portable computers. Existing devices remain the practical place to test those controls."
     ],
-    "technical": "Original box and ring geometry created for this demonstration. No third-party device design or manufacturing claims."
+    "technical": "Original box and ring geometry created for this demonstration. No third-party device design or manufacturing claims.",
+    "categories": [
+      "Design"
+    ],
+    "tags": [
+      "1AGE",
+      "Pocket"
+    ],
+    "related": [
+      "identity-in-depth"
+    ]
   },
   {
     "id": "space-massing",
@@ -49,7 +69,17 @@
       "This fictional building is a generic original template. It does not represent a real address, verified vacancy or authorized commercial listing.",
       "1AGE Space's intended first utility is sourced property discovery with separate physical and virtual availability. Architectural visualization should connect to reliable records rather than substitute for them."
     ],
-    "technical": "Original, small uncompressed GLB massing block, generated for this demonstration; no real address, property rights or availability implied."
+    "technical": "Original, small uncompressed GLB massing block, generated for this demonstration; no real address, property rights or availability implied.",
+    "categories": [
+      "Space"
+    ],
+    "tags": [
+      "1AGE",
+      "architecture"
+    ],
+    "related": [
+      "space-concept-image"
+    ]
   },
   {
     "id": "space-concept-image",
@@ -66,6 +96,16 @@
     "body": [
       "This concept image comes from the existing 1AGE project assets. It is a reference for discussion, not evidence of a completed commercial-property application."
     ],
-    "technical": "Source: assets/world-previews/space.svg in 1AGEthe3rd/1age. Reused within the same project; external publication rights still require founder review."
+    "technical": "Source: assets/world-previews/space.svg in 1AGEthe3rd/1age. Reused within the same project; external publication rights still require founder review.",
+    "categories": [
+      "Space"
+    ],
+    "tags": [
+      "1AGE",
+      "architecture"
+    ],
+    "related": [
+      "space-massing"
+    ]
   }
 ]

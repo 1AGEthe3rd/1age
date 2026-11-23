@@ -44,3 +44,13 @@ class ReceiptTests(unittest.TestCase):
   self.assertEqual(a['id'],b['id']);self.assertEqual(a['access_token'],b['access_token'])
   data['request_key']='recovery-002';c=self.call('/api/orders',data)
   with self.assertRaises(urllib.error.HTTPError):self.call('/api/orders/'+c['id'],token=a['access_token'])
+
+ def test_pending_recovery_is_in_receipt_but_has_no_operator_http_route(self):
+  o=self.call('/api/orders',{'app':'cash','sku':'cash-demo','request_key':'refund-review-http','consent_version':None})
+  self.call('/api/simulate',{'order_id':o['id'],'state':'paid'},o['access_token'])
+  self.server.checkout.debit('a'*32,100,'spent-test-balance')
+  state=self.call('/api/simulate',{'order_id':o['id'],'state':'refunded'},o['access_token'])
+  self.assertEqual(state['state'],'refunded');self.assertEqual(state['balance_minor'],0)
+  receipt=self.call('/api/orders/'+o['id']+'/receipt',token=o['access_token'])
+  self.assertEqual(receipt['refund_recovery'],{'status':'pending_review','amount':100})
+  with self.assertRaises(urllib.error.HTTPError):self.call('/api/recover-refund',{'order_id':o['id']},o['access_token'])

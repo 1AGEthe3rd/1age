@@ -1,7 +1,7 @@
 {
   "baseline_commit": "eadfc04",
   "baseline_records": 94,
-  "candidate_records": 308,
+  "candidate_records": 324,
   "total_queries": 40,
   "before_passed": 31,
   "after_passed": 40,
@@ -25,9 +25,11 @@
       "before_pass": true,
       "after_pass": true,
       "before_count": 1,
-      "after_count": 1,
+      "after_count": 3,
       "top_results": [
-        "Phantom"
+        "Phantom",
+        "Phantom Developer Documentation",
+        "Phantom Help Center"
       ]
     },
     {
@@ -37,10 +39,13 @@
       "before_pass": true,
       "after_pass": true,
       "before_count": 1,
-      "after_count": 2,
+      "after_count": 5,
       "top_results": [
         "Jupiter",
-        "Jupiter Lend"
+        "Jupiter Lend",
+        "Jupiter Developer Documentation",
+        "Jupiter Developer Community",
+        "Jupiter Developer Social"
       ]
     },
     {
@@ -179,9 +184,9 @@
       "top_results": [
         "Ethereum",
         "ethereum/go-ethereum",
-        "ethereum/ethereum-org-website",
         "Ethereum ethereum stack documentation",
-        "Ethereum intro to ethereum documentation"
+        "Ethereum Community",
+        "Ethereum Name Service"
       ]
     },
     {
@@ -191,13 +196,13 @@
       "before_pass": true,
       "after_pass": true,
       "before_count": 21,
-      "after_count": 90,
+      "after_count": 106,
       "top_results": [
         "Solana",
         "Solana Developers",
-        "solana-program/actions",
-        "solana-program/stake",
-        "solana-program/token"
+        "Solana Reddit",
+        "Solana YouTube",
+        "Solana Announcements on X"
       ]
     },
     {
@@ -248,7 +253,7 @@
       "before_pass": true,
       "after_pass": true,
       "before_count": 25,
-      "after_count": 94,
+      "after_count": 110,
       "top_results": [
         "Solana Name Service",
         "Binance Staked SOL",
@@ -280,13 +285,13 @@
       "before_pass": false,
       "after_pass": true,
       "before_count": 0,
-      "after_count": 76,
+      "after_count": 89,
       "top_results": [
-        "Solana Name Service",
-        "Backpack",
-        "Jupiter",
-        "Phantom",
-        "OnRe"
+        "Solana Reddit",
+        "Solana YouTube",
+        "Solana Community",
+        "Solana Engineering Discord",
+        "Solana Announcements on X"
       ]
     },
     {
@@ -308,11 +313,12 @@
       "before_pass": false,
       "after_pass": true,
       "before_count": 0,
-      "after_count": 3,
+      "after_count": 4,
       "top_results": [
         "Backpack",
         "Phantom",
-        "Solscan"
+        "Solscan",
+        "Phantom Developer Documentation"
       ]
     },
     {
@@ -436,9 +442,11 @@
       "before_pass": true,
       "after_pass": true,
       "before_count": 1,
-      "after_count": 1,
+      "after_count": 3,
       "top_results": [
-        "Phantom"
+        "Phantom",
+        "Phantom Developer Documentation",
+        "Phantom Help Center"
       ]
     },
     {
@@ -465,8 +473,8 @@
         "Bitcoin",
         "Blockstream Explorer",
         "bitcoin/bitcoin",
-        "bitcoin/bips",
-        "Binance Bitcoin"
+        "Binance Bitcoin",
+        "bitcoin/bips"
       ]
     },
     {

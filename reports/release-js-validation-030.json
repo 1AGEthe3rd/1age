@@ -1,0 +1,135 @@
+[
+  {
+    "test": "tests/app-entrypoints.test.cjs",
+    "passed": true,
+    "seconds": 0.161,
+    "output": "App entry checks passed: 11 aliases, exact titles, approved circle icons, query preservation, open-redirect prevention and canonical shared components.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/device-layout.test.cjs",
+    "passed": true,
+    "seconds": 0.082,
+    "output": "Device layout checks passed: hybrid input, orientation changes, desktop and observed-touch fallback.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/ecosystem-search.test.cjs",
+    "passed": true,
+    "seconds": 0.155,
+    "output": "  \"types\": [\n      \"person\"\n    ],\n    \"elapsed_ms\": 0.51,\n    \"top\": [\n      \"anatoly-yakovenko\"\n    ]\n  },\n  {\n    \"query\": \"Mert Mumtaz\",\n    \"count\": 1,\n    \"types\": [\n      \"person\"\n    ],\n    \"elapsed_ms\": 0.25,\n    \"top\": [\n      \"mert-mumtaz\"\n    ]\n  },\n  {\n    \"query\": \"Solana founder\",\n    \"count\": 4,\n    \"types\": [\n      \"person\"\n    ],\n    \"elapsed_ms\": 0.38,\n    \"top\": [\n      \"anatoly-yakovenko\",\n      \"mert-mumtaz\",\n      \"nicolas-pennie\",\n      \"liam-vovk\"\n    ]\n  },\n  {\n    \"query\": \"zznonexistentzz\",\n    \"count\": 0,\n    \"types\": [],\n    \"elapsed_ms\": 0.4,\n    \"top\": []\n  }\n]\n",
+    "error": ""
+  },
+  {
+    "test": "tests/homepage-restore.test.cjs",
+    "passed": true,
+    "seconds": 0.06,
+    "output": "Homepage restore checks passed: Back cache, settling viewport, hidden results, visibility and cleanup.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/orbit-layout.test.cjs",
+    "passed": true,
+    "seconds": 0.059,
+    "output": "Orbit layout checks passed: zero-size preservation, portrait recovery and intentional landscape depth layers.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/project-resources.test.cjs",
+    "passed": true,
+    "seconds": 0.139,
+    "output": "   \"query\": \"Phantom docs\",\n    \"count\": 1,\n    \"top\": [\n      \"phantom-docs\"\n    ],\n    \"scope\": \"developers\",\n    \"milliseconds\": 1.77\n  },\n  {\n    \"query\": \"Jupiter discord\",\n    \"count\": 1,\n    \"top\": [\n      \"jupiter-discord\"\n    ],\n    \"scope\": \"communities\",\n    \"milliseconds\": 1.3\n  },\n  {\n    \"query\": \"Jupiter social\",\n    \"count\": 1,\n    \"top\": [\n      \"jupiter-developer-social\"\n    ],\n    \"scope\": \"social\",\n    \"milliseconds\": 1.02\n  },\n  {\n    \"query\": \"Phantom support\",\n    \"count\": 1,\n    \"top\": [\n      \"phantom-help\"\n    ],\n    \"scope\": \"content\",\n    \"milliseconds\": 1.35\n  }\n]\n",
+    "error": ""
+  },
+  {
+    "test": "tests/search-quality.test.cjs",
+    "passed": true,
+    "seconds": 0.128,
+    "output": "{\n  \"queries\": 40,\n  \"before\": 31,\n  \"after\": 40,\n  \"records\": 324,\n  \"failures\": []\n}\n",
+    "error": ""
+  },
+  {
+    "test": "tests/search.test.cjs",
+    "passed": true,
+    "seconds": 0.247,
+    "output": "Search checks passed: 324 records, manifest-only preparation, routed/eager equivalence, ranking, scopes, retries, pagination inputs and full-catalog fallback.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/ticker-scrub.test.cjs",
+    "passed": true,
+    "seconds": 0.056,
+    "output": "Ticker scrub checks passed: advance, replay, vertical scroll, tap, keyboard and cancellation.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/world-touch-drag.test.cjs",
+    "passed": true,
+    "seconds": 0.082,
+    "output": "Touch drag checks passed: broad target, jitter threshold, horizontal drag, vertical scrolling, pinch cancellation and mouse behavior.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/search-orbit-paging.test.mjs",
+    "passed": true,
+    "seconds": 0.07,
+    "output": "solana: 9 recorded destinations across 1 page(s)\njupiter: 4 recorded destinations across 1 page(s)\nhelius: 5 recorded destinations across 1 page(s)\nphantom: 3 recorded destinations across 1 page(s)\nOrbit paging checks passed: complete coverage, category filter, bounded scene, safe evidence and real catalog.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/search-orbit-ui.test.mjs",
+    "passed": true,
+    "seconds": 0.1,
+    "output": "Actual orbit dialog passed: WebGL fallback, paging, filtering, selection links, focus and close cleanup.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/search-orbit.test.mjs",
+    "passed": true,
+    "seconds": 0.072,
+    "output": "3D destination model checks passed: real catalog links, provenance, unsafe URL exclusion, deduplication, empty state and scene budget.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/world-stream.test.mjs",
+    "passed": true,
+    "seconds": 0.069,
+    "output": "World streaming handler passed: ordered bytes, MIME, HEAD, ETag, method limits, static fallback and fail-closed missing chunks.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/commerce/recovery.test.mjs",
+    "passed": true,
+    "seconds": 0.076,
+    "output": "Checkout recovery: reload, app isolation, consent, reset and blocked storage passed\n",
+    "error": ""
+  },
+  {
+    "test": "tests/commerce/blog-model.test.mjs",
+    "passed": true,
+    "seconds": 0.072,
+    "output": "Blog publication checks passed: preserved records, body search, unknown query, duplicate IDs, relationships, media kinds, text-only articles and permalinks.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/commerce/store-interaction.test.mjs",
+    "passed": true,
+    "seconds": 0.107,
+    "output": "Store interaction checks passed: offering integrity, display selection, links, disclosure, focus, keyboard close and menu without WebGL.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/commerce/plus-interaction.test.cjs",
+    "passed": true,
+    "seconds": 0.099,
+    "output": "Plus controls passed: open/close, keyboard dismissal, focus restoration, logo menu, without requiring WebGL.\n",
+    "error": ""
+  },
+  {
+    "test": "tests/commerce/games-model.test.mjs",
+    "passed": true,
+    "seconds": 0.067,
+    "output": "Games catalog/model checks passed: three real records, evidenced ecosystems, unknown preservation, safe links, search and duplicate protection.\n",
+    "error": ""
+  }
+]

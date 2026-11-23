@@ -1,0 +1,6 @@
+// Display copy only. Charge amounts remain validated by the existing checkout backend.
+export const offers={
+ plus:{title:'1AGE Plus',category:'Optional membership',copy:'Basic exploration stays free. Membership benefits and billing policies are still being prepared.',price:'$1 USD / month',status:'Payments are not enabled. Test checkout creates no real subscription or benefits.',links:[{label:'Enter Plus',href:'../plus/'},{label:'Test membership checkout',href:'../checkout/?app=plus'}]},
+ cash:{title:'1AGE Cash',category:'Internal ecosystem credits',copy:'Account-based credits for eligible 1AGE experiences. No crypto wallet is required. Cash is separate from the proposed $1AGE cryptocurrency.',price:'Credit sales are not enabled.',status:'Provider permissions and issuance rules must be approved before real purchases. No redemption, trading or cash-out is available.',links:[{label:'Inspect credit checkout test',href:'../checkout/?app=cash'}]},
+ checkout:{title:'1AGE Virtual Checkout',category:'Shared checkout terminal',copy:'Review an order and inspect simulated success, pending, cancellation, failure and refund states in the existing checkout.',price:'No merchandise or inventory is offered.',status:'Nonfinancial test only. No real payment provider is contacted.',links:[{label:'Open test terminal',href:'../checkout/?app=store'}]}
+};

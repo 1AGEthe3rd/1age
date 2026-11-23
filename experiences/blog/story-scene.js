@@ -1,0 +1,30 @@
+import {subscribeInput} from '../shared/gamepad.mjs';
+import * as THREE from '../shared/vendor/three.module.js';
+export function createStoryScene(host,records,buttons,onSelect){
+ const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,(navigator.hardwareConcurrency||4)<=4?1:1.5));renderer.setClearColor(0);host.append(renderer.domElement);
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(44,1,.1,60),reduced=matchMedia('(prefers-reduced-motion:reduce)');
+ scene.add(new THREE.HemisphereLight(0xe2ffdc,0x052014,3));const light=new THREE.DirectionalLight(0xffffff,4);light.position.set(3,5,7);scene.add(light);
+ const nodes=records.map((row,i)=>{const group=new THREE.Group(),color=row.categories?.includes('Space')?0x50e3d4:0x1bfd9c;
+  const mesh=new THREE.Mesh(row.type==='image'?new THREE.BoxGeometry(.85,.65,.12):new THREE.IcosahedronGeometry(.46,1),new THREE.MeshStandardMaterial({color,emissive:color,emissiveIntensity:.2,metalness:.5,roughness:.25}));mesh.userData.index=i;group.add(mesh);
+  const halo=new THREE.Mesh(new THREE.TorusGeometry(.68,.016,6,48),new THREE.MeshBasicMaterial({color}));halo.rotation.x=Math.PI/2;halo.position.y=-.5;group.add(halo);scene.add(group);return group;});
+ const orbit=new THREE.Mesh(new THREE.TorusGeometry(3.4,.012,6,100),new THREE.MeshBasicMaterial({color:0x1b6846}));orbit.rotation.x=Math.PI/2;scene.add(orbit);
+ const lineMaterial=new THREE.LineBasicMaterial({color:0x1bfd9c,transparent:true,opacity:.35}),lines=new THREE.Group();scene.add(lines);
+ const positions=[];let seed=41;for(let i=0;i<160;i++){seed=seed*16807%2147483647;const x=seed/2147483647*40-20;seed=seed*16807%2147483647;const y=seed/2147483647*30-15;positions.push(x,y,-18);}const stars=new THREE.BufferGeometry();stars.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));scene.add(new THREE.Points(stars,new THREE.PointsMaterial({color:0x8ab19a,size:.035})));
+ let yaw=0,constellation=false,disposed=false,frame=0,last=0,w=0,h=0;
+ function draw(t=0){if(disposed||document.hidden||document.querySelector('#publication')?.open)return;const width=host.clientWidth,height=host.clientHeight;if(!width||!height)return;if(w!==width||h!==height){w=width;h=height;renderer.setSize(w,h,false);}camera.aspect=w/h;const portrait=w/h<.8,dist=portrait?17:12;camera.position.set(Math.sin(yaw)*dist,constellation?1.5:4,Math.cos(yaw)*dist);camera.lookAt(0,portrait?1:0,0);camera.updateProjectionMatrix();camera.updateMatrixWorld();
+  nodes.forEach((node,i)=>{const angle=i/Math.max(1,nodes.length)*Math.PI*2+Math.PI/4;if(constellation)node.position.set((i%2?1:-1)*2.1,(Math.floor(i/2)%2?-.9:1.5),i%2?-.6:.6);else node.position.set(Math.sin(angle)*3.4,0,Math.cos(angle)*3.4);node.rotation.y=reduced.matches?0:t*.00012;const label=node.position.clone();label.y-=.8;label.project(camera);buttons[i].style.left=(label.x*.5+.5)*w+'px';buttons[i].style.top=(-label.y*.5+.5)*h+'px';});
+  if(!constellation||!lines.children.length){while(lines.children.length){const old=lines.children[0];old.geometry.dispose();lines.remove(old);}if(constellation){const seen=new Set();records.forEach((r,i)=>{for(const id of r.related||[]){const j=records.findIndex(row=>row.id===id),key=[r.id,id].sort().join(':');if(j<0||seen.has(key))continue;seen.add(key);const geometry=new THREE.BufferGeometry().setFromPoints([nodes[i].position,nodes[j].position]);lines.add(new THREE.Line(geometry,lineMaterial));}});}}orbit.visible=!constellation;renderer.render(scene,camera);
+ }
+ function tick(t){frame=requestAnimationFrame(tick);if(t-last<50)return;last=t;draw(t);}
+ function motion(){cancelAnimationFrame(frame);draw();if(!reduced.matches&&!document.hidden)frame=requestAnimationFrame(tick);}
+ const canvas=renderer.domElement,ray=new THREE.Raycaster();let pointer=null;
+ canvas.addEventListener('pointerdown',e=>{if(e.button===0)pointer={id:e.pointerId,x:e.clientX,startX:e.clientX,startY:e.clientY,drag:false};});
+ canvas.addEventListener('pointermove',e=>{if(!pointer||pointer.id!==e.pointerId)return;const dx=e.clientX-pointer.startX,dy=e.clientY-pointer.startY;if(!pointer.drag){if(Math.max(Math.abs(dx),Math.abs(dy))<8)return;if(e.pointerType==='touch'&&Math.abs(dy)>Math.abs(dx)){pointer=null;return;}pointer.drag=true;canvas.setPointerCapture(e.pointerId);}yaw=Math.max(-.7,Math.min(.7,yaw+(e.clientX-pointer.x)*.004));pointer.x=e.clientX;draw();});
+ canvas.addEventListener('pointerup',e=>{if(!pointer||pointer.id!==e.pointerId)return;const tap=!pointer.drag;pointer=null;if(!tap)return;const b=canvas.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1),camera);const hit=ray.intersectObjects(nodes.map(n=>n.children[0]))[0];if(hit)onSelect(records[hit.object.userData.index]);});
+ for(const event of ['pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>pointer=null);
+ canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);canvas.hidden=true;document.body.classList.add('archive-fallback');});
+ const unpad=subscribeInput((input,dt)=>{yaw=Math.max(-.7,Math.min(.7,yaw+(input.move.x+input.look.x)*dt));draw();});
+ const observer=new ResizeObserver(()=>draw());observer.observe(host);document.addEventListener('visibilitychange',motion);reduced.addEventListener('change',motion);
+ window.addEventListener('pageshow',motion);motion();
+ return {refresh(){draw();},layout(value){constellation=value;while(lines.children.length){const item=lines.children[0];item.geometry.dispose();lines.remove(item);}draw();},turn(direction){yaw=direction==='reset'?0:Math.max(-.7,Math.min(.7,yaw+(direction==='left'?-.15:.15)));draw();},dispose(){if(disposed)return;disposed=true;unpad();cancelAnimationFrame(frame);observer.disconnect();document.removeEventListener('visibilitychange',motion);window.removeEventListener('pageshow',motion);reduced.removeEventListener('change',motion);scene.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});renderer.dispose();canvas.remove();}};
+}

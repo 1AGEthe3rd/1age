@@ -118,5 +118,6 @@ function authenticity(entity) {
   return { label: 'Unverified listing' };
 }
 
-window.ageIndex = { load, prepare, info: () => currentInfo, search, validLink, authenticity };
+function related(records,id){if(!coreEngine)coreEngine=window.ageSearchCore.createEngine(window.MiniSearch);return coreEngine.related(records,id);}
+window.ageIndex = { related, load, prepare, info: () => currentInfo, search, validLink, authenticity };
 })();

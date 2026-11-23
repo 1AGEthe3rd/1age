@@ -1,0 +1,8 @@
+#oneage-controller{display:block!important;position:fixed;inset:0;z-index:45;pointer-events:none}
+#oneage-controller .oneage-stick{pointer-events:auto;position:absolute;bottom:max(18px,env(safe-area-inset-bottom));width:clamp(76px,12vmin,112px);height:clamp(76px,12vmin,112px);padding:0;border:2px solid #1BFD9C;border-radius:50%;background:#020b08dd;touch-action:none;user-select:none}
+#oneage-controller .oneage-stick:first-child{left:max(18px,env(safe-area-inset-left))}#oneage-controller .oneage-stick:nth-child(2){right:max(18px,env(safe-area-inset-right))}
+#oneage-controller .oneage-knob{position:absolute;width:54%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%);border:2px solid #1BFD9C;border-radius:50%;display:grid;place-content:center;background:#07150e;color:#1BFD9C;font:bold 22px system-ui;pointer-events:none}
+#oneage-controller button:focus-visible{outline:3px solid #E2FFDC;outline-offset:4px}
+.virtual-tools-toggle{left:50%!important;transform:translateX(-50%);bottom:24px!important}.virtual-camera{bottom:150px!important}
+
+body:has(#oneage-controller) .console-controls{display:none!important}

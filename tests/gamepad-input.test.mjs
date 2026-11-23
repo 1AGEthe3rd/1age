@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {PadReader,stick,mergeInput,emptyInput} from '../experiences/shared/gamepad-model.mjs';
+const pad=(axes=[0,0,0,0],held=[],index=0)=>({connected:true,mapping:'standard',index,axes,buttons:Array.from({length:16},(_,i)=>({pressed:held.includes(i)}))});
+assert.deepEqual(stick(.1,-.1),{x:0,y:0});assert(Math.hypot(...Object.values(stick(1,1)))<=1.000001);assert.deepEqual(stick(NaN,undefined),{x:0,y:0});
+const reader=new PadReader();assert.deepEqual(reader.sample([pad([1,0,0,0],[0])]).edges,[]);assert.equal(reader.sample([pad([1,0,0,0],[0])]).move.x,0,'Reconnect requires neutral');
+reader.sample([pad()]);assert.equal(reader.sample([pad([1,0,0,0],[0])]).move.x,1);assert.deepEqual(reader.sample([pad([1,0,0,0],[0])]).edges,[],'Held buttons do not repeat');
+reader.sample([pad()]);assert.deepEqual(reader.sample([pad([0,0,0,0],[0])]).edges,[0]);assert.equal(reader.sample([],true).move.x,0);
+reader.sample([pad()]);reader.sample([pad([1,0,0,0])]);reader.sample([pad()],false);assert.equal(reader.sample([pad([1,0,0,0])],true).move.x,0,'Focus recovery must not retain input');
+reader.sample([pad()]);assert.equal(reader.sample([pad([1,0,0,0])]).move.x,1);
+assert.equal(reader.sample([{...pad(),mapping:''}]).move.x,0,'Unknown mappings are not guessed');
+const touch=emptyInput();touch.move={x:1,y:1};const merged=mergeInput(touch,{...emptyInput(),move:{x:1,y:1}});assert(Math.hypot(merged.move.x,merged.move.y)<=1.000001);
+console.log('Gamepad model passed: radial deadzone, clamping, held-button edges, neutral rearming, disconnect/focus reset and safe mappings.');

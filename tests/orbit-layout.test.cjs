@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const source=fs.readFileSync(require('node:path').join(__dirname,'../world.js'),'utf8');
+const code=source.slice(source.indexOf('  function layout()'),source.indexOf('  function snap('));
+const planets=Array.from({length:6},()=>({dataset:{},values:{},style:{setProperty(k,v){this.owner.values[k]=v;}}}));planets.forEach(p=>p.style.owner=p);
+const orbit={clientWidth:305,clientHeight:305},depthMode={matches:false};const context={orbit,planets,depthMode,angle:0,step:Math.PI/3,hasTurned:false};vm.createContext(context);vm.runInContext(code,context);context.layout();
+assert.equal(planets[0].values['--y'],'-152.5px');const before=JSON.stringify(planets.map(p=>p.values));
+orbit.clientWidth=0;orbit.clientHeight=0;context.layout();assert.equal(JSON.stringify(planets.map(p=>p.values)),before,'Hidden scene cannot overwrite stored offsets');
+orbit.clientWidth=721;orbit.clientHeight=228;depthMode.matches=true;context.layout();assert(planets.some(p=>p.values['--orbit-layer']==='7'));assert(planets.some(p=>p.values['--orbit-layer']==='2'));
+orbit.clientWidth=305;orbit.clientHeight=305;depthMode.matches=false;context.layout();assert.equal(planets[0].values['--y'],'-152.5px','Circular geometry recovers after a landscape change');
+console.log('Orbit layout checks passed: zero-size preservation, portrait recovery and intentional landscape depth layers.');

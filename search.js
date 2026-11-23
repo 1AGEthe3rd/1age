@@ -9,6 +9,7 @@ const input = $('#search-input');
 const results = $('#results');
 const label = $('#results-label');
 const section = $('#results-section');
+const orbitStyles=document.createElement('link');orbitStyles.rel='stylesheet';orbitStyles.href='/search-orbit.css';document.head.append(orbitStyles);
 const note = section.querySelector('.index-note');
 const buttons = [...document.querySelectorAll('[data-search-mode]')];
 const quickLinks = document.querySelector('.quick-links');
@@ -30,6 +31,14 @@ let requestVersion = 0;
 let pageSize = 20;
 let mode = '1age';
 let currentQuery = '';
+let currentRecords = [];
+const categorySelect = document.createElement('select');
+categorySelect.setAttribute('aria-label', 'Filter search category');
+for (const [value,title] of [['','All categories'],['projects','Projects'],['people','People'],['communities','Communities'],['social','Social'],['games','Games'],['space','Spaces'],['opportunities','Opportunities'],['content','Content'],['developers','Developers']]) {
+ const option=document.createElement('option');option.value=value;option.textContent=title;categorySelect.append(option);
+}
+categorySelect.addEventListener('change',()=>{pageSize=20;render(searchEntities(currentQuery,currentRecords),currentQuery);});
+label.after(categorySelect);
 
 
 const suggestions = {
@@ -56,7 +65,8 @@ function element(tag, className, text) {
 }
 
 function searchEntities(query, records) {
-  return window.ageIndex.search(records, query, document.body.dataset.searchScope);
+  currentRecords=records;
+  return window.ageIndex.search(records, query, categorySelect.value || document.body.dataset.searchScope);
 }
 
 function render(items, query) {
@@ -135,6 +145,28 @@ function render(items, query) {
       card.append(link);
     }
 
+    for (const [kind,destination] of Object.entries(entity.official_links || {})) {
+      if (kind === 'website' || !destination) continue;
+      const checked=window.ageIndex.validLink({official_links:{website:destination}});
+      if (!checked) continue;
+      const link=element('a','result-link',kind);link.href=checked.href;link.target='_blank';link.rel='noopener noreferrer';card.append(link);
+    }
+    const related=window.ageIndex.related(currentRecords,entity.id);
+    if (related.length) {
+      const group=element('div','result-related');group.append(element('p','', 'Related public resources'));
+      for (const item of related.slice(0,8)) {
+        const url=window.ageIndex.validLink(item);if(!url)continue;
+        const link=element('a','result-link',item.name);link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';group.append(link);
+      }
+      card.append(group);
+    }
+    const explore=element('button','explore-entity','Explore connections in 3D');explore.type='button';
+    explore.addEventListener('click',async()=>{
+      explore.disabled=true;
+      try {const {openEntityOrbit}=await import('/search-orbit.mjs');const relatedRecords=await window.ageIndex.load(mode).catch(()=>currentRecords);await openEntityOrbit(entity,relatedRecords,explore);}
+      catch {explore.textContent='3D unavailable — use the resource links';}
+      finally {explore.disabled=false;}
+    });card.append(explore);
     results.append(card);
   }
   if (items.length > pageSize) {

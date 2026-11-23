@@ -18,9 +18,9 @@ function render(){
  const app=select.value,item=order||offers[app];$('#order-label').textContent=item.label;$('#price').textContent=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(item.amount/100)+(app==='plus'?' / month':'');$('#terms').textContent=item.terms;$('#consent-wrap').hidden=app!=='plus';$('#consent').disabled=busy||!!order;$('#return-origin').href=app==='plus'?'../plus/':app==='cash'?'https://1age.cash/':'../store/';$('#return-origin').textContent='Return to '+(app==='plus'?'Plus':app==='cash'?'Cash':'Store');
  $('#order-detail').hidden=!order;$('#create-order').disabled=busy||!!order;select.disabled=busy||!!order||!!saved;$('#new-order').disabled=busy;$('#refresh-order').disabled=busy;
  if(!order){message.textContent=lastError||'Review the demonstration terms to begin.';return;}
- $('#state').textContent=order.state;message.textContent=order.membership==='cancelled'?'Demonstration membership cancelled. No real subscription existed.':states[order.state];message.dataset.state=order.state;
+ $('#state').textContent=order.state;message.textContent=order.membership==='cancelled'?'Demonstration membership cancelled. No real subscription existed.':states[order.state];if(order.refund_recovery?.status==='pending_review')message.textContent+=' Test credit recovery requires operator review; no further deduction has been made.';message.dataset.state=order.state;
  $('#download-receipt').hidden=!order.receipt;$('#download-receipt').disabled=busy;
- $('#receipt').textContent=['DEMONSTRATION ONLY',`Order: ${order.id}`,`Reference: ${order.receipt||'Not issued'}`,`State: ${order.state}`,`Membership: ${order.membership||'inactive'}`,`Demo Cash balance: ${(order.balance_minor||0)/100}`,`Adapter: ${backend?'local mock backend':'browser-only simulation'}`].join('\n');
+ $('#receipt').textContent=['DEMONSTRATION ONLY',`Order: ${order.id}`,`Reference: ${order.receipt||'Not issued'}`,`State: ${order.state}`,`Membership: ${order.membership||'inactive'}`,`Test credit recovery: ${order.refund_recovery?.status||'not applicable'}`,`Demo Cash balance: ${(order.balance_minor||0)/100}`,`Adapter: ${backend?'local mock backend':'browser-only simulation'}`].join('\n');
  if(lastError)message.textContent=lastError;
  for(const b of document.querySelectorAll('[data-outcome]')){const next=b.dataset.outcome;b.disabled=busy||!(order.state==='pending'?['pending','paid','failed','cancelled'].includes(next):order.state==='paid'?(next==='refunded'||(next==='subscription_cancelled'&&app==='plus'&&order.membership==='active')):false);}
 }
@@ -44,7 +44,7 @@ $('#new-order').addEventListener('click',()=>{recovery.clear();saved=null;order=
 $('#download-receipt').addEventListener('click',async()=>{
  busy=true;lastError='';render();try{
   let text=$('#receipt').textContent+'\nNo real money or products changed hands.';
-  if(backend){const receipt=await api('orders/'+encodeURIComponent(order.id)+'/receipt',null,order.access_token);await refresh();text=['DEMONSTRATION ONLY',`Order: ${receipt.order_id}`,`Reference: ${receipt.reference}`,`State: ${receipt.state}`,`Item: ${receipt.label}`,`Amount: ${receipt.amount/100} ${receipt.currency}`,`Membership: ${receipt.membership}`,receipt.notice].join('\n');}
+  if(backend){const receipt=await api('orders/'+encodeURIComponent(order.id)+'/receipt',null,order.access_token);await refresh();text=['DEMONSTRATION ONLY',`Order: ${receipt.order_id}`,`Reference: ${receipt.reference}`,`State: ${receipt.state}`,`Item: ${receipt.label}`,`Amount: ${receipt.amount/100} ${receipt.currency}`,`Membership: ${receipt.membership}`,`Test credit recovery: ${receipt.refund_recovery?.status||'not applicable'}`,receipt.notice].join('\n');}
   const blob=new Blob([text],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=order.id+'-demo-receipt.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
  }catch(e){showError(e);}finally{busy=false;render();}
 });

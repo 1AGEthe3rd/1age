@@ -10,7 +10,7 @@ from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANUAL = ('data/1age-index.json', 'data/entities.json', 'data/blockchain-seeds.json')
+MANUAL = ('data/1age-index.json', 'data/entities.json', 'data/blockchain-seeds.json', 'data/ecosystem-seeds.json')
 FIELDS = ('name','id','domain','aliases','identifiers','networks','type','category','tags','description')
 
 def read(path, default=None):
@@ -58,6 +58,10 @@ def validate(item, automatic=False):
         if review.get('status') != 'source_checked' or not isinstance(review.get('evidence'),list) or not review['evidence']:
             raise ValueError('Missing source evidence')
         for url in review['evidence']: https_url(url)
+    for relation in item.get('relationships',[]):
+        if not isinstance(relation,dict) or not all(isinstance(relation.get(k),str) and relation[k] for k in ('type','target','status')):
+            raise ValueError('Invalid relationship')
+        if relation['status']=='source_checked': https_url(relation.get('source'))
     for source in item.get('provenance',[]):
         https_url(source['url'])
         if not source.get('attribution'): raise ValueError('Missing attribution')
@@ -90,7 +94,10 @@ def merged_catalog(root=ROOT, automatic=None, health=None):
         if item['id'] in suppressed_ids or url in suppressed_urls: return
         item.setdefault('networks',[]);item.setdefault('aliases',[]);item.setdefault('identifiers',[])
         item['domain']=urlsplit(url).hostname
-        prior=by_id.get(item['id']) or by_url.get(url)
+        # A public team page can describe several distinct people. Keep those
+        # records separate, while still deduplicating the same named person.
+        destination_key=(url,item['name'].strip().casefold() if item['type']=='person' else None)
+        prior=by_id.get(item['id']) or by_url.get(destination_key)
         if prior:
             if canonical(prior['official_links']['website'])!=url: raise ValueError('Conflicting ID destinations')
             if not auto: raise ValueError('Duplicate manual catalog entry')
@@ -105,7 +112,7 @@ def merged_catalog(root=ROOT, automatic=None, health=None):
             key=(tuple(sorted(item['networks'])), identifier)
             if key in identifiers and identifiers[key]!=url: raise ValueError('Conflicting public identifier')
             identifiers[key]=url
-        by_id[item['id']]=item;by_url[url]=item;records.append(item)
+        by_id[item['id']]=item;by_url[destination_key]=item;records.append(item)
     for source in MANUAL:
         for item in read(root/source,[]): insert(item)
     for item in auto: insert(item,True)

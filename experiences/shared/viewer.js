@@ -1,3 +1,4 @@
+import {subscribeInput} from './gamepad.mjs';
 import * as THREE from './vendor/three.module.js';
 // Shared, dependency-pinned viewer. All initial geometry is original demonstration content.
 export function createViewer(host,{model='brand',showroom=false}={}){
@@ -31,6 +32,18 @@ export function createViewer(host,{model='brand',showroom=false}={}){
    polygon(object,[[408,680],[599,680],[599,820],[552,820],[552,727],[408,727]]);
    polygon(object,[[725,251],[1096,633],[1062,666],[692,284]]);
    polygon(object,[[570,364],[570,384],[594,384],[594,442],[573,448],[573,467],[669,468],[669,448],[649,442],[649,337],[621,335],[596,354],[573,363]],glow);
+  }else if(kind==='quest'){
+   const gate=new THREE.Mesh(new THREE.TorusGeometry(1.35,.1,12,64),glow);gate.position.set(0,.35,-.7);object.add(gate);
+   for(let i=0;i<6;i++){const a=i*.95;const node=new THREE.Mesh(new THREE.DodecahedronGeometry(.22+i*.025,0),i===5?glow:white);node.position.set(Math.sin(a)*1.7,-.95+i*.32,Math.cos(a)*1.2);object.add(node);}
+   const horizon=new THREE.Mesh(new THREE.TorusGeometry(2.4,.025,8,64),glow);horizon.rotation.x=Math.PI/2;horizon.position.y=-1.2;object.add(horizon);
+  }else if(kind==='design'){
+   box(object,0,-.65,0,3.1,.16,1.8,metal);for(const x of [-1.3,1.3])for(const z of [-.65,.65])box(object,x,-1.1,z,.1,.8,.1,white);
+   const study=new THREE.Mesh(new THREE.IcosahedronGeometry(.8,1),new THREE.MeshStandardMaterial({color:0x1bfd9c,wireframe:true,emissive:0x1bfd9c,emissiveIntensity:.4}));study.position.y=.35;object.add(study);
+   for(const x of [-1.5,1.5]){const guide=new THREE.Mesh(new THREE.TorusGeometry(.5,.025,8,40),glow);guide.position.set(x,.3,0);object.add(guide);}
+  }else if(kind==='shop'){
+   for(const x of [-1.4,0,1.4]){box(object,x,-.9,0,1,.16,1.2,white);box(object,x,.15,-.55,.06,2,.06,glow);box(object,x+.85,.15,-.55,.06,2,.06,glow);box(object,x+.42,1.15,-.55,.9,.06,.06,glow);}
+  }else if(kind==='app'){
+   object.add(new THREE.Mesh(new THREE.IcosahedronGeometry(.65,1),glow));for(let i=0;i<6;i++){const a=i*Math.PI/3;const portal=new THREE.Mesh(new THREE.TorusGeometry(.3,.055,8,32),white);portal.position.set(Math.sin(a)*1.6,Math.cos(a)*1.4,0);object.add(portal);}
   }else if(kind==='pocket'){
    box(object,0,0,0,1.8,2.65,.24);box(object,0,.18,.14,1.55,1.9,.02,new THREE.MeshStandardMaterial({color:0x071b10,emissive:0x06311c}));
    for(const x of [-.55,.55]){const joy=new THREE.Mesh(new THREE.TorusGeometry(.21,.03,8,32),glow);joy.position.set(x,-.9,.17);object.add(joy);}
@@ -46,12 +59,13 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   }else{object.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1.4,1),new THREE.MeshStandardMaterial({color:0x073c25,wireframe:true,emissive:0x1bfd9c,emissiveIntensity:.6})));}
   object.position.y=.2;scene.add(object);draw();
  }
- let frame=0,last=0;
- function draw(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;if(renderer.domElement.width!==Math.floor(w*renderer.getPixelRatio())||renderer.domElement.height!==Math.floor(h*renderer.getPixelRatio()))renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();distance=reduced?targetDistance:distance+(targetDistance-distance)*.2;camera.position.set(Math.sin(yaw)*distance,Math.sin(pitch)*distance+1,Math.cos(yaw)*distance);camera.lookAt(0,-.1,0);renderer.render(scene,camera);}
+ let frame=0,last=0,disposed=false;
+ const unpad=subscribeInput((input,dt)=>{const x=input.move.x+input.look.x;if(!x&&!input.move.y&&!input.look.y)return;auto=false;yaw-=x*dt*1.8;pitch=Math.max(-.3,Math.min(.9,pitch-input.look.y*dt));targetDistance=Math.max(4,Math.min(13,targetDistance+input.move.y*dt*3));draw();});
+ function draw(){if(disposed)return;const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;if(renderer.domElement.width!==Math.floor(w*renderer.getPixelRatio())||renderer.domElement.height!==Math.floor(h*renderer.getPixelRatio()))renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();distance=reduced?targetDistance:distance+(targetDistance-distance)*.2;camera.position.set(Math.sin(yaw)*distance,Math.sin(pitch)*distance+1,Math.cos(yaw)*distance);camera.lookAt(0,-.1,0);renderer.render(scene,camera);}
  function tick(t){frame=requestAnimationFrame(tick);if(!active||document.hidden||t-last<33)return;last=t;if(auto){yaw+=.002;object.position.y=.2+Math.sin(t*.0007)*.055;}draw();}
  function action(name){auto=false;if(name==='left')yaw-=.3;if(name==='right')yaw+=.3;if(name==='in')targetDistance=Math.max(4,targetDistance-.6);if(name==='out')targetDistance=Math.min(13,targetDistance+.6);if(name==='front'){yaw=0;pitch=.05;}if(name==='angle'){yaw=.7;pitch=.4;}if(name==='reset'){yaw=.3;pitch=.16;targetDistance=8;auto=!reduced;}draw();}
- const buttons=host.closest('.scene').querySelectorAll('[data-view]');buttons.forEach(b=>b.addEventListener('click',()=>action(b.dataset.view)));
- host.addEventListener('keydown',e=>{const map={ArrowLeft:'left',ArrowRight:'right','+':'in','=':'in','-':'out',Home:'reset'};if(map[e.key]){e.preventDefault();action(map[e.key]);}});
+ const buttons=host.closest('.scene').querySelectorAll('[data-view]');const handlers=new Map();buttons.forEach(b=>{const fn=()=>action(b.dataset.view);handlers.set(b,fn);b.addEventListener('click',fn);});
+ const keyHandler=e=>{const map={ArrowLeft:'left',ArrowRight:'right','+':'in','=':'in','-':'out',Home:'reset'};if(map[e.key]){e.preventDefault();action(map[e.key]);}};host.addEventListener('keydown',keyHandler);
  let pointer=null;
  const canvas=renderer.domElement;
  canvas.addEventListener('pointerdown',e=>{if(e.button===0)pointer={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,drag:false};});
@@ -64,9 +78,10 @@ export function createViewer(host,{model='brand',showroom=false}={}){
   const url=new URL(src,location.href);if(url.origin!==location.origin)throw Error('Only packaged media is permitted');
   const {GLTFLoader}=await import('./vendor/GLTFLoader.js');
   const gltf=await new GLTFLoader().loadAsync(url.href);
+  if(disposed){gltf.scene.traverse(n=>{n.geometry?.dispose();n.material?.dispose();});return;}
   if(object){scene.remove(object);object.traverse(n=>n.geometry?.dispose());}
   object=gltf.scene;const bounds=new THREE.Box3().setFromObject(object),size=bounds.getSize(new THREE.Vector3()),center=bounds.getCenter(new THREE.Vector3());
   const scale=2.7/Math.max(size.x,size.y,size.z,.001);object.scale.setScalar(scale);object.position.copy(center.multiplyScalar(-scale));object.position.y+=.2;scene.add(object);draw();
  }
- return {setModel,loadGLTF,dispose(){cancelAnimationFrame(frame);observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
+ return {setModel,loadGLTF,action,dispose(){unpad();disposed=true;cancelAnimationFrame(frame);for(const [b,fn] of handlers)b.removeEventListener('click',fn);host.removeEventListener('keydown',keyHandler);renderer.domElement.remove();host.classList.remove('render-ready');observer.disconnect();visibility.disconnect();scene.traverse(n=>{n.geometry?.dispose();if(n.material&&!Array.isArray(n.material))n.material.dispose();});renderer.dispose();}};
 }

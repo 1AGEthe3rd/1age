@@ -41,12 +41,22 @@ publisher=importlib.util.module_from_spec(pubspec);pubspec.loader.exec_module(pu
 class DailyIndexTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
-        for file in ['1age-index.json','entities.json','blockchain-seeds.json','search-overrides.json','index-exclusions.json','index-sources/config.json']:
+        for file in ['1age-index.json','entities.json','blockchain-seeds.json','ecosystem-seeds.json','search-overrides.json','index-exclusions.json','index-sources/config.json']:
             target=self.root/'data'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/'data'/file,target)
         self.config=read(self.root/'data/index-sources/config.json');self.config['sources']=[s for s in self.config['sources'] if s['adapter'] in ('chain_registry','github_org')];(self.root/'data/index-sources/config.json').write_text(json.dumps(self.config));self.http=FakeHTTP(self.config)
         records,_=merged_catalog(self.root);self.initial_count=len(records);write_outputs(outputs(records,self.root),self.root)
     def tearDown(self): self.temp.cleanup()
     def run_index(self,**options): return updater.run(self.root,self.http,now=options.pop('now',T1),**options)
+    def test_shared_team_page_preserves_people_but_rejects_duplicate_person(self):
+        records,_=merged_catalog(self.root)
+        people=[row for row in records if row['type']=='person' and row['official_links']['website']=='https://www.helius.dev/about']
+        self.assertEqual({row['id'] for row in people},{'mert-mumtaz','nicolas-pennie','liam-vovk'})
+        seeds=read(self.root/'data/ecosystem-seeds.json')
+        duplicate=copy.deepcopy(people[0]);duplicate['id']='duplicate-person';duplicate['name']=duplicate['name'].upper()
+        seeds.append(duplicate)
+        (self.root/'data/ecosystem-seeds.json').write_text(json.dumps(seeds))
+        with self.assertRaisesRegex(ValueError,'Duplicate manual catalog entry'):
+            merged_catalog(self.root)
     def test_discovery_dedup_refresh_and_no_verification(self):
         first,ok=self.run_index();self.assertTrue(ok,first)
         self.assertEqual(first['new_records_discovered'],6)

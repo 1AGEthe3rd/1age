@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const engine=require('../search-core.js').createEngine(require('../assets/vendor/minisearch-7.2.0.js'));
+const data=require('../data/search-index.json');
+const cases=[['Solana','solana'],['Phantom','phantom'],['Solana developer','solana-developers'],['Solana discord','solana-discord'],['Star Atlas','star-atlas'],['Solana grant','solana-funding'],['1AGE Space','1age-space'],['phantm','phantom'],['Anatoly Yakovenko','anatoly-yakovenko'],['Mert Mumtaz','mert-mumtaz'],['Solana founder','mert-mumtaz'],['zznonexistentzz',null]];
+const report=cases.map(([query,id])=>{const start=performance.now();const rows=engine.search(data,query);const ms=performance.now()-start;if(id)assert(rows.some(x=>x.id===id),query);else assert.equal(rows.length,0);return {query,count:rows.length,types:[...new Set(rows.map(x=>x.type))],elapsed_ms:+ms.toFixed(2),top:rows.slice(0,5).map(x=>x.id)};});
+assert.equal(engine.search(data,'Solana')[0].id,'solana');
+assert(new Set(engine.search(data,'Solana').slice(0,15).map(x=>x.type)).size>=6);
+assert(engine.search(data,'Solana','communities').every(x=>x.type==='community'));
+assert.equal(engine.search(data,'Solana','people').length,4,'Four sourced public people records');
+assert(engine.search(data,'Helius','people').length>=3);
+assert(engine.search(data,'Solana','people').every(x=>x.type==='person'&&x.source_review?.evidence?.length));
+assert.equal(engine.search(data,'Mert Mumtaz')[0].id,'mert-mumtaz');
+assert(engine.related(data,'helius').some(x=>x.id==='mert-mumtaz'));
+assert(engine.related(data,'mert-mumtaz').some(x=>x.id==='helius'));
+assert(engine.related(data,'solana').some(x=>x.id==='solana-discord'));
+const untrusted=[{id:'a',name:'a',relationships:[{target:'b',status:'inferred'}]},{id:'b',name:'b'}];assert.equal(engine.related(untrusted,'b').length,0);
+fs.writeFileSync(require('node:path').join(__dirname,'../reports/ecosystem-search.json'),JSON.stringify({records:data.length,cases:report,people_coverage:'4 source-backed public professional records; no claimed 1AGE profiles'},null,2)+'\n');
+console.log(JSON.stringify(report,null,2));

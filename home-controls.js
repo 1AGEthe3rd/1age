@@ -1,25 +1,28 @@
 (() => {
  'use strict';
  const $=selector=>document.querySelector(selector),brand=$('.brand'),wings=$('.header-wings');
- let group='closed',links={socials:[],contact_email:null};
+ let group='closed';
  const paths={social:'<circle cx="20" cy="19" r="6"/><circle cx="44" cy="19" r="6"/><circle cx="32" cy="43" r="6"/><path d="m24 22 6 15m10-15-6 15M26 19h12"/>',about:'<circle cx="32" cy="32" r="24"/><path d="M32 29v18M32 18v2"/>',store:'<path d="M12 24h40l-4 30H16zM22 24v-7a10 10 0 0 1 20 0v7"/>',blog:'<rect x="10" y="10" width="44" height="44" rx="4"/><path d="M20 21h24M20 31h24M20 41h16"/>',contact:'<rect x="8" y="14" width="48" height="36" rx="6"/><path d="m9 16 23 18 23-18"/>'};
- document.body.insertAdjacentHTML('beforeend','<dialog class="header-contact"><form method="dialog"><button aria-label="Close contact">×</button></form><h2>Contact 1AGE</h2><p class="contact-copy"></p><a class="contact-link" hidden></a><a href="/updates/">Development updates ↗</a></dialog>');
- function contact(){const a=$('.contact-link');a.hidden=!links.contact_email;$('.contact-copy').textContent=links.contact_email?'Get in touch.':'Official contact details will appear here.';if(links.contact_email){a.textContent=links.contact_email;a.href='mailto:'+links.contact_email;}$('.header-contact').showModal();}
  function header(next){
-  group=next;if(!brand||!wings)return;wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label',next==='social'?'Social links':'1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
-  if(next==='closed')return;
-  const items=next==='social'?links.socials:[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'/experiences/blog/'},{name:'Social',icon:'social',action:()=>header('social')},{name:'Contact',icon:'contact',action:contact},{name:'About',icon:'about',url:'/about/'}];
-  const tracks=[document.createElement('div'),document.createElement('div')];
-  tracks.forEach((track,i)=>{track.className='header-slider-track';track.dataset.side=i?'right':'left';track.tabIndex=0;track.setAttribute('aria-label',i?'More menu options':'Menu options');wings.append(track);});
-  const split=next==='main'?2:Math.ceil(items.length/2);
+  group=next;if(!brand||!wings)return;
+  const hub=wings.parentElement,restoreFocus=document.activeElement===brand;
+  hub.style.setProperty('--menu-row-height',brand.offsetHeight+'px');
+  if(wings.contains(brand))hub.append(brand);
+  wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label','1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
+  if(next==='closed'){if(restoreFocus)brand.focus({preventScroll:true});return;}
+  const items=[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'/experiences/blog/'}];
+  const track=document.createElement('div');track.className='header-slider-track';track.tabIndex=0;track.setAttribute('aria-label','Slide the whole 1AGE menu');wings.append(track);
+  const split=Math.ceil(items.length/2);
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
-   if(item.url){node.href=new URLSearchParams(location.search).get('preview')==='commerce'&&['store','blog'].includes(item.icon)?'/experiences/'+item.icon+'/':item.url;if(next==='social'){node.target='_blank';node.rel='noopener noreferrer';}}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;node.title='Official link not added yet';}}
+   if(item.url){node.href=new URLSearchParams(location.search).get('preview')==='commerce'&&['store','blog'].includes(item.icon)?'/experiences/'+item.icon+'/':item.url;}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;node.title='Official link not added yet';}}
    const circle=document.createElement('span');circle.className='header-planet-circle';if(item.icon)circle.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">${paths[item.icon]}</svg>`;else circle.textContent=item.symbol;
-   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);tracks[index<split?0:1].appendChild(node);
+   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);if(index===split)track.append(brand);track.appendChild(node);
   });
-  tracks.forEach(track=>{track.scrollLeft=0;});
+  if(!track.contains(brand))track.append(brand);
+  if(restoreFocus)brand.focus({preventScroll:true});
+  requestAnimationFrame(()=>{if(group==='closed'||!track.isConnected)return;track.scrollLeft+=brand.getBoundingClientRect().left-track.getBoundingClientRect().left-(track.clientWidth-brand.offsetWidth)/2;});
  }
- brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
+ brand?.addEventListener('click',()=>header(group==='closed'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  if(wings){
   wings.addEventListener('keydown',e=>{
    const nodes=[...wings.querySelectorAll('a,button:not(:disabled)')];
@@ -38,7 +41,7 @@
  }
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&group!=='closed'){header('closed');brand.focus();}});
  document.addEventListener('pointerdown',e=>{if(group!=='closed'&&!e.target.closest('.header-hub'))header('closed');});
- fetch('/data/header-links.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{links.socials=(data.socials||[]).filter(item=>item&&typeof item.name==='string').map(item=>{let url=null;try{if(new URL(item.url).protocol==='https:')url=item.url;}catch(_){}return {name:item.name,symbol:item.symbol||item.name[0],url};});links.contact_email=typeof data.contact_email==='string'&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact_email)?data.contact_email:null;if(group==='social')header('social');}).catch(()=>{links.socials=[{name:'GitHub',symbol:'GH',url:'https://github.com/1AGEthe3rd/1age'}];});
+
  const scene=$('.world-scene'),globe=$('.world-globe');if(!scene||!globe)return;
  const entry=$('.world-entry');
  let highlight=false,hover=false,drag=null,dragged=false,multi=false;const touches=new Set();
@@ -63,10 +66,13 @@
  const compact=document.documentElement.dataset.touchLayout==='landscape';
  const ry=Math.max(42,h/2-d/2-(pc?32:28));
  const rx=compact?Math.min(w*.31,Math.max(280,Math.min(520,(innerWidth-464)/2)),Math.max(42,(w-220)/2)):pc?Math.max(42,Math.min(w/2-d/2-30,ry)):Math.max(42,Math.min(w/2-d/2-16,ry));
- const earth=compact?Math.min(innerHeight*.65,Math.max(300,Math.min(520,innerWidth*.5-250))):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
+ let earth=compact?Math.min(innerHeight*.65,Math.max(300,Math.min(520,innerWidth*.5-250))):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
  // Add breathing room around the same-sized globe on phone portrait.
  const portrait=matchMedia('(orientation:portrait)').matches;
  const dialRadius=portrait?Math.min(rx+8,w/2-d/2-8,ry):rx;
+ // A flat orbit must surround the globe, even during a compressed restore.
+ // Touch landscape intentionally retains front/back 3D crossings.
+ if(!compact)earth=Math.min(earth,Math.max(24,dialRadius*2-d-24));
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',dialRadius*2+'px');scene.style.setProperty('--orbit-height',dialRadius*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  let fitFrame = 0, restoreFrame = 0, restoreTimer = 0;

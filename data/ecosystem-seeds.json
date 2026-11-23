@@ -1,0 +1,569 @@
+[
+  {
+    "id": "solana-community",
+    "name": "Solana Community",
+    "type": "community",
+    "category": "Community",
+    "description": "Public community directory linking Solana discussion and engineering destinations.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "community",
+      "discord",
+      "forum"
+    ],
+    "official_links": {
+      "website": "https://solana.com/community"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/community"
+      ],
+      "note": "Publisher-listed destination; not an identity or safety endorsement."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/community"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "solana-discord",
+    "name": "Solana Engineering Discord",
+    "type": "community",
+    "category": "Community",
+    "description": "Engineering discussion destination linked from the Solana community directory.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "discord",
+      "developer",
+      "community"
+    ],
+    "official_links": {
+      "website": "https://solana.com/discord"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/community"
+      ],
+      "note": "Publisher-listed destination; not an identity or safety endorsement."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/community"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "solana-reddit",
+    "name": "Solana Reddit",
+    "type": "community",
+    "category": "Community",
+    "description": "Public Solana discussion community linked by the Solana community directory.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "reddit",
+      "forum",
+      "community"
+    ],
+    "official_links": {
+      "website": "https://solana.com/reddit"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/community"
+      ],
+      "note": "Publisher-listed destination; not an identity or safety endorsement."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/community"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "solana-social",
+    "name": "Solana Announcements on X",
+    "type": "social",
+    "category": "Social",
+    "description": "Announcement account destination linked by the Solana community directory.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "social",
+      "twitter",
+      "x",
+      "announcements"
+    ],
+    "official_links": {
+      "website": "https://solana.com/twitter"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/community"
+      ],
+      "note": "Publisher-listed destination; not a safety endorsement. X destination could not be fetched; relationship confirmed on directory only."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/community"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "solana-video",
+    "name": "Solana YouTube",
+    "type": "content",
+    "category": "Content",
+    "description": "Public videos and ecosystem presentations linked by Solana.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "video",
+      "youtube",
+      "content"
+    ],
+    "official_links": {
+      "website": "https://solana.com/youtube"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/community"
+      ],
+      "note": "Publisher-listed destination; not an identity or safety endorsement."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/community"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "solana-funding",
+    "name": "Solana Foundation Grants and Funding",
+    "type": "opportunity",
+    "category": "Opportunities",
+    "description": "Funding information and application pathways. Eligibility and current availability must be checked with the provider.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "grant",
+      "grants",
+      "funding",
+      "bounty",
+      "opportunity"
+    ],
+    "official_links": {
+      "website": "https://solana.org/grants-funding"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.org/grants-funding"
+      ],
+      "note": "Publisher-listed destination; not an identity or safety endorsement."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.org/grants-funding"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "anatoly-yakovenko",
+    "name": "Anatoly Yakovenko",
+    "type": "person",
+    "category": "People",
+    "description": "Solana Labs co-founder and software developer, featured in Solana\u2019s published discussion of decentralization and developer communities.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "founder",
+      "developer",
+      "engineering",
+      "decentralization"
+    ],
+    "official_links": {
+      "website": "https://solana.com/fr/news/anatoly-yakovenko-talks-decentralization-developer-community-at-udc-2021"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://solana.com/fr/news/anatoly-yakovenko-talks-decentralization-developer-community-at-udc-2021"
+      ],
+      "note": "Public professional information checked against the linked publisher. Link opens a source article or team page, not a claimed 1AGE profile. No private contact details collected."
+    },
+    "relationships": [
+      {
+        "type": "contributor_to",
+        "target": "solana",
+        "status": "source_checked",
+        "source": "https://solana.com/fr/news/anatoly-yakovenko-talks-decentralization-developer-community-at-udc-2021"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "mert-mumtaz",
+    "name": "Mert Mumtaz",
+    "type": "person",
+    "category": "People",
+    "description": "Helius co-founder with a software engineering background. Helius builds developer tools and infrastructure for Solana.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "founder",
+      "developer",
+      "engineering",
+      "infrastructure"
+    ],
+    "official_links": {
+      "website": "https://www.helius.dev/about"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://www.helius.dev/about"
+      ],
+      "note": "Public professional information checked against the linked publisher. Link opens a source article or team page, not a claimed 1AGE profile. No private contact details collected."
+    },
+    "relationships": [
+      {
+        "type": "co_founder_of",
+        "target": "helius",
+        "status": "source_checked",
+        "source": "https://www.helius.dev/about"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "nicolas-pennie",
+    "name": "Nicolas Pennie",
+    "type": "person",
+    "category": "People",
+    "description": "Helius co-founder whose public team biography describes work on data infrastructure and Solana APIs.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "founder",
+      "developer",
+      "data",
+      "api",
+      "rpc"
+    ],
+    "official_links": {
+      "website": "https://www.helius.dev/about"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://www.helius.dev/about"
+      ],
+      "note": "Public professional information checked against the linked publisher. Link opens a source article or team page, not a claimed 1AGE profile. No private contact details collected."
+    },
+    "relationships": [
+      {
+        "type": "co_founder_of",
+        "target": "helius",
+        "status": "source_checked",
+        "source": "https://www.helius.dev/about"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "liam-vovk",
+    "name": "Liam Vovk",
+    "type": "person",
+    "category": "People",
+    "description": "Helius co-founder whose public team biography describes engineering work on trading infrastructure and validator operations.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "founder",
+      "developer",
+      "engineering",
+      "validator",
+      "infrastructure"
+    ],
+    "official_links": {
+      "website": "https://www.helius.dev/about"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-21",
+      "evidence": [
+        "https://www.helius.dev/about"
+      ],
+      "note": "Public professional information checked against the linked publisher. Link opens a source article or team page, not a claimed 1AGE profile. No private contact details collected."
+    },
+    "relationships": [
+      {
+        "type": "co_founder_of",
+        "target": "helius",
+        "status": "source_checked",
+        "source": "https://www.helius.dev/about"
+      }
+    ],
+    "verification_status": "unverified"
+  },
+  {
+    "id": "jupiter-docs",
+    "name": "Jupiter Developer Documentation",
+    "type": "documentation",
+    "category": "Documentation",
+    "description": "Developer documentation for Jupiter APIs and Solana integrations.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "docs",
+      "documentation",
+      "developer",
+      "api"
+    ],
+    "official_links": {
+      "website": "https://developers.jup.ag/"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-22",
+      "evidence": [
+        "https://developers.jup.ag/support"
+      ],
+      "note": "Publisher-listed resource. Not an ownership, identity or security guarantee."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "jupiter",
+        "status": "source_checked",
+        "source": "https://developers.jup.ag/support"
+      }
+    ]
+  },
+  {
+    "id": "helius-docs",
+    "name": "Helius Documentation",
+    "type": "documentation",
+    "category": "Documentation",
+    "description": "Developer documentation for Helius Solana RPC, APIs and data streaming.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "docs",
+      "documentation",
+      "developer",
+      "rpc"
+    ],
+    "official_links": {
+      "website": "https://www.helius.dev/docs"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-22",
+      "evidence": [
+        "https://www.helius.dev/docs"
+      ],
+      "note": "Publisher-listed resource. Not an ownership, identity or security guarantee."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "helius",
+        "status": "source_checked",
+        "source": "https://www.helius.dev/docs"
+      }
+    ]
+  },
+  {
+    "id": "phantom-docs",
+    "name": "Phantom Developer Documentation",
+    "type": "documentation",
+    "category": "Documentation",
+    "description": "Developer documentation for integrating applications with Phantom.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "docs",
+      "documentation",
+      "developer",
+      "wallet"
+    ],
+    "official_links": {
+      "website": "https://docs.phantom.com/"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-22",
+      "evidence": [
+        "https://docs.phantom.com/"
+      ],
+      "note": "Publisher-listed resource. Not an ownership, identity or security guarantee."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "phantom",
+        "status": "source_checked",
+        "source": "https://docs.phantom.com/"
+      }
+    ]
+  },
+  {
+    "id": "jupiter-discord",
+    "name": "Jupiter Developer Community",
+    "type": "community",
+    "category": "Community",
+    "description": "Public Jupiter Discord destination listed by its developer support page.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "discord",
+      "community",
+      "developer"
+    ],
+    "official_links": {
+      "website": "https://discord.gg/jup"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-22",
+      "evidence": [
+        "https://developers.jup.ag/support"
+      ],
+      "note": "Publisher-listed resource. Not an ownership, identity or security guarantee."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "jupiter",
+        "status": "source_checked",
+        "source": "https://developers.jup.ag/support"
+      }
+    ]
+  },
+  {
+    "id": "jupiter-developer-social",
+    "name": "Jupiter Developer Social",
+    "type": "social",
+    "category": "Social",
+    "description": "Developer updates account linked by the Jupiter developer support page.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "social",
+      "updates",
+      "developer",
+      "x"
+    ],
+    "official_links": {
+      "website": "https://x.com/jupdevrel"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-22",
+      "evidence": [
+        "https://developers.jup.ag/support"
+      ],
+      "note": "Publisher-listed resource. Not an ownership, identity, security or availability guarantee. X content was inaccessible; only publisher linkage checked."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "jupiter",
+        "status": "source_checked",
+        "source": "https://developers.jup.ag/support"
+      }
+    ]
+  },
+  {
+    "id": "phantom-help",
+    "name": "Phantom Help Center",
+    "type": "content",
+    "category": "Support",
+    "description": "Official Phantom support information and contact guidance.",
+    "networks": [
+      "Solana"
+    ],
+    "tags": [
+      "support",
+      "help",
+      "content"
+    ],
+    "official_links": {
+      "website": "https://help.phantom.com/articles/6953810233619"
+    },
+    "source_review": {
+      "status": "source_checked",
+      "checked_on": "2026-11-22",
+      "evidence": [
+        "https://help.phantom.com/articles/6953810233619"
+      ],
+      "note": "Publisher-listed resource. Not an ownership, identity or security guarantee."
+    },
+    "relationships": [
+      {
+        "type": "resource_for",
+        "target": "phantom",
+        "status": "source_checked",
+        "source": "https://help.phantom.com/articles/6953810233619"
+      }
+    ]
+  }
+]
