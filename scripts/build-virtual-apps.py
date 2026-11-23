@@ -34,6 +34,7 @@ def build(out):
      s=s.replace("location.pathname!==routes[slug]", "location.pathname!=='/'&&location.pathname!==routes[slug]")
     s=s.replace('/apps/search/','https://1age.com/').replace('/apps/world/','https://1age.world/').replace('/home/world/','https://1age.world/').replace('/world/','https://1age.world/')
     if f.name=='app-home.js':s=s.replace('action="/"','action="https://1age.com/"')
+    s=s.replace('https://1age.blog/','https://1age.com/experiences/blog/')
     f.write_text(s)
    if slug in {'quest','design','shop','app'}:
     title=app['name'];description={'quest':'A 3D virtual mission environment. Gameplay and rewards are in development.','design':'A 3D virtual creator studio.','shop':'A 3D virtual marketplace foundation.','app':'A 3D application discovery hub.'}[slug]
