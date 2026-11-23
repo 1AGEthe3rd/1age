@@ -11,13 +11,13 @@ class AccountTests(unittest.TestCase):
  def test_shared_plus_entitlement_tracks_verified_states(self):
   token=self.a['session_token'];other=self.b['session_token']
   active=lambda:self.accounts.entitlements(token)['entitlements']['plus']['active']
-  order=self.accounts.create_order(token,'plus','plus-demo','entitlement-001','plus-demo-v2');self.assertFalse(active())
+  order=self.accounts.create_order(token,'plus','plus-demo','entitlement-001','plus-demo-v3');self.assertFalse(active())
   self.checkout.simulate(order['id'],order['access_token'],'paid');self.assertTrue(active());self.assertFalse(self.accounts.entitlements(other)['entitlements']['plus']['active'])
   self.assertFalse(self.accounts.entitlements(token)['entitlements']['plus']['live_membership'])
   self.checkout.simulate(order['id'],order['access_token'],'subscription_cancelled');self.assertFalse(active())
   self.checkout.simulate(order['id'],order['access_token'],'paid');self.assertFalse(active())
  def test_entitlements_multiple_orders_refund_and_logout(self):
-  token=self.a['session_token'];orders=[self.accounts.create_order(token,'plus','plus-demo','membership-'+str(i),'plus-demo-v2') for i in range(2)]
+  token=self.a['session_token'];orders=[self.accounts.create_order(token,'plus','plus-demo','membership-'+str(i),'plus-demo-v3') for i in range(2)]
   for o in orders:self.checkout.simulate(o['id'],o['access_token'],'paid')
   self.checkout.simulate(orders[0]['id'],orders[0]['access_token'],'refunded')
   self.assertTrue(self.accounts.entitlements(token)['entitlements']['plus']['active'])
