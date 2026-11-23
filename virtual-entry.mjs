@@ -1,6 +1,6 @@
 import '/experiences/shared/gamepad.mjs';
 // Independent spatial entrances. Legacy workspaces are not public launch destinations.
-const routes={page:'/experiences/page/',games:'/experiences/games/',exchange:'/experiences/exchange/',plus:'/experiences/plus/',store:'https://1age.store/',blog:'https://1age.blog/',cash:'/experiences/cash/'};
+const routes={page:'https://1age.page/',space:'https://1age.space/',games:'https://1age.games/',exchange:'https://1age.exchange/',quest:'https://1age.quest/',cash:'https://1age.cash/',plus:'https://1age.plus/',store:'https://1age.store/',blog:'https://1age.blog/',design:'https://1age.design/',shop:'https://1age.shop/',app:'https://1age.app/',world:'https://1age.world/'};
 const labels={page:'Page',games:'Games',exchange:'Exchange',plus:'Plus',store:'Store',blog:'Blog',cash:'Cash',space:'Space',design:'Design',quest:'Quest',shop:'Shop',app:'App',world:'World',checkout:'Checkout'};
 const slug=document.body.dataset.app||document.body.dataset.homeApp||(/^\/world\/(index\.html)?$/.test(location.pathname)?'world':null);
 const foundations=new Set(['quest','design','shop','app']);
