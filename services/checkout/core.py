@@ -5,7 +5,7 @@ from pathlib import Path
 
 CATALOG = {
  'store-demo': dict(app='store', label='Showroom checkout demonstration', amount=0, currency='USD', kind='demo', terms='No product, charge, tax, shipping or fulfillment. Nonfinancial demonstration.'),
- 'plus-demo': dict(app='plus', label='1AGE Plus membership demonstration', amount=100, currency='USD', kind='subscription', terms='Proposed $1 USD per month, recurring until cancelled. Demonstration only; no enrollment or billing.'),
+ 'plus-demo': dict(app='plus', label='1AGE Plus membership demonstration', amount=199, currency='USD', kind='subscription', terms='Proposed $1.99 USD per month, recurring until cancelled. Demonstration only; no enrollment or billing.'),
  'cash-demo': dict(app='cash', label='1AGE Cash credit demonstration', amount=100, currency='USD', kind='credits', terms='Demonstrates 1 internal Cash credit at a $1 accounting reference. No redemption, transfer or cash-out. Sales disabled pending review.')
 }
 RETURNS={'store':'/experiences/store/','plus':'/experiences/checkout/?app=plus','cash':'/experiences/checkout/?app=cash'}
@@ -57,7 +57,7 @@ class Checkout:
  def create(self, app, sku, account, request_key, consent_version=None):
   item=CATALOG.get(sku)
   if not item or item['app']!=app: raise CheckoutError('Application and offer do not match')
-  if app=='plus' and consent_version!='plus-demo-v1':raise CheckoutError('Recurring terms consent required for this demonstration')
+  if app=='plus' and consent_version!='plus-demo-v2':raise CheckoutError('Recurring terms consent required for this demonstration')
   if not isinstance(request_key,str) or not 8<=len(request_key)<=100: raise CheckoutError('Invalid request key')
   # Deterministic order capability makes creation retries idempotent within a demo account.
   token=hmac.new(self.adapter.secret,(account+':'+request_key).encode(),hashlib.sha256).hexdigest()
