@@ -39,7 +39,7 @@ class ReceiptTests(unittest.TestCase):
   self.call('/api/simulate',{'order_id':o['id'],'state':'refunded'},o['access_token'])
   self.assertEqual(self.call(path,token=o['access_token'])['state'],'refunded')
  def test_retry_recovers_same_order_and_cannot_read_another(self):
-  data={'app':'plus','sku':'plus-demo','request_key':'recovery-001','consent_version':'plus-demo-v1'}
+  data={'app':'plus','sku':'plus-demo','request_key':'recovery-001','consent_version':'plus-demo-v3'}
   a=self.call('/api/orders',data);b=self.call('/api/orders',data)
   self.assertEqual(a['id'],b['id']);self.assertEqual(a['access_token'],b['access_token'])
   data['request_key']='recovery-002';c=self.call('/api/orders',data)

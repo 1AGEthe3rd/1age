@@ -7,12 +7,13 @@ class CheckoutTests(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.db=Path(self.tmp.name)/'demo.sqlite3';self.service=Checkout(self.db)
  def tearDown(self):self.tmp.cleanup()
  def order(self,app='cash',sku='cash-demo',key='request-001',account='account-a'):
-  return self.service.create(app,sku,account,key,'plus-demo-v1' if app=='plus' else None)
+  return self.service.create(app,sku,account,key,'plus-demo-v3' if app=='plus' else None)
  def event(self,o,state='paid',event_id='evt-001',**extra):
   e=dict(event_id=event_id,order_id=o['id'],session=o['session'],amount=o['amount'],currency=o['currency'],state=state);e.update(extra)
   raw=json.dumps(e).encode();return raw,self.service.adapter.sign(raw)
  def test_price_and_scope(self):
   o=self.order();self.assertEqual(o['amount'],100)
+  plus=self.order('plus','plus-demo','plus-price-333');self.assertEqual(plus['amount'],333)
   with self.assertRaises(CheckoutError):self.order('store','cash-demo')
   with self.assertRaises(CheckoutError):self.service.read(o['id'],'wrong-token')
   with self.assertRaises(CheckoutError):self.service.webhook(*self.event(o,amount=1))

@@ -1,7 +1,7 @@
 import {recoveryStore} from './recovery.mjs';
 const offers={
  store:{sku:'store-demo',label:'Showroom checkout demonstration',amount:0,currency:'USD',kind:'demo',terms:'No product, charge, tax, shipping or fulfillment. Nonfinancial demonstration.'},
- plus:{sku:'plus-demo',label:'1AGE Plus membership demonstration',amount:100,currency:'USD',kind:'subscription',terms:'Proposed $1 USD per month, recurring until cancelled. Demonstration only; no enrollment or billing.'},
+ plus:{sku:'plus-demo',label:'1AGE Plus membership demonstration',amount:333,currency:'USD',kind:'subscription',terms:'Proposed $3.33 USD per month, recurring until cancelled. Demonstration only; no enrollment or billing.'},
  cash:{sku:'cash-demo',label:'1AGE Cash credit demonstration',amount:100,currency:'USD',kind:'credits',terms:'Demonstrates 1 internal Cash credit at a $1 accounting reference. No redemption, transfer or cash-out. Sales disabled pending review.'}
 };
 const $=s=>document.querySelector(s),select=$('#offer'),message=$('#status');
@@ -35,7 +35,7 @@ select.addEventListener('change',()=>{const url=new URL(location.href);url.searc
 $('#create-order').addEventListener('click',async()=>{
  if(select.value==='plus'&&!$('#consent').checked){message.textContent='Confirm the proposed recurring terms before starting this simulation.';$('#consent').focus();return;}
  lastError='';busy=true;remember();render();
- try{const item=offers[select.value];order=backend?await api('orders',{app:select.value,sku:item.sku,request_key:requestKey,consent_version:select.value==='plus'?'plus-demo-v1':null}):{...item,id:'browser-demo-'+crypto.randomUUID(),state:'pending',mode:'demonstration',provider:'mock',balance_minor:0,membership:'inactive',receipt:null};remember();}
+ try{const item=offers[select.value];order=backend?await api('orders',{app:select.value,sku:item.sku,request_key:requestKey,consent_version:select.value==='plus'?'plus-demo-v3':null}):{...item,id:'browser-demo-'+crypto.randomUUID(),state:'pending',mode:'demonstration',provider:'mock',balance_minor:0,membership:'inactive',receipt:null};remember();}
  catch(e){showError(e);}finally{busy=false;render();}
 });
 for(const b of document.querySelectorAll('[data-outcome]'))b.addEventListener('click',async()=>{lastError='';busy=true;render();try{if(backend){const token=order.access_token;order={...await api('simulate',{order_id:order.id,state:b.dataset.outcome},token),access_token:token};}else simulateBrowser(b.dataset.outcome);remember();}catch(e){showError(e);}finally{busy=false;render();}});
@@ -55,7 +55,7 @@ async function initialize(){
   if(r.status===404){backend=false;}else{if(!r.ok)throw Error('Local backend unavailable. Reload to retry; no new order was created.');const data=await r.json();if(data.mode!=='demonstration')throw Error('Unsupported checkout environment.');backend=true;}
   if(saved&&saved.mode!==(backend?'backend':'browser'))throw Error('The saved demonstration belongs to a different environment. Open the original preview to recover it.');
   $('#mode').textContent=backend?'Local mock backend · No real payments':'Browser-only simulation · No real payments';
-  if(saved){order=saved.order;if(backend){if(order)await refresh();else{const item=offers[select.value];order=await api('orders',{app:select.value,sku:item.sku,request_key:requestKey,consent_version:saved.consent?'plus-demo-v1':null});remember();}}}
+  if(saved){order=saved.order;if(backend){if(order)await refresh();else{const item=offers[select.value];order=await api('orders',{app:select.value,sku:item.sku,request_key:requestKey,consent_version:saved.consent?'plus-demo-v3':null});remember();}}}
   busy=false;
  }catch(e){showError(e);$('#mode').textContent='Demonstration connection unavailable · Reload to retry';}
  render();
