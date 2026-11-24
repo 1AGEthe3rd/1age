@@ -40,3 +40,8 @@ html[data-home-site][data-touch-layout] .home-screen:not(.search-open):not(.resu
 html[data-home-site][data-touch-layout="portrait"] .home-screen:not(.search-open):not(.results-open):not(.information-open).ticker-positioned .living-ticker {left:12px!important;right:12px!important;}
 html[data-home-site][data-touch-layout] .home-screen .world-controls {position:fixed!important;bottom:16px!important;left:calc(var(--home-stick) + 30px)!important;right:calc(var(--home-stick) + 30px)!important;margin:0!important;padding:0!important;z-index:20!important;}
 html[data-home-site][data-touch-layout="portrait"] .home-screen .world-controls {left:12px!important;right:12px!important;}
+
+/* Keep Enter above the front planet; both remain independently selectable. */
+html[data-home-site][data-orbit-depth="spatial"] .home-screen .world-entry {top:calc(50% - var(--earth)*.25)!important;}
+html[data-home-site][data-touch-layout] .home-screen .world-scene .project-orbit .project-planet[data-concealed="true"] {visibility:visible!important;}
+html[data-home-site="search"][data-touch-layout] .home-screen .site-header .header-hub .header-wings.header-slider:not([hidden]) {right:calc(var(--home-corner) + 12px)!important;width:min(300px,calc(100vw - var(--home-corner)*2 - 42px))!important;}
