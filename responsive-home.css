@@ -72,3 +72,15 @@ html[data-home-site][data-touch-layout] .home-screen.search-open .search-expande
 html[data-home-site][data-touch-layout="portrait"] .home-screen.search-open .search-expander > .search-form:not([hidden]) {width:min(540px,calc(100vw - var(--home-corner) - 42px))!important;}
 html[data-home-site][data-touch-layout] .home-screen .header-hub .header-slider-track {box-sizing:border-box!important;width:100%!important;max-width:none!important;white-space:nowrap!important;}
 html[data-home-site][data-touch-layout] .home-screen .header-hub .header-slider-track .brand {flex-shrink:0!important;}
+
+/* Portrait hotfix: never display the joystick container or standalone L/R buttons. */
+html[data-home-site="search"][data-touch-layout="portrait"] body.home-screen :is(.console-controls,.stick,[data-stick],.world-controls > [data-rotate]) {display:none!important;visibility:hidden!important;pointer-events:none!important;}
+/* The ticker is a fixed, bottom-only sibling of the homepage, never a search-row item. */
+html[data-home-site="search"][data-touch-layout] body.home-screen > .living-ticker {
+ position:fixed!important;inset:auto calc(var(--home-stick) + 32px) max(14px,env(safe-area-inset-bottom))!important;
+ width:auto!important;max-width:800px!important;margin:0 auto!important;
+}
+html[data-home-site="search"][data-touch-layout="portrait"] body.home-screen > .living-ticker {left:12px!important;right:12px!important;}
+html[data-home-site="search"][data-touch-layout] body.home-screen > .living-ticker[hidden],
+html[data-home-site="search"][data-touch-layout] body.home-screen:is(.search-open,.results-open,.information-open) > .living-ticker,
+html[data-home-site="search"][data-touch-layout] body.home-screen:has(#search-input:focus) > .living-ticker {display:none!important;visibility:hidden!important;pointer-events:none!important;}
