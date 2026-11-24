@@ -27,18 +27,18 @@
       else planet.removeAttribute('aria-current');
     });
     const planet = planets[index];
-    const slug = new URL(planet.href, location.href).pathname.match(/\/(?:home|apps)\/([^/]+)/)?.[1] || document.body.dataset.homeApp;
+    const url=new URL(planet.href,location.href);const slug = url.pathname.match(/\/(?:home|apps)\/([^/]+)/)?.[1] || (url.hostname.startsWith('1age.')&&url.hostname!=='1age.com'?url.hostname.slice(5):document.body.dataset.homeApp);
     window.dispatchEvent(new CustomEvent('1age-project-selected', {detail:{slug, name:planet.querySelector('span')?.textContent || '1AGE', accent:planet.style.getPropertyValue('--accent')}}));
   }
   function nearestIndex(value) {
     return ((Math.round(-value / step) % planets.length) + planets.length) % planets.length;
   }
-  const depthMode = {get matches(){return document.documentElement.dataset.touchLayout==='landscape';}};
+  const depthMode = {get matches(){return window.OneAGEHomeLayout.depth();}};
   function layout() {
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
     if(rx<=0||ry<=0)return; // Hidden search/cache scenes must not collapse saved planet offsets.
     planets.forEach((planet, i) => {
-      const a = -Math.PI / 2 + i * step + angle;
+      const a = (depthMode.matches ? Math.PI / 2 : -Math.PI / 2) + i * step + angle;
       planet.dataset.upper=String(Math.sin(a)<-.2);
       // Planet visibility is unchanged; avoid repeated DOM writes during rotation.
       planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
@@ -49,7 +49,7 @@
           (0.76 + (depth + 1) * 0.15).toFixed(3));
         planet.style.setProperty('--orbit-layer',
           depth >= 0 ? '7' : '2');
-      }
+      } else {planet.style.setProperty('--depth-scale','1');planet.style.setProperty('--orbit-layer','6');}
     });
     if (hasTurned) showPreview(nearestIndex(angle));
   }
@@ -92,7 +92,7 @@
     const box = orbit.getBoundingClientRect();
     const radius = Math.hypot((event.clientX-box.left-box.width/2)/(box.width/2),
                               (event.clientY-box.top-box.height/2)/(box.height/2));
-    const linear = event.pointerType==='touch' && depthMode.matches;
+    const linear = depthMode.matches;
     // Landscape touch can start on the open scene, not only the thin ellipse.
     if (!linear && !link && (radius < .72 || radius > 1.30)) return;
     cancelAnimationFrame(animation); moved = false;
@@ -206,7 +206,11 @@
       orbit.focus({preventScroll:true});
     }
   });
-  window.addEventListener('1age-layout-change',layout);
+  function setOrbitOpen(value){open=value;orbit.hidden=!open;globe.setAttribute('aria-expanded',String(open));if(open){hasTurned=true;requestAnimationFrame(layout);}}
+  function syncOrbitMode(){setOrbitOpen(document.documentElement.dataset.touchLayout!=='portrait');layout();}
+  window.addEventListener('1age-orbit-visibility',event=>{if(document.documentElement.dataset.touchLayout==='portrait')setOrbitOpen(event.detail);});
+  window.addEventListener('1age-layout-change',syncOrbitMode);
+  syncOrbitMode();
   new ResizeObserver(layout).observe(orbit);
   let layoutFrame=0,settleFrame=0;
   function restoreOrbitLayout(){
