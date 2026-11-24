@@ -83,11 +83,12 @@
   }
   scene.addEventListener('pointerdown', event => {
     suppressOrbitClick=false;
+    if (event.button !== 0 || !open || event.target.closest('.world-globe,.world-entry,.console-controls,.side-menu,.preview-expand')) return;
     if(event.pointerType==='touch') {
       touchPointers.add(event.pointerId);
       if(touchPointers.size>1){suppressOrbitClick=true;cancel();return;}
     }
-    if (event.button !== 0 || !open || gesture || event.target.closest('.world-globe') || event.target.closest('.world-entry') || event.target.closest('.console-controls,.side-menu,.preview-expand')) return;
+    if(gesture)return;
     const link = event.target.closest('.project-planet');
     const box = orbit.getBoundingClientRect();
     const radius = Math.hypot((event.clientX-box.left-box.width/2)/(box.width/2),
@@ -95,7 +96,7 @@
     const linear = depthMode.matches;
     // Landscape touch can start on the open scene, not only the thin ellipse.
     if (!linear && !link && (radius < .72 || radius > 1.30)) return;
-    cancelAnimationFrame(animation); moved = false;
+    cancelAnimationFrame(animation); animation=0;targetAngle=angle;moved = false;
     gesture = {id:event.pointerId, x:event.clientX, y:event.clientY, last:pointAngle(event), pending:0, link,touch:event.pointerType==='touch',linear,lastX:event.clientX,intent:linear?'pending':'rotate'};
     if(!linear)scene.setPointerCapture(event.pointerId);
   });
@@ -129,7 +130,25 @@
   });
   function cancel() { const id=gesture?.id;gesture = null; moved = true; targetAngle = angle;if(id!==undefined&&scene.hasPointerCapture(id))scene.releasePointerCapture(id); }
   scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
-  scene.addEventListener('lostpointercapture', () => { gesture = null; });
+  scene.addEventListener('lostpointercapture', event => {
+    touchPointers.delete(event.pointerId);
+    if(gesture?.id===event.pointerId){gesture=null;moved=true;targetAngle=angle;}
+  });
+  // A pointer may finish outside the scene (especially an uncaptured landscape swipe).
+  function finishOutside(event){
+    touchPointers.delete(event.pointerId);
+    if(gesture?.id===event.pointerId){suppressOrbitClick=true;cancel();}
+  }
+  window.addEventListener('pointerup',finishOutside);
+  window.addEventListener('pointercancel',finishOutside);
+  function resetOrbitInput(){
+    cancelAnimationFrame(animation);animation=0;
+    cancel();touchPointers.clear();moved=false;suppressOrbitClick=false;
+  }
+  window.addEventListener('blur',resetOrbitInput);
+  window.addEventListener('orientationchange',resetOrbitInput);
+  window.addEventListener('pagehide',resetOrbitInput);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)resetOrbitInput();});
   orbit.addEventListener('dragstart',event=>event.preventDefault());
   orbit.addEventListener('click', event => {
     if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;return;}
@@ -207,7 +226,18 @@
     }
   });
   function setOrbitOpen(value){open=value;orbit.hidden=!open;globe.setAttribute('aria-expanded',String(open));if(open){hasTurned=true;requestAnimationFrame(layout);}}
-  function syncOrbitMode(){setOrbitOpen(document.documentElement.dataset.touchLayout!=='portrait');layout();}
+  let lastMode=null;
+  function syncOrbitMode(){
+    resetOrbitInput();
+    const mode=document.documentElement.dataset.touchLayout;
+    // Start collapsed only on a fresh portrait arrival; keep an already visible dial
+    // available when the user turns the device instead of unexpectedly hiding it.
+    const visible=mode!=='portrait'||(lastMode!==null&&open);
+    lastMode=mode;
+    setOrbitOpen(visible);
+    layout();
+    if(visible)requestAnimationFrame(()=>{window.OneAGEHomeLayout.fit(scene);layout();requestAnimationFrame(layout);});
+  }
   window.addEventListener('1age-orbit-visibility',event=>{if(document.documentElement.dataset.touchLayout==='portrait')setOrbitOpen(event.detail);});
   window.addEventListener('1age-layout-change',syncOrbitMode);
   syncOrbitMode();
@@ -217,7 +247,7 @@
     cancelAnimationFrame(layoutFrame);cancelAnimationFrame(settleFrame);
     layoutFrame=requestAnimationFrame(()=>{layout();settleFrame=requestAnimationFrame(layout);});
   }
-  window.addEventListener('pageshow',restoreOrbitLayout);
+  window.addEventListener('pageshow',()=>{resetOrbitInput();restoreOrbitLayout();});
   window.addEventListener('1age-home-restored',restoreOrbitLayout);
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')restoreOrbitLayout();});
   window.addEventListener('pagehide',()=>{cancelAnimationFrame(layoutFrame);cancelAnimationFrame(settleFrame);});
