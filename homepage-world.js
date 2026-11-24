@@ -1,0 +1,281 @@
+(() => {
+  'use strict';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const stars = document.querySelector('.starfield');
+  let seed=971837;const random=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)/4294967296;};
+  for(let i=0;stars&&i<120;i++){const star=document.createElement('i');star.className='star';star.style.left=random()*100+'%';star.style.top=random()*100+'%';const size=.6+random()*1.7;star.style.width=star.style.height=size+'px';star.style.opacity=.2+random()*.65;star.style.animationDelay=-random()*13+'s';stars.appendChild(star);}
+  const orbit = document.querySelector('.project-orbit');
+  if (!orbit) return;
+  const scene = document.querySelector('.world-scene');
+  const planets = [...orbit.querySelectorAll('.project-planet')];
+  const globe = document.querySelector('.world-globe');
+  const track = document.querySelector('#preview-track');
+  const projectStrip = document.querySelector('.project-strip');
+  const projectButtons = [...document.querySelectorAll('[data-project]')];
+  const step = Math.PI * 2 / planets.length;
+  let angle = 0, targetAngle = 0, gesture = null, moved = false, open = true;
+  let selected = -1, animation = 0, hasTurned = false;
+  const touchPointers=new Set();
+  let suppressOrbitClick=false;
+  function showPreview(index) {
+    if (selected === index) return;
+    selected = index;
+    projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
+    planets.forEach((planet, i) => {
+      planet.classList.toggle('is-selected', i === index);
+      if(i === index) planet.setAttribute('aria-current','true');
+      else planet.removeAttribute('aria-current');
+    });
+    const planet = planets[index];
+    const url=new URL(planet.href,location.href);const slug = url.pathname.match(/\/(?:home|apps)\/([^/]+)/)?.[1] || (url.hostname.startsWith('1age.')&&url.hostname!=='1age.com'?url.hostname.slice(5):document.body.dataset.homeApp);
+    window.dispatchEvent(new CustomEvent('1age-project-selected', {detail:{slug, name:planet.querySelector('span')?.textContent || '1AGE', accent:planet.style.getPropertyValue('--accent')}}));
+  }
+  function nearestIndex(value) {
+    return ((Math.round(-value / step) % planets.length) + planets.length) % planets.length;
+  }
+  const depthMode = {get matches(){return window.OneAGEHomeLayout.depth();}};
+  function layout() {
+    const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
+    if(rx<=0||ry<=0)return; // Hidden search/cache scenes must not collapse saved planet offsets.
+    planets.forEach((planet, i) => {
+      const a = (depthMode.matches ? Math.PI / 2 : -Math.PI / 2) + i * step + angle;
+      planet.dataset.upper=String(Math.sin(a)<-.2);
+      // Planet visibility is unchanged; avoid repeated DOM writes during rotation.
+      planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
+      planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
+      if (depthMode.matches) {
+        const depth = Math.sin(a);
+        planet.style.setProperty('--depth-scale',
+          (0.76 + (depth + 1) * 0.15).toFixed(3));
+        planet.style.setProperty('--orbit-layer',
+          depth >= 0 ? '7' : '2');
+      } else {planet.style.setProperty('--depth-scale','1');planet.style.setProperty('--orbit-layer','6');}
+    });
+    if (hasTurned) showPreview(nearestIndex(angle));
+  }
+  function snap(screenDirection) {
+    if (!open) return;
+    hasTurned = true;
+    // At the front/bottom of the orbit, move planets in the arrow's screen direction.
+    const direction = -screenDirection;
+    cancelAnimationFrame(animation);
+    const basis = gesture ? angle : targetAngle;
+    targetAngle = direction > 0 ? (Math.floor(basis / step + .00001) + 1) * step
+                               : (Math.ceil(basis / step - .00001) - 1) * step;
+    gesture = null;
+    animateTo(targetAngle);
+  }
+  function animateTo(destination) {
+    cancelAnimationFrame(animation);
+    targetAngle = destination;
+    const from = angle, to = targetAngle, started = performance.now();
+    function tick(now) {
+      const t = reduced.matches ? 1 : Math.min(1, (now - started) / 550);
+      angle = from + (to - from) * (1 - Math.pow(1 - t, 3)); layout();
+      if (t < 1) animation = requestAnimationFrame(tick);
+    }
+    animation = requestAnimationFrame(tick);
+  }
+  function pointAngle(event) {
+    const box = orbit.getBoundingClientRect();
+    return Math.atan2((event.clientY - box.top - box.height / 2) / (box.height / 2),
+                      (event.clientX - box.left - box.width / 2) / (box.width / 2));
+  }
+  scene.addEventListener('pointerdown', event => {
+    suppressOrbitClick=false;
+    if(event.pointerType==='touch') {
+      touchPointers.add(event.pointerId);
+      if(touchPointers.size>1){suppressOrbitClick=true;cancel();return;}
+    }
+    if (event.button !== 0 || !open || gesture || event.target.closest('.world-globe') || event.target.closest('.world-entry') || event.target.closest('.console-controls,.side-menu,.preview-expand')) return;
+    const link = event.target.closest('.project-planet');
+    const box = orbit.getBoundingClientRect();
+    const radius = Math.hypot((event.clientX-box.left-box.width/2)/(box.width/2),
+                              (event.clientY-box.top-box.height/2)/(box.height/2));
+    const linear = depthMode.matches;
+    // Landscape touch can start on the open scene, not only the thin ellipse.
+    if (!linear && !link && (radius < .72 || radius > 1.30)) return;
+    cancelAnimationFrame(animation); moved = false;
+    gesture = {id:event.pointerId, x:event.clientX, y:event.clientY, last:pointAngle(event), pending:0, link,touch:event.pointerType==='touch',linear,lastX:event.clientX,intent:linear?'pending':'rotate'};
+    if(!linear)scene.setPointerCapture(event.pointerId);
+  });
+  scene.addEventListener('pointermove', event => {
+    if (!gesture || event.pointerId !== gesture.id) return;
+    if(gesture.linear){
+      const dx=event.clientX-gesture.x,dy=event.clientY-gesture.y;
+      if(gesture.intent==='pending'){
+        if(Math.abs(dy)>6 && Math.abs(dy)>Math.abs(dx)*1.15){suppressOrbitClick=true;cancel();return;}
+        if(Math.abs(dx)<=6 || Math.abs(dx)<=Math.abs(dy)*1.15)return;
+        gesture.intent='rotate';scene.setPointerCapture(event.pointerId);
+      }
+      gesture.pending -= (event.clientX-gesture.lastX)/Math.max(100,orbit.clientWidth*.25);
+      gesture.lastX=event.clientX;moved=true;
+    }else{
+      const now = pointAngle(event);
+      gesture.pending += Math.atan2(Math.sin(now-gesture.last), Math.cos(now-gesture.last));
+      gesture.last = now;
+      if (Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>(gesture.touch?6:10)) moved = true;
+    }
+    if (moved) { hasTurned = true; angle += gesture.pending; gesture.pending = 0; targetAngle = angle; layout(); }
+  });
+  scene.addEventListener('pointerup', event => {
+    if(event.pointerType==='touch')touchPointers.delete(event.pointerId);
+    if (!gesture || event.pointerId !== gesture.id) return;
+    const link = gesture.link; gesture = null;
+    suppressOrbitClick=true;
+    if (scene.hasPointerCapture(event.pointerId)) scene.releasePointerCapture(event.pointerId);
+    if (!moved && link && !link.dataset.held) window.location.assign(link.href);
+    else if (moved) showPreview(nearestIndex(angle));
+  });
+  function cancel() { const id=gesture?.id;gesture = null; moved = true; targetAngle = angle;if(id!==undefined&&scene.hasPointerCapture(id))scene.releasePointerCapture(id); }
+  scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
+  scene.addEventListener('lostpointercapture', () => { gesture = null; });
+  orbit.addEventListener('dragstart',event=>event.preventDefault());
+  orbit.addEventListener('click', event => {
+    if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;return;}
+    const link=event.target?.closest('.project-planet');
+    if(link){event.preventDefault();if(!link.dataset.held)window.location.assign(link.href);}
+  });
+  window.addEventListener('1age-orbit-step',e=>snap(e.detail));
+  orbit.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault(); snap(event.key === 'ArrowLeft' ? -1 : 1);
+  });
+  document.querySelectorAll('[data-preview-step]').forEach(button => button.addEventListener('click', () => {
+    const card = track.querySelector('.preview-card');
+    const gap = Number.parseFloat(window.getComputedStyle?.(track)?.columnGap) || 24;
+    track.scrollBy({left:Number(button.dataset.previewStep) * (card.getBoundingClientRect().width + gap), behavior:reduced.matches?'instant':'smooth'});
+  }));
+  projectButtons.forEach(button => button.addEventListener('click', () => {
+    open=true;orbit.hidden=false;globe.setAttribute('aria-expanded','true');
+    document.querySelectorAll('[data-rotate]').forEach(arrow => {arrow.disabled=false;});
+    const index = Number(button.dataset.project);
+    hasTurned = true;
+    const desired = -index*step;
+    const shortest = Math.atan2(Math.sin(desired-angle), Math.cos(desired-angle));
+    animateTo(angle+shortest);
+  }));
+  function dragScroll(node) {
+    if (!node) return;
+    let pointer = null, suppressClick = false;
+    node.addEventListener('dragstart', event => event.preventDefault());
+    node.addEventListener('pointerdown', event => {
+      if (event.button !== 0 || event.pointerType === 'touch') return;
+      pointer = {id:event.pointerId,x:event.clientX,scroll:node.scrollLeft,dragging:false};
+      suppressClick = false;
+    });
+    node.addEventListener('pointermove', event => {
+      if (!pointer || event.pointerId !== pointer.id) return;
+      const distance = event.clientX-pointer.x;
+      if (!pointer.dragging && Math.abs(distance)>8) {
+        pointer.dragging = true; node.classList.add('is-dragging'); node.setPointerCapture(event.pointerId);
+      }
+      if (pointer.dragging) {event.preventDefault();node.scrollLeft=pointer.scroll-distance;}
+    });
+    function release(event) {
+      if (!pointer || event.pointerId !== pointer.id) return;
+      suppressClick = pointer.dragging; pointer = null; node.classList.remove('is-dragging');
+      if (node.hasPointerCapture(event.pointerId)) node.releasePointerCapture(event.pointerId);
+    }
+    node.addEventListener('pointerup', release);
+    node.addEventListener('pointercancel', release);
+    node.addEventListener('lostpointercapture', () => {pointer=null;node.classList.remove('is-dragging');});
+    node.addEventListener('click', event => {
+      if (suppressClick) {event.preventDefault();event.stopPropagation();suppressClick=false;}
+    }, true);
+    node.addEventListener('keydown', event => {
+      if (event.key!=='ArrowLeft' && event.key!=='ArrowRight') return;
+      event.preventDefault();
+      node.scrollBy({left:(event.key==='ArrowLeft'?-1:1)*node.clientWidth*.65,behavior:reduced.matches?'instant':'smooth'});
+    });
+  }
+  dragScroll(track);dragScroll(projectStrip);
+  const worldDialog = document.querySelector('#world-entry-dialog');
+  document.querySelectorAll('[data-enter-world]').forEach(button => button.addEventListener('click', () => {
+    if (worldDialog?.showModal) worldDialog.showModal();
+    else window.location.assign('/world/#desktop-entry');
+  }));
+  document.querySelector('[data-browse-projects]')?.addEventListener('click', () => {
+    worldDialog.close();
+    if (projectStrip) {
+      projectStrip.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'center'});
+      projectStrip.focus({preventScroll:true});
+    } else {
+      open=true;orbit.hidden=false;globe.setAttribute('aria-expanded','true');
+      document.querySelectorAll('[data-rotate]').forEach(arrow => {arrow.disabled=false;});
+      orbit.focus({preventScroll:true});
+    }
+  });
+  function setOrbitOpen(value){open=value;orbit.hidden=!open;globe.setAttribute('aria-expanded',String(open));if(open){hasTurned=true;requestAnimationFrame(layout);}}
+  function syncOrbitMode(){setOrbitOpen(document.documentElement.dataset.touchLayout!=='portrait');layout();}
+  window.addEventListener('1age-orbit-visibility',event=>{if(document.documentElement.dataset.touchLayout==='portrait')setOrbitOpen(event.detail);});
+  window.addEventListener('1age-layout-change',syncOrbitMode);
+  syncOrbitMode();
+  new ResizeObserver(layout).observe(orbit);
+  let layoutFrame=0,settleFrame=0;
+  function restoreOrbitLayout(){
+    cancelAnimationFrame(layoutFrame);cancelAnimationFrame(settleFrame);
+    layoutFrame=requestAnimationFrame(()=>{layout();settleFrame=requestAnimationFrame(layout);});
+  }
+  window.addEventListener('pageshow',restoreOrbitLayout);
+  window.addEventListener('1age-home-restored',restoreOrbitLayout);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')restoreOrbitLayout();});
+  window.addEventListener('pagehide',()=>{cancelAnimationFrame(layoutFrame);cancelAnimationFrame(settleFrame);});
+  layout();
+  const texture = document.querySelector('.globe-texture');
+  // Project one continuous world map onto the sphere. No atlas handoff or fade.
+  function movingGlobe() {
+    const canvas = document.createElement('canvas');
+    if (!canvas.getContext || !window.Image) return null;
+    const context = canvas.getContext('2d');
+    if (!context) return null;
+    canvas.width = canvas.height = 336;
+    canvas.className = 'globe-texture'; canvas.style.backgroundImage = 'none';
+    canvas.style.width = canvas.style.height = '100%';
+    canvas.setAttribute('aria-hidden', 'true');
+    const strip = document.createElement('canvas'), stripContext=strip.getContext('2d');
+    if (!stripContext) return null;
+    const image = new window.Image(); let ready = false;
+    image.onload = () => {
+      strip.width=image.width*3;strip.height=image.height;
+      for(let i=0;i<3;i++) stripContext.drawImage(image,i*image.width,0);
+      ready=true;texture.after(canvas);texture.hidden=true;render(0);
+    };
+    image.src = '/assets/world-surface.png';
+    const tiles=[];
+    for(let row=0;row<32;row++) {
+      const top=-1+row/16,bottom=-1+(row+1)/16;
+      const limit=Math.sqrt(Math.max(0,1-((top+bottom)/2)**2));
+      const v1=.5+Math.asin(top)/Math.PI,v2=.5+Math.asin(bottom)/Math.PI;
+      for(let column=0;column<24;column++) {
+        const a=-Math.PI/2+column*Math.PI/24,b=-Math.PI/2+(column+1)*Math.PI/24;
+        tiles.push({left:limit*Math.sin(a),right:limit*Math.sin(b),top,bottom,
+          u:1+a/(Math.PI*2),du:(b-a)/(Math.PI*2),v:v1,dv:v2-v1});
+      }
+    }
+    function render(turn) {
+      if (!ready) return false;
+      context.clearRect(0,0,336,336);
+      context.save();context.beginPath();context.arc(168,168,168,0,Math.PI*2);context.clip();
+      context.fillStyle='#000';context.fillRect(0,0,336,336);
+      for(const tile of tiles) context.drawImage(strip,(tile.u+turn)*image.width,tile.v*image.height,
+        tile.du*image.width,tile.dv*image.height,
+        (1+tile.left)*168-.3,(1+tile.top)*168-.3,(tile.right-tile.left)*168+.6,(tile.bottom-tile.top)*168+.6);
+      context.restore();return true;
+    }
+    return render;
+  }
+  const renderSurface = movingGlobe();
+  let elapsed = 0, last = performance.now(),manualTurn=0;
+  window.addEventListener?.('1age-world-turn',event=>{manualTurn+=event.detail;});
+  window.setInterval(() => {
+    const now = performance.now(), delta = Math.min(.25, (now-last)/1000); last = now;
+    if (document.hidden) return;
+    if(!reduced.matches)elapsed += delta;
+    const turn = ((elapsed / 120 + manualTurn)%1+1)%1;
+    const lettering=document.querySelector('.world-letter');
+    if(lettering){if(!lettering.children.length){lettering.textContent='';for(const char of '1AGE WORLD'){const span=document.createElement('b');span.textContent=char===' '?'\u00a0':char;lettering.appendChild(span);}}[...lettering.children].forEach((letter,i)=>{const phase=-turn*Math.PI*2+(i-4.5)*.18,depth=Math.cos(phase);letter.style.transform=`translate(-50%,-50%) translateX(${Math.sin(phase)*globe.clientWidth*.46}px) scaleX(${Math.max(.04,depth)})`;letter.style.opacity=depth>.04?'1':'0';});}
+    if (renderSurface && renderSurface(turn)) return;
+    texture.style.backgroundPosition = `${turn*100}% center`;
+  }, 100);
+})();

@@ -6,7 +6,8 @@
   ticker.before(marker);
   const compactTouch = {get matches(){return document.documentElement.dataset.touchLayout==='landscape';}};
   function placeTicker() {
-    marker.after(ticker);
+    if (compactTouch.matches) search.append(ticker);
+    else marker.after(ticker);
   }
   window.addEventListener('1age-layout-change', placeTicker);
   placeTicker();

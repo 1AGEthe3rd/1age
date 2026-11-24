@@ -1,0 +1,46 @@
+(() => {
+ 'use strict';
+ const $=s=>document.querySelector(s),scene=$('.world-scene');if(!scene)return;
+ const emit=(name,detail)=>window.dispatchEvent(new CustomEvent(name,{detail}));
+ const destinations=[...document.querySelectorAll('.project-planet')].map(node=>[
+  node.querySelector('span').textContent,node.getAttribute('href'),'·'
+ ]);
+ const half=Math.ceil(destinations.length/2);
+ const menuItems={L:destinations.slice(0,half),R:destinations.slice(half)};
+ let open=null;
+ document.body.insertAdjacentHTML('beforeend','<nav class="side-menu" aria-label="Ecosystem destinations" hidden></nav><dialog class="planet-options"><form method="dialog"><button aria-label="Close options">×</button></form><h2></h2><div class="option-actions"></div></dialog>');
+ const menu=$('.side-menu'),options=$('.planet-options');
+ function setMenu(side){open=side;menu.hidden=!side;document.body.classList.toggle('menu-open',!!side);menu.dataset.side=side||'';menu.replaceChildren();document.querySelectorAll('[data-rotate]').forEach(b=>b.setAttribute('aria-expanded',String(b.textContent===side)));
+  if(!side)return;for(const [label,href,symbol] of menuItems[side]){const a=document.createElement('a');a.className='pop-planet';a.href=href;a.innerHTML=`<span class="pop-circle" aria-hidden="true">${symbol}</span><span>${label}</span>`;const original=[...document.querySelectorAll('.project-planet')].find(n=>n.getAttribute('href')===href);if(original?.querySelector('svg'))a.querySelector('.pop-circle').replaceChildren(original.querySelector('svg').cloneNode(true));menu.appendChild(a);}}
+ document.querySelectorAll('[data-rotate]').forEach(button=>{const side=Number(button.dataset.rotate)<0?'L':'R';button.textContent=side;button.setAttribute('aria-label',side+' ecosystem menu');button.setAttribute('aria-expanded','false');button.addEventListener('click',()=>setMenu(open===side?null:side));});
+ window.addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(null);reset();}});
+
+ // A press previews. A short release opens the destination. Holding offers choices.
+ let press=null,timer=0;
+ function clearPress(){clearTimeout(timer);if(press)press.node.classList.remove('is-pressing');press=null;}
+ function hold(node){node.dataset.held='true';options.querySelector('h2').textContent=node.querySelector('span:last-child')?.textContent||node.getAttribute('aria-label')||'Options';const actions=options.querySelector('.option-actions');actions.replaceChildren();
+  const href=node.getAttribute('href');if(href){const a=document.createElement('a');a.href=href;a.textContent='Open';actions.appendChild(a);}
+
+  if(node.matches('.brand')){const b=document.createElement('a');b.href='https://1age.design';b.textContent='Build with 1AGE.design';actions.appendChild(b);}
+  if(!actions.children.length){const b=document.createElement('button');b.textContent='Close';b.onclick=()=>options.close();actions.appendChild(b);}options.showModal();}
+ document.addEventListener('pointerdown',e=>{const node=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet,[data-rotate],.search-circle');if(!node||node.disabled||e.button!==0)return;clearPress();delete node.dataset.held;press={node,id:e.pointerId,x:e.clientX,y:e.clientY};node.classList.add('is-pressing');},true);
+ document.addEventListener('pointermove',e=>{if(press&&press.id===e.pointerId&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>9)clearPress();},true);
+ document.addEventListener('pointerup',clearPress,true);document.addEventListener('pointercancel',clearPress,true);
+ document.addEventListener('click',e=>{const n=e.target.closest('[data-held]');if(n){e.preventDefault();e.stopImmediatePropagation();delete n.dataset.held;}},true);
+ // Reusable browser input bus. Environments subscribe; the home maps sticks to its orbit/globe.
+ const state={move:{x:0,y:0},look:{x:0,y:0},buttons:{}};const subscribers=new Set();
+ let gamepad={move:{x:0,y:0},look:{x:0,y:0},buttons:{}};
+ function combined(){const result=JSON.parse(JSON.stringify(state));for(const axis of ['move','look']){let x=result[axis].x+gamepad[axis].x,y=result[axis].y+gamepad[axis].y;const mag=Math.max(1,Math.hypot(x,y));result[axis]={x:x/mag,y:y/mag};}for(const key in gamepad.buttons)result.buttons[key]=!!(result.buttons[key]||gamepad.buttons[key]);return result;}
+ function publish(){const snapshot=combined();for(const fn of subscribers)fn(snapshot);emit('1age-input',snapshot);}
+ window.OneAGEInput=Object.freeze({subscribe(fn){subscribers.add(fn);fn(combined());return()=>subscribers.delete(fn);},snapshot(){return combined();},setGamepad(value){gamepad=value;publish();},reset});
+ document.body.insertAdjacentHTML('beforeend','<div class="console-controls" aria-label="Landscape touch console"><button class="stick stick-left" data-stick="move" aria-label="Left movement joystick"><span>L</span></button><button class="stick stick-right" data-stick="look" aria-label="Right look joystick"><span>R</span></button></div>');
+ const owners=new Map();
+ function reset(){gamepad={move:{x:0,y:0},look:{x:0,y:0},buttons:{}};owners.clear();state.move={x:0,y:0};state.look={x:0,y:0};state.buttons={};document.querySelectorAll('[data-stick] span').forEach(n=>n.style.transform='translate(-50%,-50%)');document.querySelectorAll('[data-game]').forEach(n=>n.classList.remove('is-pressing'));publish();clearPress();}
+ function stick(e,n){const b=n.getBoundingClientRect(),radius=b.width*.33;let x=(e.clientX-b.left-b.width/2)/radius,y=(e.clientY-b.top-b.height/2)/radius;const mag=Math.hypot(x,y);if(mag>1){x/=mag;y/=mag;}const length=Math.min(1,mag),scaled=length<.045?0:(length-.045)/.955;if(length){x=x/length*scaled;y=y/length*scaled;}state[n.dataset.stick]={x,y};n.querySelector('span').style.transform=`translate(calc(-50% + ${x*radius}px),calc(-50% + ${y*radius}px))`;publish();}
+ for(const n of document.querySelectorAll('[data-stick],[data-game]')){n.addEventListener('pointerdown',e=>{e.preventDefault();if([...owners.values()].includes(n))return;n.setPointerCapture(e.pointerId);owners.set(e.pointerId,n);if(n.dataset.stick)stick(e,n);else{state.buttons[n.dataset.game]=true;n.classList.add('is-pressing');publish();}});n.addEventListener('pointermove',e=>{if(owners.get(e.pointerId)===n&&n.dataset.stick)stick(e,n);});const release=e=>{if(owners.get(e.pointerId)!==n)return;owners.delete(e.pointerId);if(n.dataset.stick){state[n.dataset.stick]={x:0,y:0};n.querySelector('span').style.transform='translate(-50%,-50%)';}else{state.buttons[n.dataset.game]=false;n.classList.remove('is-pressing');}publish();};for(const event of ['pointerup','pointercancel','lostpointercapture'])n.addEventListener(event,release);}
+ 
+ let last=0,nextStep=0;function tick(now){const dt=Math.min(.05,(now-last)/1000||0);last=now;const input=combined();if(!open&&!document.querySelector('dialog[open]')){if(Math.abs(input.look.x)>.02)emit('1age-world-turn',-input.look.x*dt*.10);if(Math.abs(input.move.x)>.5&&now>nextStep){emit('1age-orbit-step',input.move.x>0?1:-1);nextStep=now+650;}}requestAnimationFrame(tick);}requestAnimationFrame(tick);
+ // Action buttons are input signals; they never unexpectedly open a page while held.
+ addEventListener('blur',reset);document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});addEventListener('orientationchange',()=>{reset();setMenu(null);});
+ const landscape={get matches(){return document.documentElement.dataset.touchLayout!=='portrait';}};function mode(){document.body.classList.toggle('console-mode',landscape.matches);reset();}window.addEventListener('1age-layout-change',mode);mode();
+})();

@@ -16,11 +16,11 @@
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
    if(item.url){node.href=new URLSearchParams(location.search).get('preview')==='commerce'&&['store','blog'].includes(item.icon)?'/experiences/'+item.icon+'/':item.url;}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;}}
    const circle=document.createElement('span');circle.className='header-planet-circle';if(item.icon)circle.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">${paths[item.icon]}</svg>`;else circle.textContent=item.symbol;
-   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);if(index===split&&!document.documentElement.dataset.homeSite)track.append(brand);track.appendChild(node);
+   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);if(index===split)track.append(brand);track.appendChild(node);
   });
-  if(!document.documentElement.dataset.homeSite&&!track.contains(brand))track.append(brand);
+  if(!track.contains(brand))track.append(brand);
   if(restoreFocus)brand.focus({preventScroll:true});
-  requestAnimationFrame(()=>{if(group==='closed'||!track.isConnected||document.documentElement.dataset.homeSite)return;track.scrollLeft+=brand.getBoundingClientRect().left-track.getBoundingClientRect().left-(track.clientWidth-brand.offsetWidth)/2;});
+  requestAnimationFrame(()=>{if(group==='closed'||!track.isConnected)return;track.scrollLeft+=brand.getBoundingClientRect().left-track.getBoundingClientRect().left-(track.clientWidth-brand.offsetWidth)/2;});
  }
  brand?.addEventListener('click',()=>header(group==='closed'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  if(wings){
@@ -53,14 +53,27 @@
  globe.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;if(Math.abs(e.clientX-drag.start)>6)dragged=true;if(dragged){reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:-(e.clientX-drag.x)/Math.max(1,globe.clientWidth)}));}drag.x=e.clientX;});
  function release(e){touches.delete(e.pointerId);if(drag?.id===e.pointerId)drag=null;scene.classList.remove('globe-pressed');}
  globe.addEventListener('pointerup',release);globe.addEventListener('pointercancel',e=>{release(e);multi=true;});
- globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}const portrait=document.documentElement.dataset.touchLayout==='portrait';highlight=portrait?globe.getAttribute('aria-expanded')!=='true':!highlight;sync();window.dispatchEvent(new CustomEvent('1age-orbit-visibility',{detail:highlight}));});
+ globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}highlight=!highlight;sync();});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
  function fit(){
  if(document.visibilityState==='hidden'||document.body.classList.contains('results-open')||document.body.classList.contains('information-open')||document.activeElement?.matches('input,textarea,[contenteditable="true"]'))return;
  const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;
  wings?.style.setProperty('--menu-circle-size',brand.querySelector('.brand-circle').offsetWidth+'px');
- window.OneAGEHomeLayout.fit(scene);}
-
+ const landscape=matchMedia('(orientation:landscape) and (max-height:600px)').matches;
+ const pc=document.documentElement.dataset.touchLayout!=='landscape' && matchMedia('(min-width:700px) and (orientation:landscape)').matches;
+ const d=pc?Math.max(40,Math.min(92,h*.12)):landscape?Math.max(42,Math.min(56,h*.19)):Math.max(44,Math.min(72,w*.14,innerHeight*.095));
+ // Portrait uses the existing studio homepage proportions.
+ const compact=document.documentElement.dataset.touchLayout==='landscape';
+ const ry=Math.max(42,h/2-d/2-(pc?32:28));
+ const rx=compact?Math.min(w*.31,Math.max(280,Math.min(520,(innerWidth-464)/2)),Math.max(42,(w-220)/2)):pc?Math.max(42,Math.min(w/2-d/2-30,ry)):Math.max(42,Math.min(w/2-d/2-16,ry));
+ let earth=compact?Math.min(innerHeight*.65,Math.max(300,Math.min(520,innerWidth*.5-250))):pc?Math.min(640,rx*1.42):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
+ // Add breathing room around the same-sized globe on phone portrait.
+ const portrait=matchMedia('(orientation:portrait)').matches;
+ const dialRadius=portrait?Math.min(rx+8,w/2-d/2-8,ry):rx;
+ // A flat orbit must surround the globe, even during a compressed restore.
+ // Touch landscape intentionally retains front/back 3D crossings.
+ if(!compact)earth=Math.min(earth,Math.max(24,dialRadius*2-d-24));
+ scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',dialRadius*2+'px');scene.style.setProperty('--orbit-height',dialRadius*2+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
  let fitFrame = 0, restoreFrame = 0, restoreTimer = 0;
  function scheduleFit() {
@@ -91,7 +104,7 @@
  new ResizeObserver(scheduleFit).observe(scene);
  window.addEventListener('load', scheduleFit, {once:true});
  window.addEventListener('resize', scheduleFit, {passive:true});
- window.addEventListener('1age-layout-change',()=>{highlight=false;hover=false;sync();scheduleFit();});
+ window.addEventListener('1age-layout-change',scheduleFit);
  window.addEventListener('orientationchange', scheduleFit);
  window.visualViewport?.addEventListener('resize', scheduleFit);
  document.fonts?.ready.then(scheduleFit);
