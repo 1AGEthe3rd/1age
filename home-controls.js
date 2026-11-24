@@ -14,7 +14,7 @@
   const track=document.createElement('div');track.className='header-slider-track';track.tabIndex=0;track.setAttribute('aria-label','Slide the whole 1AGE menu');wings.append(track);
   const split=Math.ceil(items.length/2);
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
-   if(item.url){node.href=new URLSearchParams(location.search).get('preview')==='commerce'&&['store','blog'].includes(item.icon)?'/experiences/'+item.icon+'/':item.url;}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;node.title='Official link not added yet';}}
+   if(item.url){node.href=new URLSearchParams(location.search).get('preview')==='commerce'&&['store','blog'].includes(item.icon)?'/experiences/'+item.icon+'/':item.url;}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;}}
    const circle=document.createElement('span');circle.className='header-planet-circle';if(item.icon)circle.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">${paths[item.icon]}</svg>`;else circle.textContent=item.symbol;
    const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);if(index===split)track.append(brand);track.appendChild(node);
   });
