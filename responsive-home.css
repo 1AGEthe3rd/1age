@@ -63,3 +63,12 @@ html[data-home-site][data-touch-layout="portrait"] .home-screen.search-open .sea
 html[data-home-site][data-touch-layout="portrait"] .home-screen .search-expander {display:flex!important;flex-flow:row nowrap!important;align-items:center!important;gap:8px!important;}
 html[data-home-site][data-touch-layout="portrait"] .home-screen.search-open .search-form:not([hidden]) {position:static!important;flex:0 1 auto!important;margin:0!important;width:min(540px,calc(100vw - var(--home-corner) - 42px))!important;}
 html[data-home-site][data-touch-layout="portrait"] .home-screen:not(.results-open):not(.information-open) .universe {top:calc(max(12px,env(safe-area-inset-top)) + var(--home-corner)*2 + 42px)!important;}
+
+/* Keep search icon and input in one horizontal plane at every width. */
+html[data-home-site][data-touch-layout] .home-screen .search-home .search-expander {display:flex!important;flex-flow:row nowrap!important;align-items:center!important;justify-content:flex-start!important;width:max-content!important;max-width:calc(100vw - 32px)!important;flex:none!important;gap:8px!important;}
+html[data-home-site][data-touch-layout] .home-screen .search-expander > .search-circle {width:var(--home-corner)!important;height:var(--home-corner)!important;flex:0 0 var(--home-corner)!important;order:0!important;}
+html[data-home-site][data-touch-layout] .home-screen .search-expander > .search-form[hidden] {display:none!important;}
+html[data-home-site][data-touch-layout] .home-screen.search-open .search-expander > .search-form:not([hidden]) {display:flex!important;position:static!important;flex:0 1 auto!important;min-width:0!important;order:1!important;margin:0!important;}
+html[data-home-site][data-touch-layout="portrait"] .home-screen.search-open .search-expander > .search-form:not([hidden]) {width:min(540px,calc(100vw - var(--home-corner) - 42px))!important;}
+html[data-home-site][data-touch-layout] .home-screen .header-hub .header-slider-track {box-sizing:border-box!important;width:100%!important;max-width:none!important;white-space:nowrap!important;}
+html[data-home-site][data-touch-layout] .home-screen .header-hub .header-slider-track .brand {flex-shrink:0!important;}
