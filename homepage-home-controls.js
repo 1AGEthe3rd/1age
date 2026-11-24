@@ -63,6 +63,16 @@
  globe.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;if(Math.abs(e.clientX-drag.start)>6)dragged=true;if(dragged){reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:-(e.clientX-drag.x)/Math.max(1,globe.clientWidth)}));}drag.x=e.clientX;});
  function release(e){touches.delete(e.pointerId);if(drag?.id===e.pointerId)drag=null;scene.classList.remove('globe-pressed');}
  globe.addEventListener('pointerup',release);globe.addEventListener('pointercancel',e=>{release(e);multi=true;});
+ globe.addEventListener('lostpointercapture',release);
+ function resetGlobeInput(){
+  const id=drag?.id;drag=null;touches.clear();dragged=false;multi=false;
+  if(id!==undefined&&globe.hasPointerCapture(id))globe.releasePointerCapture(id);
+  scene.classList.remove('globe-pressed');
+ }
+ window.addEventListener('orientationchange',resetGlobeInput);
+ window.addEventListener('blur',resetGlobeInput);
+ window.addEventListener('pagehide',resetGlobeInput);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)resetGlobeInput();});
  globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}const portrait=document.documentElement.dataset.touchLayout==='portrait';highlight=portrait?globe.getAttribute('aria-expanded')!=='true':!highlight;sync();window.dispatchEvent(new CustomEvent('1age-orbit-visibility',{detail:highlight}));});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
  function fit(){
@@ -101,7 +111,7 @@
  new ResizeObserver(scheduleFit).observe(scene);
  window.addEventListener('load', scheduleFit, {once:true});
  window.addEventListener('resize', scheduleFit, {passive:true});
- window.addEventListener('1age-layout-change',()=>{highlight=false;hover=false;sync();scheduleFit();});
+ window.addEventListener('1age-layout-change',()=>{resetGlobeInput();highlight=false;hover=false;sync();restoreFit();});
  window.addEventListener('orientationchange', scheduleFit);
  window.visualViewport?.addEventListener('resize', scheduleFit);
  document.fonts?.ready.then(scheduleFit);
