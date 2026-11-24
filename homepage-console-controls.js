@@ -42,5 +42,15 @@
  let last=0,nextStep=0;function tick(now){const dt=Math.min(.05,(now-last)/1000||0);last=now;const input=combined();if(!open&&!document.querySelector('dialog[open]')){if(Math.abs(input.look.x)>.02)emit('1age-world-turn',-input.look.x*dt*.10);if(Math.abs(input.move.x)>.5&&now>nextStep){emit('1age-orbit-step',input.move.x>0?1:-1);nextStep=now+650;}}requestAnimationFrame(tick);}requestAnimationFrame(tick);
  // Action buttons are input signals; they never unexpectedly open a page while held.
  addEventListener('blur',reset);document.addEventListener('visibilitychange',()=>{if(document.hidden)reset();});addEventListener('orientationchange',()=>{reset();setMenu(null);});
- const landscape={get matches(){return document.documentElement.dataset.touchLayout!=='portrait';}};function mode(){document.body.classList.toggle('console-mode',landscape.matches);reset();}window.addEventListener('1age-layout-change',mode);mode();
+ const consoleNode=$('.console-controls');
+ function mode(){
+  const enabled=['desktop','landscape'].includes(document.documentElement.dataset.touchLayout);
+  document.body.classList.toggle('console-mode',enabled);
+  reset();
+  if(enabled){if(!consoleNode.isConnected)document.body.append(consoleNode);}
+  else consoleNode.remove(); // Portrait never contains rendered joystick buttons.
+ }
+ window.addEventListener('1age-layout-change',mode);
+ window.addEventListener('pageshow',mode);
+ mode();
 })();

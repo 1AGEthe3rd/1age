@@ -4,7 +4,20 @@
  const landscape=matchMedia('(orientation: landscape)');
  // A touchscreen does not make a laptop a phone.
  const isMobile=()=>navigator.userAgentData?.mobile===true||/Android|iPhone|iPod|iPad|Mobile/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
- const mode=()=>isMobile()?(landscape.matches?'landscape':'portrait'):'desktop';
+ // Use physical orientation rather than the keyboard-resized CSS viewport.
+ const editing=()=>Boolean(document.activeElement?.matches?.('input,textarea,[contenteditable="true"]')||document.body?.classList.contains('search-open'));
+ function mode(){
+  if(!isMobile())return 'desktop';
+  const type=window.screen?.orientation?.type;
+  if(type?.startsWith('portrait'))return 'portrait';
+  if(type?.startsWith('landscape'))return 'landscape';
+  if(typeof window.orientation==='number')return Math.abs(window.orientation)%180===90?'landscape':'portrait';
+  const previous=root.dataset.touchLayout;
+  if(editing()&&(previous==='portrait'||previous==='landscape'))return previous;
+  const visual=window.visualViewport;
+  if(previous==='portrait'&&visual&&visual.height<window.innerHeight*.8)return previous;
+  return landscape.matches?'landscape':'portrait';
+ }
  function sync(){const next=mode();if(root.dataset.touchLayout===next)return;root.dataset.touchLayout=next;root.dataset.orbitDepth=next==='portrait'&&root.dataset.homeSite==='search'?'flat':'spatial';window.dispatchEvent(new Event('1age-layout-change'));}
  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
  function dimensions(w,h,flat,portrait){
@@ -17,5 +30,5 @@
  }
  function fit(scene){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;const d=dimensions(w,h,root.dataset.orbitDepth==='flat',root.dataset.touchLayout==='portrait');scene.style.setProperty('--earth',d.earth+'px');scene.style.setProperty('--orbit-diameter',d.orbitW+'px');scene.style.setProperty('--orbit-height',d.orbitH+'px');root.style.setProperty('--ui-planet-size',d.planet+'px');}
  window.OneAGEHomeLayout=Object.freeze({mode,dimensions,fit,depth:()=>root.dataset.orbitDepth==='spatial'});
- landscape.addEventListener('change',sync);window.addEventListener('resize',sync,{passive:true});window.addEventListener('pageshow',sync);sync();
+ landscape.addEventListener('change',sync);window.addEventListener('resize',sync,{passive:true});window.addEventListener('pageshow',sync);window.addEventListener('orientationchange',sync);window.screen?.orientation?.addEventListener?.('change',sync);sync();
 })();
