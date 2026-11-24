@@ -3,26 +3,36 @@
  const $=selector=>document.querySelector(selector),brand=$('.brand'),wings=$('.header-wings');
  let group='closed';
  const paths={social:'<circle cx="20" cy="19" r="6"/><circle cx="44" cy="19" r="6"/><circle cx="32" cy="43" r="6"/><path d="m24 22 6 15m10-15-6 15M26 19h12"/>',about:'<circle cx="32" cy="32" r="24"/><path d="M32 29v18M32 18v2"/>',store:'<path d="M12 24h40l-4 30H16zM22 24v-7a10 10 0 0 1 20 0v7"/>',blog:'<rect x="10" y="10" width="44" height="44" rx="4"/><path d="M20 21h24M20 31h24M20 41h16"/>',contact:'<rect x="8" y="14" width="48" height="36" rx="6"/><path d="m9 16 23 18 23-18"/>'};
+ let socials=[{name:'GitHub',symbol:'GH',url:'https://github.com/1AGEthe3rd/1age'}];
+ const extraApps=[{"name":"Design","url":"https://1age.design/","art":"<path d=\"M12 49L40 12l12 12-37 28z M35 17l12 12\"/>"},{"name":"Blog","url":"https://1age.blog/","art":"<path d=\"M12 12h40v40H12z M20 23h24M20 32h24M20 41h16\"/>"},{"name":"Store","url":"https://1age.store/","art":"<path d=\"M12 24h40l-4 30H16z M22 24v-7a10 10 0 0 1 20 0v7\"/>"},{"name":"Shop","url":"https://1age.shop/","art":"<path d=\"M8 14h7l6 28h28l6-20H18 M24 51h2 M45 51h2\"/>"},{"name":"Plus","url":"https://1age.plus/","art":"<path d=\"M32 12v40M12 32h40\"/>"},{"name":"App","url":"https://1age.app/","art":"<path d=\"M12 12h16v16H12z M36 12h16v16H36z M12 36h16v16H12z M36 36h16v16H36z\"/>"},{"name":"Forum","url":"https://1age.forum/","art":"<path d=\"M9 12h46v31H30L17 53V43H9z M19 23h26M19 32h18\"/>"},{"name":"Work","url":"https://1age.work/","art":"<path d=\"M8 21h48v32H8z M23 21v-9h18v9 M8 33h48\"/>"}];
  function header(next){
-  group=next;if(!brand||!wings)return;
+  if(!brand||!wings)return;
   const hub=wings.parentElement,restoreFocus=document.activeElement===brand;
-  hub.style.setProperty('--menu-row-height',brand.offsetHeight+'px');
   if(wings.contains(brand))hub.append(brand);
-  wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label','1AGE menu');wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
+  group=next;
+  wings.classList.add('header-slider');wings.setAttribute('role','navigation');wings.setAttribute('aria-label','1AGE menu');
+  wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));
   if(next==='closed'){if(restoreFocus)brand.focus({preventScroll:true});return;}
-  const items=[{name:'Store',icon:'store',url:'https://1age.store/'},{name:'Blog',icon:'blog',url:'https://1age.blog/'}];
-  const track=document.createElement('div');track.className='header-slider-track';track.tabIndex=0;track.setAttribute('aria-label','Slide the whole 1AGE menu');wings.append(track);
-  const split=Math.ceil(items.length/2);
-  items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
-   if(item.url){node.href=new URLSearchParams(location.search).get('preview')==='commerce'&&['store','blog'].includes(item.icon)?'/experiences/'+item.icon+'/':item.url;}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else{node.disabled=true;}}
-   const circle=document.createElement('span');circle.className='header-planet-circle';if(item.icon)circle.innerHTML=`<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">${paths[item.icon]}</svg>`;else circle.textContent=item.symbol;
-   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);if(index===split&&!document.documentElement.dataset.homeSite)track.append(brand);track.appendChild(node);
+  const items=next==='social'?[{name:'Back',symbol:'‹',action:()=>header('main')},...socials]:[...extraApps,{name:'Social',art:paths.social,action:()=>header('social')}];
+  const track=document.createElement('div');track.className='header-slider-track';track.tabIndex=0;track.setAttribute('aria-label','Slide menu horizontally');wings.append(track);
+  const portrait=document.documentElement.dataset.touchLayout==='portrait';
+  const split=portrait?Math.ceil(items.length/2):items.length;
+  items.forEach((item,index)=>{
+   if(index===split)track.append(brand);
+   const node=document.createElement(item.url?'a':'button');node.className='header-planet';
+   if(item.url){node.href=item.url;if(next==='social'){node.target='_blank';node.rel='noopener noreferrer';}}else{node.type='button';if(item.action)node.addEventListener('click',item.action);else node.disabled=true;}
+   const circle=document.createElement('span');circle.className='header-planet-circle';
+   if(item.art)circle.innerHTML='<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+item.art+'</svg>';else circle.textContent=item.symbol;
+   const label=document.createElement('span');label.textContent=item.name;node.append(circle,label);track.append(node);
   });
-  if(!document.documentElement.dataset.homeSite&&!track.contains(brand))track.append(brand);
+  if(!track.contains(brand))track.append(brand);
+  requestAnimationFrame(()=>{if(group==='closed'||!track.isConnected)return;track.scrollLeft=portrait?brand.offsetLeft-(track.clientWidth-brand.offsetWidth)/2:track.scrollWidth;});
   if(restoreFocus)brand.focus({preventScroll:true});
-  requestAnimationFrame(()=>{if(group==='closed'||!track.isConnected||document.documentElement.dataset.homeSite)return;track.scrollLeft+=brand.getBoundingClientRect().left-track.getBoundingClientRect().left-(track.clientWidth-brand.offsetWidth)/2;});
  }
- brand?.addEventListener('click',()=>header(group==='closed'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
+ fetch('/data/header-links.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{socials=(data.socials||[]).filter(item=>{try{return new URL(item.url).protocol==='https:';}catch{return false;}}).map(item=>({name:item.name,symbol:item.symbol||item.name[0],url:item.url}));if(group==='social')header('social');}).catch(()=>{});
+ window.addEventListener('1age-layout-change',()=>{if(group!=='closed')header(group);});
+
+ brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  if(wings){
   wings.addEventListener('keydown',e=>{
    const nodes=[...wings.querySelectorAll('a,button:not(:disabled)')];
