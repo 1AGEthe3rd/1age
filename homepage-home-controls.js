@@ -73,7 +73,7 @@
  window.addEventListener('blur',resetGlobeInput);
  window.addEventListener('pagehide',resetGlobeInput);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)resetGlobeInput();});
- globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}const portrait=document.documentElement.dataset.touchLayout==='portrait';highlight=portrait?globe.getAttribute('aria-expanded')!=='true':!highlight;sync();window.dispatchEvent(new CustomEvent('1age-orbit-visibility',{detail:highlight}));});
+ globe.addEventListener('click',()=>{if(dragged||multi){dragged=false;return;}const portrait=document.documentElement.dataset.touchLayout==='portrait';highlight=portrait?globe.getAttribute('aria-expanded')!=='true':!highlight;sync();window.dispatchEvent(new CustomEvent('1age-orbit-visibility',{detail:highlight}));window.dispatchEvent(new Event('1age-globe-activated'));});
  globe.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:e.key==='ArrowLeft'?-.04:.04}));});
  function fit(){
  if(document.visibilityState==='hidden'||document.body.classList.contains('results-open')||document.body.classList.contains('information-open')||document.activeElement?.matches('input,textarea,[contenteditable="true"]'))return;
