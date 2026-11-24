@@ -1,0 +1,4 @@
+import {readFileSync} from 'node:fs';import assert from 'node:assert/strict';import test from 'node:test';
+const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
+test('homepage loads hardware-only controller, not shared visual gamepad',()=>{const html=read('index.html');assert.match(html,/homepage-hardware-input\.mjs/);assert.doesNotMatch(html,/src="\/home-gamepad\.mjs/);assert.match(read('homepage-hardware-input.mjs'),/homepage-hardware-gamepad\.mjs/);const hardware=read('homepage-hardware-gamepad.mjs');assert.doesNotMatch(hardware,/createElement|document\.body\.append|oneage-knob|oneage-stick/);assert.match(hardware,/getGamepads/);});
+test('portrait removes only homepage visual joystick pair',()=>{assert.match(read('homepage-console-controls.js'),/else consoleNode\.remove\(\)/);assert.match(read('index.html'),/#oneage-controller \{display:none!important/);});
