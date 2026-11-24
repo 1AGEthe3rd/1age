@@ -8,10 +8,7 @@ test('orientation recovery clears stale gestures, touches and animation while re
 });
 test('fresh portrait hides dial; rotation preserves open dial',()=>{
  const code=source.slice(source.indexOf('  let lastMode=null;'),source.indexOf("  window.addEventListener('1age-orbit-visibility'"));
- const root={dataset:{touchLayout:'portrait'}};let open=true;
- const run=new Function('document','window','scene','requestAnimationFrame','resetOrbitInput','layout','setOrbitOpen', 'let open=true;'+code+'return {sync:syncOrbitMode,visible:()=>open};');
- const api=run({documentElement:root},{OneAGEHomeLayout:{fit(){}}},{},()=>{},()=>{},()=>{},v=>open=v);
- // setOrbitOpen is the real function in production; use closure-compatible test below.
+ const root={dataset:{touchLayout:'portrait'}};
  const actual=new Function('document','requestAnimationFrame','window','scene','resetOrbitInput','layout', 'let open=true;function setOrbitOpen(v){open=v;}'+code+'return {sync:syncOrbitMode,visible:()=>open};')({documentElement:root},()=>{},{},{},()=>{},()=>{});
  actual.sync();assert.equal(actual.visible(),false);root.dataset.touchLayout='landscape';actual.sync();assert.equal(actual.visible(),true);root.dataset.touchLayout='portrait';actual.sync();assert.equal(actual.visible(),true);
 });
