@@ -9,6 +9,7 @@
   const scene = document.querySelector('.world-scene');
   const planets = [...orbit.querySelectorAll('.project-planet')];
   const globe = document.querySelector('.world-globe');
+  const dialSelection = document.querySelector('.dial-selection');
   const track = document.querySelector('#preview-track');
   const projectStrip = document.querySelector('.project-strip');
   const projectButtons = [...document.querySelectorAll('[data-project]')];
@@ -18,6 +19,7 @@
   const touchPointers=new Set();
   let suppressOrbitClick=false;
   function showPreview(index) {
+    if (dialSelection) {dialSelection.textContent=planets[index].querySelector('span')?.textContent || '';dialSelection.hidden=!open;}
     if (selected === index) return;
     selected = index;
     projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
@@ -225,7 +227,7 @@
       orbit.focus({preventScroll:true});
     }
   });
-  function setOrbitOpen(value){open=value;orbit.hidden=!open;globe.setAttribute('aria-expanded',String(open));if(open){hasTurned=true;requestAnimationFrame(layout);}}
+  function setOrbitOpen(value){open=value;orbit.hidden=!open;if(dialSelection)dialSelection.hidden=!open;globe.setAttribute('aria-expanded',String(open));if(open){hasTurned=true;requestAnimationFrame(layout);}}
   let lastMode=null;
   function syncOrbitMode(){
     resetOrbitInput();

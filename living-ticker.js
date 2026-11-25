@@ -70,6 +70,8 @@
       shop: ['1AGE Shop — Discover blockchain creators and products.', 'The public marketplace direction connects independent creators and merchants.', 'The current product-link catalog is browser-local. Shared marketplace services are in development.'],
       store: ['1AGE Store — Official studio products.', 'The official store belongs to 1AGEthe3rd.', 'The current browser catalog is local. Checkout and public product listings are not connected here.'],
       app: ['1AGE App — Discover the applications.', 'Browse links to the existing 1AGE workspaces.', 'Application discovery and distribution scope will expand as features are completed.'],
+      work: ['1AGE Work — Discover opportunities.', 'Explore local and global work opportunities as development progresses.', 'Employer and contributor workflows are planned; do not assume live job listings.'],
+      forum: ['1AGE Forum — Local and global community discussions.', 'Discover community conversations as the service develops.', 'Community posting and moderation are planned.'],
       world: ['1AGE World — One connected universe.', 'Explore the immersive environment and its application destinations.', 'Web hosting and native launch paths are being reconciled; application services develop independently.']
     };
     window.addEventListener('1age-project-selected', event => {
