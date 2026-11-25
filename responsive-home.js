@@ -28,7 +28,14 @@
   const orbitH=Math.min(h-p-30,earth*.57);
   return {planet:p,orbitW,orbitH,earth};
  }
- function fit(scene){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;const d=dimensions(w,h,root.dataset.orbitDepth==='flat',root.dataset.touchLayout==='portrait');scene.style.setProperty('--earth',d.earth+'px');scene.style.setProperty('--orbit-diameter',d.orbitW+'px');scene.style.setProperty('--orbit-height',d.orbitH+'px');root.style.setProperty('--ui-planet-size',d.planet+'px');}
- window.OneAGEHomeLayout=Object.freeze({mode,dimensions,fit,depth:()=>root.dataset.orbitDepth==='spatial'});
+ // Preserve the original Earth and planet sizes; use remaining scene area for the orbit.
+ function expandDial(d,w,h,flat){
+  const margin=flat?12:24;
+  if(flat){const maxDiameter=Math.max(d.orbitW,Math.min(w-d.planet-margin,h-d.planet-38));d.orbitW=d.orbitH=maxDiameter;}
+  else {d.orbitW=Math.max(d.orbitW,Math.min(w-d.planet*1.06-margin,Math.max(d.orbitW*1.18,d.earth*1.8)));d.orbitH=Math.max(d.orbitH,Math.min(h-d.planet*1.06-24,Math.max(d.orbitH*1.35,d.earth*.85)));}
+  return d;
+ }
+ function fit(scene){const w=scene.clientWidth,h=scene.clientHeight;if(w<1||h<1)return;const d=dimensions(w,h,root.dataset.orbitDepth==='flat',root.dataset.touchLayout==='portrait');if(root.dataset.mainDial==='ten'&&scene.querySelectorAll('.project-planet').length===10)expandDial(d,w,h,root.dataset.orbitDepth==='flat');scene.style.setProperty('--earth',d.earth+'px');scene.style.setProperty('--orbit-diameter',d.orbitW+'px');scene.style.setProperty('--orbit-height',d.orbitH+'px');root.style.setProperty('--ui-planet-size',d.planet+'px');}
+ window.OneAGEHomeLayout=Object.freeze({mode,dimensions,expandDial,fit,depth:()=>root.dataset.orbitDepth==='spatial'});
  landscape.addEventListener('change',sync);window.addEventListener('resize',sync,{passive:true});window.addEventListener('pageshow',sync);window.addEventListener('orientationchange',sync);window.screen?.orientation?.addEventListener?.('change',sync);sync();
 })();
