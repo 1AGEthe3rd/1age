@@ -17,14 +17,26 @@ const formHome = document.createComment('homepage search position');
 form.before(formHome);
 const searchBar = document.createElement('div');
 searchBar.className = 'results-searchbar';
-const homeButton = document.createElement('button');
-homeButton.type = 'button';homeButton.className = 'results-home';
-homeButton.setAttribute('aria-label','Return to 1AGE home');
-const homeLogo=document.createElement('img');
-homeLogo.src='/assets/1age-logo.svg';homeLogo.alt='';homeLogo.width=44;homeLogo.height=44;
-homeButton.append(homeLogo);
-homeButton.addEventListener('click',closeResults);
-searchBar.append(homeButton);section.prepend(searchBar);
+const originalHub=$('.header-hub'),originalHeader=originalHub.parentElement;
+const menuHome=document.createComment('original 1AGE menu position');originalHub.before(menuHome);
+const workspaceTop=element('div','search-workspace-top');
+const menuDock=element('div','search-menu-dock');
+const navigation=element('nav','search-view-nav');navigation.setAttribute('aria-label','Search workspace views');
+const back=element('button','search-home-back','← Home');back.type='button';back.addEventListener('click',closeResults);
+const searchNav=element('button','search-view-button','Search');searchNav.type='button';
+const discoverNav=element('button','search-view-button','Discover');discoverNav.type='button';
+const savedNav=element('button','search-view-button','Saved');savedNav.type='button';
+const profile=element('a','search-view-button','Page');profile.href='https://1age.page/';
+navigation.append(back,searchNav,discoverNav,savedNav,profile);
+const tabs=element('div','search-category-tabs');tabs.setAttribute('role','group');tabs.setAttribute('aria-label','Filter result type');
+workspaceTop.append(menuDock,searchBar,navigation,tabs);section.prepend(workspaceTop);
+const intelligence=element('section','search-intelligence');intelligence.setAttribute('aria-label','1AGE Intelligence');intelligence.hidden=true;
+section.querySelector('.results-header').after(intelligence);
+let view='search',category='all',ranked=[],saved=new Map(),loaded=false;
+try{const stored=JSON.parse(localStorage.getItem('1age-search-saved-v1')||'[]');if(Array.isArray(stored))for(const record of stored.slice(0,100)){if(record&&typeof record.id==='string'&&typeof record.name==='string')saved.set(record.id,record);}}catch{}
+function persist(){try{localStorage.setItem('1age-search-saved-v1',JSON.stringify([...saved.values()]));}catch{}}
+function mountMenu(){if(originalHub.parentElement!==menuDock){window.dispatchEvent(new Event('1age-header-close'));menuDock.append(originalHub);}}
+function restoreMenu(){window.dispatchEvent(new Event('1age-header-close'));menuHome.after(originalHub);}
 label.tabIndex = -1;
 
 let requestVersion = 0;
@@ -32,15 +44,55 @@ let pageSize = 20;
 let mode = '1age';
 let currentQuery = '';
 let currentRecords = [];
-const categorySelect = document.createElement('select');
-categorySelect.setAttribute('aria-label', 'Filter search category');categorySelect.className='result-category-select';
-for (const [value,title] of [['','All categories'],['projects','Projects'],['people','People'],['communities','Communities'],['social','Social'],['games','Games'],['space','Spaces'],['opportunities','Opportunities'],['content','Content'],['developers','Developers']]) {
- const option=document.createElement('option');option.value=value;option.textContent=title;categorySelect.append(option);
+const categories=[['all','All'],['networks','Networks'],['apps','Apps'],['community','Community'],['earn','Earn'],['assets','Assets'],['people','People'],['knowledge','Knowledge']];
+const tabButtons=new Map();
+for(const [id,title] of categories){
+ const button=element('button','search-category',title);button.type='button';button.setAttribute('aria-pressed',String(id==='all'));
+ button.addEventListener('click',()=>{category=id;pageSize=20;renderView();});tabs.append(button);tabButtons.set(id,button);
 }
-categorySelect.addEventListener('change',()=>{pageSize=20;render(searchEntities(currentQuery,currentRecords),currentQuery);});
-label.after(categorySelect);
-
-
+function matchesCategory(item,kind){
+ const type=String(item.type||'').toLowerCase(),cat=String(item.category||'').toLowerCase();
+ if(kind==='all')return true;
+ if(kind==='networks')return ['blockchain','network','ledger','layer2'].includes(type)||['network','blockchain','distributed ledger','permissioned ledger'].includes(cat);
+ if(kind==='community')return ['community','social','discussion','message','announcement'].includes(type)||['community','social'].includes(cat);
+ if(kind==='earn')return ['opportunity','bounty','quest','job','grant','hackathon'].includes(type)||['opportunities','bounties','quests','jobs','grants','hackathons'].includes(cat);
+ if(kind==='assets')return ['nft','token','parcel','land','estate','asset','collection','property','listing','marketplace_listing'].includes(type)||['nft','nfts','tokens','virtual land','digital assets','property','properties'].includes(cat);
+ if(kind==='people')return ['person','profile','creator','identity'].includes(type)||['people','identity'].includes(cat);
+ if(kind==='knowledge')return ['tool','documentation','content','article','research','proposal','repository','tutorial'].includes(type)||['documentation','developer tools','content','research','governance'].includes(cat);
+ return ['project','defi','wallet','explorer','platform','game','games','exchange','space','marketplace','shop','store','world','cash','design','membership'].includes(type);
+}
+function setView(next){if(next==='search'&&view!=='search'){showResults();return;}view=next;category='all';pageSize=20;renderView();}
+searchNav.addEventListener('click',()=>setView('search'));
+savedNav.addEventListener('click',()=>setView('saved'));
+discoverNav.addEventListener('click',async()=>{
+ if(view==='discover')return;
+ const version=++requestVersion;view='discover';category='all';pageSize=20;loaded=false;ranked=[];renderView();
+ try{const records=await window.ageIndex.load('all');if(version!==requestVersion||view!=='discover')return;ranked=records;loaded=true;renderView();}
+ catch{if(version!==requestVersion)return;loaded=true;label.textContent='Discovery index unavailable';results.replaceChildren(element('p','empty-state','Return to Search and try again.'));}
+});
+function updateNavigation(){
+ for(const [name,node] of [['search',searchNav],['discover',discoverNav],['saved',savedNav]])node.setAttribute('aria-pressed',String(view===name));
+ for(const [id,button] of tabButtons)button.setAttribute('aria-pressed',String(category===id));
+}
+function renderIntelligence(items){
+ intelligence.replaceChildren();intelligence.hidden=view!=='search'||!items.length;
+ if(intelligence.hidden)return;
+ const heading=element('h2','intelligence-heading','✦ 1AGE Intelligence');
+ const status=element('span','intelligence-status','Index overview · not generative AI');
+ intelligence.append(heading,status);
+ const top=items.find(item=>item.description&&window.ageIndex.validLink(item));
+ if(top){const p=element('p','intelligence-answer',top.name+' — '+top.description);intelligence.append(p);
+  const source=element('a','intelligence-source','Source: '+top.name+' ↗');source.href=window.ageIndex.validLink(top).href;source.target='_blank';source.rel='noopener noreferrer';intelligence.append(source);}
+ const overview=element('details','intelligence-more');overview.append(element('summary','','Explore indexed matches'));
+ for(const item of items.slice(0,5)){const url=window.ageIndex.validLink(item);if(!url)continue;const link=element('a','intelligence-source',item.name+' ↗');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';overview.append(link);}
+ intelligence.append(overview);
+}
+function renderView(){
+ updateNavigation();const records=view==='saved'?[...saved.values()]:ranked;
+ const items=records.filter(item=>matchesCategory(item,category));renderIntelligence(items);render(items,currentQuery);
+ if(view==='saved')label.textContent=items.length+' saved '+(items.length===1?'result':'results')+' · stored on this device';
+ if(view==='discover')label.textContent=loaded?items.length+' indexed resources':'Loading discovery…';
+}
 const suggestions = {
   '1age': [
     ['World', 'world'],
@@ -66,7 +118,7 @@ function element(tag, className, text) {
 
 function searchEntities(query, records) {
   currentRecords=records;
-  return window.ageIndex.search(records, query, categorySelect.value || document.body.dataset.searchScope);
+  return window.ageIndex.search(records, query, document.body.dataset.searchScope);
 }
 
 function render(items, query) {
@@ -78,7 +130,7 @@ function render(items, query) {
   if (!items.length) {
     results.append(element(
       'p', 'empty-state',
-      'No match in the current index. Try a project, network, wallet, developer tool or community name. Individual wallets, transactions and profiles are not yet indexed.'
+      view==='saved'?'No saved results in this category. Use the bookmark button on a search result.':view==='discover'&&!loaded?'Loading indexed resources…':'No indexed matches in this category. Try All or a different query. Individual assets, messages and opportunities are shown only when indexed.'
     ));
     return;
   }
@@ -97,11 +149,21 @@ function render(items, query) {
     if(networks)context.append(element('span','result-network',networks));
     const name=element('h2','result-title');
     if(url)name.append(linkTo(url,entity.name,'result-title-link'));else name.textContent=entity.name;
-    top.append(context,name);card.append(top);
+    const bookmark=element('button','result-bookmark',saved.has(entity.id)?'★':'☆');bookmark.type='button';bookmark.setAttribute('aria-label',saved.has(entity.id)?'Remove saved result':'Save result');bookmark.setAttribute('aria-pressed',String(saved.has(entity.id)));
+    bookmark.addEventListener('click',()=>{if(saved.has(entity.id))saved.delete(entity.id);else {if(saved.size>=100){bookmark.title='Saved results limit reached';return;}saved.set(entity.id,entity);}persist();if(view==='saved'){renderView();return;}bookmark.textContent=saved.has(entity.id)?'★':'☆';bookmark.setAttribute('aria-pressed',String(saved.has(entity.id)));bookmark.setAttribute('aria-label',saved.has(entity.id)?'Remove saved result':'Save result');});
+    top.append(context,name);card.append(bookmark,top);
     if(url)card.append(element('p','result-domain',url.hostname));
     if(entity.description)card.append(element('p','result-description',entity.description));
+    // Optional structured fields: render only data supplied by a real indexed record.
+    const facts=element('dl','result-facts');
+    for(const [key,title] of [['reward','Reward'],['deadline','Deadline'],['price','Price'],['coordinates','Coordinates'],['availability','Availability'],['provider','Platform']]){
+     const value=entity[key];if((typeof value!=='string'&&typeof value!=='number')||String(value).length>180)continue;
+     facts.append(element('dt','',title),element('dd','',String(value)));
+    }
+    if(facts.children.length)card.append(facts);
+    if(view==='saved')card.append(element('p','result-status','Saved snapshot · check original source for updates'));
     const actions=element('div','result-actions');
-    if(url)actions.append(linkTo(url,'Open website ↗','result-primary'));
+    if(url)actions.append(linkTo(url,['bounty','quest','job','parcel','land','nft','token','listing','marketplace_listing','property','asset'].includes(String(entity.type).toLowerCase())?'Open listing ↗':'Open source ↗','result-primary'));
     const labels={docs:'Documentation',documentation:'Documentation',github:'GitHub',discord:'Discord',twitter:'X',x:'X',marketplace:'Marketplace',app:'Open app',explorer:'Explorer'};
     for(const [kind,destination] of Object.entries(entity.official_links||{})){
       if(kind==='website'||!destination)continue;
@@ -155,8 +217,9 @@ function updateURL() {
 
 async function showResults() {
   const version = ++requestVersion;
+  view='search';category='all';ranked=[];loaded=false;
   section.hidden = false;
-  document.body.classList.add('results-open', 'search-open');
+  document.body.classList.add('results-open', 'search-open');mountMenu();updateNavigation();intelligence.hidden=true;
   form.hidden = false;
   document.querySelector('.search-circle')?.setAttribute('aria-expanded','true');
   if(form.parentElement!==searchBar)searchBar.append(form);
@@ -165,13 +228,13 @@ async function showResults() {
   label.textContent = 'Loading search index…';
   try {
     const records = await window.ageIndex.load('all', currentQuery);
-    if (version !== requestVersion) return;
+    if (version !== requestVersion||view!=='search') return;
     const info = window.ageIndex.info();
     note.textContent = `${info.records} indexed resources · ${info.networks} networks · ${info.fallback ? 'Backup data loaded · ' : ''}Source checks do not establish ownership or safety${window.ageSearchCore.plan(currentQuery).requestedTop ? ' · Ranked by relevance, not popularity' : ''}`;
-    render(searchEntities(currentQuery, records), currentQuery);
+    ranked=searchEntities(currentQuery, records);loaded=true;if(view==='search')renderView();
     section.scrollTop = 0;
   } catch (error) {
-    if (version !== requestVersion) return;
+    if (version !== requestVersion||view!=='search') return;
     label.textContent = 'Search index unavailable.';
     results.append(element('p', 'empty-state', 'Check your connection and try again.'));
     const retry = element('button', 'quick-search', 'Retry search');
@@ -240,7 +303,7 @@ form.addEventListener('submit', event => {
 
 function closeResults() {
   requestVersion++;
-  section.hidden = true;
+  restoreMenu();section.hidden = true;
   document.body.classList.remove('results-open','search-open');
   formHome.after(form);form.hidden = true;
   const control=document.querySelector('.search-circle');

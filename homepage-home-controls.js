@@ -15,7 +15,7 @@
   if(next==='closed'){if(restoreFocus)brand.focus({preventScroll:true});return;}
   const items=next==='social'?[{name:'Back',symbol:'‹',action:()=>header('main')},...socials]:[...extraApps,{name:'Social',art:paths.social,action:()=>header('social')}];
   const track=document.createElement('div');track.className='header-slider-track';track.tabIndex=0;track.setAttribute('aria-label','Slide menu horizontally');wings.append(track);
-  const portrait=document.documentElement.dataset.touchLayout==='portrait';
+  const portrait=document.documentElement.dataset.touchLayout==='portrait'||document.body.classList.contains('results-open');
   const split=portrait?Math.ceil(items.length/2):items.length;
   items.forEach((item,index)=>{
    if(index===split)track.append(brand);
@@ -31,6 +31,7 @@
  }
  fetch('/data/header-links.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{socials=(data.socials||[]).filter(item=>{try{return new URL(item.url).protocol==='https:';}catch{return false;}}).map(item=>({name:item.name,symbol:item.symbol||item.name[0],url:item.url}));if(group==='social')header('social');}).catch(()=>{});
  window.addEventListener('1age-layout-change',()=>{if(group!=='closed')header(group);});
+ window.addEventListener('1age-header-close',()=>header('closed'));
 
  brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  if(wings){
