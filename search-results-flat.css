@@ -1,0 +1,31 @@
+/* Homepage results only. Preserve the cosmic entrance. */
+html[data-home-site="search"] body.home-screen.results-open #results-section{--search-ink:#f4f5f4;--search-muted:#a5ada9;--search-line:#252d29;background:#000!important;color:var(--search-ink);padding:0 clamp(16px,4vw,48px) 56px!important;max-width:none!important;}
+html[data-home-site="search"] .results-open .results-searchbar{gap:12px;width:min(100%,1000px);padding:16px 0;background:#000;border-bottom:1px solid var(--search-line);}
+html[data-home-site="search"] .results-open .results-home{width:48px;height:48px;min-width:48px;}
+html[data-home-site="search"] .results-open .results-searchbar .search-form{height:48px;min-height:48px;border:1px solid #3b4942;border-radius:24px;background:#101512;gap:8px;padding:4px 5px 4px 12px;}
+html[data-home-site="search"] .results-open .results-searchbar .search-form>span{margin:0;font-size:24px;}
+html[data-home-site="search"] .results-open .results-searchbar .search-form input{background:transparent;min-width:0;font-size:16px;}
+html[data-home-site="search"] .results-open .results-searchbar .search-form button{background:#1bfd9c;color:#03120b;font-weight:700;border-radius:20px;height:38px;padding:0 14px;margin:0;}
+html[data-home-site="search"] .results-open .results-header{width:min(100%,1000px);padding:18px 0 12px;gap:12px;align-items:center;}
+html[data-home-site="search"] .results-open #results-label{font-size:17px;font-weight:650;color:var(--search-ink);flex:1 1 140px;}
+html[data-home-site="search"] .results-open .result-category-select{color:var(--search-ink);background:#101512;border:1px solid #3b4942;border-radius:7px;padding:9px;max-width:100%;font:inherit;font-size:13px;}
+html[data-home-site="search"] .results-open .index-note{color:var(--search-muted);font-size:12px;line-height:1.5;}
+html[data-home-site="search"] .results-open #results{width:min(100%,1000px);margin-top:0;}
+html[data-home-site="search"] .results-open #results .result-card{padding:22px 0;border-bottom:1px solid var(--search-line);border-radius:0;box-shadow:none;background:transparent;}
+html[data-home-site="search"] .results-open .result-topline{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+html[data-home-site="search"] .results-open .result-context{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+html[data-home-site="search"] .results-open .result-type{color:var(--search-muted);font-size:12px;text-transform:none;letter-spacing:0;background:#101512;padding:3px 8px;border-radius:4px;}
+html[data-home-site="search"] .results-open .result-network{font-size:12px;color:var(--search-muted);}
+html[data-home-site="search"] .results-open .result-title{font-size:clamp(20px,3.8vw,24px);line-height:1.25;letter-spacing:-.025em;font-weight:650;margin:0;}
+html[data-home-site="search"] .results-open .result-title-link{color:#e9fff3;text-decoration:none;}
+html[data-home-site="search"] .results-open .result-title-link:hover{text-decoration:underline;color:#1bfd9c;}
+html[data-home-site="search"] .results-open .result-domain{font-size:12px;color:#9da9a2;overflow-wrap:anywhere;margin:6px 0;}
+html[data-home-site="search"] .results-open .result-description{font-size:15px;line-height:1.55;color:#d6ded9;max-width:80ch;margin:8px 0 12px;}
+html[data-home-site="search"] .results-open .result-actions{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:10px 0;}
+html[data-home-site="search"] .results-open .result-actions>a{font-size:13px;text-decoration:none;overflow-wrap:anywhere;padding:7px 0;}
+html[data-home-site="search"] .results-open .result-actions .result-primary{padding:8px 12px;border:1px solid #385747;border-radius:7px;color:#1bfd9c;font-weight:650;}
+html[data-home-site="search"] .results-open .result-evidence{margin:8px 0;color:var(--search-muted);font-size:13px;}
+html[data-home-site="search"] .results-open .result-evidence summary{cursor:pointer;min-height:30px;line-height:30px;color:#aebbb3;}
+html[data-home-site="search"] .results-open .result-status{font-size:12px;text-transform:none;letter-spacing:0;line-height:1.5;margin:7px 0;color:var(--search-muted);}
+html[data-home-site="search"] .results-open .result-review-warning{font-size:12px;color:#f0c88d;line-height:1.5;}
+@media(max-width:480px){html[data-home-site="search"] .results-open .results-searchbar{gap:8px;}html[data-home-site="search"] .results-open .results-searchbar .search-form button{padding:0 10px;}html[data-home-site="search"] .results-open .results-searchbar .search-form button span{display:none;}}
