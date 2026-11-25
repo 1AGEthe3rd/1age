@@ -1,6 +1,6 @@
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
-async function exercise(source){
+async function exercise(source,firstSubmit=false){
  class N{
  constructor(tag='div'){this.tagName=tag;this.children=[];this.parentElement=null;this.listeners={};this.attributes={};this.className='';this.dataset={};this.hidden=false;this.textContent='';}
  remove(){if(this.parentElement){const p=this.parentElement;p.children.splice(p.children.indexOf(this),1);this.parentElement=null;}}
@@ -22,12 +22,13 @@ async function exercise(source){
  const document={body,title:'1AGE',querySelector:q=>body.querySelector(q),querySelectorAll:q=>body.querySelectorAll(q),createElement:t=>new N(t),createComment:()=>new N('comment')};
  const records=[{id:'sol',name:'Solana',type:'blockchain',category:'Network',description:'Public blockchain network.',networks:['Solana'],official_links:{website:'https://solana.com/'}},{id:'docs',name:'Developer resources',type:'documentation',description:'Public docs.',official_links:{website:'https://solana.com/docs'}},{id:'bounty-fixture',name:'Test bounty',type:'bounty',reward:'100 USDC',deadline:'2026-12-01',official_links:{website:'https://example.com/bounty'}},{id:'parcel-fixture',name:'Test parcel',type:'parcel',coordinates:'12,-45',official_links:{website:'https://example.com/parcel'}}];
  class URLStub{constructor(raw){if(typeof raw!=='string'||!raw.startsWith('https://'))throw Error('invalid URL');this.href=raw;this.hostname=raw.split('/')[2];this.origin='https://'+this.hostname;this.protocol='https:';this.searchParams={set(){},delete(){}};}}
- const location=new URLStub('https://1age.com/');location.search='?q=solana';const storage=new Map(),events=[];
+ const location=new URLStub('https://1age.com/');location.search=firstSubmit?'':'?q=solana';const storage=new Map(),events=[];
  const window={location,history:{replaceState(){}},dispatchEvent:e=>events.push(e.type),ageSearchCore:{plan:()=>({})},ageIndex:{prepare:async()=>{},load:async()=>records,search:r=>r,info:()=>({records:4,networks:1}),validLink:r=>{try{return new URLStub(r.official_links?.website);}catch{return null;}},authenticity:()=>({label:'Unverified listing'}),related:()=>[]}};
  const localStorage={getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)};
  class EventStub{constructor(type){this.type=type;}}
- class ParamsStub{get(k){return k==='q'?'solana':null;}}
+ class ParamsStub{get(k){return k==='q'&&!firstSubmit?'solana':null;}}
  new Function('document','window','location','localStorage','Event','URL','URLSearchParams',source)(document,window,location,localStorage,EventStub,URLStub,ParamsStub);
+ if(firstSubmit){if(!section.hidden||hub.parentElement!==header)throw Error('homepage was not initially intact');input.value='solana';await form.fire('submit');}
  await Promise.resolve();await Promise.resolve();
  const checks=[];const check=(ok,label)=>{if(!ok)throw Error(label);checks.push(label);};
  check(hub.parentElement.className==='search-menu-dock','original menu mounted');
@@ -54,3 +55,5 @@ async function exercise(source){
  return checks;
 }
 test('interactive search workspace',async()=>{await exercise(readFileSync(new URL('../homepage-search-results.js',import.meta.url),'utf8'));});
+
+test('first submission from untouched homepage opens identical workspace',async()=>{await exercise(readFileSync(new URL('../homepage-search-results.js',import.meta.url),'utf8'),true);});
