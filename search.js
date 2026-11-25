@@ -5,6 +5,22 @@ const $ = selector => document.querySelector(selector);
 const form = $('#search-form');
 if (!form) return;
 
+// Older cached homepage documents may still reference this legacy script.
+// Root search must use the same workspace as a fresh results URL.
+// Other application homepages retain their original search implementation.
+if (location.pathname === '/' && document.body.classList.contains('home-screen')) {
+  if(form.dataset.searchWorkspace==='ready')return;
+  document.documentElement.dataset.homeSite='search';
+  const css=document.createElement('link');css.rel='stylesheet';css.href='/search-results-flat.css?v=workspace-004';document.head.append(css);
+  const script=document.createElement('script');script.src='/homepage-search-results.js?v=workspace-004';
+  let pending=null;
+  function queue(event){event.preventDefault();event.stopImmediatePropagation();const query=document.querySelector('#search-input')?.value?.trim();if(query)pending=query;}
+  form.addEventListener('submit',queue,true);
+  script.onload=()=>{form.removeEventListener('submit',queue,true);if(pending){document.querySelector('#search-input').value=pending;form.requestSubmit();}};
+  script.onerror=()=>{form.removeEventListener('submit',queue,true);if(pending){const url=new URL('/',location.origin);url.searchParams.set('q',pending);url.searchParams.set('search-ui','workspace-004');location.assign(url.href);}};
+  document.head.append(script);return;
+}
+
 const input = $('#search-input');
 const results = $('#results');
 const label = $('#results-label');

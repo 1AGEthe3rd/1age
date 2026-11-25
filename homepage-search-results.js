@@ -3,7 +3,8 @@
 
 const $ = selector => document.querySelector(selector);
 const form = $('#search-form');
-if (!form) return;
+if (!form || form.dataset.searchWorkspace === 'ready') return;
+form.dataset.searchWorkspace='ready';
 
 const input = $('#search-input');
 const results = $('#results');
@@ -219,12 +220,12 @@ function updateURL() {
 async function showResults() {
   const version = ++requestVersion;
   view='search';category='all';ranked=[];loaded=false;
-  section.hidden = false;
   document.body.classList.add('results-open', 'search-open');mountMenu();updateNavigation();intelligence.hidden=true;
   form.hidden = false;
   document.querySelector('.search-circle')?.setAttribute('aria-expanded','true');
   if(form.parentElement!==searchBar)searchBar.append(form);
   results.replaceChildren();
+  section.hidden=false;
   if (!currentQuery) { label.textContent = 'Enter a search term.'; return; }
   label.textContent = 'Loading search index…';
   try {
