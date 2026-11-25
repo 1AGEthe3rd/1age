@@ -17,7 +17,7 @@ html[data-home-site="search"][data-touch-layout="portrait"] :is(.console-control
 html[data-main-dial="ten"] .home-screen .project-planet>span{display:none!important;}
 html[data-main-dial="ten"] .home-screen .dial-selection{position:absolute;z-index:12;left:50%;top:max(0px,calc(50% - max(var(--earth), calc(var(--orbit-height) + var(--ui-planet-size)))*.5 - 28px));transform:translateX(-50%);font-size:clamp(15px,2.5vmin,21px);font-weight:600;line-height:22px;color:#fff;white-space:nowrap;pointer-events:none;}
 html[data-main-dial="ten"] .home-screen .dial-selection[hidden],html[data-main-dial="ten"] .home-screen:is(.results-open,.information-open,.search-open) .dial-selection{display:none!important;}
-</style></head>
+</style><link rel="stylesheet" href="/world-geo.css?v=geo-001"></head>
 <body class="home-screen"><a class="skip" href="#main">Skip to content</a><div class="starfield" aria-hidden="true"></div>
 <header class="site-header"><div class="header-hub"><div class="header-wings" id="header-wings" hidden></div><button class="brand" type="button" aria-label="1AGE menu" aria-expanded="false" aria-controls="header-wings"><span class="brand-circle"><img src="/assets/1age-logo.svg" alt="" width="84" height="84"></span><span class="brand-name">1AGE</span></button></div>
 </header>
@@ -74,4 +74,4 @@ html[data-main-dial="ten"] .home-screen .dial-selection[hidden],html[data-main-d
 </main>
 
 <script src="/homepage-world.js?v=ten-dial-001" defer></script><script src="/homepage-home-controls.js?v=menu-services-001" defer></script><script src="/homepage-console-controls.js?v=portrait-fix-001" defer></script><script src="/search-core.js?v=enterprise-001" defer></script><script src="/search-index.js?v=enterprise-001" defer></script><script src="/homepage-search-results.js?v=workspace-004" defer></script><script type="module" src="/homepage-hardware-input.mjs?v=portrait-fix-002"></script>
-</body></html>
+<script src="/world-geo.js?v=geo-001" defer></script></body></html>
