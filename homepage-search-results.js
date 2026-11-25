@@ -17,7 +17,7 @@ const formHome = document.createComment('homepage search position');
 form.before(formHome);
 const searchBar = document.createElement('div');
 searchBar.className = 'results-searchbar';
-const originalHub=$('.header-hub'),originalHeader=originalHub.parentElement;
+const originalHub=$('.header-hub');
 const menuHome=document.createComment('original 1AGE menu position');originalHub.before(menuHome);
 const workspaceTop=element('div','search-workspace-top');
 const menuDock=element('div','search-menu-dock');
@@ -67,7 +67,7 @@ savedNav.addEventListener('click',()=>setView('saved'));
 discoverNav.addEventListener('click',async()=>{
  if(view==='discover')return;
  const version=++requestVersion;view='discover';category='all';pageSize=20;loaded=false;ranked=[];renderView();
- try{const records=await window.ageIndex.load('all');if(version!==requestVersion||view!=='discover')return;ranked=records;loaded=true;renderView();}
+ try{const records=await window.ageIndex.load('all');if(version!==requestVersion||view!=='discover')return;currentRecords=records;ranked=records;loaded=true;renderView();}
  catch{if(version!==requestVersion)return;loaded=true;label.textContent='Discovery index unavailable';results.replaceChildren(element('p','empty-state','Return to Search and try again.'));}
 });
 function updateNavigation(){
@@ -92,6 +92,7 @@ function renderView(){
  const items=records.filter(item=>matchesCategory(item,category));renderIntelligence(items);render(items,currentQuery);
  if(view==='saved')label.textContent=items.length+' saved '+(items.length===1?'result':'results')+' · stored on this device';
  if(view==='discover')label.textContent=loaded?items.length+' indexed resources':'Loading discovery…';
+ if(view==='search'&&!loaded)label.textContent='Loading search index…';
 }
 const suggestions = {
   '1age': [
@@ -130,7 +131,7 @@ function render(items, query) {
   if (!items.length) {
     results.append(element(
       'p', 'empty-state',
-      view==='saved'?'No saved results in this category. Use the bookmark button on a search result.':view==='discover'&&!loaded?'Loading indexed resources…':'No indexed matches in this category. Try All or a different query. Individual assets, messages and opportunities are shown only when indexed.'
+      view==='saved'?'No saved results in this category. Use the bookmark button on a search result.':view!=='saved'&&!loaded?'Loading indexed resources…':'No indexed matches in this category. Try All or a different query. Individual assets, messages and opportunities are shown only when indexed.'
     ));
     return;
   }
