@@ -1,0 +1,9 @@
+import {profiles} from './vehicle-model.mjs';
+export function mountAutos(host,section){
+ const root=document.createElement('section');host.append(root);const make=(tag,t,parent=root)=>{const e=document.createElement(tag);e.textContent=t;parent.append(e);return e;};const link=(label,url,parent=root)=>{const a=make('a',label,parent);a.href=url;return a;};
+ if(section==='driving'){make('p','Three fictional engineering profiles. No manufacturer calibration, real inventory or authorized digital twin.');for(const p of profiles){const c=make('article','',root);c.className='mission-card';make('strong',p.name,c);make('p',p.drive+' · '+p.mass+' kg · '+p.power+' kW · '+p.wheelbase+' m wheelbase',c);const u=new URL('./drive.html',import.meta.url);u.searchParams.set('vehicle',p.id);link('Open driving sandbox',u.href,c);}return;}
+ if(section==='dealers'){make('p','Javan Imports, Portland: proposed research pilot only. No business participation, inventory, affiliation or permission is verified.');link('Explore HQ1 Portland','https://1age.space/hq1/');link('Discover Space','https://1age.space/');return;}
+ if(section==='parts'){make('p','Future global parts discovery by make, model, year, variant, fitment and local pickup. Shop remains the shared merchant catalog. No parts listed.');link('Explore 1AGE Shop','https://1age.shop/');return;}
+ if(section==='p2p'){make('p','Future peer-to-peer vehicle sales, rentals and parts listings. Verified sellers, ownership documentation, consumer protection and supported settlement required. No transactions available.');link('Explore 1AGE Shop','https://1age.shop/');return;}
+ make('p','Global and local discovery, verified dealerships, imports and supported driving experiences are planned. No live inventory or location index is connected.');link('Explore Space','https://1age.space/');link('Explore Shop','https://1age.shop/');
+}
