@@ -1,0 +1,5 @@
+# 1AGE Pics — foundation 020
+Independent walkable cosmic photography gallery with geographic discovery, portfolio stations and a device-only image preview. The initial gallery contains categories, not fabricated public images or users. Future public media requires authenticated publishing, creator permissions, licensing records, moderation and location privacy controls. The local file reader does not upload or persist images. No marketplace or public media index is connected.
+
+## Domain migration
+Intended domain: https://1age.pics/. Dedicated repository not available at time of this build. Keep this branch isolated. To migrate, copy prototype files into spatial/ of dedicated repository, adjust ../../experiences/shared/ and ../../assets/ to ../ paths, include shared runtime and local assets from verified source, stage root entry using <base href="./spatial/">, set CNAME only in the dedicated repository and verify HTTPS, assets, browser/mobile/controller controls before publication. Do not merge this prototype into the central homepage. No DNS or production changed.
