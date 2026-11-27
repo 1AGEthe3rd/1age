@@ -1,0 +1,5 @@
+# 1AGE LOL — foundation 022
+Independent walkable global comedy club for stand-up, sketches, memes and comedy creators. Initial stations and local text composer, no public posting or fabricated media. Future creator identity, media rights, consent, reporting, moderation and safe community features require separate backend work. Live performances may later connect to the proposed 1AGE Live platform. No advertising, commerce, streaming or public content service is active.
+
+## Domain migration
+Intended domain: https://1age.lol/. Dedicated repository not available at time of this build. Keep this branch isolated. To migrate, copy prototype files into spatial/ of dedicated repository, adjust ../../experiences/shared/ and ../../assets/ to ../ paths, include shared runtime and local assets from verified source, stage root entry using <base href="./spatial/">, set CNAME only in the dedicated repository and verify HTTPS, assets, browser/mobile/controller controls before publication. Do not merge this prototype into the central homepage. No DNS or production changed.
