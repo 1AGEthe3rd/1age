@@ -131,7 +131,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/28",
       "source": "prototypes/1age-work/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "33fb39b27b96d3d34f8fb9b9be52462a1a018201"
     },
     {
       "id": "forum",
@@ -141,7 +142,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/30",
       "source": "prototypes/1age-forum/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "923b2cea7b3221f295ba09ded714b846e3165e58"
     },
     {
       "id": "autos",
@@ -151,7 +153,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/31",
       "source": "prototypes/1age-autos/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "9c89383974145c234685518a47edaa4f1c7e1814"
     },
     {
       "id": "services",
@@ -161,7 +164,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/33",
       "source": "prototypes/1age-services/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "e6b67ace32e8c6974b8a7e748617017c5d7a9480"
     },
     {
       "id": "pics",
@@ -171,7 +175,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/34",
       "source": "prototypes/1age-pics/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "ea80300f9c9bd261beafbcb88ddfa803eddaefe7"
     },
     {
       "id": "online",
@@ -181,7 +186,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/35",
       "source": "prototypes/1age-online/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "47fe007f84dfcbead3febe776d8d4037e6633785"
     },
     {
       "id": "lol",
@@ -191,7 +197,8 @@
       "review": "https://github.com/1AGEthe3rd/1age/pull/36",
       "source": "prototypes/1age-lol/index.html",
       "state": "migration_required",
-      "publicDeploymentVerified": false
+      "publicDeploymentVerified": false,
+      "migrationSourceCommit": "7b07ef343ceb50dbebda6535ba871e263a3753b8"
     }
   ],
   "world": {
@@ -217,7 +224,8 @@
         "publicRental": false,
         "publicPurchase": false
       }
-    ]
+    ],
+    "reservationClientGuard": "Space PR #20; backend enforcement pending"
   },
   "proposed": [
     {
