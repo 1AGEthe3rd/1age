@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-11-26",
+  "releaseState": "draft_only",
+  "applications": [
+    {
+      "id": "page",
+      "domain": "1age.page",
+      "repository": "1AGEthe3rd/1agepage",
+      "branch": "feature/spatial-design-001-page-interior-20261126",
+      "review": "https://github.com/1AGEthe3rd/1agepage/pull/7",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "space",
+      "domain": "1age.space",
+      "repository": "1AGEthe3rd/1age-space",
+      "branch": "feature/spatial-design-003-discovery-center-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-space/pull/20",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "games",
+      "domain": "1age.games",
+      "repository": "1AGEthe3rd/1age-games",
+      "branch": "feature/spatial-design-004-games-center-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-games/pull/4",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "exchange",
+      "domain": "1age.exchange",
+      "repository": "1AGEthe3rd/1age-exchange",
+      "branch": "feature/spatial-design-005-exchange-center-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-exchange/pull/3",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "cash",
+      "domain": "1age.cash",
+      "repository": "1AGEthe3rd/1age-cash",
+      "branch": "feature/spatial-design-006-cash-interface-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-cash/pull/9",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "quest",
+      "domain": "1age.quest",
+      "repository": "1AGEthe3rd/1age-quest",
+      "branch": "feature/spatial-design-007-quest-center-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-quest/pull/4",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "shop",
+      "domain": "1age.shop",
+      "repository": "1AGEthe3rd/1age-shop",
+      "branch": "feature/spatial-design-009-shop-marketplace-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-shop/pull/3",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "store",
+      "domain": "1age.store",
+      "repository": "1AGEthe3rd/1age-store",
+      "branch": "feature/spatial-design-010-store-flagship-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-store/pull/3",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "plus",
+      "domain": "1age.plus",
+      "repository": "1AGEthe3rd/1age-plus",
+      "branch": "feature/spatial-design-011-plus-members-lounge-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-plus/pull/5",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "app",
+      "domain": "1age.app",
+      "repository": "1AGEthe3rd/1age-app",
+      "branch": "feature/app-distribution-012-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-app/pull/3",
+      "source": "distribution/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "blog",
+      "domain": "1age.blog",
+      "repository": "1AGEthe3rd/1age-blog",
+      "branch": "feature/spatial-design-013-global-publishing-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-blog/pull/3",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "design",
+      "domain": "1age.design",
+      "repository": "1AGEthe3rd/1age-design",
+      "branch": "feature/spatial-design-018-creator-studio-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age-design/pull/3",
+      "source": "spatial/index.html",
+      "state": "root_entry_staged",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "work",
+      "domain": "1age.work",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-008-work-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/28",
+      "source": "prototypes/1age-work/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "forum",
+      "domain": "1age.forum",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-014-forum-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/30",
+      "source": "prototypes/1age-forum/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "autos",
+      "domain": "1age.autos",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-015-autos-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/31",
+      "source": "prototypes/1age-autos/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "services",
+      "domain": "1age.services",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-019-services-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/33",
+      "source": "prototypes/1age-services/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "pics",
+      "domain": "1age.pics",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-020-pics-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/34",
+      "source": "prototypes/1age-pics/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "online",
+      "domain": "1age.online",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-021-online-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/35",
+      "source": "prototypes/1age-online/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    },
+    {
+      "id": "lol",
+      "domain": "1age.lol",
+      "repository": "1AGEthe3rd/1age",
+      "branch": "feature/spatial-design-022-lol-foundation-20261126",
+      "review": "https://github.com/1AGEthe3rd/1age/pull/36",
+      "source": "prototypes/1age-lol/index.html",
+      "state": "migration_required",
+      "publicDeploymentVerified": false
+    }
+  ],
+  "world": {
+    "domain": "1age.world",
+    "webReview": "https://github.com/1AGEthe3rd/1age-world-web/pull/7",
+    "sourceReview": "https://github.com/1AGEthe3rd/1age-world/pull/11",
+    "state": "destination_and_app_gateway_staged",
+    "publicDeploymentVerified": false,
+    "destinations": [
+      {
+        "id": "hq1",
+        "name": "Portland HQ1",
+        "url": "https://1age.space/hq1/",
+        "reserved": true,
+        "publicRental": false,
+        "publicPurchase": false
+      },
+      {
+        "id": "hq2",
+        "name": "Washington, D.C. HQ2",
+        "url": "https://1age.space/hq2/",
+        "reserved": true,
+        "publicRental": false,
+        "publicPurchase": false
+      }
+    ]
+  },
+  "proposed": [
+    {
+      "domain": "1age.live",
+      "state": "domain_purchase_unconfirmed"
+    }
+  ]
+}
